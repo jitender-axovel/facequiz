@@ -17,4 +17,19 @@ Route::get('/', function () {
 
 Route::auth();
 
-Route::get('/home', 'HomeController@index');
+//Route::get('/home', 'HomeController@index');
+
+Route::group(['prefix' => 'admin'], function() {
+	Route::get('login', 'AdminController@getLogin');
+	Route::post('login', 'AdminController@postLogin');
+	Route::group(['middleware' => ['auth', 'admin']], function() {
+		Route::get('dashboard', 'AdminController@getDashboard');
+		Route::get('users', 'AdminUsersController@index');
+		Route::get('users/edit/{id}', 'AdminUsersController@getEdit');
+		Route::post('users/edit/{id}', 'AdminUsersController@postEdit');
+		Route::get('users/view/{id}', 'AdminUsersController@view');
+		Route::delete('users/delete/{id}', 'AdminUsersController@delete');
+		Route::resource('category', 'AdminCategoriesController');
+		Route::resource('quiz', 'AdminQuizzesController');
+	});
+});
