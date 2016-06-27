@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateQuizTemplatesTable extends Migration
+class CreateSubCategoriesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -12,11 +12,13 @@ class CreateQuizTemplatesTable extends Migration
      */
     public function up()
     {
-        Schema::create('quiz_templates', function (Blueprint $table) {
+        Schema::create('sub_categories', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('category_id')->unsigned();
             $table->foreign('category_id')->references('id')->on('categories');
-            $table->string('name');
+            $table->string('title');
+            $table->string('slug');
+            $table->text('description');
             $table->timestamps();
         });
     }
@@ -28,6 +30,6 @@ class CreateQuizTemplatesTable extends Migration
      */
     public function down()
     {
-        Schema::drop('quiz_templates');
+        Schema::drop('sub_categories');
     }
 }
