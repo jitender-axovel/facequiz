@@ -6,6 +6,10 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\Category;
+use App\SubCategory;
+use App\Quiz;
+use App\QuizTemplate;
+use App\Helper;
 
 class AdminQuizzesController extends Controller
 {
@@ -28,7 +32,15 @@ class AdminQuizzesController extends Controller
     {
         $page = "Create Quiz - Admin";
         $categories = Category::all();
-        return view('admin.quizzes.create', compact('page', 'categories'));
+        $subCategories = SubCategory::all();
+        $templates = QuizTemplate::all();
+        return view('admin.quizzes.create', compact('page', 'categories', 'subCategories', 'templates'));
+    }
+
+    public function getSubCategories()
+    {
+        $subCategories = SubCategory::where('category_id', $_GET['ci'])->select(['id', 'title'])->get();
+        return json_encode($subCategories);
     }
 
     /**
@@ -39,7 +51,21 @@ class AdminQuizzesController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $input = $request->input();
+
+        $input = array_intersect_key($input, Quiz::$updatable);
+        
+        $input['title'] = ucfirst($input['title']);
+        $quiz = Quiz::create($input);
+
+        $quiz['slug'] = Helper::slug($input['title'], $quiz->id);
+        $quiz->save();
+
+        $category = $quiz->category->title;
+
+        $type = $quiz->subCategory->title;
+
+        return view('admin.quizzes.components.attributes-form', compact('category', 'type'));
     }
 
     /**
