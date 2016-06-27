@@ -1,12 +1,20 @@
+
+# Created by https://www.gitignore.io/api/laravel
+
+### Laravel ###
 vendor/
 node_modules/
 
 # Laravel 5 & Lumen specific
+storage/
 .env.*.php
 .env.php
-.env
+public/uploads/
+public/images/project/
+public/images/users/
 
-# Rocketeer PHP task runner and deployment package. 
-https://github.com/rocketeers/rocketeer
+
+# Rocketeer PHP task runner and deployment package. https://github.com/rocketeers/rocketeer
 .rocketeer/
-nbproject/
+
+
