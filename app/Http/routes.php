@@ -18,6 +18,7 @@ Route::get('/', function () {
 Route::auth();
 
 //Route::get('/home', 'HomeController@index');
+Route::get('get-subcategories', 'AdminQuizzesController@getSubCategories');
 
 Route::group(['prefix' => 'admin'], function() {
 	Route::get('login', 'AdminController@getLogin');
@@ -30,6 +31,7 @@ Route::group(['prefix' => 'admin'], function() {
 		Route::get('users/view/{id}', 'AdminUsersController@view');
 		Route::delete('users/delete/{id}', 'AdminUsersController@delete');
 		Route::resource('category', 'AdminCategoriesController');
+		Route::resource('sub-category', 'AdminSubCategoriesController');
 		Route::resource('quiz', 'AdminQuizzesController');
 	});
 });
