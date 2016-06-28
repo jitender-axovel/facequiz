@@ -47,7 +47,7 @@ class BeforeMiddleware
         
         $languageStrings = App\Language::where('code', $request->session()->get('locale'))->orWhere('fb_code', $request->session()->get('locale'))->first();
 
-        $languageStrings = json_decode($languageStrings->strings, true);
+        if($languageStrings) $languageStrings = json_decode($languageStrings->strings, true);
         view()->share('languageStrings', $languageStrings);
         $defaultLanguageStrings = trans('strings');
         view()->share('defaultLanguageStrings', $defaultLanguageStrings);
