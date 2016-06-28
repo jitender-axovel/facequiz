@@ -11,27 +11,32 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::group(['middleware' => 'before'], function() {
+	Route::get('/', function () {
+	    return view('welcome');
+	});
 
-Route::auth();
+	Route::auth();
 
-//Route::get('/home', 'HomeController@index');
-Route::get('get-subcategories', 'AdminQuizzesController@getSubCategories');
+	//Route::get('/home', 'HomeController@index');
+	Route::get('get-subcategories', 'AdminQuizzesController@getSubCategories');
+	Route::get('get-template-details', 'AdminQuizzesController@getTemplateDetails');
 
-Route::group(['prefix' => 'admin'], function() {
-	Route::get('login', 'AdminController@getLogin');
-	Route::post('login', 'AdminController@postLogin');
-	Route::group(['middleware' => ['auth', 'admin']], function() {
-		Route::get('dashboard', 'AdminController@getDashboard');
-		Route::get('users', 'AdminUsersController@index');
-		Route::get('users/edit/{id}', 'AdminUsersController@getEdit');
-		Route::post('users/edit/{id}', 'AdminUsersController@postEdit');
-		Route::get('users/view/{id}', 'AdminUsersController@view');
-		Route::delete('users/delete/{id}', 'AdminUsersController@delete');
-		Route::resource('category', 'AdminCategoriesController');
-		Route::resource('sub-category', 'AdminSubCategoriesController');
-		Route::resource('quiz', 'AdminQuizzesController');
+	Route::group(['prefix' => 'admin'], function() {
+		Route::get('login', 'AdminController@getLogin');
+		Route::post('login', 'AdminController@postLogin');
+		Route::group(['middleware' => ['auth', 'admin']], function() {
+			Route::get('dashboard', 'AdminController@getDashboard');
+			Route::get('users', 'AdminUsersController@index');
+			Route::get('users/edit/{id}', 'AdminUsersController@getEdit');
+			Route::post('users/edit/{id}', 'AdminUsersController@postEdit');
+			Route::get('users/view/{id}', 'AdminUsersController@view');
+			Route::delete('users/delete/{id}', 'AdminUsersController@delete');
+			Route::resource('category', 'AdminCategoriesController');
+			Route::resource('sub-category', 'AdminSubCategoriesController');
+			Route::resource('quiz', 'AdminQuizzesController');
+			Route::get('language', 'AdminController@getLanguage');
+			Route::post('language/{id}', 'AdminController@postLanguage');
+		});
 	});
 });
