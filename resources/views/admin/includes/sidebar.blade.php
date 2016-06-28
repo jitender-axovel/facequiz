@@ -3,7 +3,7 @@
     <ul class="sidebar-nav">
         <li class="sidebar-brand">
             <a href="#">
-                Kickstarter Admin
+                FaceQuiz Admin
             </a>
         </li>
         <li>
@@ -20,6 +20,28 @@
                 </li>
                 <li>
                     <a href="{{url('admin/category')}}">List Categories</a>
+                </li>
+            </ul>
+        </li>
+        <li>
+            <a href="javascript:;" data-toggle="collapse" data-target="#sub-category" class="collapsed" aria-expanded="false">Sub-Category Management <i class="fa fa-fw fa-caret-down"></i></a>
+            <ul id="sub-category" class="collapse" aria-expanded="false">
+                <li>
+                    <a href="{{url('admin/sub-category/create')}}">Create New Sub-Category</a>
+                </li>
+                <li>
+                    <a href="{{url('admin/sub-category')}}">List Sub-Categories</a>
+                </li>
+            </ul>
+        </li>
+        <li>
+            <a href="javascript:;" data-toggle="collapse" data-target="#layout" class="collapsed" aria-expanded="false">Quiz Layouts <i class="fa fa-fw fa-caret-down"></i></a>
+            <ul id="layout" class="collapse" aria-expanded="false">
+                <li>
+                    <a href="{{url('admin/layout/create')}}">Create New Layout</a>
+                </li>
+                <li>
+                    <a href="{{url('admin/layout')}}">List Layouts</a>
                 </li>
             </ul>
         </li>
