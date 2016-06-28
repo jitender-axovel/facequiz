@@ -56,6 +56,9 @@
                 </li>
             </ul>
         </li>
+        <li>
+            <a href="{{url('admin/language')}}">Languages</a>
+        </li>
         
     </ul>
 </div>
