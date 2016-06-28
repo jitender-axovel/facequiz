@@ -38,7 +38,7 @@ return [
     'facebook' => [
         'client_id' => '294713090874283',
         'client_secret' => '25036ad305ff0d26a944afdfa65df7ab',
-        'redirect' => 'http://dev.axovel.in/facequiz/public/',
+        'redirect' => 'http://dev.axovel.in/facequiz/public/callback',
     ],
 
 ];
