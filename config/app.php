@@ -65,6 +65,9 @@ return [
     |
     */
 
+    'languages' => array('en', 'fr', 'cz', 'ru', 'de', 'es', 'pl'),
+    'locales' => ['en' => 'English', 'cz' => 'Czech', 'fr' => 'French', 'ru' => 'Russian', 'de' => 'Germen', 'es' => 'Spanish', 'pl' => 'Polish'],
+
     'locale' => 'en',
 
     /*
