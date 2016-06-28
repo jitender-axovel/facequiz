@@ -43,6 +43,12 @@ class AdminQuizzesController extends Controller
         return json_encode($subCategories);
     }
 
+    public function getTemplateDetails()
+    {
+        $template = QuizTemplate::where('id', $_GET['ti'])->first();
+        return json_encode($template);
+    }
+
     /**
      * Store a newly created resource in storage.
      *

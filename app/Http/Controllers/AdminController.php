@@ -9,6 +9,8 @@ use Auth;
 use Illuminate\Support\MessageBag;
 use Illuminate\Support\Facades\Input;
 
+use App\Language;
+
 class AdminController extends Controller
 {
 
@@ -33,5 +35,28 @@ class AdminController extends Controller
     {
         $page = 'Dashboard - Admin';
         return view('admin.dashboard', compact('page'));
+    }
+
+    public function getLanguage()
+    {
+        $page = 'Languages - Admin';
+        $languages = Language::get();
+        $strings = trans('strings');
+        
+        return view('admin.languages.index', compact('page', 'languages', 'strings'));
+    }
+
+    public function postLanguage(Request $request, $id)
+    {
+        $page = 'Languages - Admin';
+        $languages = Language::get();
+
+        $input = $request->input();
+        $language = array_intersect_key($input, Language::$updatable);
+
+        $language['strings'] = json_encode(array_intersect_key($input, trans('strings')));
+        $language = Language::where('id', $id)->update($language);
+        
+        return redirect('admin/language')->with('success', 'Language has been saved.');
     }
 }
