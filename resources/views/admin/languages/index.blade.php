@@ -60,5 +60,24 @@
 				</div>
 			</div>
 		@endforeach
+                <a class="btn btn-warning" onclick="javascript:showLanguageForm();"><i class="fa fa-plus-circle"></i> Add new Language</a>
+                <div class="language-form"></div>
 	</div>
+@endsection
+@section('admin-scripts')
+    <script type="text/javascript">
+        $(document).ready(function() {
+            
+        });
+        function showLanguageForm()
+        {
+            $.ajax({
+                url: "{{url('admin/get-language-form')}}",
+                type: "GET",
+                success: function(data) {
+                    $('.language-form').html(data);
+                }
+            });
+        }
+    </script>
 @endsection

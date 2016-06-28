@@ -37,7 +37,7 @@ class AdminController extends Controller
         return view('admin.dashboard', compact('page'));
     }
 
-    public function getLanguage()
+    public function getLanguage(REQUEST $request)
     {
         $page = 'Languages - Admin';
         $languages = Language::get();
@@ -46,7 +46,21 @@ class AdminController extends Controller
         return view('admin.languages.index', compact('page', 'languages', 'strings'));
     }
 
-    public function postLanguage(Request $request, $id)
+    public function postLanguage(Request $request)
+    {
+        $page = 'Languages - Admin';
+        $languages = Language::get();
+
+        $input = $request->input();
+        $language = array_intersect_key($input, Language::$updatable);
+
+        $language['strings'] = json_encode(array_intersect_key($input, trans('strings')));
+        $language = Language::create($language);
+        
+        return redirect('admin/language')->with('success', 'Language has been saved.');
+    }
+    
+    public function postUpdateLanguage(Request $request, $id)
     {
         $page = 'Languages - Admin';
         $languages = Language::get();
@@ -58,5 +72,10 @@ class AdminController extends Controller
         $language = Language::where('id', $id)->update($language);
         
         return redirect('admin/language')->with('success', 'Language has been saved.');
+    }
+    
+    public function getLanguageForm()
+    {
+        return view('admin.languages.components.new-language-form');
     }
 }
