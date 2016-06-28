@@ -17,7 +17,10 @@ Route::group(['middleware' => 'before'], function() {
 	});
 
 	Route::auth();
-
+        
+        Route::get('/redirect', 'SocialAuthController@redirect');
+        Route::get('/callback', 'SocialAuthController@callback');
+        
 	//Route::get('/home', 'HomeController@index');
 	Route::get('get-subcategories', 'AdminQuizzesController@getSubCategories');
 	Route::get('get-template-details', 'AdminQuizzesController@getTemplateDetails');
@@ -36,7 +39,9 @@ Route::group(['middleware' => 'before'], function() {
 			Route::resource('sub-category', 'AdminSubCategoriesController');
 			Route::resource('quiz', 'AdminQuizzesController');
 			Route::get('language', 'AdminController@getLanguage');
-			Route::post('language/{id}', 'AdminController@postLanguage');
+                        Route::post('language', 'AdminController@postLanguage');
+			Route::post('language/{id}', 'AdminController@postUpdateLanguage');
+                        Route::get('get-language-form', 'AdminController@getLanguageForm');
 		});
 	});
 });

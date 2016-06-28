@@ -34,5 +34,11 @@ return [
         'key' => env('STRIPE_KEY'),
         'secret' => env('STRIPE_SECRET'),
     ],
+    
+    'facebook' => [
+        'client_id' => '294713090874283',
+        'client_secret' => '25036ad305ff0d26a944afdfa65df7ab',
+        'redirect' => 'http://localhost/facequiz/public/callback',
+    ],
 
 ];

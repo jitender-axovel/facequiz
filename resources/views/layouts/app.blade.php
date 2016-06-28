@@ -24,6 +24,20 @@
             margin-right: 6px;
         }
     </style>
+    <script>
+        var languageStrings = {{json_encode($languageStrings)}};
+        var defaultLanguageStrings = {{json_encode($defaultLanguageStrings)}};
+        //Translation
+        function __(key){
+            if (languageStrings.hasOwnProperty(key)){
+                return languageStrings[key];
+            } else if (defaultLanguageStrings.hasOwnProperty(key)){
+                return defaultLanguageStrings[key];
+            } else {
+                return key;
+            }
+        }
+    </script>
 </head>
 <body id="app-layout">
     <nav class="navbar navbar-default navbar-static-top">
@@ -48,18 +62,18 @@
                 <!-- Left Side Of Navbar -->
                 <ul class="nav navbar-nav">
                     <li><a href="{{ url('/home') }}">Home</a></li>
+                    <li><a href="{{ url('quizzes/all') }}">{{-- __('ALL') --}}</a></li>
                 </ul>
 
                 <!-- Right Side Of Navbar -->
                 <ul class="nav navbar-nav navbar-right">
                     <!-- Authentication Links -->
                     @if (Auth::guest())
-                        <li><a href="{{ url('/login') }}">Login</a></li>
-                        <li><a href="{{ url('/register') }}">Register</a></li>
+                        <li><a href="redirect">FB Login</a></li>
                     @else
                         <li class="dropdown">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-                                {{ Auth::user()->name }} <span class="caret"></span>
+                                {{ Auth::user()->first_name }} <span class="caret"></span>
                             </a>
 
                             <ul class="dropdown-menu" role="menu">
