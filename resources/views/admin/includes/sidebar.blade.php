@@ -7,7 +7,7 @@
             </a>
         </li>
         <li>
-            <a href="{{'admin/dashboard'}}">Dashboard</a>
+            <a href="{{url('admin/dashboard')}}">Dashboard</a>
         </li>
         <li>
             <a href="{{url('admin/users')}}">User Management</a>
