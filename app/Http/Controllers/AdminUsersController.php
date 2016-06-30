@@ -62,4 +62,29 @@ class AdminUsersController extends Controller
     		return json_encode($result);
     	}
     }
+
+    public function block($id)
+    {
+        $user = User::find($id);
+        $name = $user->first_name.' '.$user->last_name;
+        $user->is_blocked = !$user->is_blocked;
+        $user->save();
+
+        if($user->is_blocked == 1) {
+            $result['status'] = true;
+            $result['message'] = trim($name)."'s record has been blocked.";
+
+            return json_encode($result);
+        } elseif($user->is_blocked == 0) {
+            $result['status'] = true;
+            $result['message'] = $name."'s record has been unblocked.";
+
+            return json_encode($result);
+        } else {
+            $result['status'] = false;
+            $result['message'] = $name."'s record could not be updated. Kindly try again.";
+
+            return json_encode($result);
+        }
+    }
 }

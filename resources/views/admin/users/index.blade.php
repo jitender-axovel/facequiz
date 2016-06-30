@@ -26,7 +26,14 @@
 				<td>
 					<a class="btn btn-info" href="{{ url('admin/users/edit/'.$user->id) }}">Edit</a>
 					<a class="btn btn-primary" href="{{ url('admin/users/view/'.$user->id) }}">View Info</a>
-					<a class="btn btn-danger" onclick="deleteUser('{{$user->id}}', '{{$user->first_name.' '.$user->last_name}}')">Delete</a>
+					@if(!$user->isAdmin()) 
+						@if($user->is_blocked == 0)
+							<a class="btn btn-warning" onclick="blockUser('{{$user->id}}', '{{$user->first_name.' '.$user->last_name}}')">Block</a>
+						@else
+							<a class="btn btn-success" onclick="unBlockUser('{{$user->id}}', '{{$user->first_name.' '.$user->last_name}}')">UnBlock</a>
+						@endif
+						<a class="btn btn-danger" onclick="deleteUser('{{$user->id}}', '{{$user->first_name.' '.$user->last_name}}')">Delete</a>
+					@endif
 				</td>
 			</tr>
 			@endforeach
@@ -84,6 +91,102 @@
 					});
 				} else {
 					swal("Cancelled", name+"'s record will not be deleted.", "error");
+				}
+			});
+		}
+
+		function blockUser(id, name)
+		{
+			swal({
+				title: "Are you sure?",
+				text: "You want to block "+name,
+				type: "warning",
+				showCancelButton: true,
+				confirmButtonColor: "#DD6B55",
+				confirmButtonText: "Yes, block "+name+"!",
+				cancelButtonText: "No, cancel pls!",
+				closeOnConfirm: false,
+				closeOnCancel: false,
+				allowEscapeKey: false,
+			},
+			function(isConfirm){
+				if(isConfirm) {
+					$.ajax({
+						url: "{{ url('admin/users/block') }}" + '/' + id,
+						type: 'POST',
+						success: function(data) {
+							data = JSON.parse(data);
+							if(data['status']) {
+								swal({
+									title: data['message'],
+									text: "Press ok to continue",
+									type: "success",
+									showCancelButton: false,
+									confirmButtonColor: "#DD6B55",
+									confirmButtonText: "Ok",
+									closeOnConfirm: false,
+									allowEscapeKey: false,
+								},
+								function(isConfirm){
+									if(isConfirm) {
+										window.location.reload();
+									}
+								});
+							} else {
+								swal("Error", data['message'], "error");
+							}
+						}
+					});
+				} else {
+					swal("Cancelled", name+"'s record will not be blocked.", "error");
+				}
+			});
+		}
+
+		function unBlockUser(id, name)
+		{
+			swal({
+				title: "Are you sure?",
+				text: "You want to unblock "+name,
+				type: "warning",
+				showCancelButton: true,
+				confirmButtonColor: "#DD6B55",
+				confirmButtonText: "Yes, unblock "+name+"!",
+				cancelButtonText: "No, cancel pls!",
+				closeOnConfirm: false,
+				closeOnCancel: false,
+				allowEscapeKey: false,
+			},
+			function(isConfirm){
+				if(isConfirm) {
+					$.ajax({
+						url: "{{ url('admin/users/block') }}" + '/' + id,
+						type: 'POST',
+						success: function(data) {
+							data = JSON.parse(data);
+							if(data['status']) {
+								swal({
+									title: data['message'],
+									text: "Press ok to continue",
+									type: "success",
+									showCancelButton: false,
+									confirmButtonColor: "#DD6B55",
+									confirmButtonText: "Ok",
+									closeOnConfirm: false,
+									allowEscapeKey: false,
+								},
+								function(isConfirm){
+									if(isConfirm) {
+										window.location.reload();
+									}
+								});
+							} else {
+								swal("Error", data['message'], "error");
+							}
+						}
+					});
+				} else {
+					swal("Cancelled", name+"'s record could not been unblocked.", "error");
 				}
 			});
 		}
