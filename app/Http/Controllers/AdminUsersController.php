@@ -13,7 +13,7 @@ class AdminUsersController extends Controller
     public function index()
     {
     	$page = 'Users - Admin';
-    	$users = User::get();
+    	$users = User::orderBy('user_role_id', 'ASC')->get();
     	return view('admin.users.index', compact('page', 'users'));
     }
 
@@ -52,7 +52,7 @@ class AdminUsersController extends Controller
 
     	if($user->trashed()) {
     		$result['status'] = true;
-    		$result['message'] = $name."'s record has been deleted.";
+    		$result['message'] = trim($name)."'s record has been deleted.";
 
     		return json_encode($result);
     	} else {

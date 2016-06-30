@@ -9,7 +9,7 @@
 			<tr>
 				<th>Name</th>
 				<th>Email</th>
-				<th>Credits</th>
+				<th>Role</th>
 				<th>Gender</th>
 				<th>Joined On</th>
 				<th>Actions</th>
@@ -20,7 +20,7 @@
 			<tr>
 				<td>{{ $user->first_name . ' ' . $user->last_name}}</td>
 				<td>{{ $user->email }}</td>
-				<td>{{ $user->credits }}</td>
+				<td>{{ $user->role->name }}</td>
 				<td>{{ $user->gender }}</td>
 				<td>{{ date_format(date_create($user->created_at), 'F d, Y') }}</td>
 				<td>
