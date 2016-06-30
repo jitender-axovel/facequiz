@@ -18,6 +18,11 @@ class SocialAccountService
 
             if (!$user) {
 
+                $deletedUser = User::onlyTrashed()->whereEmail($providerUser->getEmail())->first();
+
+                if($deletedUser) {
+                    return false;
+                }
                 $user = User::create([
                     'email' => $providerUser->getEmail(),
                     'first_name' => $providerUser->getName(),
