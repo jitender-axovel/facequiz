@@ -35,6 +35,8 @@ Route::group(['middleware' => 'before'], function() {
 			Route::post('users/edit/{id}', 'AdminUsersController@postEdit');
 			Route::get('users/view/{id}', 'AdminUsersController@view');
 			Route::delete('users/delete/{id}', 'AdminUsersController@delete');
+			Route::post('users/block/{id}', 'AdminUsersController@block');
+			Route::post('users/download-csv', 'AdminUsersController@exportToCsv');
 			Route::resource('category', 'AdminCategoriesController');
 			Route::resource('sub-category', 'AdminSubCategoriesController');
 			Route::resource('quiz', 'AdminQuizzesController');

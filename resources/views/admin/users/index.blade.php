@@ -4,6 +4,36 @@
 	<h2>Users List</h2>
 	<hr>
 	@include('notification')
+	<div class="row col-md-4">
+		<div class="panel panel-success">
+			<div class="panel-heading">
+				<div class="panel-title">Download Records</div>
+			</div>
+			<div class="panel-body">
+				Choose data to show in csv
+				<form class="form" action="{{ url('admin/users/download-csv') }}" method="POST">
+					{{csrf_field()}}
+					<div class="form-group form-inline">
+						<label class="control-label">Name</label>
+							<input type="checkbox" class="form-control" name="name" value="name"></input>
+					</div>
+					<div class="form-group form-inline">
+						<label>E-mail</label>
+						<input type="checkbox" class="form-control" name="email" value="email"></input>
+					</div>
+					<div class="form-group form-inline">
+						<label>Gender</label>
+						<input type="checkbox" class="form-control" name="gender" value="gender"></input>
+					</div>
+					<div class="form-group form-inline">
+						<label>Limit</label>
+						<input type="number" class="form-control" name="limit" value="{{old('limit')}}">
+					</div>
+					<button class="btn btn-success" type="submit">Download</button>
+				</form>
+			</div>
+		</div>
+	</div>
 	<table id="users_list" class="display">
 		<thead>
 			<tr>
@@ -18,7 +48,7 @@
 		<tbody>
 			@foreach($users as $user)
 			<tr>
-				<td>{{ $user->first_name . ' ' . $user->last_name}}</td>
+				<td>{{ $user->name}}</td>
 				<td>{{ $user->email }}</td>
 				<td>{{ $user->role->name }}</td>
 				<td>{{ $user->gender }}</td>
@@ -28,11 +58,11 @@
 					<a class="btn btn-primary" href="{{ url('admin/users/view/'.$user->id) }}">View Info</a>
 					@if(!$user->isAdmin()) 
 						@if($user->is_blocked == 0)
-							<a class="btn btn-warning" onclick="blockUser('{{$user->id}}', '{{$user->first_name.' '.$user->last_name}}')">Block</a>
+							<a class="btn btn-warning" onclick="blockUser('{{$user->id}}', '{{$user->name}}')">Block</a>
 						@else
-							<a class="btn btn-success" onclick="unBlockUser('{{$user->id}}', '{{$user->first_name.' '.$user->last_name}}')">UnBlock</a>
+							<a class="btn btn-success" onclick="unBlockUser('{{$user->id}}', '{{$user->name}}')">UnBlock</a>
 						@endif
-						<a class="btn btn-danger" onclick="deleteUser('{{$user->id}}', '{{$user->first_name.' '.$user->last_name}}')">Delete</a>
+						<a class="btn btn-danger" onclick="deleteUser('{{$user->id}}', '{{$user->name}}')">Delete</a>
 					@endif
 				</td>
 			</tr>

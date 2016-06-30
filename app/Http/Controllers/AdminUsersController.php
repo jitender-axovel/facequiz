@@ -47,7 +47,7 @@ class AdminUsersController extends Controller
     public function delete($id)
     {
     	$user = User::find($id);
-    	$name = $user->first_name.' '.$user->last_name;
+    	$name = $user->name;
     	$user->delete();
 
     	if($user->trashed()) {
@@ -66,7 +66,7 @@ class AdminUsersController extends Controller
     public function block($id)
     {
         $user = User::find($id);
-        $name = $user->first_name.' '.$user->last_name;
+        $name = $user->name;
         $user->is_blocked = !$user->is_blocked;
         $user->save();
 
@@ -86,5 +86,35 @@ class AdminUsersController extends Controller
 
             return json_encode($result);
         }
+    }
+
+    public function exportToCsv(Request $request) {
+        $input = $request->input();
+
+        $limit = $input['limit'];
+        
+        $input = array_intersect_key($input, User::$downloadable);
+
+        if($limit == '') {
+            $users = User::select($input)->get()->toArray();
+        } else {
+            $users = User::select($input)->take($limit)->get()->toArray();
+        }
+
+        $delimiter=";";
+
+        $filename = "export.csv";
+
+        header('Content-Type: application/csv');
+        header('Content-Disposition: attachment; filename="'.$filename.'";');
+
+        $f = fopen('php://output', 'w');
+
+        foreach ($users as $line) { 
+            // generate csv lines from the inner arrays
+            fputcsv($f, $line, $delimiter); 
+        }
+
+        return;
     }
 }
