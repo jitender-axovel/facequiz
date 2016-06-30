@@ -12,7 +12,7 @@
 						<div class="col-sm-9">
 							<dl class="dl-horizontal lead">
 								<dt>Name</dt>
-								<dd><blockquote>{{ $user->first_name.' '.$user->last_name }}</blockquote></dd>
+								<dd><blockquote>{{ $user->name }}</blockquote></dd>
 								<dt>Email</dt>
 								<dd><blockquote>{{ $user->email }}</blockquote></dd>
 								<dt>About User</dt>

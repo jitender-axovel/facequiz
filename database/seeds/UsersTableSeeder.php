@@ -14,7 +14,7 @@ class UsersTableSeeder extends Seeder
         DB::table('users')->delete();
         
         DB::table('users')->insert([
-        	['first_name' => 'Jitender', 'last_name' => 'Singla', 'slug' => 'jitender-singla-1', 'user_role_id' => 1, 'email' => 'jitender.axovel@gmail.com', 'password' => Hash::make('admin123'), 'gender' => 'M', 'created_at' => date('Y-m-d H:i:s'), 'updated_at' => date('Y-m-d H:i:s')],
+        	['name' => 'Jitender Singla', 'slug' => 'jitender-singla-1', 'user_role_id' => 1, 'email' => 'jitender.axovel@gmail.com', 'password' => Hash::make('admin123'), 'gender' => 'M', 'created_at' => date('Y-m-d H:i:s'), 'updated_at' => date('Y-m-d H:i:s')],
     	]);
     }
 }

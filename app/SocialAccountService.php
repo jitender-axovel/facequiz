@@ -10,7 +10,7 @@ class SocialAccountService
     {
         $account = User::whereEmail($providerUser->getEmail())->first();
 
-        if($account->is_blocked == 1) {
+        if($account && $account->is_blocked == 1) {
             return 3;
         }
 
@@ -29,7 +29,7 @@ class SocialAccountService
                 }
                 $user = User::create([
                     'email' => $providerUser->getEmail(),
-                    'first_name' => $providerUser->getName(),
+                    'name' => $providerUser->getName(),
                     'user_role_id' => 3,
                 ]);
             }

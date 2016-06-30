@@ -9,7 +9,7 @@
 	@include('notification')
 	<div class="panel panel-default">
 		<div class="panel-heading">
-			<p class="bold">Edit {{$user->first_name.' '.$user->last_name}}'s record</p>
+			<p class="bold">Edit {{$user->name}}'s record</p>
 		</div>
 		<div class="panel-body">
 			<form action="{{ url('admin/users/edit/'.$user->id) }}" method="POST">
@@ -17,19 +17,10 @@
 				<div class="form-group">
 					<label class="control-label col-md-12">First Name</label>
 					<div class="col-md-12">
-						<input type="text" class="form-control" name="first_name" value="{{ $user->first_name ? $user->first_name : old('first_name') }}"></input>
-						@if($errors->has('first_name'))
+						<input type="text" class="form-control" name="name" value="{{ $user->name ? $user->name : old('name') }}"></input>
+						@if($errors->has('name'))
 							<span class="help-block">
-								<strong>{{ $errors->first('first_name') }}</strong>
-							</span>
-						@endif
-					</div>
-					<label class="control-label col-md-12">Last Name</label>
-					<div class="col-md-12">
-						<input type="text" class="form-control" name="last_name" value="{{ $user->last_name ? $user->last_name : old('last_name') }}"></input>
-						@if($errors->has('last_name'))
-							<span class="help-block">
-								<strong>{{ $errors->first('last_name') }}</strong>
+								<strong>{{ $errors->first('name') }}</strong>
 							</span>
 						@endif
 					</div>
