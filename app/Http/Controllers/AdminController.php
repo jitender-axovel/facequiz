@@ -10,6 +10,10 @@ use Illuminate\Support\MessageBag;
 use Illuminate\Support\Facades\Input;
 
 use App\Language;
+use App\User;
+use App\Quiz;
+use App\QuizAttempt;
+use App\QuizShare;
 
 class AdminController extends Controller
 {
@@ -34,7 +38,18 @@ class AdminController extends Controller
     public function getDashboard()
     {
         $page = 'Dashboard - Admin';
-        return view('admin.dashboard', compact('page'));
+
+        $overallStats['users'] = User::count();
+        $overallStats['quizzes'] = Quiz::count();
+        $overallStats['attempts'] = QuizAttempt::count();
+        $overallStats['shares'] = QuizShare::count();
+
+        $todayStats['users'] = User::where('created_at', date('Y-m-d'))->count();
+        $todayStats['quizzes'] = Quiz::where('created_at', date('Y-m-d'))->count();
+        $todayStats['attempts'] = QuizAttempt::where('created_at', date('Y-m-d'))->count();
+        $todayStats['shares'] = QuizShare::where('created_at', date('Y-m-d'))->count();
+
+        return view('admin.dashboard', compact('page', 'overallStats', 'todayStats'));
     }
 
     public function getLanguage(REQUEST $request)
