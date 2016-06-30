@@ -19,6 +19,7 @@ class CreateQuizSharesTable extends Migration
             $table->integer('quiz_id')->unsigned();
             $table->foreign('quiz_id')->references('id')->on('quizzes');
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

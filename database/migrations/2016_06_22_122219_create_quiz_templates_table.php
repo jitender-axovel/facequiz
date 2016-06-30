@@ -23,6 +23,7 @@ class CreateQuizTemplatesTable extends Migration
             $table->boolean('has_title')->default(true);
             $table->boolean('has_image_caption')->default(false);
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

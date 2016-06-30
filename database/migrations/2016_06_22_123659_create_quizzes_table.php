@@ -30,6 +30,7 @@ class CreateQuizzesTable extends Migration
             $table->boolean('show_friend_name')->default(false);
             $table->boolean('is_active')->default(false)->index();
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

@@ -21,6 +21,7 @@ class CreateLanguagesTable extends Migration
             $table->longText('strings');
             $table->boolean('isActive')->default(false);
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 
