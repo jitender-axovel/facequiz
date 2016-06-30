@@ -44,10 +44,10 @@ class AdminController extends Controller
         $overallStats['attempts'] = QuizAttempt::count();
         $overallStats['shares'] = QuizShare::count();
 
-        $todayStats['users'] = User::where('created_at', date('Y-m-d'))->count();
-        $todayStats['quizzes'] = Quiz::where('created_at', date('Y-m-d'))->count();
-        $todayStats['attempts'] = QuizAttempt::where('created_at', date('Y-m-d'))->count();
-        $todayStats['shares'] = QuizShare::where('created_at', date('Y-m-d'))->count();
+        $todayStats['users'] = User::whereRaw('Date(created_at) = Date(NOW())')->count();
+        $todayStats['quizzes'] = Quiz::whereRaw('Date(created_at) = Date(NOW())')->count();
+        $todayStats['attempts'] = QuizAttempt::whereRaw('Date(created_at) = Date(NOW())')->count();
+        $todayStats['shares'] = QuizShare::whereRaw('Date(created_at) = Date(NOW())')->count();
 
         return view('admin.dashboard', compact('page', 'overallStats', 'todayStats'));
     }
