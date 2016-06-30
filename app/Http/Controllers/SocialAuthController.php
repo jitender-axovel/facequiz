@@ -22,8 +22,10 @@ class SocialAuthController extends Controller
         // when facebook call us a with token   
         $user = $service->createOrGetUser(Socialite::driver('facebook')->user());
 
-        if(!$user) {
+        if($user == 2) {
             return redirect('/')->with('error', 'Dear user, your account has been deleted by admin earlier. Kindly create a new account if you want to user our services.');
+        } elseif($user == 3) {
+            return redirect('/')->with('error', 'Dear user, your account has been blocked by admin. Kindly write to support if you want to discuss any details.');
         }
 
         auth()->login($user);

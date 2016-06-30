@@ -10,6 +10,10 @@ class SocialAccountService
     {
         $account = User::whereEmail($providerUser->getEmail())->first();
 
+        if($account->is_blocked == 1) {
+            return 3;
+        }
+
         if ($account) {
             return $account;
         } else {
@@ -21,7 +25,7 @@ class SocialAccountService
                 $deletedUser = User::onlyTrashed()->whereEmail($providerUser->getEmail())->first();
 
                 if($deletedUser) {
-                    return false;
+                    return 2;
                 }
                 $user = User::create([
                     'email' => $providerUser->getEmail(),
