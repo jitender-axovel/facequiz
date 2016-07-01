@@ -105,7 +105,7 @@ class AdminUsersController extends Controller
 
         $filename = "export.csv";
 
-        header('Content-Type: application/csv');
+        header('Content-Type: application/csv; charset=utf-8');
         header('Content-Disposition: attachment; filename="'.$filename.'";');
 
         $f = fopen('php://output', 'w');
