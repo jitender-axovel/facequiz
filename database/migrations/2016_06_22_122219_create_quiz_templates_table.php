@@ -17,7 +17,8 @@ class CreateQuizTemplatesTable extends Migration
             $table->integer('category_id')->unsigned();
             $table->foreign('category_id')->references('id')->on('categories');
             $table->string('name')->unique();
-            $table->string('url');
+            $table->longText('html_data');
+            $table->string('og_image');
             $table->integer('total_images')->unsigned();
             $table->integer('total_textareas')->unsigned();
             $table->boolean('has_title')->default(true);
