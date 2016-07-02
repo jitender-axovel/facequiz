@@ -13,6 +13,7 @@ class VerifyCsrfToken extends BaseVerifier
      */
     protected $except = [
         'admin/users/delete/*',
-        'admin/users/block/*'
+        'admin/users/block/*',
+        'admin/save-template-image'
     ];
 }
