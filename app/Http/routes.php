@@ -40,10 +40,12 @@ Route::group(['middleware' => 'before'], function() {
 			Route::resource('category', 'AdminCategoriesController');
 			Route::resource('sub-category', 'AdminSubCategoriesController');
 			Route::resource('quiz', 'AdminQuizzesController');
+			Route::post('save-template-image', 'AdminQuizTemplatesController@saveTemplateImage');
+			Route::resource('layout', 'AdminQuizTemplatesController');
 			Route::get('language', 'AdminController@getLanguage');
-                        Route::post('language', 'AdminController@postLanguage');
+            Route::post('language', 'AdminController@postLanguage');
 			Route::post('language/{id}', 'AdminController@postUpdateLanguage');
-                        Route::get('get-language-form', 'AdminController@getLanguageForm');
+            Route::get('get-language-form', 'AdminController@getLanguageForm');
 		});
 	});
 });
