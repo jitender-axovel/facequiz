@@ -24,6 +24,7 @@ Route::group(['middleware' => 'before'], function() {
 	//Route::get('/home', 'HomeController@index');
 	Route::get('get-subcategories', 'AdminQuizzesController@getSubCategories');
 	Route::get('get-template-details', 'AdminQuizzesController@getTemplateDetails');
+	Route::get('get-quiz-form', 'AdminQuizzesController@getQuizForm');
 
 	Route::group(['prefix' => 'admin'], function() {
 		Route::get('login', 'AdminController@getLogin');

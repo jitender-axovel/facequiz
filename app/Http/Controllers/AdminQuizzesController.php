@@ -8,6 +8,7 @@ use App\Http\Requests;
 use App\Category;
 use App\SubCategory;
 use App\Quiz;
+use App\QuizFact;
 use App\QuizTemplate;
 use App\Helper;
 
@@ -20,7 +21,10 @@ class AdminQuizzesController extends Controller
      */
     public function index()
     {
-        //
+        $page = 'Quizzes - Admin';
+
+        $quizzes = Quiz::get();
+        return view('admin.quizzes.index', compact('page', 'quizzes'));
     }
 
     /**
@@ -58,18 +62,25 @@ class AdminQuizzesController extends Controller
     public function store(Request $request)
     {
         $input = $request->input();
+        // dd($input);
+        dd($request->file());
 
-        $input = array_intersect_key($input, Quiz::$updatable);
+        $quizData = array_intersect_key($input, Quiz::$updatable);
         
-        $input['title'] = ucfirst($input['title']);
-        $quiz = Quiz::create($input);
+        $quizData['title'] = ucfirst($quizData['title']);
+        $quiz = Quiz::create($quizData);
 
-        $quiz['slug'] = Helper::slug($input['title'], $quiz->id);
+        $quiz['slug'] = Helper::slug($quiz->title, $quiz->id);
         $quiz->save();
 
-        $category = $quiz->category->title;
-
-        $type = $quiz->subCategory->title;
+        foreach($input['fact']['title'] as $k => $fact) {
+            $quizFact = new QuizFact();
+            $quizFact->quiz_id = $quiz->id;
+            $quizFact->title = $input['fact']['title'][$k];
+            $quizFact->description = $input['fact']['description'][$k];
+            $quizFact->save();
+            dd($quizFact);
+        }
 
         return view('admin.quizzes.components.attributes-form', compact('category', 'type'));
     }
@@ -117,5 +128,15 @@ class AdminQuizzesController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function getQuizForm(Request $request)
+    {
+        $input = $request->input();
+
+        view()->share($input);
+
+        return view('admin.quizzes.components.attributes-form');
+
     }
 }

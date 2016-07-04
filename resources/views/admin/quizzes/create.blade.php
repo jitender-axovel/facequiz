@@ -9,7 +9,7 @@
 		<p class="bold">Create New Quiz</p>
 	</div>
 	<div class="panel-body">
-		<form action="{{ url('admin/quiz') }}" method="POST" class="form-horizontal">
+		<form action="{{ url('admin/quiz') }}" method="POST" class="form-horizontal" enctype="multipart/form-data">
 			{{csrf_field()}}
 			<div class="checkbox-inline col-sm-12">
 				<label class="col-md-12">
@@ -67,17 +67,16 @@
 				</div>
 			</div>
 			<div id="template-details">
-				<dl class="dl-horizontal list-inline">
-					<dt>Total images</dt>
-					<dd class="template-images"></dd>
-					<dt>Total Textareas</dt>
-					<dd class="template-textares"></dd>
-					<dt>Title block</dt>
-					<dd class="template-title"></dd>
-					<dt>Image Caption</dt>
-					<dd class="template-caption"></dd>
-				</dl>
+				<div class="col-md-2">Total images</div>
+				<div class="col-md-1 template-images"></div>
+				<div class="col-md-2">Total Textareas</div>
+				<div class="col-md-1 template-textares"></div>
+				<div class="col-md-2">Title block</div>
+				<div class="col-md-1 template-title"></div>
+				<div class="col-md-2">Image Caption</div>
+				<div class="col-md-1 template-caption"></div>
 			</div>
+			<div id="quiz-form"></div>
 			<div class="form-group">
 				<div class="col-md-12">
 					<button type="submit" class="btn btn-default btn-lg btn-block" id="btn-login">Create Quiz</button>
@@ -119,6 +118,19 @@
             			$('.template-title').html(data.has_title);
             			$('.template-caption').html(data.has_image_caption);
             			$('#template-details').show();
+            		}
+            	});
+            });
+
+            $('#sub-category-selector').change(function() {
+            	var data = 'category=' + $('#category-selector').val() + '&subCategory=' + $('#sub-category-selector').val();
+
+            	$.ajax({
+            		url: "{{ url('get-quiz-form') }}",
+            		type: "get",
+            		data: data,
+            		success: function(data) {
+            			$('#quiz-form').html(data);
             		}
             	});
             });
