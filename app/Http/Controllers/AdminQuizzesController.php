@@ -86,7 +86,6 @@ class AdminQuizzesController extends Controller
                 $quizFact->image = $fileName;
             }
             $quizFact->save();
-            dd($quizFact);
         }
 
         return view('admin.quizzes.components.attributes-form', compact('category', 'type'));
