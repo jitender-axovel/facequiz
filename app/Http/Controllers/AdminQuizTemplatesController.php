@@ -107,7 +107,7 @@ class AdminQuizTemplatesController extends Controller
     {
         
         $file = $request->file('imageName');
-        $uploaddir = public_path('images');
+        $uploaddir = public_path('images/templates');
         $fileName = md5(time()) .'.png';
         $uploadfile = $uploaddir;
 
