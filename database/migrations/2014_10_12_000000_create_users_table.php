@@ -14,7 +14,7 @@ class CreateUsersTable extends Migration
     {
         Schema::create('users', function (Blueprint $table) {
             $table->increments('id');
-            $table->bigInteger('fu_id');
+            $table->bigInteger('fb_id');
             $table->string('name');
             $table->string('slug');
             $table->integer('user_role_id')->unsigned();
@@ -23,7 +23,7 @@ class CreateUsersTable extends Migration
             $table->string('password');
             $table->enum('gender', ['M', 'F']);
             $table->date('dob');
-            $table->string('profile_pic');
+            $table->string('avatar');
             $table->boolean('is_blocked');
             $table->rememberToken();
             $table->timestamps();
