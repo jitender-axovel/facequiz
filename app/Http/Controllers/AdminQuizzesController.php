@@ -62,8 +62,7 @@ class AdminQuizzesController extends Controller
     public function store(Request $request)
     {
         $input = $request->input();
-        // dd($input);
-        dd($request->file());
+        $file = $request->file('image');
 
         $quizData = array_intersect_key($input, Quiz::$updatable);
         
@@ -72,12 +71,20 @@ class AdminQuizzesController extends Controller
 
         $quiz['slug'] = Helper::slug($quiz->title, $quiz->id);
         $quiz->save();
+        
+        $destinationPath = public_path('images').'/quizzes/facts/'.$quiz->id;
+        shell_exec('mkdir '.$destinationPath);
 
         foreach($input['fact']['title'] as $k => $fact) {
             $quizFact = new QuizFact();
             $quizFact->quiz_id = $quiz->id;
             $quizFact->title = $input['fact']['title'][$k];
             $quizFact->description = $input['fact']['description'][$k];
+            if($file[$k]->isValid()) {
+                $fileName = md5(time()).'.png';
+                $file[$k]->move($destinationPath, $fileName);
+                $quizFact->image = $fileName;
+            }
             $quizFact->save();
             dd($quizFact);
         }

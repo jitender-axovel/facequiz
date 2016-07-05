@@ -88,9 +88,10 @@
 				$('#html-output').html($(this).val());
 				
 				$('#html-output').each(function() {
-				    if ($(this).find('> img').length) {
-				        if($(this).find('> img').hasClass('profile_pic'))
-				        	$(this).find('> img').attr('src', window.location.protocol+'//'+window.location.host+'/facequiz/public/images/avatar.png');
+				    if ($(this).find('img').length) { alert('hello');
+				        if($(this).find('img').hasClass('profile_pic')) {
+				        	$(this).find('img').attr('src', window.location.protocol+'//'+window.location.host+'/facequiz/public/images/avatar.png');
+                                            }
 				    }
 				});
 				
