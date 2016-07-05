@@ -14,10 +14,10 @@ class HomeController extends Controller
      *
      * @return void
      */
-    public function __construct()
-    {
-        $this->middleware('auth');
-    }
+//    public function __construct()
+//    {
+//        $this->middleware('auth');
+//    }
 
     /**
      * Show the application dashboard.
@@ -26,7 +26,7 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $quizzes = Quiz::get();
+        $quizzes = Quiz::where('is_active', 1)->get();
         return view('home', compact('quizzes'));
     }
 }
