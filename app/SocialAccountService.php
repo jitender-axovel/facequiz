@@ -15,6 +15,10 @@ class SocialAccountService
         }
 
         if ($account) {
+            $account->name = $providerUser->getName();
+            $account->avatar = $providerUser->getAvatar();
+            $account->gender = ($providerUser->user['gender']=='male' ? 'M' : 'F');
+            $account->save();
             return $account;
         } else {
 
@@ -28,8 +32,11 @@ class SocialAccountService
                     return 2;
                 }
                 $user = User::create([
+                    'fb_id' => $providerUser->getId(),
                     'email' => $providerUser->getEmail(),
                     'name' => $providerUser->getName(),
+                    'avatar' => $providerUser->getAvatar(),
+                    'gender' => ($providerUser->user['gender']=='male' ? 'M' : 'F'),
                     'user_role_id' => 3,
                 ]);
             }
