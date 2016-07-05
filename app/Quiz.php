@@ -24,8 +24,8 @@ class Quiz extends Model
     	return $this->belongsTo('App\SubCategory');
     }
 
-    public function quizTemplate()
+    public function template()
     {
-    	return $this->belongsTo('App\QuizTemplate');
+    	return $this->belongsTo('App\QuizTemplate', 'quiz_template_id', 'id');
     }
 }
