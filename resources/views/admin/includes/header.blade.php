@@ -1,22 +1,15 @@
-<header>
+<header class="admin-header">
     <div class="container">
         <div class="col-md-6 left-side">
             <ul class="left-menu list-inline">
-                <li><a href="#"><i class="fa fa-heart-o" aria-hidden="true"></i></a></li>
-                <li><a href="#">Explore projects</a></li>
-                <li><a href="#">categories</a></li>
-                <li><a href="#">about</a></li>
+                <li><a href="#" class="site-logo">Facequiz Admin</li>
             </ul>
         </div>
         <div class="col-md-6 right-side">
-            <ul class="right-menu list-inline">
-                <li class="login"><a href="#">login</a></li>
-                <li><a href="#" class="sign-up">Sign up</a></li>
+            <ul class="list-inline">
+                <li class="login"><a class="btn btn-success" href="{{url('/')}}">Visit Site</a></li>
+                <li><a class="btn btn-danger" href="{{ url('logout') }}"><i class="fa fa-power-off"></i>Logout</a></li>
             </ul>
-            <div class="search-box">
-                <input type="text">
-                <button><i class="fa fa-search" aria-hidden="true"></i></button>
-            </div>
         </div>
     </div>
 </header>

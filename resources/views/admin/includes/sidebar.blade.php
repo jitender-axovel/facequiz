@@ -1,11 +1,6 @@
 <!-- Sidebar -->
 <div id="sidebar-wrapper">
     <ul class="sidebar-nav">
-        <li class="sidebar-brand">
-            <a href="#">
-                FaceQuiz Admin
-            </a>
-        </li>
         <li>
             <a href="{{url('admin/dashboard')}}">Dashboard</a>
         </li>
