@@ -144,6 +144,11 @@ body {
   padding: 0px;
 }
 
+header.admin-header {
+    position: fixed;
+    background: #010101 none repeat scroll 0 0;
+}
+
 #wrapper {
   padding-left: 0;
   -webkit-transition: all 0.5s ease;
@@ -157,6 +162,7 @@ body {
 }
 
 #sidebar-wrapper {
+  top: 55px;
   z-index: 1000;
   position: fixed;
   left: 250px;
@@ -173,6 +179,14 @@ body {
 
 #wrapper.toggled #sidebar-wrapper {
   width: 250px;
+}
+
+.admin-content {
+    margin-top: 55px;
+}
+
+.site-logo {
+    color: #fff;
 }
 
 #page-content-wrapper {
