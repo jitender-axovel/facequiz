@@ -44,12 +44,26 @@ class AdminQuizTemplatesController extends Controller
     public function store(Request $request)
     {
         $input = $request->input();
+        
+        $fileInput = $request->file('og_image');
 
         $input = array_intersect_key($input, QuizTemplate::$updatable);
 
         $input['html_data'] = htmlspecialchars($input['html_data']);
 
         $template = QuizTemplate::create($input);
+
+        $destinationPath = config('image.quiz_template_path');
+        
+        if (!file_exists($destinationPath)) {
+            mkdir($destinationPath, 0777, true);
+        }
+        
+        $fileName = md5(time()).'.png';
+        $fileInput->move($destinationPath, $fileName);
+        
+        $template->og_image = $fileName;
+        $template->save();
 
         if($template) {
             return redirect('admin/layout')->with('success', 'Layout created successfully');
@@ -101,18 +115,5 @@ class AdminQuizTemplatesController extends Controller
     public function destroy($id)
     {
         //
-    }
-
-    public function saveTemplateImage(Request $request)
-    {
-        
-        $file = $request->file('imageName');
-        $uploaddir = public_path('images/templates');
-        $fileName = md5(time()) .'.png';
-        $uploadfile = $uploaddir;
-
-        $file->move($uploadfile, $fileName);
-        
-        return ['fileName' => $fileName];
     }
 }
