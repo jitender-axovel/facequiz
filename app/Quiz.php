@@ -28,4 +28,9 @@ class Quiz extends Model
     {
     	return $this->belongsTo('App\QuizTemplate', 'quiz_template_id', 'id');
     }
+    
+    public function facts()
+    {
+        return $this->hasMany('App\QuizFact');
+    }
 }
