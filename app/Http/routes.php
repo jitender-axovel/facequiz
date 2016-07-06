@@ -49,7 +49,7 @@ Route::group(['middleware' => 'before'], function() {
     });
 
     Route::group(['prefix' => 'quiz'], function() {
-        Route::get('{categorySlug}/{quizSlug}', 'QuizzesController@index')->middleware(['auth']);
+        Route::get('{quizSlug}/show', 'QuizzesController@index')->middleware(['auth']);
         Route::get('{quizSlug}/start', 'QuizzesController@start')->middleware(['auth']);
     });
 });
