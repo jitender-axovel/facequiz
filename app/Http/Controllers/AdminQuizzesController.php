@@ -72,8 +72,11 @@ class AdminQuizzesController extends Controller
         $quiz['slug'] = Helper::slug($quiz->title, $quiz->id);
         $quiz->save();
         
-        $destinationPath = public_path('images').'/quizzes/facts/'.$quiz->id;
-        shell_exec('mkdir '.$destinationPath);
+        $destinationPath = config('image.quiz_facts_path').$quiz->id;
+        
+        if (!file_exists($destinationPath)) {
+            mkdir($destinationPath, 0777, true);
+        }
 
         foreach($input['fact']['title'] as $k => $fact) {
             $quizFact = new QuizFact();
