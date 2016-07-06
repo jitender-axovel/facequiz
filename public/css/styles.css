@@ -52,7 +52,7 @@ header .container , footer .container{width: 90%;}
 .feature-content {padding-top: 20px;}
 .list-inline {margin: 0;}
 header .left-side {padding: 22px 0 15px;}
-header .right-side {text-align: right; padding: 10px 0; border-left: 1px solid #cccccc;}
+header .right-side {text-align: right; padding: 10px 0;}
 header .right-side .right-menu {float: right;}
 header .right-side .search-box {float: left; position: relative; margin-top: 3px; min-width: 400px;}
 .right-side .right-menu li {float: right; padding: 0;}
