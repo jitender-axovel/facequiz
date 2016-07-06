@@ -27,7 +27,7 @@ Route::group(['middleware' => 'before'], function() {
     Route::group(['prefix' => 'admin'], function() {
         Route::get('login', 'AdminController@getLogin');
         Route::post('login', 'AdminController@postLogin');
-        Route::group(['middleware' => ['auth', 'admin']], function() {
+        Route::group(['middleware' => ['admin']], function() {
             Route::get('dashboard', 'AdminController@getDashboard');
             Route::get('users', 'AdminUsersController@index');
             Route::get('users/edit/{id}', 'AdminUsersController@getEdit');
