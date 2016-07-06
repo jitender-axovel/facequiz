@@ -9,6 +9,7 @@ class SocialAccountService
     public function createOrGetUser(ProviderUser $providerUser)
     {
         $account = User::whereEmail($providerUser->getEmail())->first();
+        session()->put('fb_access_token', $providerUser->token);
 
         if($account && $account->is_blocked == 1) {
             return 3;
