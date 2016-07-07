@@ -14,7 +14,7 @@
                         </div>
                         <div class="panel-body">
                             <div class="thumbnail">
-                                <img src="{{ asset('images/templates/'.$quiz->template->og_image) }}">
+                                <img src="{{ asset(config('image.quiz_template_url').$quiz->template->og_image) }}">
                                 <div class="caption">
                                     <a class="btn btn-primary btn-lg btn-block" href="{{ url('quiz/'.$quiz->slug.'/start') }}">Start</a>
                                 </div>
