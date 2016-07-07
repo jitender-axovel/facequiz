@@ -14,8 +14,6 @@ class CreateQuizTemplatesTable extends Migration
     {
         Schema::create('quiz_templates', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('category_id')->unsigned();
-            $table->foreign('category_id')->references('id')->on('categories');
             $table->string('name')->unique();
             $table->longText('html_data');
             $table->string('og_image');
