@@ -1,7 +1,7 @@
 @extends('admin.layouts.app')
 @section('title', $page)
 @section('content')
-<h2>Add New Category</h2>
+<h2>Add New Template</h2>
 <hr>
 @include('notification')
 <div class="panel panel-default">
@@ -23,16 +23,6 @@
                 </div>
             </div>
             <div class="form-group">
-                <label class="control-label col-sm-2">Select Category</label>
-                <div class="col-md-10">
-                    <select class="form-control" name="category_id">
-                        @foreach($categories as $category)
-                        <option value="{{ $category->id }}">{{ $category->title }}</option>
-                        @endforeach
-                    </select>
-                </div>
-            </div>
-            <div class="form-group">
                 <ul class="list-inline">
                     <label class="control-label col-sm-2">Total Images</label>
                     <div class="col-md-1">
@@ -45,11 +35,11 @@
 
                     <label class="control-label col-sm-2">Has Title</label>
                     <div class="col-md-1">
-                        <input type="checkbox" class="form-control" name="has_title" value=1>
+                        <input type="checkbox" class="form-control" name="has_title">
                     </div>
                     <label class="control-label col-sm-2">Has Image Caption</label>
                     <div class="col-md-1">
-                        <input type="checkbox" class="form-control" name="has_image_caption" value=1>
+                        <input type="checkbox" class="form-control" name="has_image_caption">
                     </div>
                 </ul>
             </div>
@@ -60,12 +50,14 @@
                 </div>
             </div>
             <div class="form-group">
-                <label class="control-label col-sm-2">
-                    Image Preview
-                    <input type="file" accept="image/*" name="og_image" onchange="readURL(this);" id="upload-button">
-                </label>
+                <label class="col-sm-2 control-label">Upload Introduction Image</label>
                 <div class="col-md-10">
-                    <div class="thumbnail" id="html-output"></div>
+                    <input type="file" accept="image/*" name="og_image" onchange="readURL(this);" id="upload-button">
+                
+                    <fieldset class="text-center">
+                        <legend>Image Preview</legend>
+                        <div class="thumbnail" id="html-output"></div>
+                    </fieldset>
                 </div>
             </div>
             <div class="form-group">

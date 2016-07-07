@@ -8,10 +8,8 @@
 	<table id="template_list" class="display">
 		<thead>
 			<tr>
-				<th>Category</th>
 				<th>Title</th>
 				<th>Total Images</th>
-				<th>Total Textareas</th>
 				<th>Has Title</th>
 				<th>Has Image Caption</th>
 				<th>Created On</th>
@@ -21,10 +19,8 @@
 		<tbody>
 			@foreach($templates as $template)
 			<tr>
-				<td>{{ $template->category->title }}</td>
 				<td>{{ $template->name }}</td>
 				<td>{{ $template->total_images }}</td>
-				<td>{{ $template->total_textareas }}</td>
 				<td>{{ $template->has_title }}</td>
 				<td>{{ $template->has_image_caption }}</td>
 				<td>{{ date_format(date_create($template->created_at), 'F d, Y') }}</td>
