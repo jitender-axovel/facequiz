@@ -5,6 +5,7 @@ namespace App\Http\Middleware;
 use Closure;
 
 use App;
+use Auth;
 
 class BeforeMiddleware
 {
@@ -52,6 +53,16 @@ class BeforeMiddleware
         $defaultLanguageStrings = trans('strings');
         view()->share('defaultLanguageStrings', $defaultLanguageStrings);
         App::setLocale($request->session()->get('locale'));
+        
+        if(Auth::check()) {
+            $urlParts = parse_url(Auth::user()->avatar);
+            $queryString = $urlParts['query'];
+            parse_str($queryString, $queryString);
+            $queryString['type'] = 'small';
+            $queryString = http_build_query($queryString, '', '&amp;');
+            view()->share('profile_pic_header', $urlParts['scheme'].'://'.$urlParts['host'].($urlParts['path']!='' ? $urlParts['path'] : '').'?'.$queryString);
+            
+        }
         return $next($request);
     }
 }

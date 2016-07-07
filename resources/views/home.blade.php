@@ -10,7 +10,7 @@
                 @foreach($quizzes as $quiz)
                     <div class="col-md-4 col-sm-6">
                         <div class="thumbnail">
-                            <a href="{{ url('quiz/'.$quiz->slug.'/show') }}"><img src="{{ asset('images/templates/'.$quiz->template->og_image) }}"></a>
+                            <a href="{{ url('quiz/'.$quiz->slug.'/show') }}"><img src="{{ asset(config('image.quiz_template_url').$quiz->template->og_image) }}"></a>
                             <div class="caption">
                                 <div class="heading"><a href="{{ url('quiz/'.$quiz->slug.'/show') }}">{{$quiz->title}}</a></div>
                                 @if($quiz->description != "")
