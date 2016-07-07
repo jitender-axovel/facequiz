@@ -66,7 +66,7 @@ class QuizHelper extends Model
     {
         if($quiz->show_friend_pictures || $quiz->show_friend_name) {
             try {
-                $response = $this->fb->get('/me/taggable_friends');
+                $response = $this->fb->get('/me/taggable_friends?fields=picture.type(normal),name');
             } catch (Facebook\Exceptions\FacebookResponseException $e) {
                 // When Graph returns an error
                 return redirect('/')->with('error', 'Sorry for the inconvenience, there are no results for this quiz');
@@ -106,11 +106,22 @@ class QuizHelper extends Model
     {
         $facts = QuizFact::where('quiz_id', $quiz->id)->get();
         
-        foreach($facts as $k => $fact) {
-            $k = $k + 1;//return $fact->description;
-            $template = str_replace('fact_'.$k, $fact->title, $template);
-            $template = str_replace('fact_desc_'.$k, $fact->description, $template);
-            $template = str_replace('fact_image_'.$k, $fact->image, $template);
+        if($facts->count()) {
+            $facts = $facts->toArray();
+            $array_keys = array_rand($facts, $quiz->total_facts);
+        }
+        if(is_array($array_keys)) {
+            foreach($array_keys as $k => $key) {
+                $k = $k + 1;//return $fact->description;
+                $template = str_replace('fact_'.$k, $facts[$key]['title'], $template);
+                $template = str_replace('fact_desc_'.$k, $facts[$key]['description'], $template);
+                $template = str_replace('fact_image_'.$k, $facts[$key]['image'], $template);
+            }
+        } else {
+            $k = $array_keys + 1;//return $fact->description;
+            $template = str_replace('fact_'.$k, $facts[$array_keys]['title'], $template);
+            $template = str_replace('fact_desc_'.$k, $facts[$array_keys]['description'], $template);
+            $template = str_replace('fact_image_'.$k, $facts[$array_keys]['image'], $template);
         }
         
         return $template;
