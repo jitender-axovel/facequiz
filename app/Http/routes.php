@@ -20,9 +20,8 @@ Route::group(['middleware' => 'before'], function() {
     Route::get('/callback', 'SocialAuthController@callback');
 
     //Route::get('/home', 'HomeController@index');
-    Route::get('get-subcategories', 'AdminQuizzesController@getSubCategories');
     Route::get('get-template-details', 'AdminQuizzesController@getTemplateDetails');
-    Route::get('get-quiz-form', 'AdminQuizzesController@getQuizForm');
+//    Route::get('get-quiz-form', 'AdminQuizzesController@getQuizForm');
 
     Route::group(['prefix' => 'admin'], function() {
         Route::get('login', 'AdminController@getLogin');
@@ -36,10 +35,8 @@ Route::group(['middleware' => 'before'], function() {
             Route::delete('users/delete/{id}', 'AdminUsersController@delete');
             Route::post('users/block/{id}', 'AdminUsersController@block');
             Route::post('users/download-csv', 'AdminUsersController@exportToCsv');
-            Route::resource('category', 'AdminCategoriesController');
-            Route::resource('sub-category', 'AdminSubCategoriesController');
             Route::resource('quiz', 'AdminQuizzesController');
-            Route::post('save-template-image', 'AdminQuizTemplatesController@saveTemplateImage');
+//            Route::post('save-template-image', 'AdminQuizTemplatesController@saveTemplateImage');
             Route::resource('layout', 'AdminQuizTemplatesController');
             Route::get('language', 'AdminController@getLanguage');
             Route::post('language', 'AdminController@postLanguage');
