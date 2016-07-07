@@ -5,8 +5,6 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
-use App\Category;
-use App\SubCategory;
 use App\Quiz;
 use App\QuizFact;
 use App\QuizTemplate;
@@ -35,16 +33,8 @@ class AdminQuizzesController extends Controller
     public function create()
     {
         $page = "Create Quiz - Admin";
-        $categories = Category::all();
-        $subCategories = SubCategory::all();
         $templates = QuizTemplate::all();
-        return view('admin.quizzes.create', compact('page', 'categories', 'subCategories', 'templates'));
-    }
-
-    public function getSubCategories()
-    {
-        $subCategories = SubCategory::where('category_id', $_GET['ci'])->select(['id', 'title'])->get();
-        return json_encode($subCategories);
+        return view('admin.quizzes.create', compact('page', 'templates'));
     }
 
     public function getTemplateDetails()
@@ -91,7 +81,7 @@ class AdminQuizzesController extends Controller
             $quizFact->save();
         }
 
-        return view('admin.quizzes.components.attributes-form', compact('category', 'type'));
+        return redirect('admin/quiz')->with('success', 'Quiz has been created.');
     }
 
     /**
@@ -136,16 +126,19 @@ class AdminQuizzesController extends Controller
      */
     public function destroy($id)
     {
-        //
-    }
+        $quiz = Quiz::find($id);
+        $title = $quiz->title;
 
-    public function getQuizForm(Request $request)
-    {
-        $input = $request->input();
+        if($quiz->delete()) {
+            $result['status'] = true;
+            $result['message'] = $title." category has been deleted.";
 
-        view()->share($input);
+            return json_encode($result);
+        } else {
+            $result['status'] = false;
+            $result['message'] = $title." category could not deleted.";
 
-        return view('admin.quizzes.components.attributes-form');
-
+            return json_encode($result);
+        }
     }
 }
