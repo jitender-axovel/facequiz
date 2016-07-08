@@ -55,13 +55,14 @@ class BeforeMiddleware
         App::setLocale($request->session()->get('locale'));
         
         if(Auth::check()) {
-            $urlParts = parse_url(Auth::user()->avatar);
-            $queryString = $urlParts['query'];
-            parse_str($queryString, $queryString);
-            $queryString['type'] = 'small';
-            $queryString = http_build_query($queryString, '', '&amp;');
-            view()->share('profile_pic_header', $urlParts['scheme'].'://'.$urlParts['host'].($urlParts['path']!='' ? $urlParts['path'] : '').'?'.$queryString);
-            
+            if(Auth::user()->avatar) {
+                $urlParts = parse_url(Auth::user()->avatar);
+                $queryString = $urlParts['query'];
+                parse_str($queryString, $queryString);
+                $queryString['type'] = 'small';
+                $queryString = http_build_query($queryString, '', '&amp;');
+                view()->share('profile_pic_header', $urlParts['scheme'].'://'.$urlParts['host'].($urlParts['path']!='' ? $urlParts['path'] : '').'?'.$queryString);
+            }
         }
         return $next($request);
     }
