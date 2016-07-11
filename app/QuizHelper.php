@@ -74,7 +74,7 @@ class QuizHelper extends Model
                 // When validation fails or other local issues
                 return redirect('/')->with('error', 'Sorry for the inconvenience, there are no results for this quiz');
             }
-            
+            // dd($response);
             $response = $response->getGraphEdge();
             
             $array_keys = array();
