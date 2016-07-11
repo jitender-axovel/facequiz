@@ -46,4 +46,6 @@ return array(
 
     'user_quiz_result_url' => '/images/quizzes/results/',
 
+    'widget_image_url' => '/images/widgets/preview/'
+
 );
