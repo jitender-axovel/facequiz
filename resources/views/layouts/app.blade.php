@@ -73,7 +73,7 @@
                     @else
                         <li class="dropdown">
                             <a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-                                <img height="35" width="35" src="{{ $profile_pic_header }}">&nbsp;{{ Auth::user()->name }} <span class="caret"></span>
+                                <img height="32" width="32" src="{{ isset($profile_pic_header) ? $profile_pic_header : asset('images/avatar.png') }}">&nbsp;{{ Auth::user()->name }} <span class="caret"></span>
                             </a>
 
                             <ul class="dropdown-menu" role="menu">
