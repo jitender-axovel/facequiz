@@ -38,6 +38,7 @@ Route::group(['middleware' => 'before'], function() {
             Route::resource('quiz', 'AdminQuizzesController');
 //            Route::post('save-template-image', 'AdminQuizTemplatesController@saveTemplateImage');
             Route::resource('layout', 'AdminQuizTemplatesController');
+            Route::resource('widget', 'AdminWidgetsController');
             Route::get('language', 'AdminController@getLanguage');
             Route::post('language', 'AdminController@postLanguage');
             Route::post('language/{id}', 'AdminController@postUpdateLanguage');
