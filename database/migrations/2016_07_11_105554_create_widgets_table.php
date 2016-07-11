@@ -17,6 +17,7 @@ class CreateWidgetsTable extends Migration
             $table->string('name');
             $table->string('slug');
             $table->longText('widgets');
+            $table->string('preview_image');
             $table->timestamps();
         });
     }

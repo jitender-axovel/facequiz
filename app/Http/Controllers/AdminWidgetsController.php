@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 
+use App\Widget;
+
 class AdminWidgetsController extends Controller
 {
     /**
@@ -16,7 +18,8 @@ class AdminWidgetsController extends Controller
     public function index()
     {
         $page = 'Widgets - Admin';
-        return view('admin.widgets.index', compact('page'));
+        $widgets = Widget::get();
+        return view('admin.widgets.index', compact('page', 'widgets'));
     }
 
     /**
