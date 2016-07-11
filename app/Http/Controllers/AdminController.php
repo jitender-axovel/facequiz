@@ -14,6 +14,7 @@ use App\User;
 use App\Quiz;
 use App\QuizAttempt;
 use App\QuizShare;
+use DB;
 
 class AdminController extends Controller
 {
@@ -49,7 +50,61 @@ class AdminController extends Controller
         $todayStats['attempts'] = QuizAttempt::whereRaw('Date(created_at) = Date(NOW())')->count();
         $todayStats['shares'] = QuizShare::whereRaw('Date(created_at) = Date(NOW())')->count();
 
-        return view('admin.dashboard', compact('page', 'overallStats', 'todayStats'));
+        $lastNDaysActivity = self::lastNDaysRegistrations(30);
+        // dd($lastNDaysActivity);
+
+        return view('admin.dashboard', compact('page', 'overallStats', 'todayStats', 'lastNDaysActivity'));
+    }
+
+    public static function lastNDaysRegistrations($n)
+    {
+        $activityHistory['users'] = User::select('created_at', DB::raw('count(*) as activityCount'))->where('created_at', '>', DB::raw('DATE_SUB(NOW(), Interval 30 DAY)'))->groupBy('created_at')->get()->toArray();
+
+        $activityHistory['attempts'] = QuizAttempt::select('created_at', DB::raw('count(*) as activityCount'))->where('created_at', '>', DB::raw('DATE_SUB(NOW(), Interval 30 DAY)'))->groupBy('created_at')->get()->toArray();
+
+        $lastNDays = self::lastNDays(30);
+
+        foreach($lastNDays as $key => $day) {
+            $lastNDaysActivity[$key] = array('date' => $day, 'users' => 0, 'attempts' => 0);
+            foreach($activityHistory['users'] as $activity){
+                if (date('Y-m-d', time($activity['created_at'])) === $day) {
+                    $lastNDaysActivity[$key]['users'] = $activity['activityCount'];
+                }
+            }
+            foreach($activityHistory['attempts'] as $activity){
+                if (date('Y-m-d', time($activity['created_at'])) === $day) {
+                    $lastNDaysActivity[$key]['attempts'] = $activity['activityCount'];
+                }
+            }
+        }
+        return $lastNDaysActivity;
+    }
+
+    // public static function lastNDaysAttempts($n)
+    // {
+    //     $activityHistory = QuizAttempt::select('created_at', DB::raw('count(*) as activityCount'))->where('created_at', '>', DB::raw('DATE_SUB(NOW(), Interval 30 DAY)'))->groupBy('created_at')->get()->toArray();
+
+    //     $lastNDays = self::lastNDays(30);
+
+    //     foreach($lastNDays as $key => $day) {
+    //         $lastNDaysActivity[$key] = array('date' => $day, 'attempts' => 0);
+    //         foreach($activityHistory as $activity){
+    //             if (date('Y-m-d', time($activity['created_at'])) === $day) {
+    //                 $lastNDaysActivity[$key]['attempts'] = $activity['activityCount'];
+    //             }
+    //         }
+    //     }
+    //     return $lastNDaysActivity;
+    // }
+
+    public static function lastNDays($n){
+        $timestamp = time();
+        $days = array();
+        for ($i = 0 ; $i < $n ; $i++) {
+            $days[] = date('Y-m-d', $timestamp);
+            $timestamp -= 24 * 3600;
+        }
+        return $days;
     }
 
     public function getLanguage(REQUEST $request)

@@ -145,6 +145,33 @@
 					</div>
 				</div>
 			</div>
+			<div id="barchart_material" style="width: 900px; height: 500px"></div>
 		</div>
 	</div>
+@endsection
+@section('admin-scripts')
+	<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="text/javascript">
+    	google.charts.load('current', {'packages':['bar']});
+      google.charts.setOnLoadCallback(drawChart);
+      function drawChart() {
+        var data = google.visualization.arrayToDataTable([['Date', 'Quiz Attempts', 'New Registrations'],
+        	@foreach($lastNDaysActivity as $activity)
+        		['{{$activity["date"]}}', {{$activity['attempts']}}, {{ $activity['users'] }}],
+        	@endforeach
+    	]);
+
+        var options = {
+          chart: {
+            title: 'Site Analysis',
+            subtitle: 'Quiz Attempts, New Registrations: last 30 days',
+          },
+          bars: 'vertical' // Required for Material Bar Charts.
+        };
+
+        var chart = new google.charts.Bar(document.getElementById('barchart_material'));
+
+        chart.draw(data, options);
+      }
+    </script>
 @endsection
