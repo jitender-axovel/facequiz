@@ -16,6 +16,7 @@ class SocialAccountService
         }
 
         if ($account) {
+            $account->fb_id = $providerUser->getId();
             $account->name = $providerUser->getName();
             $account->avatar = $providerUser->getAvatar();
             $account->gender = ($providerUser->user['gender']=='male' ? 'M' : 'F');
