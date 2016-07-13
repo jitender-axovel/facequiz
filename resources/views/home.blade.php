@@ -6,6 +6,9 @@
             @include('notification')
         </div>
         <div class="row">
+            @include('includes.above-quizzes-widgets')
+        </div>
+        <div class="row">
             <div class="col-md-10 col-md-offset-1">
                 @foreach($quizzes as $quiz)
                     <div class="col-md-4 col-sm-6">
@@ -21,6 +24,9 @@
                     </div>
                 @endforeach
             </div>
+        </div>
+        <div class="row">
+            @include('includes.below-quizzes-widgets')
         </div>
     </div>
 @endsection

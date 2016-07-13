@@ -19,17 +19,10 @@ class AdminWidgetsController extends Controller
     {
         $page = 'Widgets - Admin';
         $widgets = Widget::get();
+        foreach($widgets as $widget) {
+            $widget->widgets = json_decode($widget->widgets, true);
+        }
         return view('admin.widgets.index', compact('page', 'widgets'));
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
     }
 
     /**
@@ -40,51 +33,23 @@ class AdminWidgetsController extends Controller
      */
     public function store(Request $request)
     {
-        //
-    }
+        $input = $request->input();
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
+        $widgets = Widget::get();
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        //
+        foreach($widgets as $widget) {
+            if(isset($input[$widget->slug.'Widget'])){
+                $array = array();
+                foreach($input[$widget->slug.'Widget']['Title'] as $k => $key) {
+                    $array[] = array(
+                        'title' => $key,
+                        'content' => $input[$widget->slug.'Widget']['Content'][$k]
+                        );
+                }
+                $widget->widgets = json_encode($array);
+                $widget->save();
+            }
+        }
+        return back()->with('success', 'The widgets are successfully saved. You can check at frontend now.');
     }
 }

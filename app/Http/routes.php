@@ -22,6 +22,9 @@ Route::group(['middleware' => 'before'], function() {
     //Route::get('/home', 'HomeController@index');
     Route::get('get-template-details', 'AdminQuizzesController@getTemplateDetails');
 //    Route::get('get-quiz-form', 'AdminQuizzesController@getQuizForm');
+    Route::get('get-widget-form/{slug}', function($slug) {
+      return view('admin.widgets.components.widget-form', compact('slug'));
+    });
 
     Route::group(['prefix' => 'admin'], function() {
         Route::get('login', 'AdminController@getLogin');
