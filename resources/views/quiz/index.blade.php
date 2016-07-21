@@ -36,9 +36,9 @@
                             @foreach($quizzes as $quizItem)
                                 <div class="col-md-4 col-sm-6">
                                     <div class="thumbnail">
-                                        <a href="{{ url('quiz/'.$quizItem->category->slug.'/'.$quizItem->slug) }}"><img src="{{ asset('images/templates/'.$quizItem->template->og_image) }}"></a>
+                                        <a href="{{ url('quiz/'.$quizItem->slug.'/show') }}"><img src="{{ asset('images/quizzes/templates/'.$quizItem->template->og_image) }}"></a>
                                         <div class="caption">
-                                            <div class="heading"><a href="{{ url('quiz/'.$quizItem->category->slug.'/'.$quizItem->slug) }}">{{$quizItem->title}}</a></div>
+                                            <div class="heading"><a href="{{ url('quiz/'.$quizItem->slug.'/show') }}">{{$quizItem->title}}</a></div>
                                             @if($quizItem->description != "")
                                                 <p>{{$quizItem->description}}</p>
                                             @endif
