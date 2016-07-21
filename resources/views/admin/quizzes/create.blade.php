@@ -13,7 +13,7 @@
             {{csrf_field()}}
             <div class="checkbox-inline col-sm-12">
                 <label class="col-md-12">
-                    <span class="col-sm-3">Make quiz visible to users? </span><span class="col-sm-2"><input type="checkbox" name="active" value="true"></span>
+                    <span class="col-sm-3">Make quiz visible to users? </span><span class="col-sm-2"><input type="checkbox" name="is_active" value="true"></span>
                 </label>
             </div>
             <div class="form-group">
@@ -44,7 +44,7 @@
                     </select>
                 </div>
             </div>
-            <div id="template-details">
+            <div id="template-details" class="panel-body">
                 <div class="col-md-2">Total images</div>
                 <div class="col-md-1 template-images"></div>
                 <div class="col-md-2">Total Textareas</div>
@@ -54,9 +54,48 @@
                 <div class="col-md-2">Image Caption</div>
                 <div class="col-md-1 template-caption"></div>
             </div>
+            <div class="form-group">
+                <label class="control-label col-md-2">Background Image</label>
+                <div class="col-md-10">
+                    <input type="file" accept="image/*" name="background_image" onchange="backgroundPreview(this);" required>
+                    <span id="helpBlock" class="help-block">If you want to use facts image as background then you may ignore this step.</span>
+                    <fieldset class="text-center">
+                        <legend>Image Preview</legend>
+                        <div class="thumbnail" id="background-image-preview"></div>
+                    </fieldset>
+                </div>
+            </div>
+            <fieldset>
+                <legend>Quiz Information to Show</legend>
+                <div class="form-group">
+                    <label class="control-label col-md-2">Total facts to show</label>
+                    <div class="col-md-1">
+                        <input type="number" name="total_facts" min="0" max="10" class="form-control" >
+                    </div>
+                    <label class="control-label col-md-2">Show Own Profile Image</label>
+                    <div class="col-md-1">
+                        <input type="checkbox" name="show_own_profile_picture" class="form-control" value="1">
+                    </div>
+                    <label class="control-label col-md-2">Show User Name</label>
+                    <div class="col-md-1">
+                        <input type="checkbox" name="show_user_name" class="form-control" value="1">
+                    </div>
+                    <label class="control-label col-md-2">Show Friends Pictures</label>
+                    <div class="col-md-1">
+                        <input type="checkbox" name="show_friend_pictures" class="form-control" value="1">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label col-md-2">Show Friend Names</label>
+                    <div class="col-md-1">
+                        <input type="checkbox" name="show_friend_name" class="form-control" value="1">
+                    </div>
+                </div>
+                <span id="helpBlock" class="help-block">Kindly set these options as per the requirements for the quiz. It will help scripts to set data on quiz.</span>
+            </fieldset>
             <div id="quiz-form" class="form-group">
                 <div class="fact-list-item">
-                    <fieldset class="col-md-10 col-md-offset-1">
+                    <fieldset class="col-md-12">
                         <legend>Quiz Fact</legend>
                         <div class="col-sm-3">
                             <input required name="fact[title][]" class="form-control" placeholder="Title"></input>
@@ -81,44 +120,56 @@
 </div>
 @endsection
 @section('admin-scripts')
-<script type="text/javascript">
-    $(document).ready(function () {
-        $('#template-details').hide();
+    <script type="text/javascript">
+        function backgroundPreview(input) {
+            if (input.files && input.files[0]) {
+                var reader = new FileReader();
 
-        $('#template-selector').change(function () {
-            $.ajax({
-                url: "{{url('get-template-details?ti=')}}" + $(this).val(),
-                type: "GET",
-                success: function (data) {
-                    data = JSON.parse(data);
-                    $('.template-images').html(data.total_images);
-                    $('.template-textares').html(data.total_textareas);
-                    $('.template-title').html(data.has_title);
-                    $('.template-caption').html(data.has_image_caption);
-                    $('#template-details').show();
+                reader.onload = function (e) {
+                    $("#background-image-preview").html('<img height="200" width="100%" ' + 'src="' + e.target.result + '">');
                 }
+
+                reader.readAsDataURL(input.files[0]);
+            }
+        }
+
+        $(document).ready(function () {
+            $('#template-details').hide();
+
+            $('#template-selector').change(function () {
+                $.ajax({
+                    url: "{{url('get-template-details?ti=')}}" + $(this).val(),
+                    type: "GET",
+                    success: function (data) {
+                        data = JSON.parse(data);
+                        $('.template-images').html(data.total_images);
+                        $('.template-textares').html(data.total_textareas);
+                        $('.template-title').html(data.has_title);
+                        $('.template-caption').html(data.has_image_caption);
+                        $('#template-details').show();
+                    }
+                });
             });
         });
-    });
-    
-    $('.add-form-element').click(function () {
-        $('.fact-list-item').first().clone(true,true).appendTo('#quiz-form');
-    });
+        
+        $('.add-form-element').click(function () {
+            $('.fact-list-item').first().clone(true,true).appendTo('#quiz-form');
+        });
 
-    $('.remove-form-element').click(function () {
-        $('#quiz-form .fact-list-item').last().remove();
-    });
+        $('.remove-form-element').click(function () {
+            $('#quiz-form .fact-list-item').last().remove();
+        });
 
-    function readURL(input) {
-        if (input.files && input.files[0]) {
-            var reader = new FileReader();
+        function readURL(input) {
+            if (input.files && input.files[0]) {
+                var reader = new FileReader();
 
-            reader.onload = function (e) {
-                $(":focus").next("img").attr('src', e.target.result);
+                reader.onload = function (e) {
+                    $(":focus").next("img").attr('src', e.target.result);
+                }
+
+                reader.readAsDataURL(input.files[0]);
             }
-
-            reader.readAsDataURL(input.files[0]);
         }
-    }
-</script>
+    </script>
 @endsection

@@ -59,8 +59,39 @@ class AdminQuizzesController extends Controller
         $quizData['title'] = ucfirst($quizData['title']);
         $quiz = Quiz::create($quizData);
 
+        if(isset($input['is_active'])) {
+            $quiz->is_active = 1;
+        }
+        if(isset($input['show_own_profile_picture'])) {
+            $quiz->show_own_profile_picture = 1;
+        }
+        if(isset($input['show_user_name'])) {
+            $quiz->show_user_name = 1;
+        }
+        if(isset($input['show_friend_pictures'])) {
+            $quiz->show_friend_pictures = 1;
+        }
+        if(isset($input['show_friend_name'])) {
+            $quiz->show_friend_name = 1;
+        }
+
         $quiz['slug'] = Helper::slug($quiz->title, $quiz->id);
         $quiz->save();
+
+        if($request->hasFile('background_image')) {
+            
+            $backgroundPath = config('image.quiz_background_path').$quiz->id;
+
+            if (!file_exists($backgroundPath)) {
+                mkdir($backgroundPath, 0777, true);
+            }
+
+            $background = $request->file('background_image');
+            $quiz->background_image = md5(time()).'.'.$background->getClientOriginalExtension();
+            $background->move($backgroundPath, $quiz->background_image);
+
+            $quiz->save();
+        }
         
         $destinationPath = config('image.quiz_facts_path').$quiz->id;
         
@@ -68,17 +99,19 @@ class AdminQuizzesController extends Controller
             mkdir($destinationPath, 0777, true);
         }
 
-        foreach($input['fact']['title'] as $k => $fact) {
-            $quizFact = new QuizFact();
-            $quizFact->quiz_id = $quiz->id;
-            $quizFact->title = $input['fact']['title'][$k];
-            $quizFact->description = $input['fact']['description'][$k];
-            if($file[$k]->isValid()) {
-                $fileName = md5(time()).'.png';
-                $file[$k]->move($destinationPath, $fileName);
-                $quizFact->image = $fileName;
+        if(isset($input['fact'])) {
+            foreach($input['fact']['title'] as $k => $fact) {
+                $quizFact = new QuizFact();
+                $quizFact->quiz_id = $quiz->id;
+                $quizFact->title = $input['fact']['title'][$k];
+                $quizFact->description = $input['fact']['description'][$k];
+                if($file[$k]->isValid()) {
+                    $fileName = md5(time()).'.png';
+                    $file[$k]->move($destinationPath, $fileName);
+                    $quizFact->image = $fileName;
+                }
+                $quizFact->save();
             }
-            $quizFact->save();
         }
 
         return redirect('admin/quiz')->with('success', 'Quiz has been created.');
