@@ -17,6 +17,8 @@ return array(
 
     'quiz_template_path' => str_replace('\\','/',public_path()).'/images/quizzes/templates/',
     'quiz_facts_path' => str_replace('\\','/',public_path()).'/images/quizzes/facts/',
+
+    'quiz_background_path' => str_replace('\\', '/', public_path()).'/images/quizzes/background_image/',
     
     /*
      |.....................................................................
@@ -26,7 +28,8 @@ return array(
      */
     
     'quiz_template_url' => '/images/quizzes/templates/',
-    'quiz_facts_path' => str_replace('\\','/',public_path()).'/images/quizzes/facts/',
+    'quiz_facts_url' => '/images/quizzes/facts/',
+    'quiz_background_url' => '/images/quizzes/background_image/',
 
     /*
      |.....................................................................
