@@ -42,6 +42,9 @@ class QuizzesController extends Controller
         
         //set title of quiz
         $template = $quizHelper->setTitle($template, $quiz);
+
+        //set background image for quiz
+        $template = $quizHelper->setBackgroundImage($template, $quiz);
         
         //set user profile image
         $template = $quizHelper->setUserProfileImage($template, $quiz);

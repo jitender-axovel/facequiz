@@ -43,6 +43,14 @@ class QuizHelper extends Model
             return $template;
         }
     }
+
+    public function setBackgroundImage($template, $quiz) {
+        if($quiz->background_image != '') {
+            return str_replace('quiz_background_image', asset(config('image.quiz_background_url').$quiz->id.'/'.$quiz->background_image), $template);
+        } else {
+            $template;
+        }
+    }
     
     public function setUserProfileImage($template, $quiz)
     {
