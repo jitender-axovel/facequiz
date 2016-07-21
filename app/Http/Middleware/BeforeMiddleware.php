@@ -76,7 +76,9 @@ class BeforeMiddleware
                     }
                 }
             }
-            view()->share('widgets', $widgetItems);
+            if(isset($widgetItems)) {
+                view()->share('widgets', $widgetItems);
+            }
         }
         
         return $next($request);
