@@ -55,7 +55,7 @@
 				<td>{{ date_format(date_create($user->created_at), 'F d, Y') }}</td>
 				<td>
 					<a class="btn btn-info" href="{{ url('admin/users/edit/'.$user->id) }}">Edit</a>
-					<a class="btn btn-primary" href="{{ url('admin/users/'.$user->id) }}">View Info</a>
+					<a class="btn btn-primary" href="{{ url('admin/users/view/'.$user->id) }}">View Info</a>
 					@if(!$user->isAdmin()) 
 						@if($user->is_blocked == 0)
 							<a class="btn btn-warning" onclick="blockUser('{{$user->id}}', '{{$user->name}}')">Block</a>
@@ -94,7 +94,7 @@
 			function(isConfirm){
 				if(isConfirm) {
 					$.ajax({
-						url: "{{ url('admin/users') }}" + '/' + id,
+						url: "{{ url('admin/users/delete') }}" + '/' + id,
 						type: 'DELETE',
 						success: function(data) {
 							data = JSON.parse(data);
