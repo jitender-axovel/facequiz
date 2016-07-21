@@ -66,15 +66,19 @@ class BeforeMiddleware
         }
 
         $widgets = App\Widget::get();
-        foreach($widgets as $widget) {
-            $widget->widgets = json_decode($widget->widgets, true);
-            if(is_array($widget->widgets)) {
-                foreach($widget->widgets as $k => $item) {
-                    $widgetItems[$widget->slug][$k] = $item['content'];
+
+        if($widgets->count()) {
+            foreach($widgets as $widget) {
+                $widget->widgets = json_decode($widget->widgets, true);
+                if(is_array($widget->widgets)) {
+                    foreach($widget->widgets as $k => $item) {
+                        $widgetItems[$widget->slug][$k] = $item['content'];
+                    }
                 }
             }
+            view()->share('widgets', $widgetItems);
         }
-        view()->share('widgets', $widgetItems);
+        
         return $next($request);
     }
 }
