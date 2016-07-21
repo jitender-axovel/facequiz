@@ -152,6 +152,32 @@ class AdminQuizzesController extends Controller
     }
 
     /**
+     * Change Status of the specified resource from storage.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function changeStatus($id)
+    {
+        $quiz = Quiz::find($id);
+        $title = $quiz->title;
+
+        $quiz->is_active = !$quiz->is_active;
+
+        if($quiz->save()) {
+            $result['status'] = true;
+            $result['message'] = $title."'s status has been changed.";
+
+            return json_encode($result);
+        } else {
+            $result['status'] = false;
+            $result['message'] = $title."'s status could not changed.";
+
+            return json_encode($result);
+        }
+    }
+
+    /**
      * Remove the specified resource from storage.
      *
      * @param  int  $id

@@ -38,6 +38,7 @@ Route::group(['middleware' => 'before'], function() {
             Route::delete('users/delete/{id}', 'AdminUsersController@delete');
             Route::post('users/block/{id}', 'AdminUsersController@block');
             Route::post('users/download-csv', 'AdminUsersController@exportToCsv');
+            Route::post('quiz/change-status/{id}', 'AdminQuizzesController@changeStatus');
             Route::resource('quiz', 'AdminQuizzesController');
 //            Route::post('save-template-image', 'AdminQuizTemplatesController@saveTemplateImage');
             Route::resource('layout', 'AdminQuizTemplatesController');
