@@ -30,7 +30,7 @@
             </ul>
         </li>
         <li>
-            <a href="{{url('admin/widget')}}"><i class="fa fa-font"></i> Widgets</a>
+            <a href="{{url('admin/widget')}}"><i class="fa fa-newspaper-o"></i> Widgets</a>
         </li>
         <li>
             <a href="{{url('admin/language')}}"><i class="fa fa-font"></i> Languages</a>
