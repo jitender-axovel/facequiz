@@ -19,6 +19,10 @@ Route::group(['middleware' => 'before'], function() {
     Route::get('/redirect', 'SocialAuthController@redirect');
     Route::get('/callback', 'SocialAuthController@callback');
 
+    Route::get('privacy-policy', function() {
+      return view('cms/privacy-policy');
+    });
+
     //Route::get('/home', 'HomeController@index');
     Route::get('get-template-details', 'AdminQuizzesController@getTemplateDetails');
 //    Route::get('get-quiz-form', 'AdminQuizzesController@getQuizForm');
