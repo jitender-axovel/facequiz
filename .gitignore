@@ -7,12 +7,9 @@ node_modules/
 
 # Laravel 5 & Lumen specific
 bootstrap/cache/
+public/images/quizzes/
 .env.*.php
 .env.php
-public/uploads/
-public/images/project/
-public/images/users/
-
 
 # Rocketeer PHP task runner and deployment package. https://github.com/rocketeers/rocketeer
 .rocketeer/
