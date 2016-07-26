@@ -18,7 +18,7 @@
                             </div>
                             <div class="panel-body">
                                 <div class="thumbnail">
-                                    {!! htmlspecialchars_decode($template) !!}
+                                    <img class="media-object" src="{{asset(config('image.quiz_result_url').$result->result_image)}}">
                                     <div class="caption">
                                         <a class="btn btn-primary btn-lg btn-block" href="javascript:void(0);">Share</a>
                                     </div>
