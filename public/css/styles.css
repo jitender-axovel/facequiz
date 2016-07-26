@@ -37,7 +37,7 @@ h4{font-size:20px;}
 h2{font-size:40px; color:#ed3174;}
 h3.small-heading{font-size:25px; color:#ed3174; text-transform: uppercase;}
 h1{font-size:60px;}
-a{text-decoration:none; color:#000; font-family: "BentonSans Regular";}
+a{text-decoration:none; font-family: "BentonSans Regular";}
 img{max-width: 100% !important; max-height: 100% !important; object-fit: cover;}
 video { max-width: 100%;}
 a:hover{text-decoration:none; color:#ed3174; transition: all 0.5s ease-in-out 0s;}
@@ -195,7 +195,7 @@ body .current-link {color: #000000; font-size: 28px; top: 0;}
 
 /* footer design */
 
-footer {background: #323232; clear: both; overflow: hidden;}
+footer {background: #323232; clear: both; overflow: hidden; margin-top: 40px;}
 footer > .container {padding: 40px 0;}
 footer a , footer p {color: #ffffff;}
 footer h3 {color: #ffffff; margin-bottom: 40px; text-transform: uppercase; font-size: 18px;}

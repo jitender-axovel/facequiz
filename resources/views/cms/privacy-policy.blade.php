@@ -1,6 +1,6 @@
 @extends('layouts.app')
 @section('content')
-	<div class="col-md-10 col-md-offset-1">
+	<div class="container">
 		<p dir="ltr" style="line-height: 1.38; margin-top: 0pt; margin-bottom: 0pt;"><span style="font-size: 28px; font-family: Verdana; color: #000000; vertical-align: baseline; white-space: pre-wrap; background-color: transparent;">Privacy Policy</span></p>
 		<p>&nbsp;</p>
 		<p dir="ltr" style="line-height: 1.38; margin-top: 0pt; margin-bottom: 0pt;"><span style="font-size: 14.6667px; font-family: Arial; color: #000000; vertical-align: baseline; white-space: pre-wrap; background-color: transparent;">Robodoo (also referenced below as &ldquo;We&rdquo;, &ldquo;us&rdquo;, &ldquo;our&rdquo; or &ldquo;the Company&rdquo;) is committed to safeguard the privacy of our website visitors. This Privacy Policy explains the information we gather so that you may easily understand the way in which we protect your personal information and other related details. By using our services, you acknowledge that you have reviewed this Privacy Policy and agree to be bound by our terms and conditions. </span></p>
