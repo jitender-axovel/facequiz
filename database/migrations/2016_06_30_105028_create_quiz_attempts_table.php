@@ -18,6 +18,7 @@ class CreateQuizAttemptsTable extends Migration
             $table->foreign('user_id')->references('id')->on('users');
             $table->integer('quiz_id')->unsigned();
             $table->foreign('quiz_id')->references('id')->on('quizzes');
+            $table->string('result_image');
             $table->timestamps();
             $table->softDeletes();
         });
