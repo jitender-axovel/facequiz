@@ -8,6 +8,8 @@ use App\Http\Requests;
 
 use App\Quiz;
 use App\Category;
+use App\QuizAttempt;
+use Auth;
 
 class QuizzesController extends Controller
 {
@@ -57,9 +59,38 @@ class QuizzesController extends Controller
         
         //set facts
         $template = $quizHelper->setFacts($template, $quiz);
+
+        $filePath = public_path('files/');
+
+        if (!file_exists($filePath)) {
+            mkdir($filePath, 0777, true);
+        }
+
+        $fileName = md5(time()).'.html';
+
+        $imagePath = config('image.quiz_result_path');
+
+        if(!file_exists($imagePath)) {
+            mkdir($imagePath, 0777, true);
+        }
+
+        $imageName = md5(time()).'.png';
+
+        $myfile = fopen($filePath.$fileName, "a+") or die("Unable to open file!");
+        fwrite($myfile, htmlspecialchars_decode($template));
+        fclose($myfile);
+        $command = public_path('wkhtmltox/bin/wkhtmltoimage'). ' ' . $filePath.'/'.$fileName . ' '. $imagePath.'/'.$imageName;
+        shell_exec($command);
+
+        $result = QuizAttempt::create([
+            'user_id' => Auth::id(),
+            'quiz_id' => $quiz->id,
+            'result_image' => $imageName
+            ]);
+
         
         $quizzes = Quiz::where('slug', '!=', $slug)->where('is_active', 1)->get();
         
-        return view('quiz.result', compact('page', 'quiz', 'template', 'quizzes'));
+        return view('quiz.result', compact('page', 'quiz', 'template', 'quizzes', 'result'));
     }
 }
