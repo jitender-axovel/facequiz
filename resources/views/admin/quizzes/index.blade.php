@@ -4,7 +4,7 @@
 	<h2>Quizzes List</h2>
 	<hr>
 	@include('notification')
-	<table id="users_list" class="display">
+	<table id="quizzes_list" class="display">
 		<thead>
 			<tr>
 				<th>Name</th>
@@ -34,8 +34,8 @@
 	</table>
 	<script type="text/javascript">
 		$(document).ready( function () {
-		    $('#users_list').DataTable();
-		} );
+		    $('#quizzes_list').DataTable();
+		});
 	</script>
 @endsection
 @section('admin-scripts')

@@ -39,9 +39,6 @@
                                         <a href="{{ url('quiz/'.$quizItem->slug) }}"><img src="{{ asset('images/templates/'.$quizItem->template->og_image) }}"></a>
                                         <div class="caption">
                                             <div class="heading"><a href="{{ url('quiz/'.$quizItem->slug) }}">{{$quizItem->title}}</a></div>
-                                            @if($quizItem->description != "")
-                                                <p>{{$quizItem->description}}</p>
-                                            @endif
                                         </div>
                                     </div>
                                 </div>

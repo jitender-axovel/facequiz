@@ -11,22 +11,20 @@
         <div class="row">
             <div class="col-md-8">
                 <div class="row">
-                    <div class="col-md-10 col-md-offset-1">
-                        <div class="panel panel-default">
-                            <div class="panel-heading">
-                                <div class="panel-title">{{ $quiz->title }}</div>
-                            </div>
-                            <div class="panel-body">
-                                <div class="thumbnail">
-                                    <img src="{{ asset(config('image.quiz_template_url').$quiz->template->og_image) }}">
-                                    <div class="caption">
-                                        <a class="btn btn-primary btn-lg btn-block" href="{{ url('quiz/'.$quiz->slug.'/start') }}">Start</a>
-                                    </div>
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <div class="panel-title">{{ $quiz->title }}</div>
+                        </div>
+                        <div class="panel-body">
+                            <div class="thumbnail">
+                                <img src="{{ asset(config('image.quiz_template_url').$quiz->template->og_image) }}">
+                                <div class="caption">
+                                    <a class="btn btn-primary btn-lg btn-block" href="{{ url('quiz/'.$quiz->slug.'/start') }}">Start</a>
                                 </div>
                             </div>
-                            <div class="panel-footer">
-                                {{$quiz->description}}
-                            </div>
+                        </div>
+                        <div class="panel-footer">
+                            {{$quiz->description}}
                         </div>
                     </div>
                 </div>
@@ -39,9 +37,6 @@
                                         <a href="{{ url('quiz/'.$quizItem->slug.'/show') }}"><img src="{{ asset('images/quizzes/templates/'.$quizItem->template->og_image) }}"></a>
                                         <div class="caption">
                                             <div class="heading"><a href="{{ url('quiz/'.$quizItem->slug.'/show') }}">{{$quizItem->title}}</a></div>
-                                            @if($quizItem->description != "")
-                                                <p>{{$quizItem->description}}</p>
-                                            @endif
                                         </div>
                                     </div>
                                 </div>
