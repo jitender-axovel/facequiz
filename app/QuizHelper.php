@@ -121,7 +121,7 @@ class QuizHelper extends Model
             $array_keys = array();
         }
 
-        if(is_array($array_keys)) {
+        if(is_array($array_keys) && count($array_keys)) {
             foreach($array_keys as $k => $key) {
                 $k = $k + 1;//return $fact->description;
                 $template = str_replace('fact_'.$k, $facts[$key]['title'], $template);
