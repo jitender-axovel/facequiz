@@ -76,7 +76,8 @@ class QuizzesController extends Controller
 
         $imageName = md5(time()).'.png';
 
-        $myfile = fopen($filePath.$fileName, "a+") or die("Unable to open file!");
+        $myfile = fopen($filePath.$fileName, "w+") or die("Unable to open file!");
+        chmod($filePath.$fileName, 0777);
         fwrite($myfile, htmlspecialchars_decode($template));
         fclose($myfile);
         $command = public_path('wkhtmltox/bin/wkhtmltoimage'). ' ' . $filePath.'/'.$fileName . ' '. $imagePath.'/'.$imageName;
