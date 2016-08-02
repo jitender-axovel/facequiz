@@ -39,7 +39,8 @@ footer {background: #ffffff; padding: 30px 10px;}
 footer p {margin: 0; color: #333333;}
 /* footer design end */
 
-
+/* home page */
+.main-content {min-height: 550px;}
 
 
 /* responsive work */
