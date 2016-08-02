@@ -118,6 +118,7 @@ class QuizHelper extends Model
             $facts = $facts->toArray();
             $array_keys = array_rand($facts, $quiz->total_facts);
         } else {
+            $facts = $facts->toArray();
             $array_keys = array_rand($facts, $quiz->total_facts);
         }
 
