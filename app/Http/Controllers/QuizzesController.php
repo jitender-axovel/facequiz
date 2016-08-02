@@ -80,7 +80,7 @@ class QuizzesController extends Controller
         chmod($filePath.$fileName, 0777);
         fwrite($myfile, htmlspecialchars_decode($template));
         fclose($myfile);
-        $command = public_path('wkhtmltox/bin/wkhtmltoimage'). ' ' . $filePath.'/'.$fileName . ' '. $imagePath.'/'.$imageName;
+        $command = 'xvfb-run wkhtmltoimage ' . $filePath.'/'.$fileName . ' '. $imagePath.'/'.$imageName;
         shell_exec($command);
 
         $result = QuizAttempt::create([
