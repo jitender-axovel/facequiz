@@ -20,14 +20,13 @@ Route::group(['middleware' => 'before'], function() {
     Route::get('/callback', 'SocialAuthController@callback');
 
     Route::get('privacy-policy', function() {
-      return view('cms/privacy-policy');
+        return view('cms/privacy-policy');
     });
 
-    //Route::get('/home', 'HomeController@index');
     Route::get('get-template-details', 'AdminQuizzesController@getTemplateDetails');
 //    Route::get('get-quiz-form', 'AdminQuizzesController@getQuizForm');
     Route::get('get-widget-form/{slug}', function($slug) {
-      return view('admin.widgets.components.widget-form', compact('slug'));
+        return view('admin.widgets.components.widget-form', compact('slug'));
     });
 
     Route::group(['prefix' => 'admin'], function() {
@@ -55,7 +54,7 @@ Route::group(['middleware' => 'before'], function() {
     });
 
     Route::group(['prefix' => 'quiz'], function() {
-        Route::get('{quizSlug}/show', 'QuizzesController@index')->middleware(['auth']);
+        Route::get('{quizSlug}/show', 'QuizzesController@index');
         Route::get('{quizSlug}/start', 'QuizzesController@start')->middleware(['auth']);
     });
 });

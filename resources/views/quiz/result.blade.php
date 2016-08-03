@@ -1,5 +1,10 @@
 @extends('layouts.app')
 @section('title', $page)
+@section('og_url', url('quiz/'.$quiz->slug.'/show'))
+@section('og_title', $quiz->title)
+@section('og_description', $quiz->description)
+@section('og_author', Auth::user()->name)
+@section('og_image', asset(config('image.quiz_result_url').$result->result_image))
 @section('content')
     <div class="container">
         <div class="row">
@@ -20,7 +25,7 @@
                                 <div class="thumbnail">
                                     <img class="media-object" src="{{asset(config('image.quiz_result_url').$result->result_image)}}">
                                     <div class="caption">
-                                        <a class="btn btn-primary btn-lg btn-block" href="javascript:void(0);">Share</a>
+                                        <a id="shareBtn" class="btn btn-primary btn-block"><i class="fa fa-facebook"></i>Share</a>
                                     </div>
                                 </div>
                             </div>
@@ -59,4 +64,15 @@
             @include('includes.below-quizzes-widgets')
         </div>
     </div>
+@endsection
+@section('scripts')
+    <script>
+        document.getElementById('shareBtn').onclick = function() {
+            FB.ui({
+                method: 'share',
+                display: 'popup',
+                href: '{{ url("quiz/".$quiz->slug."/show") }}',
+            }, function(response){});
+        }
+    </script>
 @endsection

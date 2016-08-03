@@ -4,8 +4,19 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta property="og:site_name" content="robodoo.com"/>
+    <meta property="og:type" content="website"/>
+    <meta property="og:url" content="@yield('og_url')"/>
+    <meta property="og:title" content="@yield('og_title')"/>
+    <meta property="og:description" content="@yield('og_description')"/>
+    <meta name="author" content="@yield('og_author')"/>
+    <meta property="og:image" content="@yield('og_image')"/>
+    <meta property="og:image:type" content="image/jpeg"/>
+    <meta property="og:image:width" content="800"/>
+    <meta property="og:image:height" content="420"/>
+    <meta property="og:locale" content="@yield('og_locale')"/>
 
-    <title>Laravel</title>
+    <title>@yield('title')</title>
 
     <!-- Fonts -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css" integrity="sha384-XdYbMnZ/QjLh6iI4ogqCTaIjrFk87ip+ekIjefZch0Y+PvJ8CDYtEs1ipDmPorQ+" crossorigin="anonymous">
@@ -41,6 +52,30 @@
         }
     </script>
 
+    <script type="text/javascript">
+        // Additional JS functions here
+        window.fbAsyncInit = function() {
+            FB.init({
+                appId      : 1638458236482480, // App ID
+                status     : true,    // check login status
+                xfbml      : true,     // parse page for xfbml or html5
+                // social plugins like login button below
+                version    : 'v2.0',  // Specify an API version
+            });
+            $(document).trigger('fbload');
+
+        // Put additional init code here
+        };
+
+        // Load the SDK Asynchronously
+        (function(d, s, id){
+            var js, fjs = d.getElementsByTagName(s)[0];
+            if (d.getElementById(id)) {return;}
+            js = d.createElement(s); js.id = id;
+            js.src = "//connect.facebook.net/en_US/sdk.js";
+            fjs.parentNode.insertBefore(js, fjs);
+        }(document, 'script', 'facebook-jssdk'));
+    </script>
 </head>
 <body>
 <header>
@@ -111,5 +146,6 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.3/jquery.min.js" integrity="sha384-I6F5OKECLVtK/BL+8iSLDEHowSAfUo76ZL9+kGAgTRdiByINKJaqTPH/QVNS1VDb" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
     {{-- <script src="{{ elixir('js/app.js') }}"></script> --}}
+    @yield('scripts')
 </body>
 </html>
