@@ -55,7 +55,19 @@ class QuizHelper extends Model
     public function setUserProfileImage($template, $quiz)
     {
         if($quiz->show_own_profile_picture) {
-            return str_replace('user_profile_pic', Auth::user()->avatar, $template);
+            try {
+                $response = $this->fb->get('/me?fields=picture.type(large)');
+            } catch (Facebook\Exceptions\FacebookResponseException $e) {
+                // When Graph returns an error
+                return redirect('/')->with('error', 'Sorry for the inconvenience, there are no results for this quiz');
+            } catch (\Facebook\Exceptions\FacebookSDKException $e) {
+                // When validation fails or other local issues
+                return redirect('/')->with('error', 'Sorry for the inconvenience, there are no results for this quiz');
+            }
+
+            $response = $response->getGraphObject();
+            $response = $response->asArray();
+            return str_replace('user_profile_pic', $response['picture']['url'], $template);
         } else {
             return $template;
         }
@@ -82,7 +94,7 @@ class QuizHelper extends Model
                 // When validation fails or other local issues
                 return redirect('/')->with('error', 'Sorry for the inconvenience, there are no results for this quiz');
             }
-            // dd($response);
+            
             $response = $response->getGraphEdge();
             
             $array_keys = array();
