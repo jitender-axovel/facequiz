@@ -99,8 +99,7 @@
                     <!-- Left Side Of Navbar -->
                     <ul class="nav navbar-nav">
                         <li><a href="{{ url('/') }}">Latest</a></li>
-                        <li><a href="{{ url('quizzes/all') }}">popular</a></li>
-                        <li><a href="#">categories</a></li>
+                        <li><a href="{{ url('quizzes/popular') }}">popular</a></li>
                     </ul>
                 </div>
             </nav>
