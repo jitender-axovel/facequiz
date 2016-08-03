@@ -82,7 +82,7 @@
 <header class="site-header">
     <div class="container-fluid">
         <div class="logo custom-left col-sm-3 col-xs-12">
-            <img src="{{asset('images/logo.png')}}">
+            <a href="{{ url('/') }}"><img src="{{asset('images/logo.png')}}"></a>
         </div>
         <div class="header-navigation col-md-8 col-sm-7 col-xs-12">
             <nav class="navbar navbar-default navbar-static-top">
