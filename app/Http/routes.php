@@ -23,6 +23,8 @@ Route::group(['middleware' => 'before'], function() {
         return view('cms/privacy-policy');
     });
 
+    Route::get('cms/{slug}', 'CmsController@getPage');
+
     Route::get('get-template-details', 'AdminQuizzesController@getTemplateDetails');
 //    Route::get('get-quiz-form', 'AdminQuizzesController@getQuizForm');
     Route::get('get-widget-form/{slug}', function($slug) {

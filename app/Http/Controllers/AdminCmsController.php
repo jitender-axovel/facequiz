@@ -62,7 +62,10 @@ class AdminCmsController extends Controller
      */
     public function edit($id)
     {
-        //
+        $page = 'Edit Cms Page - Admin';
+        $cmsPage = Cms::find($id);
+
+        return view('admin.cms.edit', compact('page', 'cmsPage'));
     }
 
     /**
@@ -74,7 +77,13 @@ class AdminCmsController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $cmsPage = Cms::find($id);
+
+        $cmsPage->content = $request->input('content');
+
+        $cmsPage->save();
+
+        return redirect('admin/cms')->with('success', $cmsPage->title . "'s content is saved.");
     }
 
     /**
