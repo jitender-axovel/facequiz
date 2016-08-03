@@ -147,6 +147,11 @@ body {
 header.admin-header {
     position: fixed;
     background: #010101 none repeat scroll 0 0;
+    top: 0;
+}
+
+.admin-header .right-side {
+    text-align: right;
 }
 
 #wrapper {
