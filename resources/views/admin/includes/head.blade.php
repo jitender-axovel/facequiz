@@ -20,7 +20,7 @@
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/t/dt/dt-1.10.11/datatables.min.css"/>
     <link href="{{ asset('css/sweetalert.css') }}" rel="stylesheet" type="text/css">
-    <link href="{{ asset('css/style.css') }}" rel="stylesheet" type="text/css">
-    <link href="{{ asset('css/admin.styles.css') }}" rel="stylesheet" type="text/css">
+    <link href="{{ asset('css/style.css?version='.time()) }}" rel="stylesheet" type="text/css">
+    <link href="{{ asset('css/admin.styles.css?version='.time()) }}" rel="stylesheet" type="text/css">
     @yield('admin-styles')
 </head>
