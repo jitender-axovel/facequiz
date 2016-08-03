@@ -16,24 +16,24 @@ p{color:#9b9b9b; line-height: 150%;}
 .container {padding: 0; width: 80%;}
 
 /* header design */
-header {width: 100%; z-index: 9999; background: #930a0f ; padding:15px 10px; position: relative;}
+header {width: 100%; z-index: 9999; background: #930a0f ;padding: 6px 10px; position: relative;}
 header .container , footer .container{width: 90%;}
 header .logo > img {width: 100px;}
 .header-navigation .navbar {background: transparent; border: 0 none; margin: 0;}
 .navbar-default .navbar-nav > li > a {color: #ffffff; padding: 5px 10px; text-transform: uppercase;}
 .navbar-default .navbar-nav > li > a:focus, .navbar-default .navbar-nav > li > a:hover {background-color: #ffffff;
   color: #930a0f;}
-.top-side-link .navbar-nav a {background: #ea2028; color: #ffffff; padding: 6px 16px; text-transform: uppercase;}
+.top-side-link .navbar-nav a {background: #ea2028; border-radius: 5px; color: #ffffff; padding: 6px 16px; text-transform: uppercase;}
 .nav > li > a:focus, .nav > li > a:hover {background-color: #eeeeee; color: #930a0f; text-decoration: none;}
 body .navbar {min-height: 0;}
 .header-navigation {margin-top: 10px;}
-.top-side-link {float: right; margin-top: 10px;}
+.top-side-link {float: right; margin-top: 10px; margin-right: 15px;}
 .header-navigation .navbar-nav li {margin-right: 15px;}
 .logo.custom-left {float: left; padding: 0 15px; width: auto;}
 /* header design end */
 
 /* footer design */
-footer {background: #ffffff; padding: 30px 10px;}
+footer {background: #ffffff; padding: 40px 10px;}
 .footer-links .list-inline > li {margin-right: 15px;}
 .footer-links .list-inline a {color: #930A0F;}
 footer p {margin: 0; color: #333333;}
