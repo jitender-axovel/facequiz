@@ -2,7 +2,7 @@
 @section('title', $page)
 @section('content')
     <div class="container">
-        <div class="row">
+        <div class="row   advertise-block ">
             @include('includes.above-quizzes-widgets')
         </div>
         <div class="row">
@@ -16,19 +16,22 @@
                             <h3 class="panel-title heading text-center">{{ $quiz->title }}</h3>
                         </div>
                         <div class="panel-body">
-                                <img src="{{ asset(config('image.quiz_template_url').$quiz->template->og_image) }}">
-                                <div class="caption">
+			<div class="img-wrap col-md-10 ">			
+				<img src="{{ asset(config('image.quiz_template_url').$quiz->template->og_image) }}">
+			</div>
+                                <div class="caption  img-caption">
                                     <a class="btn btn-primary btn-block" href="{{ url('quiz/'.$quiz->slug.'/start') }}">Start</a>
                                 </div>
+								
                                 <span>You will be required to login with Facebook.</span>
                         </div>
                     </div>
                 </div>
                 <div class="row">
-                    <div class="col-md-10 col-md-offset-1">
+                    <div class="col-md-12  ">
                         @if($quizzes->count())
                             @foreach($quizzes as $quizItem)
-                                <div class="col-md-4 col-sm-6">
+                                <div class="col-md-6 col-sm-6">
                                     <div class="thumbnail">
                                         <a href="{{ url('quiz/'.$quizItem->slug.'/show') }}"><img src="{{ asset(config('image.quiz_template_url').$quizItem->template->og_image) }}"></a>
                                         <div class="caption">
