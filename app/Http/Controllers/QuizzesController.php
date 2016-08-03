@@ -42,7 +42,7 @@ class QuizzesController extends Controller
 
         $quizzes = Quiz::where('slug', '!=', $quizSlug)->where('is_active', 1)->get();
         
-        return view('quiz.index', compact('page', 'quiz', 'quizzes', 'quizAttempt'));
+        return view('quiz.landing', compact('page', 'quiz', 'quizzes', 'quizAttempt'));
     }
     
     public function start($slug)
