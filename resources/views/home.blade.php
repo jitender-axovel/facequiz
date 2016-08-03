@@ -20,6 +20,9 @@
                 </div>
             @endforeach
         </div>
+        <div class="pagination-links">
+            {{$quizzes->links()}}
+        </div>
         <div class="row">
             @include('includes.below-quizzes-widgets')
         </div>
