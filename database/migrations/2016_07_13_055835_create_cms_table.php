@@ -14,6 +14,9 @@ class CreateCmsTable extends Migration
     {
         Schema::create('cms', function (Blueprint $table) {
             $table->increments('id');
+            $table->string('title')->unique();
+            $table->string('slug')->unique();
+            $table->longText('content');
             $table->timestamps();
         });
     }
