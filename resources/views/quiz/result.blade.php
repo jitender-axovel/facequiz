@@ -71,7 +71,7 @@
             FB.ui({
                 method: 'share',
                 display: 'popup',
-                href: '{{ url("quiz/".$quiz->slug."/show") }}',
+                href: '{{ url("quiz/".$quiz->slug."/landing/".Auth::id()) }}',
             }, function(response){});
         }
     </script>
