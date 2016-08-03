@@ -148,6 +148,9 @@ header.admin-header {
     position: fixed;
     background: #010101 none repeat scroll 0 0;
     top: 0;
+    width: 100%; 
+    z-index: 9999;
+    padding: 15px 10px;
 }
 
 .admin-header .right-side {
