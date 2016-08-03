@@ -100,12 +100,17 @@ class QuizzesController extends Controller
         $command = 'xvfb-run wkhtmltoimage ' . $filePath.'/'.$fileName . ' '. $imagePath.'/'.$imageName;
         shell_exec($command);
 
-        $result = QuizAttempt::create([
-            'user_id' => Auth::id(),
-            'quiz_id' => $quiz->id,
-            'result_image' => $imageName
-            ]);
+        $quizAttempt = QuizAttempt::where('quiz_id', $quiz->id)->where('user_id', Auth::id())->first();
 
+        if($quizAttempt) {
+            QuizAttempt::where('quiz_id', $quiz->id)->where('user_id', Auth::id())->update(['result_image' => $imageName])
+        } else {
+            $result = QuizAttempt::create([
+                'user_id' => Auth::id(),
+                'quiz_id' => $quiz->id,
+                'result_image' => $imageName
+            ]);
+        }
         
         $quizzes = Quiz::where('slug', '!=', $slug)->where('is_active', 1)->get();
         
