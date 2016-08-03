@@ -128,8 +128,9 @@
             </div>
             <div class="footer-links col-md-10 col-sm-9 col-xs-12">
                 <ul class="list-inline">
-                    <li><a href="{{url('privacy-policy')}}">Privacy Policy</a></li>
-                    <li><a href="#">Tearms & conditions</a></li>
+                    @foreach(App\Cms::get() as $cmsPage)
+                    <li><a href="{{url('cms/'.$cmsPage->slug)}}">{{$cmsPage->title}}</a></li>
+                    @endforeach
                 </ul>
             </div>
         </div>
