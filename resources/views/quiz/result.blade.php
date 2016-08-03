@@ -41,7 +41,7 @@
                             @foreach($quizzes as $quizItem)
                                 <div class="col-md-4 col-sm-6">
                                     <div class="thumbnail">
-                                        <a href="{{ url('quiz/'.$quizItem->slug) }}"><img src="{{ asset('images/templates/'.$quizItem->template->og_image) }}"></a>
+                                        <a href="{{ url('quiz/'.$quizItem->slug) }}"><img src="{{ asset(config('image.quiz_template_url').$quizItem->template->og_image) }}"></a>
                                         <div class="caption">
                                             <div class="heading"><a href="{{ url('quiz/'.$quizItem->slug) }}">{{$quizItem->title}}</a></div>
                                         </div>
