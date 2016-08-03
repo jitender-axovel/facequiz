@@ -11,7 +11,7 @@
     <meta property="og:description" content="@yield('og_description')"/>
     <meta name="author" content="@yield('og_author')"/>
     <meta property="og:image" content="@yield('og_image')"/>
-    <meta property="og:image:type" content="image/jpeg"/>
+    <meta property="og:image:type" content="image/png"/>
     <meta property="og:image:width" content="800"/>
     <meta property="og:image:height" content="420"/>
     <meta property="og:locale" content="@yield('og_locale')"/>
@@ -56,8 +56,9 @@
         // Additional JS functions here
         window.fbAsyncInit = function() {
             FB.init({
-                appId      : 1638458236482480, // App ID
+                appId      : 1617441138584190, // App ID
                 status     : true,    // check login status
+                cookie     : true,
                 xfbml      : true,     // parse page for xfbml or html5
                 // social plugins like login button below
                 version    : 'v2.0',  // Specify an API version
