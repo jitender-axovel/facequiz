@@ -10,6 +10,7 @@ use App\Quiz;
 use App\Category;
 use App\QuizAttempt;
 use Auth;
+use DB;
 
 class QuizzesController extends Controller
 {
@@ -26,6 +27,16 @@ class QuizzesController extends Controller
         $quizzes = Quiz::where('slug', '!=', $quizSlug)->where('is_active', 1)->get();
         
         return view('quiz.index', compact('page', 'quiz', 'quizzes'));
+    }
+
+    public function getPopularQuizzes()
+    {
+        $page = 'Robodoo';
+        $quizIds = QuizAttempt::distinct()->lists('quiz_id');
+        $quizzes = Quiz::where('is_active', 1)->whereIn('id', $quizIds)->where(function ($query) {
+                $query->select('quiz_id')->distinct()->from('quiz_attempts')->orderByRaw(DB::raw('total(quiz_id)'));
+            })->paginate(12);
+        return view('home', compact('quizzes', 'page'));
     }
 
     public function landing($quizSlug, $userId)
