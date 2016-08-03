@@ -40,6 +40,9 @@ body .navbar {min-height: 0;}
 .row.advertise-block {padding-bottom: 20px;padding-top: 10px;text-align: center;}
 /* header design end */
 
+/* pagination links */
+.pagination-links { text-align: center; }
+
 /* footer design */
 footer {background: #ffffff; padding: 40px 10px;}
 .footer-links .list-inline > li {margin-right: 15px;}
