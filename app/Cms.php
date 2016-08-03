@@ -6,5 +6,5 @@ use Illuminate\Database\Eloquent\Model;
 
 class Cms extends Model
 {
-    //
+    protected $fillable = ['title', 'slug', 'content'];
 }

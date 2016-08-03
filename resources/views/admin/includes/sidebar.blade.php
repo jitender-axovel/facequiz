@@ -35,7 +35,9 @@
         <li>
             <a href="{{url('admin/language')}}"><i class="fa fa-font"></i> Languages</a>
         </li>
-        
+        <li>
+            <a href="{{url('admin/cms')}}"><i class="fa fa-font"></i> CMS Pages</a>
+        </li>
     </ul>
 </div>
 <!-- /#sidebar-wrapper -->
