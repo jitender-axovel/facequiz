@@ -1,6 +1,6 @@
 @extends('layouts.app')
 @section('title', $page)
-@section('og_url', url('quiz/'.$quiz->slug.'/show'))
+@section('og_url', url('quiz/'.$quiz->slug.'/landing/'.Auth::id()))
 @section('og_title', $quiz->title)
 @section('og_description', $quiz->description)
 @section('og_author', Auth::user()->name)
@@ -25,7 +25,7 @@
                                 <div class="thumbnail">
                                     <img class="media-object" src="{{asset(config('image.quiz_result_url').$result->result_image)}}">
                                     <div class="caption">
-                                        <a id="shareBtn" class="btn btn-primary btn-block"><i class="fa fa-facebook"></i>Share</a>
+                                        <a id="shareBtn" class="btn btn-primary btn-block"><i class="fa fa-facebook-official"></i> Share</a>
                                     </div>
                                 </div>
                             </div>

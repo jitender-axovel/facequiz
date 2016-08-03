@@ -17,7 +17,7 @@ class QuizzesController extends Controller
     {
         $quiz = Quiz::where('slug', $quizSlug)->where('is_active', 1)->first();
         
-        $page = $quiz->title . ' - FaceQuiz';
+        $page = $quiz->title . ' - Robodoo';
         
         if(!$quiz) {
             return redirect('/')->with('error', 'Sorry, the quiz you are looking for is unemployed');
@@ -26,6 +26,23 @@ class QuizzesController extends Controller
         $quizzes = Quiz::where('slug', '!=', $quizSlug)->where('is_active', 1)->get();
         
         return view('quiz.index', compact('page', 'quiz', 'quizzes'));
+    }
+
+    public function landing($quizSlug, $userId)
+    {
+        $quiz = Quiz::where('slug', $quizSlug)->where('is_active', 1)->first();
+        
+        if(!$quiz) {
+            return redirect('/')->with('error', 'Sorry, the quiz you are looking for is unemployed');
+        }
+
+        $page = $quiz->title . ' - Robodoo';
+
+        $quizAttempt = QuizAttempt::where('quiz_id', $quiz->id)->where('user_id', $userId)->first();
+
+        $quizzes = Quiz::where('slug', '!=', $quizSlug)->where('is_active', 1)->get();
+        
+        return view('quiz.index', compact('page', 'quiz', 'quizzes', 'quizAttempt'));
     }
     
     public function start($slug)

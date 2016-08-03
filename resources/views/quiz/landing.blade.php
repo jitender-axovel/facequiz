@@ -1,5 +1,10 @@
 @extends('layouts.app')
 @section('title', $page)
+@section('og_url', url('quiz/'.$quiz->slug.'/landing/'.$quizAttempt->user_id))
+@section('og_title', $quiz->title)
+@section('og_description', $quiz->description)
+@section('og_author', $quizAttempt->user->name)
+@section('og_image', asset(config('image.quiz_result_url').$quizAttempt->result_image))
 @section('content')
     <div class="container">
         <div class="row">
