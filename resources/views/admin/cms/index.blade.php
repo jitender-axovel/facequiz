@@ -20,9 +20,7 @@
 				<td><a class="btn btn-success" href="{{ url('cms/'.$page->slug) }}">Visit</a></td>
 				<td>{{ date_format(date_create($page->created_at), 'F d, Y') }}</td>
 				<td>
-					<a class="btn btn-primary" href="{{ url('admin/quiz/'.$page->id) }}">View Info</a>
-					<a class="btn btn-warning" onclick="changeQuizStatus('{{$page->id}}', '{{$page->name}}')">{{$page->is_active == 1 ? 'Deactivate' : 'Activate'}}</a>
-					<a class="btn btn-danger" onclick="deleteQuiz('{{$page->id}}', '{{$page->name}}')">Delete</a>
+					<a class="btn btn-primary" href="{{ url('admin/cms/'.$page->id.'/edit') }}">Edit</a>
 				</td>
 			</tr>
 			@endforeach
