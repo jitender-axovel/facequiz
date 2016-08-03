@@ -1,8 +1,8 @@
 @extends('layouts.app')
 @section('title', $page)
 @section('content')
-    <div class="container">
-        <div class="row   advertise-block ">
+    <div class="container main-content">
+        <div class="row advertise-block">
             @include('includes.above-quizzes-widgets')
         </div>
         <div class="row">
@@ -16,19 +16,21 @@
                             <h3 class="panel-title heading text-center">{{ $quiz->title }}</h3>
                         </div>
                         <div class="panel-body">
-			<div class="img-wrap col-md-10 ">			
-				<img src="{{ asset(config('image.quiz_template_url').$quiz->template->og_image) }}">
-			</div>
-                                <div class="caption  img-caption">
-                                    <a class="btn btn-primary btn-block" href="{{ url('quiz/'.$quiz->slug.'/start') }}">Start</a>
-                                </div>
-								
-                                <span>You will be required to login with Facebook.</span>
+                			<div class="img-wrap col-md-10">
+                				<img src="{{ asset(config('image.quiz_template_url').$quiz->template->og_image) }}">
+                			</div>
+                            <div class="caption img-caption">
+                                <a class="btn btn-primary btn-block" href="{{ url('quiz/'.$quiz->slug.'/start') }}">Start</a>
+                            </div>
+                            <span>You will be required to login with Facebook.</span>
+                        </div>
+                        <div class="panel-footer">
+                            {{$quiz->description}}
                         </div>
                     </div>
                 </div>
                 <div class="row">
-                    <div class="col-md-12  ">
+                    <div class="col-md-12">
                         @if($quizzes->count())
                             @foreach($quizzes as $quizItem)
                                 <div class="col-md-6 col-sm-6">
