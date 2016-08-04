@@ -10,6 +10,7 @@ bootstrap/cache/
 public/images/quizzes/
 .env.*.php
 .env.php
+config/services.php
 
 # Rocketeer PHP task runner and deployment package. https://github.com/rocketeers/rocketeer
 .rocketeer/
