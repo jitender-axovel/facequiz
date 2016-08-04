@@ -18,6 +18,7 @@ class CreateQuizzesTable extends Migration
             $table->foreign('quiz_template_id')->references('id')->on('quiz_templates');
             $table->string('title')->unique();
             $table->string('slug');
+            $table->string('locale');
             $table->string('background_image');
             $table->text('description');
             $table->integer('total_facts')->unsigned();

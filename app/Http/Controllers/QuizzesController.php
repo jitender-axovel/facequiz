@@ -16,7 +16,7 @@ class QuizzesController extends Controller
 {
     public function index($quizSlug)
     {
-        $quiz = Quiz::where('slug', $quizSlug)->where('is_active', 1)->first();
+        $quiz = Quiz::where('locale', session('locale'))->where('slug', $quizSlug)->where('is_active', 1)->first();
         
         $page = $quiz->title . ' - Robodoo';
         
@@ -24,7 +24,7 @@ class QuizzesController extends Controller
             return redirect('/')->with('error', 'Sorry, the quiz you are looking for is unemployed');
         }
         
-        $quizzes = Quiz::where('slug', '!=', $quizSlug)->where('is_active', 1)->get();
+        $quizzes = Quiz::where('locale', session('locale'))->where('slug', '!=', $quizSlug)->where('is_active', 1)->get();
         
         return view('quiz.index', compact('page', 'quiz', 'quizzes'));
     }
@@ -33,7 +33,7 @@ class QuizzesController extends Controller
     {
         $page = 'Robodoo';
         $quizIds = QuizAttempt::distinct()->lists('quiz_id');
-        $quizzes = Quiz::where('is_active', 1)->whereIn('id', $quizIds)->where(function ($query) {
+        $quizzes = Quiz::where('locale', session('locale'))->where('is_active', 1)->whereIn('id', $quizIds)->where(function ($query) {
                 $query->select('quiz_id')->distinct()->from('quiz_attempts')->orderByRaw(DB::raw('total(quiz_id)'));
             })->paginate(12);
         return view('home', compact('quizzes', 'page'));
@@ -41,24 +41,24 @@ class QuizzesController extends Controller
 
     public function landing($quizSlug, $userId)
     {
-        $quiz = Quiz::where('slug', $quizSlug)->where('is_active', 1)->first();
+        $quiz = Quiz::where('locale', session('locale'))->where('slug', $quizSlug)->where('is_active', 1)->first();
         
         if(!$quiz) {
-            return redirect('/')->with('error', 'Sorry, the quiz you are looking for is unemployed');
+            return redirect('/')->with('error', 'Sorry, the quiz you are looking for is unemployed or may be your language is different from quiz language.');
         }
 
         $page = $quiz->title . ' - Robodoo';
 
         $quizAttempt = QuizAttempt::where('quiz_id', $quiz->id)->where('user_id', $userId)->first();
 
-        $quizzes = Quiz::where('slug', '!=', $quizSlug)->where('is_active', 1)->get();
+        $quizzes = Quiz::where('locale', session('locale'))->where('slug', '!=', $quizSlug)->where('is_active', 1)->get();
         
         return view('quiz.landing', compact('page', 'quiz', 'quizzes', 'quizAttempt'));
     }
     
     public function start($slug)
     {
-        $quiz = Quiz::where('slug', $slug)->where('is_active', 1)->first();
+        $quiz = Quiz::where('locale', session('locale'))->where('slug', $slug)->where('is_active', 1)->first();
         
         if(!$quiz) {
             return redirect('/')->with('error', 'Sorry, the quiz you are looking for is unemployed');
@@ -124,7 +124,7 @@ class QuizzesController extends Controller
             ]);
         }
         
-        $quizzes = Quiz::where('slug', '!=', $slug)->where('is_active', 1)->get();
+        $quizzes = Quiz::where('locale', session('locale'))->where('slug', '!=', $slug)->where('is_active', 1)->get();
         
         return view('quiz.result', compact('page', 'quiz', 'template', 'quizzes', 'result'));
     }

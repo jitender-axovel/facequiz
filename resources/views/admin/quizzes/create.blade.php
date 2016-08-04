@@ -28,6 +28,22 @@
                 </div>
             </div>
             <div class="form-group">
+                <label class="control-label col-sm-2">Language</label>
+                <div class="col-sm-10">
+                    <select required class="form-control" name="locale">
+                        <option value="">Select Language</option>
+                        @foreach($languages as $language)
+                            <option value="{{$language->code}}">{{$language->name}}</option>
+                        @endforeach
+                    </select>
+                    @if($errors->has('locale'))
+                    <span class="help-block">
+                        <strong>{{ $errors->first('locale') }}</strong>
+                    </span>
+                    @endif
+                </div>
+            </div>
+            <div class="form-group">
                 <label class="control-label col-sm-2">Description (Optional)</label>
                 <div class="col-sm-10">
                     <textarea class="form-control" name="description">{{ old('description') }}</textarea>

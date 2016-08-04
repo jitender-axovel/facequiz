@@ -9,6 +9,7 @@ use App\Quiz;
 use App\QuizFact;
 use App\QuizTemplate;
 use App\Helper;
+use App\Language;
 
 class AdminQuizzesController extends Controller
 {
@@ -34,7 +35,8 @@ class AdminQuizzesController extends Controller
     {
         $page = "Create Quiz - Admin";
         $templates = QuizTemplate::all();
-        return view('admin.quizzes.create', compact('page', 'templates'));
+        $languages = Language::get();
+        return view('admin.quizzes.create', compact('page', 'templates', 'languages'));
     }
 
     public function getTemplateDetails()

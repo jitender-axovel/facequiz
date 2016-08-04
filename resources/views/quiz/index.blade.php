@@ -21,7 +21,7 @@
                 			</div>
                             <div class="fb-like-button">
                                 @if(isset($fb_like_button))
-                                    {{$fb_like_button}}
+                                    {!!$fb_like_button!!}
                                 @else
                                     <div class="fb-like" data-href="https://www.facebook.com/robodoo.en" data-layout="button_count" data-action="like" data-size="small" data-show-faces="true" data-share="false"></div>
                                 @endif

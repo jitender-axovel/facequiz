@@ -27,7 +27,7 @@ class HomeController extends Controller
     public function index()
     {
         $page = 'Robodoo';
-        $quizzes = Quiz::where('is_active', 1)->orderBy('updated_at', 'DESC')->paginate(12);
+        $quizzes = Quiz::where('locale', session('locale'))->where('is_active', 1)->orderBy('updated_at', 'DESC')->paginate(12);
         return view('home', compact('quizzes', 'page'));
     }
 }
