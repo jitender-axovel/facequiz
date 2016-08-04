@@ -17,6 +17,7 @@ class CreateLanguagesTable extends Migration
             $table->string('name')->unique();
             $table->string('code')->unique();
             $table->string('fb_code')->unique();
+            $table->longText('fb_like');
             $table->string('direction');
             $table->longText('strings');
             $table->boolean('isActive')->default(false);

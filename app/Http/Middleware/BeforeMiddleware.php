@@ -47,6 +47,10 @@ class BeforeMiddleware
         }
         
         $languageStrings = App\Language::where('code', $request->session()->get('locale'))->orWhere('fb_code', $request->session()->get('locale'))->first();
+        if(isset($languageStrings->fb_like)) {
+            $fb_like_button = $languageStrings->fb_like;
+            view()->share('fb_like_button', $fb_like_button);
+        }
 
         if($languageStrings) $languageStrings = json_decode($languageStrings->strings, true);
         view()->share('languageStrings', $languageStrings);

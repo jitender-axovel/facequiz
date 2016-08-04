@@ -25,6 +25,10 @@
 								<input name="code" class="form-control" value="{{ $language->code ? $language->code : old('code') }}">
 							</div>
 							<div class="form-group">
+								<label>Facebook Like Button Code</label>
+								<input name="fb_like" class="form-control" value="{{ $language->fb_like ? $language->fb_like : old('fb_like') }}"></input>
+							</div>
+							<div class="form-group">
 								<label>Facebook Locale Code (example: en_US, es_ES, etc.)</label>
 								<input name="fb_code" class="form-control" value="{{ $language->fb_code ? $language->fb_code : old('fb_code') }}">
 							</div>
@@ -60,8 +64,8 @@
 				</div>
 			</div>
 		@endforeach
-                <a class="btn btn-warning" onclick="javascript:showLanguageForm();"><i class="fa fa-plus-circle"></i> Add new Language</a>
-                <div class="language-form"></div>
+        <a class="btn btn-warning" onclick="javascript:showLanguageForm();"><i class="fa fa-plus-circle"></i> Add new Language</a>
+        <div class="language-form"></div>
 	</div>
 @endsection
 @section('admin-scripts')

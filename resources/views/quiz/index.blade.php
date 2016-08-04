@@ -20,7 +20,11 @@
                 				<img src="{{ asset(config('image.quiz_template_url').$quiz->template->og_image) }}">
                 			</div>
                             <div class="fb-like-button">
-                                <div class="fb-like" data-href="https://www.facebook.com/robodoo.en" data-layout="button_count" data-action="like" data-size="small" data-show-faces="true" data-share="false"></div>
+                                @if(isset($fb_like_button))
+                                    {{$fb_like_button}}
+                                @else
+                                    <div class="fb-like" data-href="https://www.facebook.com/robodoo.en" data-layout="button_count" data-action="like" data-size="small" data-show-faces="true" data-share="false"></div>
+                                @endif
                             </div>
                             <div class="caption img-caption">
                                 <a class="btn btn-primary btn-block" href="{{ url('quiz/'.$quiz->slug.'/start') }}">Start</a>
