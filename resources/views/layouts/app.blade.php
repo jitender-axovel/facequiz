@@ -38,8 +38,9 @@
         }
     </style>
     <script>
-        var languageStrings = {{json_encode($languageStrings)}};
-        var defaultLanguageStrings = {!!json_encode($defaultLanguageStrings)!!};
+        var languageStrings = {!!htmlspecialchars_decode(json_encode($languageStrings))!!};
+        var defaultLanguageStrings = {!!htmlspecialchars_decode(json_encode($defaultLanguageStrings))!!};
+        
         //Translation
         function __(key){
             if (languageStrings.hasOwnProperty(key)){
@@ -98,8 +99,8 @@
                 <div class="collapse navbar-collapse" id="app-navbar-collapse">
                     <!-- Left Side Of Navbar -->
                     <ul class="nav navbar-nav">
-                        <li><a href="{{ url('/') }}">Latest</a></li>
-                        <li><a href="{{ url('quizzes/popular') }}">popular</a></li>
+                        <li><a href="{{ url('/') }}">{{ $languageStrings['Latest'] or 'Latest' }}</a></li>
+                        <li><a href="{{ url('quizzes/popular') }}">{{ $languageStrings['Popular'] or 'Popular' }}</a></li>
                     </ul>
                 </div>
             </nav>
@@ -109,9 +110,9 @@
             <ul class="nav navbar-nav navbar-right">
                 <!-- Authentication Links -->
                 @if (Auth::guest())
-                    <li><a href="{{ url('redirect') }}">FB Login</a></li>
+                    <li><a href="{{ url('redirect') }}">{{ $languageStrings['Login'] or 'Login' }}</a></li>
                 @else
-		<li><a href="{{ url('/logout') }}"><i class="fa fa-btn fa-sign-out"></i>Logout</a></li>
+		<li><a href="{{ url('/logout') }}"><i class="fa fa-btn fa-sign-out"></i>{{ $languageStrings['Logout'] or 'Logout' }}</a></li>
                 @endif
             </ul>
         </div>
@@ -123,7 +124,7 @@
     <footer>
         <div class="container-fluid">
             <div class="col-md-2 col-sm-3 col-xs-12 copyright">
-                <p>Robodoo, All Rights Reserved</p>
+                <p>Robodoo, {{ $languageStrings['All Rights Reserved'] or 'All Rights Reserved' }}</p>
             </div>
             <div class="footer-links col-md-10 col-sm-9 col-xs-12">
                 <ul class="list-inline">
