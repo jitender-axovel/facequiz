@@ -4,6 +4,7 @@ namespace App\Http\Middleware;
 
 use Closure;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Http\Request;
 
 class Authenticate
 {
@@ -17,7 +18,7 @@ class Authenticate
      */
     public function handle($request, Closure $next, $guard = null)
     {
-//        dd($next($request));
+        $request->session()->set('redirect_url', $request->path());
         if (Auth::guard($guard)->guest()) {
             if ($request->ajax() || $request->wantsJson()) {
                 return response('Unauthorized.', 401);

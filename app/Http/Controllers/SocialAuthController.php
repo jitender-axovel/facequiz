@@ -9,27 +9,34 @@ use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use App\SocialAccountService;
 use Socialite;
+use URL;
 
 class SocialAuthController extends Controller
 {
-    public function redirect()
+    public function redirect(Request $request)
     {
         return Socialite::driver('facebook')->redirect();   
     }   
 
-    public function callback(SocialAccountService $service)
+    public function callback(Request $request, SocialAccountService $service)
     {
         // when facebook call us a with token   
         $user = $service->createOrGetUser(Socialite::driver('facebook')->user());
 
         if(is_int($user) && $user == 2) {
-            return redirect('/')->with('error', 'Dear user, your account has been deleted by admin earlier. Kindly create a new account if you want to user our services.');
+            return redirect('/')->with('error', 'Dear user, your account has been deleted by admin earlier. Kindly create a new account if you want to use our services.');
         } elseif(is_int($user) && $user == 3) {
             return redirect('/')->with('error', 'Dear user, your account has been blocked by admin. Kindly write to support if you want to discuss any details.');
+        } elseif(is_int($user) && $user == 4) {
+            return redirect('/')->with('error', 'Dear User, it seems you do not want to share your email id with us. Its fine. But we would be unable to create your account and let you access our wide range of apps.');
         }
 
         auth()->login($user);
-
+        if(session('redirect_url')) {
+            $redirectUrl = session('redirect_url');
+            $request->session()->forget('redirect_url');
+            return redirect($redirectUrl);
+        }
         return redirect('/');
     }
 }
