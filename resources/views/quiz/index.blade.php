@@ -22,6 +22,7 @@
                             <div class="caption img-caption">
                                 <a class="btn btn-primary btn-block" href="{{ url('quiz/'.$quiz->slug.'/start') }}">Start</a>
                             </div>
+                            <div class="fb-like" data-href="https://www.facebook.com/robodoo.en" data-width="100" data-layout="button" data-action="like" data-size="large" data-show-faces="true" data-share="false"></div>
                             <span>You will be required to login with Facebook.</span>
                         </div>
                         <div class="panel-footer">
