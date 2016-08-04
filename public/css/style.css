@@ -20,7 +20,8 @@ p{color:#9b9b9b; line-height: 150%;}
 .caption { padding-bottom: 10px;}
 .panel-title.heading {font-size: 22px;    padding-bottom: 5px; padding-top: 5px;}
 .heading { font-weight:bold;}
-.img-wrap { text-align: center;  width:100%; height: auto;}
+.img-wrap { text-align: center;  width:100%; height: auto; margin-bottom: 10px;}
+.fb-like-button { text-align: center; }
 .img-caption{ clear: both;padding-bottom: 10px;  padding-top: 10px;}
 /* header design */ 
 header.site-header{width: 100%; z-index: 9999; background: #930a0f ;padding: 6px 10px; position: relative;}
