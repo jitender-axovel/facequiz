@@ -33,15 +33,15 @@
                                         <div class="panel-title">Strings</div>
                                 </div>
                                 <div class="panel-body">
-                                        @foreach(trans('strings') as $string)
+                                        @foreach(trans('strings') as $k => $string)
                                                 <div class="form-group">
-                                                        <label>'{{ $string }}'</label>
-                                                        <input name="{{ $string }}" class="form-control" value="{{old($string)}}">
+                                                        <label>'{{ $k }}'</label>
+                                                        <input name="{{ $k }}" class="form-control" value="{{old($string)}}">
                                                 </div>
                                         @endforeach
                                 </div>
                         </div>
-                        <button type="submit" class="btn btn-lg btn-block">Save</button>
+                        <button type="submit" class="btn btn-success btn-lg btn-block">Save</button>
                 </form>
         </div>
 </div>
