@@ -8,6 +8,9 @@ class SocialAccountService
 {
     public function createOrGetUser(ProviderUser $providerUser)
     {
+        if(!$providerUser->getEmail()) {
+            return 4;
+        }
         $account = User::whereEmail($providerUser->getEmail())->first();
         session()->put('fb_access_token', $providerUser->token);
 
