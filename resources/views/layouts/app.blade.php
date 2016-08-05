@@ -16,7 +16,7 @@
     <meta property="og:image:height" content="420"/>
     <meta property="og:locale" content="@yield('og_locale')"/>
 
-    <title>@yield('title')</title>
+    <title>{{ $page or 'Robodoo - Play with Robo' }}</title>
 
     <link rel="shortcut icon" type="image/png" href="{{ asset('images/favicon.png') }}"/>
 
