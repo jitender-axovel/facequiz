@@ -1,5 +1,4 @@
 @extends('layouts.app')
-@section('title', $page)
 @section('content')
     <div class="container main-content">
         <div class="row advertise-block">

@@ -13,7 +13,7 @@ class CmsController extends Controller
     public function getPage($slug)
     {
     	$cmsPage = Cms::where('slug', $slug)->first();
-    	$page = $cmsPage->title . ' - Robodoo';
+    	$page = $cmsPage->title . ' - Robodoo - Play With Robo';
 
     	return view('cms.index', compact('page', 'cmsPage'));
     }

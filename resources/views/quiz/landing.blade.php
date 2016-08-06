@@ -1,5 +1,4 @@
 @extends('layouts.app')
-@section('title', $page)
 @section('og_url', url('quiz/'.$quiz->slug.'/landing/'.$quizAttempt->user_id))
 @section('og_title', $quiz->title)
 @section('og_description', $quiz->description)

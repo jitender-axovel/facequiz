@@ -18,7 +18,7 @@ class QuizzesController extends Controller
     {
         $quiz = Quiz::where('locale', session('locale'))->where('slug', $quizSlug)->where('is_active', 1)->first();
         
-        $page = $quiz->title . ' - Robodoo';
+        $page = $quiz->title . ' - Robodoo - Play With Robo';
         
         if(!$quiz) {
             return redirect('/')->with('error', 'Sorry, the quiz you are looking for is unemployed');
@@ -31,7 +31,7 @@ class QuizzesController extends Controller
 
     public function getPopularQuizzes()
     {
-        $page = 'Robodoo';
+        $page = 'Robodoo - Play With Robo';
         $quizIds = QuizAttempt::distinct()->lists('quiz_id');
         $quizzes = Quiz::where('locale', session('locale'))->where('is_active', 1)->whereIn('id', $quizIds)->where(function ($query) {
                 $query->select('quiz_id')->distinct()->from('quiz_attempts')->orderByRaw(DB::raw('total(quiz_id)'));
@@ -47,7 +47,7 @@ class QuizzesController extends Controller
             return redirect('/')->with('error', 'Sorry, the quiz you are looking for is unemployed or may be your language is different from quiz language.');
         }
 
-        $page = $quiz->title . ' - Robodoo';
+        $page = $quiz->title . ' - Robodoo - Play With Robo';
 
         $quizAttempt = QuizAttempt::where('quiz_id', $quiz->id)->where('user_id', $userId)->first();
 
@@ -64,7 +64,7 @@ class QuizzesController extends Controller
             return redirect('/')->with('error', 'Sorry, the quiz you are looking for is unemployed');
         }
         
-        $page = $quiz->title;
+        $page = $quiz->title. ' - Robodoo - Play With Robo';
         
         $template = $quiz->template->html_data;
         
