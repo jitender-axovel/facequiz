@@ -17,7 +17,7 @@ class AdminWidgetsController extends Controller
      */
     public function index()
     {
-        $page = 'Widgets - Admin';
+        $page = 'Widgets - Robodoo - Play with Robo';
         $widgets = Widget::get();
         foreach($widgets as $widget) {
             $widget->widgets = json_decode($widget->widgets, true);

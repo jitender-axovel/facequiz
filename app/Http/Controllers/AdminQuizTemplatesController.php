@@ -17,7 +17,7 @@ class AdminQuizTemplatesController extends Controller
      */
     public function index()
     {
-        $page = 'Quiz Layouts - Admin';
+        $page = 'Quiz Layouts - Robodoo - Play with Robo';
         $templates = QuizTemplate::get();
         return view('admin.templates.index', compact('page', 'templates'));
     }
@@ -29,7 +29,7 @@ class AdminQuizTemplatesController extends Controller
      */
     public function create()
     {
-        $page = 'Create Layout - Admin';
+        $page = 'Create Layout - Robodoo - Play with Robo';
         return view('admin.templates.create', compact('page'));
     }
 
@@ -86,7 +86,7 @@ class AdminQuizTemplatesController extends Controller
      */
     public function show($id)
     {
-        $page = 'View Template - Admin';
+        $page = 'View Template - Robodoo - Play with Robo';
         $template = QuizTemplate::find($id);
         return view('admin.templates.view', compact('page', 'template'));
     }
@@ -99,7 +99,7 @@ class AdminQuizTemplatesController extends Controller
      */
     public function edit($id)
     {
-        $page = 'Edit Template - Admin';
+        $page = 'Edit Template - Robodoo - Play with Robo';
         $template = QuizTemplate::find($id);
         
         return view('admin.templates.edit', compact('page', 'template'));

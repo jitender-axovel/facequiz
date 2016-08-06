@@ -1,5 +1,4 @@
 @extends('admin.layouts.app')
-@section('title', $page)
 @section('content')
 	<h2>Quizzes List</h2>
 	<hr>

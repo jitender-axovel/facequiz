@@ -1,5 +1,4 @@
 @extends('admin.layouts.app')
-@section('title', $page)
 @section('admin-styles')
 	<link rel="stylesheet" type="text/css" href="{{ asset('css/bootstrap-datepicker.min.css') }}">
 @endsection

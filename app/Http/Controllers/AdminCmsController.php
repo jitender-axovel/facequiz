@@ -17,7 +17,7 @@ class AdminCmsController extends Controller
      */
     public function index()
     {
-        $page = 'Cms Pages - Admin';
+        $page = 'Cms Pages - Robodoo - Play with Robo';
         $cmsPages = Cms::get();
         return view('admin.cms.index', compact('page', 'cmsPages'));
     }
@@ -62,7 +62,7 @@ class AdminCmsController extends Controller
      */
     public function edit($id)
     {
-        $page = 'Edit Cms Page - Admin';
+        $page = 'Edit Cms Page - Robodoo - Play with Robo';
         $cmsPage = Cms::find($id);
 
         return view('admin.cms.edit', compact('page', 'cmsPage'));

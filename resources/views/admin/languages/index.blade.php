@@ -1,5 +1,4 @@
 @extends('admin.layouts.app')
-@section('title', $page)
 @section('content')
 	<div class="col-md-10 col-md-offset-1">
 		<h2>Language</h2>

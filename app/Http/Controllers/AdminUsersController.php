@@ -12,14 +12,14 @@ class AdminUsersController extends Controller
 {
     public function index()
     {
-    	$page = 'Users - Admin';
+    	$page = 'Users - Robodoo - Play with Robo';
     	$users = User::orderBy('user_role_id', 'ASC')->get();
     	return view('admin.users.index', compact('page', 'users'));
     }
 
     public function getEdit($id)
     {
-    	$page = "Edit User - Admin";
+    	$page = "Edit User - Robodoo - Play with Robo";
     	$user = User::find($id);
     	return view('admin.users.edit', compact('page', 'user'));
     }
@@ -39,7 +39,7 @@ class AdminUsersController extends Controller
     }
     public function view($id)
     {
-        $page = "User Details - Admin";
+        $page = "User Details - Robodoo - Play with Robo";
         $user = User::find($id);
         return view('admin.users.view', compact('page', 'user'));
     }

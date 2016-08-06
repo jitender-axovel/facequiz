@@ -1,5 +1,4 @@
 @extends('admin.layouts.app')
-@section('title', $page)
 @section('content')
 	<h2>Cms Pages List</h2>
 	<hr>
@@ -14,13 +13,13 @@
 			</tr>
 		</thead>
 		<tbody>
-			@foreach($cmsPages as $page)
+			@foreach($cmsPages as $cmsPage)
 			<tr>
-				<td>{{ $page->title}}</td>
-				<td><a class="btn btn-success" href="{{ url('cms/'.$page->slug) }}">Visit</a></td>
-				<td>{{ date_format(date_create($page->created_at), 'F d, Y') }}</td>
+				<td>{{ $cmsPage->title}}</td>
+				<td><a class="btn btn-success" href="{{ url('cms/'.$cmsPage->slug) }}">Visit</a></td>
+				<td>{{ date_format(date_create($cmsPage->created_at), 'F d, Y') }}</td>
 				<td>
-					<a class="btn btn-primary" href="{{ url('admin/cms/'.$page->id.'/edit') }}">Edit</a>
+					<a class="btn btn-primary" href="{{ url('admin/cms/'.$cmsPage->id.'/edit') }}">Edit</a>
 				</td>
 			</tr>
 			@endforeach

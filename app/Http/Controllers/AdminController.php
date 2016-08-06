@@ -21,7 +21,7 @@ class AdminController extends Controller
 
     public function getLogin()
     {
-    	$page = "Admin";
+    	$page = "Admin Login - Robodoo - Play with Robo";
     	return view('admin.auth.login', compact('page'));
     }
 
@@ -38,7 +38,7 @@ class AdminController extends Controller
 
     public function getDashboard()
     {
-        $page = 'Dashboard - Admin';
+        $page = 'Dashboard - Robodoo - Play with Robo';
 
         $overallStats['users'] = User::count();
         $overallStats['quizzes'] = Quiz::count();
@@ -118,7 +118,7 @@ class AdminController extends Controller
 
     public function postLanguage(Request $request)
     {
-        $page = 'Languages - Admin';
+        $page = 'Languages - Robodoo - Play with Robo';
         $languages = Language::get();
 
         $input = $request->input();
@@ -132,7 +132,7 @@ class AdminController extends Controller
     
     public function postUpdateLanguage(Request $request, $id)
     {
-        $page = 'Languages - Admin';
+        $page = 'Languages - Robodoo - Play with Robo';
         $languages = Language::get();
 
         $input = $request->input();

@@ -1,5 +1,4 @@
 @extends('admin.layouts.app')
-@section('title', $page)
 @section('content')
 	<div class="container">
 		<div class="row">

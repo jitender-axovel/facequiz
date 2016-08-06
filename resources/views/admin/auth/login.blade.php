@@ -1,5 +1,4 @@
 @extends('admin.layouts.blank')
-@section('title', $page)
 @section('content')
 <div class="main-content">
     <div class="bg-gray-light" id="frm-login">

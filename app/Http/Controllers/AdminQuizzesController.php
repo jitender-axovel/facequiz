@@ -20,7 +20,7 @@ class AdminQuizzesController extends Controller
      */
     public function index()
     {
-        $page = 'Quizzes - Admin';
+        $page = 'Quizzes - Robodoo - Play with Robo';
 
         $quizzes = Quiz::get();
         return view('admin.quizzes.index', compact('page', 'quizzes'));
@@ -33,7 +33,7 @@ class AdminQuizzesController extends Controller
      */
     public function create()
     {
-        $page = "Create Quiz - Admin";
+        $page = "Create Quiz - Robodoo - Play with Robo";
         $templates = QuizTemplate::all();
         $languages = Language::get();
         return view('admin.quizzes.create', compact('page', 'templates', 'languages'));

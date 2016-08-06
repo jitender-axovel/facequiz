@@ -1,5 +1,4 @@
 @extends('admin.layouts.app')
-@section('title', $page)
 @section('content')
     <h2>Edit {{ $template->name }}</h2>
     <hr>
