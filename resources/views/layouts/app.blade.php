@@ -112,9 +112,21 @@
             <ul class="nav navbar-nav navbar-right">
                 <!-- Authentication Links -->
                 @if (Auth::guest())
-                    <li><a href="{{ url('redirect') }}">{{ $languageStrings['Login'] or 'Login' }}</a></li>
+                    <li><a class="login" href="{{ url('redirect') }}">{{ $languageStrings['Login'] or 'Login' }}</a></li>
                 @else
-		<li><a href="{{ url('/logout') }}"><i class="fa fa-btn fa-sign-out"></i>{{ $languageStrings['Logout'] or 'Logout' }}</a></li>
+                    <li class="dropdown">
+                        <a class="profile_pic" href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+                            @if(Auth::user()->avatar)
+                                <img height="40px" width="40px" src="{{Auth::user()->avatar}}">
+                                <span>{{Auth::user()->name}}</span>
+                            @else
+                                <img height="40px" width="40px" src="{{ asset(config('image.user_profile_pic').'/avatar.png') }}">
+                            @endif
+                        </a>
+                        <ul class="dropdown-menu" role="menu">
+                            <li><a href="{{ url('/logout') }}"><i class="fa fa-btn fa-sign-out"></i>{{ $languageStrings['Logout'] or 'Logout' }}</a></li>
+                        </ul>
+                    </li>
                 @endif
             </ul>
         </div>
