@@ -139,7 +139,7 @@
                 </div>
             </fieldset>
             <div class="form-group">
-                <button type="submit" class="form-control btn btn-success btn-block" id="btn-login">Create Quiz</button>
+                <button type="submit" class="form-control btn btn-success btn-block" id="btn-login">Update Quiz</button>
             </div>
         </form>
     </div>
