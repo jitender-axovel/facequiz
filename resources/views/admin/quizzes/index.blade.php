@@ -7,10 +7,11 @@
 		<thead>
 			<tr>
 				<th>Name</th>
-				<th>Template</th>
 				<th>Images Count</th>
+				<th>Textareas Count</th>
 				<th>Total Facts</th>
-				<th>Created On</th>
+				<th>Has UserName</th>
+				<th>Total Attempts</th>
 				<th>Actions</th>
 			</tr>
 		</thead>
@@ -18,12 +19,14 @@
 			@foreach($quizzes as $quiz)
 			<tr>
 				<td>{{ $quiz->title}}</td>
-				<td>{{ $quiz->template->name }}</td>
 				<td>{{ $quiz->template->total_images }}</td>
+				<td>{{ $quiz->template->total_textareas }}</td>
 				<td>{{ $quiz->total_facts }}</td>
-				<td>{{ date_format(date_create($quiz->created_at), 'F d, Y') }}</td>
+				<td>{{ $quiz->show_user_name ? 'Yes' : 'No' }}</td>
+				<td>{{ $quiz->attempts->count() }}</td>
 				<td>
-					<a class="btn btn-primary" href="{{ url('admin/quiz/'.$quiz->id) }}">View Info</a>
+					<a class="btn btn-success" href="{{ url('admin/quiz/'.$quiz->id) }}">View</a>
+					<a class="btn btn-primary" href="{{url('admin/quiz/'.$quiz->id.'/edit')}}">Edit</a>
 					<a class="btn btn-warning" onclick="changeQuizStatus('{{$quiz->id}}', '{{$quiz->name}}')">{{$quiz->is_active == 1 ? 'Deactivate' : 'Activate'}}</a>
 					<a class="btn btn-danger" onclick="deleteQuiz('{{$quiz->id}}', '{{$quiz->name}}')">Delete</a>
 				</td>

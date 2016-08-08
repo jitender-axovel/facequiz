@@ -38,4 +38,9 @@ class Quiz extends Model
     {
         return $this->belongsTo('App\Language');
     }
+
+    public function attempts()
+    {
+        return $this->hasMany('App\QuizAttempt');
+    }
 }
