@@ -56,6 +56,44 @@ class AdminQuizzesController extends Controller
         $input = $request->input();
         $file = $request->file('image');
 
+        //save template
+        
+        $fileInput = $request->file('og_image');
+
+        $template = array_intersect_key($input, QuizTemplate::$updatable);
+
+        $template['html_data'] = htmlspecialchars($template['html_data']);
+
+        $template['name'] = $input['title'];
+
+        $template = QuizTemplate::create($template);
+        
+        if(isset($input['has_title'])) {
+            $template->has_title = 1;
+        }
+        
+        if(isset($input['has_image_caption'])) {
+            $template->has_image_caption = 1;
+        }
+        
+        $template->save();
+
+        $destinationPath = config('image.quiz_template_path');
+        
+        if (!file_exists($destinationPath)) {
+            mkdir($destinationPath, 0777, true);
+        }
+        
+        $fileName = md5(time()).'.png';
+        $fileInput->move($destinationPath, $fileName);
+        
+        $template->og_image = $fileName;
+        $template->save();
+
+        //Saving quiz
+
+        $input['quiz_template_id'] = $template->id;
+
         $quizData = array_intersect_key($input, Quiz::$updatable);
         
         $quizData['title'] = ucfirst($quizData['title']);
@@ -127,7 +165,9 @@ class AdminQuizzesController extends Controller
      */
     public function show($id)
     {
-        //
+        $page = 'View Template - Robodoo - Play with Robo';
+        $quiz = Quiz::find($id);
+        return view('admin.quizzes.view', compact('page', 'quiz'));
     }
 
     /**
@@ -138,7 +178,10 @@ class AdminQuizzesController extends Controller
      */
     public function edit($id)
     {
-        //
+        $quiz = Quiz::find($id);
+        $page = 'Edit '.$quiz->title.' - Robodoo - Play with Robo';
+        $languages = Language::get();
+        return view('admin.quizzes.edit', compact('quiz', 'page', 'languages'));
     }
 
     /**
@@ -150,7 +193,99 @@ class AdminQuizzesController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $quiz = Quiz::find($id);
+
+        if(!$quiz) {
+            return redirect('admin/quiz')->with('error', 'Can not find quiz. Kindly try again.');
+        }
+
+        $input = $request->input();
+        $file = $request->file('image');
+
+        //save template
+        
+        $fileInput = $request->file('og_image');
+
+        $templateInput = array_intersect_key($input, QuizTemplate::$updatable);
+
+        $templateInput['html_data'] = htmlspecialchars($templateInput['html_data']);
+
+        $templateInput['name'] = $input['title'];
+
+        QuizTemplate::where('id', $quiz->template->id)->update($templateInput);
+
+        if(isset($input['has_title'])) {
+            $quiz->template->has_title = 1;
+        }
+        
+        if(isset($input['has_image_caption'])) {
+            $quiz->template->has_image_caption = 1;
+        }
+        
+        $quiz->template->save();
+
+        if($fileInput) {
+            $destinationPath = config('image.quiz_template_path');
+            
+            if (!file_exists($destinationPath)) {
+                mkdir($destinationPath, 0777, true);
+            }
+            
+            $fileName = md5(time()).'.png';
+            $fileInput->move($destinationPath, $fileName);
+            
+            $quiz->template->og_image = $fileName;
+            $quiz->template->save();
+        }
+
+        //Saving quiz
+
+        $quizData = array_intersect_key($input, Quiz::$updatable);
+        
+        $quizData['title'] = ucfirst($quizData['title']);
+        $quiz->update($quizData);
+
+        if(isset($input['is_active'])) {
+            $quiz->is_active = 1;
+        }
+        if(isset($input['show_own_profile_picture'])) {
+            $quiz->show_own_profile_picture = 1;
+        }
+        if(isset($input['show_user_name'])) {
+            $quiz->show_user_name = 1;
+        }
+        if(isset($input['show_friend_pictures'])) {
+            $quiz->show_friend_pictures = 1;
+        }
+        if(isset($input['show_friend_name'])) {
+            $quiz->show_friend_name = 1;
+        }
+
+        $quiz['slug'] = Helper::slug($quiz->title, $quiz->id);
+        $quiz->save();
+
+        if($request->hasFile('background_image')) {
+            
+            $backgroundPath = config('image.quiz_background_path').$quiz->id;
+
+            if (!file_exists($backgroundPath)) {
+                mkdir($backgroundPath, 0777, true);
+            }
+
+            $background = $request->file('background_image');
+            $quiz->background_image = md5(time()).'.'.$background->getClientOriginalExtension();
+            $background->move($backgroundPath, $quiz->background_image);
+
+            $quiz->save();
+        }
+        
+        $destinationPath = config('image.quiz_facts_path').$quiz->id;
+        
+        if (!file_exists($destinationPath)) {
+            mkdir($destinationPath, 0777, true);
+        }
+
+        return redirect('admin/quiz')->with('success', 'Quiz is successfully upadted.');
     }
 
     /**

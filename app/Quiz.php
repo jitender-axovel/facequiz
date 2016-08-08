@@ -33,4 +33,9 @@ class Quiz extends Model
     {
         return $this->hasMany('App\QuizFact');
     }
+
+    public function language()
+    {
+        return $this->belongsTo('App\Language');
+    }
 }
