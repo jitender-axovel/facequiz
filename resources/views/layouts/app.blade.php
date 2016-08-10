@@ -87,7 +87,7 @@
         <div class="logo custom-left col-sm-3 col-xs-12">
             <a href="{{ url('/') }}"><img src="{{asset('images/logo.png')}}"></a>
         </div>
-        <div class="header-navigation col-md-8 col-sm-7 col-xs-12">
+        <div class="header-navigation col-md-6 col-sm-5 col-xs-12">
             <nav class="navbar navbar-default navbar-static-top">
                 <div class="navbar-header">
                     <!-- Collapsed Hamburger -->
@@ -106,6 +106,14 @@
                     </ul>
                 </div>
             </nav>
+        </div>
+        <div class="col-md-2 col-sm-2 custom-like-button">
+            <span class="bold">Like Us <i class="fa fa-arrow-right"></i> </span>
+            @if(isset($fb_like_button))
+                {!!$fb_like_button!!}
+            @else
+                <div class="fb-like" data-href="https://www.facebook.com/robodoo.en" data-layout="button_count" data-action="like" data-size="small" data-show-faces="true" data-share="false"></div>
+            @endif
         </div>
         <div class="top-side-link col-md-2 col-sm-2">
             <!-- Right Side Of Navbar -->
@@ -137,10 +145,10 @@
 
     <footer>
         <div class="container-fluid">
-            <div class="col-md-2 col-sm-3 col-xs-12 copyright">
-                <p>Robodoo, {{ $languageStrings['All Rights Reserved'] or 'All Rights Reserved' }}</p>
+            <div class="col-md-3 col-sm-4 col-xs-12 copyright">
+                <p>@Robodoo, {{ $languageStrings['All Rights Reserved'] or 'All Rights Reserved' }}</p>
             </div>
-            <div class="footer-links col-md-10 col-sm-9 col-xs-12">
+            <div class="footer-links col-md-9 col-sm-8 col-xs-12">
                 <ul class="list-inline">
                     @foreach(App\Cms::get() as $cmsPage)
                     <li><a href="{{url('cms/'.$cmsPage->slug)}}">{{$cmsPage->title}}</a></li>
