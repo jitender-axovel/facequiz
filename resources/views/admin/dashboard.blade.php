@@ -152,24 +152,23 @@
 @section('admin-scripts')
 	<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
     <script type="text/javascript">
-    	google.charts.load('current', {'packages':['bar']});
-      google.charts.setOnLoadCallback(drawChart);
-      function drawChart() {
-        var data = google.visualization.arrayToDataTable([['Date', 'Quiz Attempts', 'New Registrations'],
+    	google.charts.load('current', {'packages':['corechart']});
+		google.charts.setOnLoadCallback(drawChart);
+		function drawChart() {
+        	var data = google.visualization.arrayToDataTable([['Date', 'Quiz Attempts', 'New Registrations'],
         	@foreach($lastNDaysActivity as $activity)
         		['{{$activity["date"]}}', {{$activity['attempts']}}, {{ $activity['users'] }}],
         	@endforeach
     	]);
 
         var options = {
-          chart: {
-            title: 'Site Analysis',
-            subtitle: 'Quiz Attempts, New Registrations: last 30 days',
-          },
-          bars: 'vertical' // Required for Material Bar Charts.
+	            title: 'Quiz Attempts, New Registrations: last 30 days Analysis',
+	            subtitle: 'Quiz Attempts, New Registrations: last 30 days',
+	            curveType: 'function',
+	          	legend: { position: 'bottom' }
         };
 
-        var chart = new google.charts.Bar(document.getElementById('barchart_material'));
+        var chart = new google.visualization.LineChart(document.getElementById('barchart_material'));
 
         chart.draw(data, options);
       }
