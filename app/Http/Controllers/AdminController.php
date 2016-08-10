@@ -51,7 +51,6 @@ class AdminController extends Controller
         $todayStats['shares'] = QuizShare::whereRaw('Date(created_at) = Date(NOW())')->count();
 
         $lastNDaysActivity = self::lastNDaysRegistrations(30);
-        // dd($lastNDaysActivity);
 
         return view('admin.dashboard', compact('page', 'overallStats', 'todayStats', 'lastNDaysActivity'));
     }
@@ -67,12 +66,12 @@ class AdminController extends Controller
         foreach($lastNDays as $key => $day) {
             $lastNDaysActivity[$key] = array('date' => $day, 'users' => 0, 'attempts' => 0);
             foreach($activityHistory['users'] as $activity){
-                if (date('Y-m-d', time($activity['created_at'])) === $day) {
+                if (date('Y-m-d', strtotime($activity['created_at'])) === $day) {
                     $lastNDaysActivity[$key]['users'] = $activity['activityCount'];
                 }
             }
             foreach($activityHistory['attempts'] as $activity){
-                if (date('Y-m-d', time($activity['created_at'])) === $day) {
+                if (date('Y-m-d', strtotime($activity['created_at'])) === $day) {
                     $lastNDaysActivity[$key]['attempts'] = $activity['activityCount'];
                 }
             }
