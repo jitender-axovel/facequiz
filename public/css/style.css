@@ -50,7 +50,7 @@ body .navbar {min-height: 0;}
 .pagination-links { text-align: center; }
 
 /* footer design */
-footer {background: #ffffff; padding: 25px 10px;}
+footer {background: #ffffff; bottom: 0; padding: 25px 10px; position: fixed; width: 100%;}
 .footer-links .list-inline > li {margin-right: 15px;}
 .footer-links .list-inline a {color: #930A0F;}
 footer p {margin: 0; color: #333333;}
