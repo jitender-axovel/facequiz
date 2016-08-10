@@ -21,7 +21,18 @@
                         </div>
                         <div class="panel-body">
                             <div class="img-wrap col-md-10">
-                                <img class="media-object" src="{{asset(config('image.quiz_result_url').$result->result_image)}}">
+                                <div class="loading-image">
+                                    <img src="{{asset('images/loading.gif')}}">
+                                    <span class="lead heading">&nbsp;Loading Results</span>
+                                </div>
+                                <img class="media-object result-image" src="{{asset(config('image.quiz_result_url').$result->result_image)}}">
+                            </div>
+                            <div class="fb-like-button">
+                                @if(isset($fb_like_button))
+                                    {!!$fb_like_button!!}
+                                @else
+                                    <div class="fb-like" data-href="https://www.facebook.com/robodoo.en" data-layout="button_count" data-action="like" data-size="small" data-show-faces="true" data-share="false"></div>
+                                @endif
                             </div>
                             <div class="caption img-caption">
                                 <a id="shareBtn" class="btn btn-primary btn-block"><i class="fa fa-facebook-official"></i> Share</a>
@@ -71,5 +82,16 @@
                 href: '{{ url("quiz/".$quiz->slug."/landing/".Auth::id()) }}',
             }, function(response){});
         }
+        $(document).ready(function() {
+            $('.result-image').hide();
+            $('#shareBtn').hide();
+            $('.loading-image').show();
+
+            setTimeout(function(){
+                $('.loading-image').hide();
+                $('.result-image').show();
+                $('#shareBtn').show();
+            },4000);
+        });
     </script>
 @endsection
