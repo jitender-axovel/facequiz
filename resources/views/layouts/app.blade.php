@@ -84,7 +84,7 @@
 <body>
 <header class="site-header">
     <div class="container-fluid">
-        <div class="logo custom-left col-sm-3 col-xs-12">
+        <div class="logo custom-left col-sm-3 col-xs-12 ">
             <a href="{{ url('/') }}"><img src="{{asset('images/logo.png')}}"></a>
         </div>
         <div class="header-navigation col-md-6 col-sm-5 col-xs-12">
@@ -107,7 +107,7 @@
                 </div>
             </nav>
         </div>
-        <div class="col-md-2 col-sm-2 custom-like-button">
+        <div class="col-md-2 col-sm-2  col-md-6 col-xs-6 custom-like-button">
             <span class="bold">Like Us <i class="fa fa-arrow-right"></i> </span>
             @if(isset($fb_like_button))
                 {!!$fb_like_button!!}
@@ -115,7 +115,7 @@
                 <div class="fb-like" data-href="https://www.facebook.com/robodoo.en" data-layout="button_count" data-action="like" data-size="small" data-show-faces="true" data-share="false"></div>
             @endif
         </div>
-        <div class="top-side-link col-md-2 col-sm-2">
+        <div class="top-side-link col-md-2  col-sm-2 col-md-6  ">
             <!-- Right Side Of Navbar -->
             <ul class="nav navbar-nav navbar-right">
                 <!-- Authentication Links -->
