@@ -40,8 +40,9 @@ header .logo img {width: 100px; margin-left: 25px;}
 .nav > li > a:focus, .nav > li > a:hover {background-color: #eeeeee; color: #930a0f; text-decoration: none;}
 body .navbar {min-height: 0;}
 .header-navigation {margin-top: 10px; padding-left: 80px;}
-.top-side-link {float: right; margin-right: 25px; margin-top: 5px;}
+.top-side-link {float: right;margin-top: 5px;text-align: center;}
 .header-navigation .navbar-nav li {margin-right: 15px;}
+.top-side-link .nav.navbar-nav {padding-left: 60px; width: 100%;}
 .logo.custom-left {float: left; padding: 0 15px; width: auto;}
 .row.advertise-block {padding-bottom: 20px;padding-top: 10px;text-align: center;}
 /* header design end */
@@ -62,11 +63,20 @@ footer p {margin: 0; color: #333333;}
 
 /* responsive work */
 @media all and (max-width:767px){
-  .logo.custom-left {width: 100%; text-align: center;}
-  header .logo > img { width: 150px; }
-  .top-side-link {position: absolute; right: 20px; top: 0;}
-  .navbar-default .navbar-toggle .icon-bar {background-color: #930a0f;}
-  body .header-navigation .navbar-toggle {background: #ffffff; border-color: #930a0f; margin: 0 0 10px;}
-  .copyright { margin: 0 0 10px; text-align: center;}
-  footer {padding: 20px 10px; text-align: center;}
+	.logo.custom-left {width: 100%; text-align: center;  margin-left: 0;}
+	header .logo > img { width: 150px; margin: :0px;}
+	.navbar-default .navbar-toggle .icon-bar {background-color: #930a0f;}
+	body .header-navigation .navbar-toggle {background: #ffffff; border-color: #930a0f; margin: 0 0 10px;}
+	.copyright { margin: 0 0 10px; text-align: center;}
+	footer {padding: 20px 10px; text-align: center;}
+	.header-navigation {overflow: visible;padding-left: 0;}
+	.navbar-collapse { background: #930a0f none repeat scroll 0 0; position: absolute;top: 50px;width: 100%;z-index: 2147483647;}
+	.container-fluid div.custom-like-button { padding: 0 22px;position: relative;text-align: left;}
+	.container-fluid div.custom-like-button span {bottom: 11px;  position: absolute;}
+	.top-side-link { bottom: 18px; margin-right: 0;margin-top: 0;overflow: hidden;position: absolute;right:44%;text-align: right;}
+	.top-side-link .nav.navbar-nav { margin: 0 auto;}
+}
+
+@media all and (max-width:470px){
+	.top-side-link {right:40%;}
 }
