@@ -39,10 +39,10 @@ header .logo img {width: 100px; margin-left: 25px;}
 .profile_pic > span { padding: 6px; }
 .nav > li > a:focus, .nav > li > a:hover {background-color: #eeeeee; color: #930a0f; text-decoration: none;}
 body .navbar {min-height: 0;}
-.header-navigation {margin-top: 10px; padding-left: 80px;}
+.header-navigation {margin-top: 10px; padding-left:70px;}
 .top-side-link {float: right;margin-top: 5px;text-align: center;}
 .header-navigation .navbar-nav li {margin-right: 15px;}
-.top-side-link .nav.navbar-nav {padding-left: 60px; width: 100%;}
+.top-side-link .nav.navbar-nav {padding-left:50px; width: 100%;}
 .logo.custom-left {float: left; padding: 0 15px; width: auto;}
 .row.advertise-block {padding-bottom: 20px;padding-top: 10px;text-align: center;}
 /* header design end */
@@ -76,7 +76,6 @@ footer p {margin: 0; color: #333333;}
 	.top-side-link { bottom: 18px; margin-right: 0;margin-top: 0;overflow: hidden;position: absolute;right:44%;text-align: right;}
 	.top-side-link .nav.navbar-nav { margin: 0 auto;}
 }
-
 @media all and (max-width:470px){
 	.top-side-link {right:40%;}
 }
