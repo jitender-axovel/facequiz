@@ -69,6 +69,9 @@ class QuizzesController extends Controller
         $template = $quiz->template->html_data;
         
         $quizHelper = new \App\QuizHelper();
+
+        //set photos
+        $template = $quizHelper->setUserPhotos($template, $quiz);
         
         //set title of quiz
         $template = $quizHelper->setTitle($template, $quiz);

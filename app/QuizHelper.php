@@ -56,7 +56,7 @@ class QuizHelper extends Model
     {
         if($quiz->show_own_profile_picture) {
             try {
-                $response = $this->fb->get('/me?fields=picture.type(large)');
+                $response = $this->fb->get('/me?fields=picture.width(480)');
             } catch (Facebook\Exceptions\FacebookResponseException $e) {
                 // When Graph returns an error
                 return redirect('/')->with('error', 'Sorry for the inconvenience, there are no results for this quiz');
@@ -68,6 +68,42 @@ class QuizHelper extends Model
             $response = $response->getGraphObject();
             $response = $response->asArray();
             return str_replace('user_profile_pic', $response['picture']['url'], $template);
+        } else {
+            return $template;
+        }
+    }
+
+    public function setUserPhotos($template, $quiz)
+    {
+        if($quiz->show_own_photos) {
+            try {
+                $response = $this->fb->get('/me/photos/uploaded?fields=source.width(480)');
+            } catch (Facebook\Exceptions\FacebookResponseException $e) {
+                // When Graph returns an error
+                return redirect('/')->with('error', 'Sorry for the inconvenience, there are no results for this quiz');
+            } catch (\Facebook\Exceptions\FacebookSDKException $e) {
+                // When validation fails or other local issues
+                return redirect('/')->with('error', 'Sorry for the inconvenience, there are no results for this quiz');
+            }
+
+            $response = $response->getGraphEdge();
+            $response = $response->asArray();
+
+            $array_keys = array();
+            if(count($response)) {
+                if(count($response) < $quiz->template->total_images) {
+                    $array_keys = array_rand($response, count($response));
+                } else {
+                    $array_keys = array_rand($response, $quiz->template->total_images);
+                }
+            }
+            
+            foreach($array_keys as $k => $key) {
+                $k = $k + 1;
+                $template = str_replace('user_photo_'.$k, $response[$key]['source'], $template);
+            }
+
+            return $template;
         } else {
             return $template;
         }
@@ -86,7 +122,7 @@ class QuizHelper extends Model
     {
         if($quiz->show_friend_pictures || $quiz->show_friend_name) {
             try {
-                $response = $this->fb->get('/me/taggable_friends?fields=picture.type(normal),name');
+                $response = $this->fb->get('/me/invitable_friends?fields=name,picture.width(480)');
             } catch (Facebook\Exceptions\FacebookResponseException $e) {
                 // When Graph returns an error
                 return redirect('/')->with('error', 'Sorry for the inconvenience, there are no results for this quiz');
@@ -100,7 +136,11 @@ class QuizHelper extends Model
             $array_keys = array();
             if($response->count()) {
                 $response = $response->asArray();
-                $array_keys = array_rand($response, $quiz->template->total_images);
+                if(count($response) < $quiz->template->total_images) {
+                    $array_keys = array_rand($response, count($response));
+                } else {
+                    $array_keys = array_rand($response, $quiz->template->total_images);
+                }
             }
             
         }
