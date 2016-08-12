@@ -82,8 +82,73 @@
     </script>
 </head>
 <body>
-<header class="site-header">
-    <div class="container-fluid">
+<!-- for mobile-view-->
+<header class="site-header ">
+    <div class="container-fluid mobile-view">
+        <div class="logo custom-left col-sm-3 col-xs-12 ">
+            <a href="{{ url('/') }}"><img src="{{asset('images/logo.png')}}"></a>
+        </div>
+        
+        <div class="col-md-2 col-sm-2  col-md-6 col-xs-6 custom-like-button">
+            <span class="bold">Like Us <i class="fa fa-arrow-right"></i> </span>
+            @if(isset($fb_like_button))
+                {!!$fb_like_button!!}
+            @else
+                <div class="fb-like" data-href="https://www.facebook.com/robodoo.en" data-layout="button_count" data-action="like" data-size="small" data-show-faces="true" data-share="false"></div>
+            @endif
+        </div>
+        <div class="top-side-link col-md-2  col-sm-2 col-md-6  ">
+            <!-- Right Side Of Navbar -->
+            <ul class="nav navbar-nav navbar-right">
+                <!-- Authentication Links -->
+                @if (Auth::guest())
+                    <li><a class="login" href="{{ url('redirect') }}">{{ $languageStrings['Login'] or 'Login' }}</a></li>
+                @else
+                    <li class="dropdown">
+                        <a class="profile_pic" href="#" class="dropdown-toggle media" data-toggle="dropdown" role="button" aria-expanded="false">
+                            <div class="media-left">
+                                @if(Auth::user()->avatar)
+                                    <img  class="media-object" height="40px" width="40px" src="{{Auth::user()->avatar}}"> 
+                                @else
+                                    <img class="media-object" height="40px" width="40px" src="{{ asset(config('image.user_profile_pic').'/avatar.png') }}">
+                                @endif
+                            </div>
+                            <div class="media-body">
+                                <span>{{Auth::user()->name}}</span>
+                            </div>
+                        </a>
+                        <ul class="dropdown-menu" role="menu">
+                            <li><a href="{{ url('/logout') }}"><i class="fa fa-btn fa-sign-out"></i>{{ $languageStrings['Logout'] or 'Logout' }}</a></li>
+                        </ul>
+                    </li>
+                @endif
+            </ul>
+        </div>
+        <div class="header-navigation col-md-6 col-sm-5 col-xs-12">
+            <nav class="navbar navbar-default navbar-static-top">
+                <div class="navbar-header">
+                    <!-- Collapsed Hamburger -->
+                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#app-navbar-collapse">
+                        <span class="sr-only">Toggle Navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                </div>
+                <div class="collapse navbar-collapse" id="app-navbar-collapse">
+                    <!-- Left Side Of Navbar -->
+                    <ul class="nav navbar-nav">
+                        <li><a href="{{ url('/') }}">{{ $languageStrings['Latest'] or 'Latest' }}</a></li>
+                        <li><a href="{{ url('quizzes/popular') }}">{{ $languageStrings['Popular'] or 'Popular' }}</a></li>
+                    </ul>
+                </div>
+            </nav>
+        </div>
+    </div>
+
+<!--div for web-->
+
+    <div class="container-fluid web-view">
         <div class="logo custom-left col-sm-3 col-xs-12 ">
             <a href="{{ url('/') }}"><img src="{{asset('images/logo.png')}}"></a>
         </div>
@@ -123,13 +188,17 @@
                     <li><a class="login" href="{{ url('redirect') }}">{{ $languageStrings['Login'] or 'Login' }}</a></li>
                 @else
                     <li class="dropdown">
-                        <a class="profile_pic" href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-                            @if(Auth::user()->avatar)
-                                <img height="40px" width="40px" src="{{Auth::user()->avatar}}">
+                        <a class="profile_pic" href="#" class="dropdown-toggle media" data-toggle="dropdown" role="button" aria-expanded="false">
+                            <div class="media-left">
+                                @if(Auth::user()->avatar)
+                                    <img  class="media-object" height="40px" width="40px" src="{{Auth::user()->avatar}}"> 
+                                @else
+                                    <img class="media-object" height="40px" width="40px" src="{{ asset(config('image.user_profile_pic').'/avatar.png') }}">
+                                @endif
+                            </div>
+                            <div class="media-body">
                                 <span>{{Auth::user()->name}}</span>
-                            @else
-                                <img height="40px" width="40px" src="{{ asset(config('image.user_profile_pic').'/avatar.png') }}">
-                            @endif
+                            </div>
                         </a>
                         <ul class="dropdown-menu" role="menu">
                             <li><a href="{{ url('/logout') }}"><i class="fa fa-btn fa-sign-out"></i>{{ $languageStrings['Logout'] or 'Logout' }}</a></li>
