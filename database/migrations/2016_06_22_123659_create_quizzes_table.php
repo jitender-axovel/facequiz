@@ -24,6 +24,7 @@ class CreateQuizzesTable extends Migration
             $table->integer('total_facts')->unsigned();
             $table->boolean('show_own_profile_picture')->default(false);
             $table->boolean('show_user_name')->default(false);
+            $table->boolean('show_own_photos')->default(false);
             $table->boolean('show_friend_pictures')->default(false);
             $table->boolean('show_friend_name')->default(false);
             $table->boolean('is_active')->default(false)->index();
