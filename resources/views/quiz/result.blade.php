@@ -81,14 +81,13 @@
                 display: 'popup',
                 href: '{{ url("quiz/".$quiz->slug."/landing/".Auth::id()) }}',
             }, function(response){
-                console.log(response);
-                if (typeof response !== 'undefined') {
+                // if (typeof response !== 'undefined') {
                     /** the user shared the content on their Facebook, go ahead and continue to download **/
-                    alert('user shared quiz');
-                } else {
-                    /** the cancelled the share process, do something, for example **/
-                    alert("User didn't shared the quiz");
-                }
+                    window.location="{{ url('quiz/'.$quiz->slug.'/summary') }}";
+                // } else {
+                //     * the cancelled the share process, do something, for example *
+                    
+                // }
             });
         }
         $(document).ready(function() {

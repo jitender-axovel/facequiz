@@ -131,4 +131,13 @@ class QuizzesController extends Controller
         
         return view('quiz.result', compact('page', 'quiz', 'template', 'quizzes', 'result'));
     }
+
+    public function summary($slug)
+    {
+        $quiz = Quiz::where('slug', $slug)->first();
+        $page = $quiz->title.' - Robodoo - Play with Robo';
+        $quizzes = Quiz::where('id', '!=', $quiz->id)->where('locale', session('locale'))->where('is_active', 1)->orderBy('updated_at', 'DESC')->get();
+
+        return view('quiz.summary', compact('page', 'quiz', 'quizzes'));
+    }
 }
