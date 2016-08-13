@@ -11,15 +11,14 @@
 			<p class="bold">{{$cmsPage->title}}</p>
 		</div>
 		<div class="panel-body">
-			<form action="{{ url('admin/cms/'.$cmsPage->id) }}" method="POST" class="form-horizontal">
+			<form action="{{ url('admin/cms/'.$cmsPage->id) }}" method="POST">
 				{{csrf_field()}}
 				<input type="hidden" name="_method" value="PUT"></input>
 				
 				<div class="form-group">
-					<label class="col-md-12">Edit Content</label>
-					<div class="col-md-12">
-						<textarea class="form-control" rows="15" name="content">{{ $cmsPage->content ? $cmsPage->content : ''}}</textarea>
-					</div>
+					<label class="lead">Edit Content</label>
+					<span id="helpBlock" class="help-block">User Enter code if you want to enter code.</span>
+					<textarea class="form-control" rows="15" name="content">{{ $cmsPage->content ? $cmsPage->content : ''}}</textarea>
 				</div>
 				<div class="form-group">
 					<div class="col-sm-12">
@@ -39,7 +38,11 @@
 	            menu: {
 					view: {title: 'Enter Code', items: 'code'}
 				},
-				plugins: 'code'
+				plugins: 'code, textpattern, textcolor',
+				toolbar: [
+					'undo redo | styleselect | bold italic | link image | alignleft aligncenter alignright alignjustify | fontselect | forecolor | backcolor'
+				],
+				theme_advanced_fonts: 'Arial=arial,helvetica,sans-serif;Courier New=courier new,courier,monospace;AkrutiKndPadmini=Akpdmi-n',
 	        });
     </script>
 @endsection

@@ -55,7 +55,15 @@
     	function loadEditor()
         {
         	tinymce.init({
-	            selector: 'textarea'
+	            selector: 'textarea',
+	            menu: {
+					view: {title: 'Enter Code', items: 'code'}
+				},
+				plugins: 'code, textpattern, textcolor',
+				toolbar: [
+					'undo redo | styleselect | bold italic | link image | alignleft aligncenter alignright alignjustify | fontselect | forecolor | backcolor'
+				],
+				theme_advanced_fonts: 'Arial=arial,helvetica,sans-serif;Courier New=courier new,courier,monospace;AkrutiKndPadmini=Akpdmi-n',
 	        });
         }
     </script>

@@ -17,6 +17,7 @@
 		</div>
 		<div class="form-group">
 			<label>Widget Content</label>
+			<span id="helpBlock" class="help-block">User Enter code if you want to enter code.</span>
 			<div>
 				<textarea name="{{$slug}}Widget[Content][]" class="form-control">{{isset($widgetContent) ? $widgetContent : ''}}</textarea>
 			</div>
