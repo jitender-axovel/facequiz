@@ -58,6 +58,13 @@
                 </div>
             </div>
             <div class="col-md-4">
+                <div class="row">
+                    @if(isset($fb_widget))
+                        {!!$fb_like_button!!}
+                    @else
+                        <div class="fb-page" data-href="https://www.facebook.com/robodoo.en" data-small-header="false" data-adapt-container-width="true" data-hide-cover="false" data-show-facepile="true"><blockquote cite="https://www.facebook.com/robodoo.en" class="fb-xfbml-parse-ignore"><a href="https://www.facebook.com/robodoo.en">Robodoo</a></blockquote></div>
+                    @endif
+                </div>
                 @include('includes.left-sidebar')
             </div>
         </div>
