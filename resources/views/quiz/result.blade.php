@@ -80,7 +80,15 @@
                 method: 'share',
                 display: 'popup',
                 href: '{{ url("quiz/".$quiz->slug."/landing/".Auth::id()) }}',
-            }, function(response){});
+            }, function(response){
+                if (response && response.post_id) {
+                    /** the user shared the content on their Facebook, go ahead and continue to download **/
+                    alert('user shared quiz');
+                } else {
+                    /** the cancelled the share process, do something, for example **/
+                    alert("User didn't shared the quiz");
+                }
+            });
         }
         $(document).ready(function() {
             $('.result-image').hide();
