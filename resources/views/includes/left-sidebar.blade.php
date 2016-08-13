@@ -1,5 +1,5 @@
 @if(isset($widgets['sidebar']))
 	@foreach($widgets['sidebar'] as $content)
-		<div class="row">{!!$content!!}</div>
+		<div class="row">{!! htmlspecialchars_decode($content) !!}</div>
 	@endforeach
 @endif
