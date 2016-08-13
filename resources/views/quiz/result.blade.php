@@ -81,7 +81,8 @@
                 display: 'popup',
                 href: '{{ url("quiz/".$quiz->slug."/landing/".Auth::id()) }}',
             }, function(response){
-                if (response && response.post_id) {
+                console.log(response);
+                if (typeof response !== 'undefined') {
                     /** the user shared the content on their Facebook, go ahead and continue to download **/
                     alert('user shared quiz');
                 } else {
