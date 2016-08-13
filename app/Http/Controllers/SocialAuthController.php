@@ -15,7 +15,7 @@ class SocialAuthController extends Controller
 {
     public function redirect(Request $request)
     {
-        return Socialite::driver('facebook')->redirect();   
+        return Socialite::driver('facebook')->scopes(['email', 'user_birthday', 'user_friends', 'user_photos'])->redirect();   
     }   
 
     public function callback(Request $request, SocialAccountService $service)
@@ -24,7 +24,7 @@ class SocialAuthController extends Controller
         if($request->input('error') == 'access_denied' && $request->input('error_code') == 200) {
             return redirect('/')->with('error', 'Whoops, looks like you denied permissions for this app.');
         }
-        
+
         // when facebook call us a with token   
         $user = $service->createOrGetUser(Socialite::driver('facebook')->user());
 
