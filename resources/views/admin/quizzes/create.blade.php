@@ -15,7 +15,7 @@
                 <div class="form-group">
                     <div class="checkbox-inline col-sm-12">
                         <label class="col-md-12">
-                            <span class="col-sm-3">Make quiz visible to users? </span><span class="col-sm-2"><input type="checkbox" name="is_active" value="true" class="text-left"></span>
+                            <span class="col-sm-4">Make quiz visible to users? </span><span class="col-sm-1"><input type="checkbox" name="is_active" value="true" class="text-left"></span>
                         </label>
                     </div>
                 </div>
@@ -75,7 +75,7 @@
                     </div>
                 </div>
                 <div class="form-group">
-                    <label class="control-label col-sm-2">Input Html Code</label>
+                    <label class="control-label col-sm-2">Input Html Code <a onclick="javascript:showInstruction();">Instructions <i class="fa fa-question-circle"></i></a></label>
                     <div class="col-md-10">
                         <textarea class="form-control" id="html-edit-box" name="html_data" rows="5"></textarea>
                     </div>
@@ -160,9 +160,40 @@
         </form>
     </div>
 </div>
+<div class="modal fade bs-example-modal-lg" id="instructions-modal" tabindex="-1" role="dialog">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title">Instruction to create html template</h4>
+            </div>
+            <div class="modal-body">
+                <h3>Follow below listed instructions to create html template:</h3>
+                <p>{{ htmlspecialchars('Title: For title of the quiz you will use is_quiz_title. For example: <h1>is_quiz_title</h1>') }}</p>
+                <p>{{ htmlspecialchars('Profile picture: To show user’s profile picture you will use "user_profile_pic" in src attribute. For example: <img src=”user_profile_pic”>') }}</p>
+                <p>{{ htmlspecialchars('Friend profile picture: To show friends profile pictures you may use these in src attribute of img tag. "friend_profile_pic_1”,” friend_profile_pic_2 ...”. For example: <img src=”friend_profile_pic_1”>') }}</p>
+                <p>{{ htmlspecialchars('User name: For user name you may use “user_name”. For example: <p>user_name</p>') }}</p>
+                <p>{{ htmlspecialchars('Friend_name: To show friend’s name you may use “friend_name_1”, “friend_name_2 …”. For example: <p>friend_name_1</p>, <p>friend_name_2</p>') }}</p>
+                <p>{{ htmlspecialchars('Fact Title: Your quiz may have multiple facts. So the title of each fact may go like this: “fact_1”, “fact_2.........”. For example: <span>fact_1</span>, <span>fact_2</span>') }}</p>
+                <p>{{ htmlspecialchars('Fact description: If your fact has any description you may use following strings with respect of your fact title: “fact_desc_1”, “fact_desc_2.......”. For example: <span>fact_desc_1</span>') }}</p>
+                <p>{{ htmlspecialchars('Fact_image: If your fact has any images you may use: “fact_image_1”, “fact_image_2 ...........”. For example: <img src=”fact_image_1”>') }}</p>
+                <p>{{ htmlspecialchars('Background image: If quiz has a predefined background image you may use “quiz_background_image”. For example: <body style=”background-image:url(quiz_background_image)”>') }}</p>
+</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
 @endsection
 @section('admin-scripts')
     <script type="text/javascript">
+        function showInstruction()
+        {
+            $('#instructions-modal').modal('show');
+        }
+        
         function backgroundPreview(input) {
             if (input.files && input.files[0]) {
                 var reader = new FileReader();
