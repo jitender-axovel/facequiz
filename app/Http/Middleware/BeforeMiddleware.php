@@ -50,6 +50,9 @@ class BeforeMiddleware
         if(isset($languageStrings->fb_like)) {
             $fb_like_button = $languageStrings->fb_like;
             view()->share('fb_like_button', $fb_like_button);
+
+            $fb_widget = $languageStrings->fb_widget;
+            view()->share('fb_widget', $fb_widget);
         }
 
         if($languageStrings) $languageStrings = json_decode($languageStrings->strings, true);
