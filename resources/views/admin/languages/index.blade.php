@@ -8,10 +8,10 @@
 				<div class="panel-heading">
 					<div class="panel-title">
 						<span>{{$language->name}}</span>
-						<a class="text-right" data-toggle="collapse" href="#english"><i class="fa fa-pencil"></i></a>
+						<a class="text-right" data-toggle="collapse" href="#{{$language->slug}}"><i class="fa fa-pencil"></i></a>
 					</div>
 				</div>
-				<div id="english" class="panel-collapse collapse">
+				<div id="{{ $language->slug }}" class="panel-collapse collapse">
 					<div class="panel-body">
 						<form action="{{ url('admin/language/'.$language->id) }}" method="post">
 							{{csrf_field()}}
