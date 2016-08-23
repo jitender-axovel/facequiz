@@ -48,6 +48,9 @@ class AdminWidgetsController extends Controller
                 }
                 $widget->widgets = json_encode($array);
                 $widget->save();
+            } else {
+                $widget->widgets = '';
+                $widget->save();
             }
         }
         return back()->with('success', 'The widgets are successfully saved. You can check at frontend now.');
