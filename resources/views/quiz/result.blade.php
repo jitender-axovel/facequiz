@@ -64,7 +64,7 @@
                     @include('includes.after-quiz-widgets')
                 </div>
             </div>
-            <div class="col-md-4">
+            <div class="col-md-4 fb-widget">
                 <div class="row">
                     @if(isset($fb_widget))
                         {!!$fb_like_button!!}
