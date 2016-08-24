@@ -3,6 +3,17 @@
 <h2>Edit - {{$quiz->title}}</h2>
 <hr>
 @include('notification')
+<div class="row">
+    @if (count($errors) > 0)
+        <div class="alert alert-danger">
+            <ul>
+                @foreach ($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                @endforeach
+            </ul>
+        </div>
+    @endif
+</div>
 <div class="panel panel-default">
     <div class="panel-body">
         <form action="{{ url('admin/quiz/'.$quiz->id) }}" method="POST" class="form-horizontal" enctype="multipart/form-data">
@@ -120,7 +131,9 @@
                         <fieldset class="text-center">
                             <legend>Image Preview</legend>
                             <div class="thumbnail" id="background-image-preview">
+                                @if($quiz->background_image != '')
                                 <img src="{{asset(config('image.quiz_background_url').'/'.$quiz->id.'/'.$quiz->background_image)}}" width="100%" height="200">
+                                @endif
                             </div>
                         </fieldset>
                     </div>
