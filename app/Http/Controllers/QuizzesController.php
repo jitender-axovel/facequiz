@@ -58,6 +58,10 @@ class QuizzesController extends Controller
     
     public function start($slug)
     {
+        if(!(session()->has('fb_access_token'))) {
+            auth()->logout();
+            return redirect('/')->with('error', 'Kindly try again as your facebook authentication code has expired.');
+        }
         $quiz = Quiz::where('locale', session('locale'))->where('slug', $slug)->where('is_active', 1)->first();
         
         if(!$quiz) {
