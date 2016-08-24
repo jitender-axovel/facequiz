@@ -60,12 +60,31 @@ footer p {margin: 0; color: #333333;}
 /* home page */
 .main-content {margin-top: 30px; margin-bottom: 100px;}
 
+/* admin panel */
+.admin-content .panel .jumbotron {background: transparent; padding: 20px 0; margin-bottom: 0;}
+.admin-content .form-group { margin: 0 0 15px;}
+.admin-content .panel .checkbox-inline {margin: 0; padding: 0;}
+.admin-content .form-horizontal .control-label {margin-bottom: 10px; text-align: left; padding: 0;}
+.checkbox-inline span {padding: 0;}
+.modal {z-index: 2147483647;}
+.admin-content .form-group div { padding: 0;}
+.form-group .col-md-1 .form-control {max-width: 90%;}
+.admin-content .form-group .col-md-1 input[type="checkbox"] {margin-top: -5px;}
+#html-output {border: medium none;}
+#background-image-preview {border: medium none;}
+.fact-list-item input {margin-bottom: 15px;}
+.panel .panel-heading .bold {color: #000000; font-size: 25px;}
+.btn .fa.fa-power-off {padding: 0 5px;}
+.top-side-link .media-body {width: auto;}
+.top-side-link .media-body > span {color: #ffffff; font-size: 14px;}
+.fb-page { box-sizing: border-box; padding: 0 5px;}
+.fb-widget > .row {margin: 0;}
 /* responsive work */
 @media all and (max-width:767px){
 	.web-view{ display: none;}
 	.mobile-view{ display:block;}
 	.logo.custom-left {width: 100%; text-align: center;  margin-left: 0;}
-	header .logo > img { width: 150px; margin: :0px;}
+	header .logo > img { width: 150px; margin: 0px;}
 	.navbar-default .navbar-toggle .icon-bar {background-color: #930a0f;}
 	body .header-navigation .navbar-toggle {background: #ffffff; border-color: #930a0f; margin: 0 0 10px;}
 	.copyright { margin: 0 0 10px; text-align: center;}

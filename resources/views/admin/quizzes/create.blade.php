@@ -20,8 +20,8 @@
                     </div>
                 </div>
                 <div class="form-group">
-                    <label class="control-label col-sm-2">Quiz Name</label>
-                    <div class="col-sm-10">
+                    <label class="control-label col-sm-12">Quiz Name</label>
+                    <div class="col-sm-12">
                         <input required type="text" class="form-control" name="title" value="{{ old('title') }}" placeholder="Enter Quiz Title">
                         @if($errors->has('title'))
                             <span class="help-block">
@@ -31,8 +31,8 @@
                     </div>
                 </div>
                 <div class="form-group">
-                    <label class="control-label col-sm-2">Language</label>
-                    <div class="col-sm-10">
+                    <label class="control-label col-sm-12">Language</label>
+                    <div class="col-sm-12">
                         <select required class="form-control" name="locale">
                             <option value="">Select Language</option>
                             @foreach($languages as $language)
@@ -47,8 +47,8 @@
                     </div>
                 </div>
                 <div class="form-group">
-                    <label class="control-label col-sm-2">Description (Optional)</label>
-                    <div class="col-sm-10">
+                    <label class="control-label col-sm-12">Description (Optional)</label>
+                    <div class="col-sm-12">
                         <textarea class="form-control" name="description">{{ old('description') }}</textarea>
                     </div>
                 </div>
@@ -75,17 +75,17 @@
                     </div>
                 </div>
                 <div class="form-group">
-                    <label class="control-label col-sm-2">Input Html Code <a onclick="javascript:showInstruction();">Instructions <i class="fa fa-question-circle"></i></a></label>
-                    <div class="col-md-10">
+                    <label class="control-label col-md-12 col-sm-12">Input Html Code <a onclick="javascript:showInstruction();">Instructions <i class="fa fa-question-circle"></i></a></label>
+                    <div class="col-md-12 col-sm-12 col-xs-12">
                         <textarea class="form-control" id="html-edit-box" name="html_data" rows="5"></textarea>
                     </div>
                 </div>
                 <div class="form-group">
-                    <label class="col-sm-3 control-label">Upload Introduction Image</label>
-                    <div class="col-md-9">
+                    <label class="col-md-12 col-sm-12 col-xs-12 control-label">Upload Introduction Image</label>
+                    <div class="col-md-12 col-sm-12 col-xs-12">
                         <input type="file" accept="image/*" name="og_image" onchange="readTemplate(this);" id="upload-button">
                     </div>
-                    <div class="col-md-10 col-md-offset-2">
+                    <div class="col-md-12 col-sm-12 col-xs-12">
                         <fieldset class="text-center">
                             <legend>Image Preview</legend>
                             <div class="thumbnail" id="html-output"></div>
@@ -118,12 +118,12 @@
             <fieldset class="jumbotron">
                 <legend>Quiz Background Image</legend>
                 <div class="form-group">
-                    <label class="control-label col-md-3">Background Image</label>
-                    <div class="col-md-9">
+                    <label class="control-label col-md-12 col-sm-12 col-xs-12">Background Image</label>
+                    <div class="col-md-12 col-sm-12 col-xs-12">
                         <input type="file" accept="image/*" name="background_image" onchange="backgroundPreview(this);" required>
                         <span id="helpBlock" class="help-block">If you want to use facts image as background then you may ignore this step.</span>
                     </div>
-                    <div class="col-md-10 col-md-offset-2">
+                    <div class="col-md-12 col-sm-12 col-xs-12">
                         <fieldset class="text-center">
                             <legend>Image Preview</legend>
                             <div class="thumbnail" id="background-image-preview"></div>
@@ -135,19 +135,19 @@
                 <legend>Quiz Fact</legend>
                 <div id="quiz-form" class="form-group">
                     <div class="form-group">
-                        <label class="control-label col-md-4">Total facts to show</label>
-                        <div class="col-md-3">
+                        <label class="control-label col-md-12 col-sm-12 col-xs-12">Total facts to show</label>
+                        <div class="col-md-12 col-sm-12 col-xs-12">
                             <input type="number" name="total_facts" min="0" max="10" class="form-control" >
                         </div>
                     </div>
                     <div class="fact-list-item">
-                        <div class="col-sm-3">
-                            <input required name="fact[title][]" class="form-control" placeholder="Title"></input>
+                        <div class="col-md-12 col-sm-12 col-xs-12">
+                            <input required name="fact[title][]" class="form-control" placeholder="Title">
                         </div>
-                        <div class="col-sm-4">
+                        <div class="col-md-12 col-sm-12 col-xs-12">
                             <input required name="fact[description][]" class="form-control" placeholder="Description (Optional)">
                         </div>
-                        <input type="file" name="image[]" accept="image/*" class="col-sm-2" onchange="readFacts(this);">
+                        <input type="file" name="image[]" accept="image/*" class="col-md-12 col-sm-12 col-xs-12" onchange="readFacts(this);">
                         <img height="100px" width="100px" src="" alt="Image Preview" />
                         <button type="button" class="add-form-element btn btn-warning"><i class="fa fa-plus"></i></button>
                         <button type="button" class="remove-form-element btn btn-danger"><i class="fa fa-minus"></i></button>
