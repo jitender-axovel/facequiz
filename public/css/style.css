@@ -81,6 +81,7 @@ footer p {margin: 0; color: #333333;}
 .fb-widget > .row {margin: 0;}
 .top-side-link .nav .open > a, .top-side-link .nav .open > a:focus, .top-side-link .nav .open > a:hover { background-color: rgba(0, 0, 0, 0);  border-color: rgba(0, 0, 0, 0);}
 .top-side-link .nav > li > a:focus, .top-side-link .nav > li > a:hover { background-color: transparent;}
+.content-img a > img {height: 180px;}
 /* responsive work */
 @media all and (max-width:767px){
 	.web-view{ display: none;}
