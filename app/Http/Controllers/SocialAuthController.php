@@ -33,7 +33,7 @@ class SocialAuthController extends Controller
         } elseif(is_int($user) && $user == 3) {
             return redirect('/')->with('error', 'Dear user, your account has been blocked by admin. Kindly write to support if you want to discuss any details.');
         } elseif(is_int($user) && $user == 4) {
-            return redirect('/')->with('error', 'Dear User, it seems you do not want to share your email id with us. Its fine. But we would be unable to create your account and let you access our wide range of apps.');
+            return redirect('/')->with('error', 'Dear User, please provide your email id to enjoy diffrent quizzes. Else we would be unable to create your account.');
         }
 
         auth()->login($user);
