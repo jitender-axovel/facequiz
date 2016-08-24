@@ -220,6 +220,22 @@ class AdminQuizzesController extends Controller
         $input = $request->input();
         $file = $request->file('image');
 
+        $validation = array(
+            'title' => 'required|max:255',
+            'locale' => 'required',
+            'total_facts' => 'required|integer|min:0',
+            'html_data' => 'required',
+            'og_image' => 'required',
+            'total_images' => 'required|min:0|integer',
+            'total_textareas' => 'required|min:0|integer',
+        );
+
+        $validator = Validator::make($request->all(), $validation);
+
+        if ($validator->fails()) {
+            return back()->withErrors($validator)->withInput();
+        }
+
         //save template
         
         $fileInput = $request->file('og_image');
