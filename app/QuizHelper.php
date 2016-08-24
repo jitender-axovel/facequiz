@@ -166,10 +166,7 @@ class QuizHelper extends Model
     {
         $facts = QuizFact::where('quiz_id', $quiz->id)->get();
         
-        if($facts->count()) {
-            $facts = $facts->toArray();
-            $array_keys = array_rand($facts, $quiz->total_facts);
-        } elseif($quiz->total_facts) {
+        if($facts->count() && $quiz->total_facts) {
             $facts = $facts->toArray();
             $array_keys = array_rand($facts, $quiz->total_facts);
         } else {
