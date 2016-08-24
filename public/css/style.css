@@ -46,7 +46,7 @@ body .navbar {min-height: 0;}
 .logo.custom-left {float: left; padding: 0 15px; width: auto;}
 .row.advertise-block {padding-bottom: 20px;padding-top: 10px;text-align: center;}
 /* header design end */
-.thumbnail .caption {min-height: 55px;}
+.thumbnail .caption {min-height: 70px; overflow: hidden;}
 /* pagination links */
 .pagination-links { text-align: center; }
 
