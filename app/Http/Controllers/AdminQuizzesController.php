@@ -225,7 +225,6 @@ class AdminQuizzesController extends Controller
             'locale' => 'required',
             'total_facts' => 'required|integer|min:0',
             'html_data' => 'required',
-            'og_image' => 'required',
             'total_images' => 'required|min:0|integer',
             'total_textareas' => 'required|min:0|integer',
         );
