@@ -79,6 +79,8 @@ footer p {margin: 0; color: #333333;}
 .top-side-link .media-body > span {color: #ffffff; font-size: 14px;}
 .fb-page { box-sizing: border-box; padding: 0 5px;}
 .fb-widget > .row {margin: 0;}
+.top-side-link .nav .open > a, .top-side-link .nav .open > a:focus, .top-side-link .nav .open > a:hover { background-color: rgba(0, 0, 0, 0);  border-color: rgba(0, 0, 0, 0);}
+.top-side-link .nav > li > a:focus, .top-side-link .nav > li > a:hover { background-color: transparent;}
 /* responsive work */
 @media all and (max-width:767px){
 	.web-view{ display: none;}
