@@ -48,7 +48,7 @@ class QuizHelper extends Model
         if($quiz->background_image != '') {
             return str_replace('quiz_background_image', asset(config('image.quiz_background_url').$quiz->id.'/'.$quiz->background_image), $template);
         } else {
-            $template;
+            return $template;
         }
     }
     

@@ -3,6 +3,17 @@
 <h2>Add New Quiz</h2>
 <hr>
 @include('notification')
+<div class="row">
+    @if (count($errors) > 0)
+        <div class="alert alert-danger">
+            <ul>
+                @foreach ($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                @endforeach
+            </ul>
+        </div>
+    @endif
+</div>
 <div class="panel panel-default">
     <div class="panel-heading">
         <p class="bold">Create New Quiz</p>
@@ -77,13 +88,13 @@
                 <div class="form-group">
                     <label class="control-label col-md-12 col-sm-12">Input Html Code <a onclick="javascript:showInstruction();">Instructions <i class="fa fa-question-circle"></i></a></label>
                     <div class="col-md-12 col-sm-12 col-xs-12">
-                        <textarea class="form-control" id="html-edit-box" name="html_data" rows="5"></textarea>
+                        <textarea required class="form-control" id="html-edit-box" name="html_data" rows="5"></textarea>
                     </div>
                 </div>
                 <div class="form-group">
                     <label class="col-md-12 col-sm-12 col-xs-12 control-label">Upload Introduction Image</label>
                     <div class="col-md-12 col-sm-12 col-xs-12">
-                        <input type="file" accept="image/*" name="og_image" onchange="readTemplate(this);" id="upload-button">
+                        <input required type="file" accept="image/*" name="og_image" onchange="readTemplate(this);" id="upload-button">
                     </div>
                     <div class="col-md-12 col-sm-12 col-xs-12">
                         <fieldset class="text-center">
@@ -120,7 +131,7 @@
                 <div class="form-group">
                     <label class="control-label col-md-12 col-sm-12 col-xs-12">Background Image</label>
                     <div class="col-md-12 col-sm-12 col-xs-12">
-                        <input type="file" accept="image/*" name="background_image" onchange="backgroundPreview(this);" required>
+                        <input type="file" accept="image/*" name="background_image" onchange="backgroundPreview(this);">
                         <span id="helpBlock" class="help-block">If you want to use facts image as background then you may ignore this step.</span>
                     </div>
                     <div class="col-md-12 col-sm-12 col-xs-12">
@@ -137,7 +148,7 @@
                     <div class="form-group">
                         <label class="control-label col-md-12 col-sm-12 col-xs-12">Total facts to show</label>
                         <div class="col-md-12 col-sm-12 col-xs-12">
-                            <input type="number" name="total_facts" min="0" max="10" class="form-control" >
+                            <input required type="number" name="total_facts" min="0" max="10" class="form-control" >
                         </div>
                     </div>
                     <div class="fact-list-item">
