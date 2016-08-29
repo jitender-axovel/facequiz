@@ -170,7 +170,7 @@ header.admin-header {
 }
 
 #sidebar-wrapper {
-  top: 55px;
+  top: 60px;
   z-index: 1000;
   position: fixed;
   left: 250px;
@@ -255,7 +255,9 @@ header.admin-header {
   color: #fff;
   background: none;
 }
-
+.language-form {margin-top: 20px;}
+.form-group.custom > label {float: left; padding: 0 15px;}
+.form-group.custom .form-control {width: 70%;}
 @media(min-width:768px) {
   #wrapper {
     padding-left: 250px;

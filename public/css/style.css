@@ -82,6 +82,7 @@ footer p {margin: 0; color: #333333;}
 .top-side-link .nav .open > a, .top-side-link .nav .open > a:focus, .top-side-link .nav .open > a:hover { background-color: rgba(0, 0, 0, 0);  border-color: rgba(0, 0, 0, 0);}
 .top-side-link .nav > li > a:focus, .top-side-link .nav > li > a:hover { background-color: transparent;}
 .content-img a > img {height: 180px;}
+.padd-5 {padding: 5px;}
 /* responsive work */
 @media all and (max-width:767px){
 	.web-view{ display: none;}
@@ -96,6 +97,7 @@ footer p {margin: 0; color: #333333;}
 	.navbar-collapse { background: #930a0f none repeat scroll 0 0; position: absolute;top: 50px;width: 100%;z-index: 2147483647;}
 	.container-fluid div.custom-like-button { padding: 0 22px;text-align: left;}
 	.top-side-link .nav.navbar-nav { margin: 0 auto;}
+	.thumbnail .caption {text-align: center;}
 }
 @media all and (max-width:470px){
 	
