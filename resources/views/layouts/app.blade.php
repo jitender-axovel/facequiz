@@ -180,7 +180,7 @@
                 <div class="fb-like" data-href="https://www.facebook.com/robodoo.en" data-layout="button_count" data-action="like" data-size="small" data-show-faces="true" data-share="false"></div>
             @endif
         </div>
-        <div class="top-side-link col-md-2  col-sm-2 col-md-6  ">
+        <div class="top-side-link col-md-2  col-sm-2 col-md-6 col-xs-6 ">
             <!-- Right Side Of Navbar -->
             <ul class="nav navbar-nav navbar-right">
                 <!-- Authentication Links -->
