@@ -20,7 +20,8 @@ p{color:#9b9b9b; line-height: 150%;}
 .caption { padding-bottom: 10px;}
 .panel-title.heading {font-size: 22px;    padding-bottom: 5px; padding-top: 5px;}
 .heading { font-weight:bold;}
-.img-wrap { text-align: center;  width:100%; height: auto; margin-bottom: 10px;}
+.img-wrap { text-align: center;  width:100%; height: auto; margin-bottom: 10px; padding: 0;}
+.img-wrap img {height: 400px; width: 100%;}
 .fb-like-button { text-align: center; }
 .img-caption{ clear: both;padding-bottom: 10px;  padding-top: 10px;}
 /* header design */ 
@@ -81,13 +82,13 @@ footer p {margin: 0; color: #333333;}
 .fb-widget > .row {margin: 0;}
 .top-side-link .nav .open > a, .top-side-link .nav .open > a:focus, .top-side-link .nav .open > a:hover { background-color: rgba(0, 0, 0, 0);  border-color: rgba(0, 0, 0, 0);}
 .top-side-link .nav > li > a:focus, .top-side-link .nav > li > a:hover { background-color: transparent;}
-.content-img a > img {height: 180px;}
+.content-img a > img {height: 180px; width: 100%;}
 .padd-5 {padding: 5px;}
 /* responsive work */
 @media all and (max-width:767px){
 	.web-view{ display: none;}
 	.mobile-view{ display:block;}
-	.logo.custom-left {width: 100%; text-align: center;  margin-left: 0; margin-bottom:10px;}
+	.logo.custom-left {width: 100%; text-align: center;  margin-left: 0; margin-bottom:10px;g}
 	header .logo > img { width: 150px; margin: 0px;}
 	.navbar-default .navbar-toggle .icon-bar {background-color: #930a0f;}
 	body .header-navigation .navbar-toggle {background: #ffffff; border-color: #930a0f; margin: 0 0 10px;}
