@@ -108,17 +108,24 @@
                         <a class="profile_pic" href="#" class="dropdown-toggle media" data-toggle="dropdown" role="button" aria-expanded="false">
                             <div class="media-left">
                                 @if(Auth::user()->avatar)
-                                    <img  class="media-object" height="40px" width="40px" src="{{Auth::user()->avatar}}"> 
+                                    <img  class="media-object" height="40px" width="40px" src="{{Auth::user()->avatar}}">
                                 @else
                                     <img class="media-object" height="40px" width="40px" src="{{ asset(config('image.user_profile_pic').'/avatar.png') }}">
                                 @endif
                             </div>
-                            <div class="media-body">
-                                <span>{{Auth::user()->name}}</span>
-                            </div>
                         </a>
                         <ul class="dropdown-menu" role="menu">
-                            <li><a href="{{ url('/logout') }}"><i class="fa fa-btn fa-sign-out"></i>{{ $languageStrings['Logout'] or 'Logout' }}</a></li>
+                            <li class="left">
+                                @if(Auth::user()->avatar)
+                                    <img  class="media-object" height="40px" width="40px" src="{{Auth::user()->avatar}}">
+                                @else
+                                    <img class="media-object" height="40px" width="40px" src="{{ asset(config('image.user_profile_pic').'/avatar.png') }}">
+                                @endif
+                            </li>
+                            <li class="right">
+                                <span>{{Auth::user()->name}}</span>
+                            </li>
+                            <li class="full"><a href="{{ url('/logout') }}"><i class="fa fa-btn fa-sign-out"></i>{{ $languageStrings['Logout'] or 'Logout' }}</a></li>
                         </ul>
                     </li>
                 @endif
@@ -196,12 +203,19 @@
                                     <img class="media-object" height="40px" width="40px" src="{{ asset(config('image.user_profile_pic').'/avatar.png') }}">
                                 @endif
                             </div>
-                            <div class="media-body">
-                                <span>{{Auth::user()->name}}</span>
-                            </div>
                         </a>
                         <ul class="dropdown-menu" role="menu">
-                            <li><a href="{{ url('/logout') }}"><i class="fa fa-btn fa-sign-out"></i>{{ $languageStrings['Logout'] or 'Logout' }}</a></li>
+                            <li class="left">
+                                @if(Auth::user()->avatar)
+                                    <img  class="media-object" height="40px" width="40px" src="{{Auth::user()->avatar}}">
+                                @else
+                                    <img class="media-object" height="40px" width="40px" src="{{ asset(config('image.user_profile_pic').'/avatar.png') }}">
+                                @endif
+                            </li>
+                            <li class="right">
+                                <span>{{Auth::user()->name}}</span>
+                            </li>
+                            <li class="full"><a href="{{ url('/logout') }}"><i class="fa fa-btn fa-sign-out"></i>{{ $languageStrings['Logout'] or 'Logout' }}</a></li>
                         </ul>
                     </li>
                 @endif
