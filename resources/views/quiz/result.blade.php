@@ -1,9 +1,9 @@
 @extends('layouts.app')
-@section('og_url', url('quiz/'.$quiz->slug.'/landing/'.Auth::id()))
+@section('og_url', url('quiz/'.$quiz->slug.'/landing/'.Auth::id().'/'.md5(time()))))
 @section('og_title', $quiz->title)
 @section('og_description', $quiz->description)
 @section('og_author', Auth::user()->name)
-@section('og_image', asset(config('image.quiz_result_url').$result->result_image.'?version='.md5(time())))
+@section('og_image', asset(config('image.quiz_result_url').$result->result_image))
 @section('content')
     <div class="container main-content">
         <div class="row advertise-block">
@@ -25,7 +25,7 @@
                                     <img src="{{asset('images/loading.gif')}}">
                                     <span class="lead heading">&nbsp;Loading Results</span>
                                 </div>
-                                <img class="media-object result-image" src="{{asset(config('image.quiz_result_url').$result->result_image)}}?version={{md5(time())}}">
+                                <img class="media-object result-image" src="{{asset(config('image.quiz_result_url').$result->result_image)}}">
                             </div>
                             <div class="fb-like-button">
                                 @if(isset($fb_like_button))
@@ -38,7 +38,7 @@
                                 <a id="shareBtn" class="btn btn-primary btn-block"><i class="fa fa-facebook-official"></i> Share</a>
                             </div>
                             <div class="text-center row">
-                                <a class="btn btn-warning" href="{{ url('quiz/'.$quiz->slug.'/start') }}"><i class="fa fa-refresh"></i> Try Again</a>
+                                <a class="btn btn-warning" href="{{ url('quiz/'.$quiz->slug.'/start/'.md5(time())) }}"><i class="fa fa-refresh"></i> Try Again</a>
                             </div>
                         </div>
                     </div>

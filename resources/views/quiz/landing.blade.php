@@ -1,5 +1,5 @@
 @extends('layouts.app')
-@section('og_url', url('quiz/'.$quiz->slug.'/landing/'.$quizAttempt->user_id))
+@section('og_url', url('quiz/'.$quiz->slug.'/landing/'.$quizAttempt->user_id.'/'.md5(time()))))
 @section('og_title', $quiz->title)
 @section('og_description', $quiz->description)
 @section('og_author', $quizAttempt->user->name)
@@ -24,7 +24,7 @@
                                 <img src="{{ asset(config('image.quiz_template_url').$quiz->template->og_image) }}">
                             </div>
                             <div class="caption img-caption">
-                                <a class="btn btn-primary btn-block" href="{{ url('quiz/'.$quiz->slug.'/start') }}">Start</a>
+                                <a class="btn btn-primary btn-block" href="{{ url('quiz/'.$quiz->slug.'/start/'.md5(time()))) }}">Start</a>
                             </div>
                             <span>You will be required to login with Facebook.</span>
                         </div>
