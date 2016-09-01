@@ -25,7 +25,7 @@
                                     <img src="{{asset('images/loading.gif')}}">
                                     <span class="lead heading">&nbsp;Loading Results</span>
                                 </div>
-                                <img class="media-object result-image" src="{{asset(config('image.quiz_result_url').$result->result_image)}}">
+                                <img class="media-object result-image" src="{{asset(config('image.quiz_result_url').$result->result_image)}}?version={{md5(time())}}">
                             </div>
                             <div class="fb-like-button">
                                 @if(isset($fb_like_button))
