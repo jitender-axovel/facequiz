@@ -89,7 +89,7 @@
             FB.ui({
                 method: 'share',
                 display: 'popup',
-                href: '{{ url("quiz/".$quiz->slug."/landing/".Auth::id()) }}',
+                href: '{{ url("quiz/".$quiz->slug."/landing/".Auth::id())."/".md5(time()) }}',
             }, function(response){
                 // if (typeof response !== 'undefined') {
                     /** the user shared the content on their Facebook, go ahead and continue to download **/
