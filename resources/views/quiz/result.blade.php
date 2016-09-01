@@ -3,7 +3,7 @@
 @section('og_title', $quiz->title)
 @section('og_description', $quiz->description)
 @section('og_author', Auth::user()->name)
-@section('og_image', asset(config('image.quiz_result_url').$result->result_image))
+@section('og_image', asset(config('image.quiz_result_url').$result->result_image.'?version='.md5(time())))
 @section('content')
     <div class="container main-content">
         <div class="row advertise-block">
