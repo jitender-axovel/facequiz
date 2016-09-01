@@ -227,17 +227,21 @@
     @yield('content')
 
     <footer>
-        <div class="container-fluid">
-            <div class="col-md-3 col-sm-4 col-xs-12 copyright">
-                <p>@Robodoo, {{ $languageStrings['All Rights Reserved'] or 'All Rights Reserved' }}</p>
-            </div>
-            <div class="footer-links col-md-9 col-sm-8 col-xs-12">
+        <div class="container-fluid text-center">
+            <div class="footer-links col-md-12 col-sm-12 col-xs-12">
                 <ul class="list-inline">
                     @foreach(App\Cms::get() as $cmsPage)
                     <li><a href="{{url('cms/'.$cmsPage->slug)}}">{{$cmsPage->title}}</a></li>
                     @endforeach
                 </ul>
             </div>
+            <div class="col-md-12 col-sm-12 col-xs-12">
+                <p>Disclaimer: All content is provided for fun and entertainment purposes only</p>
+            </div>
+            <div class="col-md-12 col-sm-12 col-xs-12 copyright">
+                <p>@Robodoo, {{ $languageStrings['All Rights Reserved'] or 'All Rights Reserved' }}</p>
+            </div>
+            
         </div>
     </footer>
 
