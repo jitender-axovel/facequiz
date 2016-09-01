@@ -37,6 +37,9 @@
                             <div class="caption img-caption">
                                 <a id="shareBtn" class="btn btn-primary btn-block"><i class="fa fa-facebook-official"></i> Share</a>
                             </div>
+                            <div class="text-center row">
+                                <a class="btn btn-warning" href="{{ url('quiz/'.$quiz->slug.'/start') }}"><i class="fa fa-refresh"></i> Try Again</a>
+                            </div>
                         </div>
                     </div>
                 </div>
