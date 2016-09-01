@@ -182,7 +182,7 @@
         <div class="col-md-2 col-sm-2 col-xs-6">
             <select name="language" id="language-selector">
                 @foreach(App\Language::get() as $language)
-                    <option value="{{ $language->code }}">{{ $language->name }}</option>
+                    <option value="{{ $language->code }}"{{$language->code == Session::get('locale') ? ' selected' : ''}}>{{ $language->name }}</option>
                 @endforeach
             </select>
         </div>
