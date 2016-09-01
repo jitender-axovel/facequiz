@@ -260,7 +260,7 @@
     <script type="text/javascript">
         $('#language-selector').change(function() {
             lang = $(this).val();
-            window.location.href = window.location.href + '?lang=' + lang;
+            window.location.href = window.location.href.split('?')[0] + '?lang=' + lang;
         });
     </script>
 </body>
