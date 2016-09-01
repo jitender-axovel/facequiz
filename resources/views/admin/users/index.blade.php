@@ -3,7 +3,7 @@
 	<h2>Users List</h2>
 	<hr>
 	@include('notification')
-	<div class="row col-md-4">
+	<div class="row col-md-12">
 		<div class="panel panel-success">
 			<div class="panel-heading">
 				<div class="panel-title">Download Records</div>
@@ -12,21 +12,21 @@
 				Choose data to show in csv
 				<form class="form" action="{{ url('admin/users/download-csv') }}" method="POST">
 					{{csrf_field()}}
-					<div class="form-group form-inline">
+					<div class="form-group form-inline col-md-4">
 						<label class="control-label">Name</label>
 							<input type="checkbox" class="form-control" name="name" value="name"></input>
 					</div>
-					<div class="form-group form-inline">
+					<div class="form-group form-inline col-md-4">
 						<label>E-mail</label>
 						<input type="checkbox" class="form-control" name="email" value="email"></input>
 					</div>
-					<div class="form-group form-inline">
+					<div class="form-group form-inline col-md-4">
 						<label>Gender</label>
 						<input type="checkbox" class="form-control" name="gender" value="gender"></input>
 					</div>
-					<div class="form-group form-inline">
-						<label>Limit</label>
-						<input type="number" class="form-control" name="limit" value="{{old('limit')}}">
+					<div class="form-group form-inline col-md-12 custom">
+						<label class="">Limit</label>
+						<input type="number" class="form-control " name="limit" value="{{old('limit')}}">
 					</div>
 					<button class="btn btn-success" type="submit">Download</button>
 				</form>
