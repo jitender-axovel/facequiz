@@ -21,7 +21,7 @@ p{color:#9b9b9b; line-height: 150%;}
 .panel-title.heading {font-size: 22px;    padding-bottom: 5px; padding-top: 5px;}
 .heading { font-weight:bold;}
 .img-wrap { text-align: center;  width:100%; height: auto; margin-bottom: 10px; padding: 0;}
-.img-wrap img {height: 400px; width: 100%;}
+.img-wrap > img {height: 400px; width: 100%;}
 .fb-like-button { text-align: center; }
 .img-caption{ clear: both;padding-bottom: 10px;  padding-top: 10px;}
 /* header design */ 
@@ -93,13 +93,7 @@ footer p {margin: 0; color: #333333;}
 background:#ffffff;}
 .top-side-link .navbar-nav .dropdown .dropdown-menu::before {
 	border-color: rgba(0, 0, 0, 0) transparent #ffffff rgba(0, 0, 0, 0);
-	border-style: solid;
-	border-width: 17px;
-	content: "";
-	position: absolute;
-	right: 14px;
-	top: -34px;
-}
+	border-style: solid; border-width: 17px; content: ""; position: absolute; right: 14px; top: -34px;}
 .dropdown-menu > li > a:focus, .dropdown-menu > li > a:hover {background-color: #930a0f; text-decoration: none;
 	transform: scale(1.2); color:#ffffff;}
 /* responsive work */
