@@ -65,8 +65,8 @@ return [
     |
     */
 
-    'languages' => array('en', 'fr', 'cz', 'ru', 'de', 'es', 'pl'),
-    'locales' => ['en' => 'English', 'cz' => 'Czech', 'fr' => 'French', 'ru' => 'Russian', 'de' => 'Germen', 'es' => 'Spanish', 'pl' => 'Polish'],
+    'languages' => array('en', 'fr', 'cz', 'ru', 'de', 'es', 'pl', 'ta'),
+    'locales' => ['en' => 'English', 'cz' => 'Czech', 'fr' => 'French', 'ru' => 'Russian', 'de' => 'Germen', 'es' => 'Spanish', 'pl' => 'Polish', 'ta' => 'Tamil'],
 
     'locale' => 'en',
 

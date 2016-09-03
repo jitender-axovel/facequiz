@@ -60,8 +60,8 @@ Route::group(['middleware' => 'before'], function() {
 
     Route::group(['prefix' => 'quiz'], function() {
         Route::get('{quizSlug}/show', 'QuizzesController@index');
-        Route::get('{quizSlug}/landing/{userId}', 'QuizzesController@landing');
-        Route::get('{quizSlug}/start', 'QuizzesController@start')->middleware(['auth']);
+        Route::get('{quizSlug}/landing/{userId}/{version}', 'QuizzesController@landing');
+        Route::get('{quizSlug}/start/{version}', 'QuizzesController@start')->middleware(['auth']);
         Route::get('{quizSlug}/summary', 'QuizzesController@summary');
     });
 });

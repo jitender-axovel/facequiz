@@ -23,6 +23,9 @@ class BeforeMiddleware
         $browser_lang = substr($request->server('HTTP_ACCEPT_LANGUAGE'), 0, 2);
         $cookie_lang = $request->cookie('language');
         
+        if(isset($_GET['lang']) && in_array($cookie_lang, config('app.languages'))) {
+            $request->session()->put('locale', $_GET['lang']);
+        }
         if($cookie_lang && in_array($cookie_lang, config('app.languages'))) {
             $request->session()->put('locale', $cookie_lang);
         }

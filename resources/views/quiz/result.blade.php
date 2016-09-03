@@ -1,5 +1,5 @@
 @extends('layouts.app')
-@section('og_url', url('quiz/'.$quiz->slug.'/landing/'.Auth::id()))
+@section('og_url', url('quiz/'.$quiz->slug.'/landing/'.Auth::id().'/'.md5(time())))
 @section('og_title', $quiz->title)
 @section('og_description', $quiz->description)
 @section('og_author', Auth::user()->name)
@@ -36,6 +36,9 @@
                             </div>
                             <div class="caption img-caption">
                                 <a id="shareBtn" class="btn btn-primary btn-block"><i class="fa fa-facebook-official"></i> Share</a>
+                            </div>
+                            <div class="text-center row">
+                                <a class="btn btn-warning" href="{{ url('quiz/'.$quiz->slug.'/start/'.md5(time())) }}"><i class="fa fa-refresh"></i> Try Again</a>
                             </div>
                         </div>
                     </div>
@@ -86,7 +89,7 @@
             FB.ui({
                 method: 'share',
                 display: 'popup',
-                href: '{{ url("quiz/".$quiz->slug."/landing/".Auth::id()) }}',
+                href: '{{ url("quiz/".$quiz->slug."/landing/".Auth::id())."/".md5(time()) }}',
             }, function(response){
                 // if (typeof response !== 'undefined') {
                     /** the user shared the content on their Facebook, go ahead and continue to download **/

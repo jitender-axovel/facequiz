@@ -159,7 +159,7 @@
         <div class="logo custom-left col-sm-3 col-xs-12 ">
             <a href="{{ url('/') }}"><img src="{{asset('images/logo.png')}}"></a>
         </div>
-        <div class="header-navigation col-md-6 col-sm-5 col-xs-12">
+        <div class="header-navigation col-md-4 col-sm-4 col-xs-12">
             <nav class="navbar navbar-default navbar-static-top">
                 <div class="navbar-header">
                     <!-- Collapsed Hamburger -->
@@ -179,7 +179,14 @@
                 </div>
             </nav>
         </div>
-        <div class="col-md-2 col-sm-2  col-md-6 col-xs-6 custom-like-button">
+        <div class="col-md-2 col-sm-2 col-xs-6">
+            <select name="language" id="language-selector">
+                @foreach(App\Language::get() as $language)
+                    <option value="{{ $language->code }}"{{$language->code == Session::get('locale') ? ' selected' : ''}}>{{ $language->name }}</option>
+                @endforeach
+            </select>
+        </div>
+        <div class="col-md-2 col-sm-2 col-xs-6 custom-like-button">
             <span class="bold">Like Us <i class="fa fa-arrow-right"></i> </span>
             @if(isset($fb_like_button))
                 {!!$fb_like_button!!}
@@ -187,7 +194,7 @@
                 <div class="fb-like" data-href="https://www.facebook.com/robodoo.en" data-layout="button_count" data-action="like" data-size="small" data-show-faces="true" data-share="false"></div>
             @endif
         </div>
-        <div class="top-side-link col-md-2  col-sm-2 col-md-6 col-xs-6 ">
+        <div class="top-side-link col-md-1 col-sm-1 col-xs-6 ">
             <!-- Right Side Of Navbar -->
             <ul class="nav navbar-nav navbar-right">
                 <!-- Authentication Links -->
@@ -227,17 +234,21 @@
     @yield('content')
 
     <footer>
-        <div class="container-fluid">
-            <div class="col-md-3 col-sm-4 col-xs-12 copyright">
-                <p>@Robodoo, {{ $languageStrings['All Rights Reserved'] or 'All Rights Reserved' }}</p>
-            </div>
-            <div class="footer-links col-md-9 col-sm-8 col-xs-12">
+        <div class="container-fluid text-center">
+            <div class="footer-links col-md-12 col-sm-12 col-xs-12">
                 <ul class="list-inline">
                     @foreach(App\Cms::get() as $cmsPage)
                     <li><a href="{{url('cms/'.$cmsPage->slug)}}">{{$cmsPage->title}}</a></li>
                     @endforeach
                 </ul>
             </div>
+            <div class="col-md-12 col-sm-12 col-xs-12">
+                <p>Disclaimer: All content is provided for fun and entertainment purposes only</p>
+            </div>
+            <div class="col-md-12 col-sm-12 col-xs-12 copyright">
+                <p>@Robodoo, {{ $languageStrings['All Rights Reserved'] or 'All Rights Reserved' }}</p>
+            </div>
+            
         </div>
     </footer>
 
@@ -246,5 +257,11 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
     {{-- <script src="{{ elixir('js/app.js') }}"></script> --}}
     @yield('scripts')
+    <script type="text/javascript">
+        $('#language-selector').change(function() {
+            lang = $(this).val();
+            window.location.href = window.location.href.split('?')[0] + '?lang=' + lang;
+        });
+    </script>
 </body>
 </html>

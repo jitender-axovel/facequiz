@@ -25,7 +25,7 @@
                                     <div class="fb-like" data-href="https://www.facebook.com/robodoo.en" data-layout="button_count" data-action="like" data-size="small" data-show-faces="true" data-share="false"></div>
                                 @endif
                                 <div class="text-center row">
-                                    <a class="btn btn-success btn-lg" href="{{ url('quiz/'.$quiz->slug.'/start') }}"><i class="fa fa-refresh"></i> Try Again</a>
+                                    <a class="btn btn-success btn-lg" href="{{ url('quiz/'.$quiz->slug.'/start/'.md5(time())) }}"><i class="fa fa-refresh"></i> Try Again</a>
                                     <a class="btn btn-warning btn-lg" href="{{ url('quiz/'.$quizzes->first()->slug.'/show') }}"><i class="fa fa-angle-double-right"></i>Try Next</a>
                                 </div>
                             </div>

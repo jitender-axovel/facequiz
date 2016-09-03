@@ -39,7 +39,7 @@ class QuizzesController extends Controller
         return view('home', compact('quizzes', 'page'));
     }
 
-    public function landing($quizSlug, $userId)
+    public function landing($quizSlug, $userId, $version)
     {
         $quiz = Quiz::where('locale', session('locale'))->where('slug', $quizSlug)->where('is_active', 1)->first();
         
@@ -56,7 +56,7 @@ class QuizzesController extends Controller
         return view('quiz.landing', compact('page', 'quiz', 'quizzes', 'quizAttempt'));
     }
     
-    public function start($slug)
+    public function start($slug, $version)
     {
         if(!(session()->has('fb_access_token'))) {
             auth()->logout();
