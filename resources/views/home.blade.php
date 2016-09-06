@@ -10,30 +10,35 @@
         <div class="row">
             @foreach($quizzes as $key=>$quiz)
                 @if($key == 0)
-                    <div class="col-md-8">
-                        <div class="thumbnail">
-                            <div class="content-img">
-                                <a href="{{ url('quiz/'.$quiz->slug.'/show') }}"><img src="{{ asset(config('image.quiz_template_url').$quiz->template->og_image) }}">
-                                </a>
-                            </div>
-                            <div class="caption">
-                                <div class="bold"><a href="{{ url('quiz/'.$quiz->slug.'/show') }}">{{$quiz->title}}</a></div>
+                    <div class="row top-setion">
+                        <div class="col-md-8">
+                            <div class="thumbnail item">
+                                <div class="content-img">
+                                    <a href="{{ url('quiz/'.$quiz->slug.'/show') }}"><img src="{{ asset(config('image.quiz_template_url').$quiz->template->og_image) }}">
+                                    </a>
+                                </div>
+                                <div class="caption">
+                                    <div class="bold"><a href="{{ url('quiz/'.$quiz->slug.'/show') }}">{{$quiz->title}}</a></div>
+                                </div>
                             </div>
                         </div>
-                    </div>
+                        <div class="col-md-4">
                 @elseif($key > 0 && $key < 3)
-                    <div class="col-md-4">
-                        <div class="thumbnail">
-                            <div class="content-img">
-                                <a href="{{ url('quiz/'.$quiz->slug.'/show') }}"><img src="{{ asset(config('image.quiz_template_url').$quiz->template->og_image) }}">
-                                </a>
-                            </div>
-                            <div class="caption">
-                                <div class="bold"><a href="{{ url('quiz/'.$quiz->slug.'/show') }}">{{$quiz->title}}</a></div>
-                            </div>
+                    <div class="thumbnail item">
+                        <div class="content-img">
+                            <a href="{{ url('quiz/'.$quiz->slug.'/show') }}"><img src="{{ asset(config('image.quiz_template_url').$quiz->template->og_image) }}">
+                            </a>
+                        </div>
+                        <div class="caption">
+                            <div class="bold"><a href="{{ url('quiz/'.$quiz->slug.'/show') }}">{{$quiz->title}}</a></div>
                         </div>
                     </div>
-                @else
+                @endif
+                @if(($quizzes->count() == 1 || ($quizzes->count() == 2 && $key == 1)) || ($quizzes->count() > 2 && $key == 2))
+                        </div>
+                    </div>
+                @endif
+                @if($key > 2)
                     <div class="col-md-4 col-sm-6">
                         <div class="thumbnail">
                             <div class="content-img">
