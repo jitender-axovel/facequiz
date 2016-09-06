@@ -96,6 +96,8 @@ background:#ffffff;}
 	border-style: solid; border-width: 17px; content: ""; position: absolute; right: 14px; top: -34px;}
 .dropdown-menu > li > a:focus, .dropdown-menu > li > a:hover {background-color: #930a0f; text-decoration: none;
 	transform: scale(1.2); color:#ffffff;}
+.top-section .left-section .content-img a > img {height: 460px;}
+.thumbnail .caption a {color: #000000; font-size: 15px; font-weight: bold;}
 /* responsive work */
 @media all and (max-width:767px){
 	.web-view{ display: none;}
@@ -114,7 +116,10 @@ background:#ffffff;}
 	.top-side-link {width: auto;	}
 	.profile_pic .media-left {float: right;	padding: 0;	}
 	.top-side-link .navbar-nav .dropdown .dropdown-menu { left: auto; right: -10px;	z-index: 99999999;}
+	.top-section .left-section .content-img a > img {height: 220px;}
+	.content-img a > img {height: 220px;}
 }
-@media all and (max-width:470px){
-	
+@media all and (max-width:479px){
+	.top-section .left-section .content-img a > img {height: 180px;}
+	.content-img a > img {height: 180px;}
 }
