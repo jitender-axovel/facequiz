@@ -93,6 +93,7 @@ background:#ffffff;}
 .web-view .header-navigation .navbar {display: inline-block;}
 .web-view .header-navigation .navbar {float: left;}
 .web-view .header-navigation select {float: left; margin-left: 10px; margin-top: 5px;}
+.result-img{width:100%;}
 /* home page */
 
 /* admin panel */

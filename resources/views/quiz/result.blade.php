@@ -20,7 +20,7 @@
                             <div class="panel-title heading text-center">{{ $quiz->title }}</div>
                         </div>
                         <div class="panel-body">
-                            <div class="img-wrap col-md-10">
+                            <div class="result-img col-md-10">
                                 <div class="loading-image">
                                     <img src="{{asset('images/loading.gif')}}">
                                     <span class="lead heading">&nbsp;Loading Results</span>
