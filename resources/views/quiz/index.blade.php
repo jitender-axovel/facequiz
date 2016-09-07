@@ -12,9 +12,9 @@
                 <div class="row">
                     <div class="panel panel-default">
                         <div class="panel-heading">
-                            <h3 class="panel-title heading text-center">{{ $quiz->title }}</h3>
+
                         </div>
-                        <div class="panel-body">
+                        <div class="panel-body text-center">
                 			<div class="img-wrap col-md-10">
                 				<img src="{{ asset(config('image.quiz_template_url').$quiz->template->og_image) }}">
                 			</div>
@@ -25,13 +25,15 @@
                                     <div class="fb-like" data-href="https://www.facebook.com/robodoo.en" data-layout="button_count" data-action="like" data-size="small" data-show-faces="true" data-share="false"></div>
                                 @endif
                             </div>
+                            <h3 class="panel-title heading text-center">{{ $quiz->title }}</h3>
+                            <p class="quiz-description">{{$quiz->description}}</p>
                             <div class="caption img-caption">
                                 <a class="btn btn-primary btn-block" href="{{ url('quiz/'.$quiz->slug.'/start/'.md5(time())) }}">Start</a>
                             </div>
                             <span>You will be required to login with Facebook.</span>
                         </div>
                         <div class="panel-footer">
-                            {{$quiz->description}}
+
                         </div>
                     </div>
                 </div>
