@@ -154,77 +154,85 @@
     </div>
 
 <!--div for web-->
-
-    <div class="container-fluid web-view">
-        <div class="logo custom-left col-sm-3 col-xs-12 ">
-            <a href="{{ url('/') }}"><img src="{{asset('images/logo.png')}}"></a>
-        </div>
-        <div class="header-navigation col-md-6 col-sm-5 col-xs-12">
-            <nav class="navbar navbar-default navbar-static-top">
-                <div class="navbar-header">
-                    <!-- Collapsed Hamburger -->
-                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#app-navbar-collapse">
-                        <span class="sr-only">Toggle Navigation</span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                    </button>
-                </div>
-                <div class="collapse navbar-collapse" id="app-navbar-collapse">
-                    <!-- Left Side Of Navbar -->
-                    <ul class="nav navbar-nav">
-                        <li><a href="{{ url('/') }}">{{ $languageStrings['Latest'] or 'Latest' }}</a></li>
-                        <li><a href="{{ url('quizzes/popular') }}">{{ $languageStrings['Popular'] or 'Popular' }}</a></li>
-                    </ul>
-                </div>
-            </nav>
-            <select name="language" id="language-selector">
-                @foreach(App\Language::get() as $language)
-                    <option value="{{ $language->code }}"{{$language->code == Session::get('locale') ? ' selected' : ''}}>{{ $language->name }}</option>
-                @endforeach
-            </select>
-        </div>
-        <div class="col-md-2 col-sm-2 col-xs-6 custom-like-button">
-            <span class="bold">Like Us <i class="fa fa-arrow-right"></i> </span>
-            @if(isset($fb_like_button))
-                {!!$fb_like_button!!}
-            @else
-                <div class="fb-like" data-href="https://www.facebook.com/robodoo.en" data-layout="button_count" data-action="like" data-size="small" data-show-faces="true" data-share="false"></div>
-            @endif
-        </div>
-        <div class="top-side-link col-md-1 col-sm-2 col-xs-6 ">
-            <!-- Right Side Of Navbar -->
-            <ul class="nav navbar-nav navbar-right">
-                <!-- Authentication Links -->
-                @if (Auth::guest())
-                    <li><a class="login" href="{{ url('redirect') }}">{{ $languageStrings['Login'] or 'Login' }}</a></li>
-                @else
-                    <li class="dropdown">
-                        <a class="profile_pic" href="#" class="dropdown-toggle media" data-toggle="dropdown" role="button" aria-expanded="false">
-                            <div class="media-left">
-                                @if(Auth::user()->avatar)
-                                    <img  class="media-object" height="40px" width="40px" src="{{Auth::user()->avatar}}"> 
-                                @else
-                                    <img class="media-object" height="40px" width="40px" src="{{ asset(config('image.user_profile_pic').'/avatar.png') }}">
-                                @endif
-                            </div>
-                        </a>
-                        <ul class="dropdown-menu" role="menu">
-                            <li class="left">
-                                @if(Auth::user()->avatar)
-                                    <img  class="media-object" height="40px" width="40px" src="{{Auth::user()->avatar}}">
-                                @else
-                                    <img class="media-object" height="40px" width="40px" src="{{ asset(config('image.user_profile_pic').'/avatar.png') }}">
-                                @endif
-                            </li>
-                            <li class="right">
-                                <span>{{Auth::user()->name}}</span>
-                            </li>
-                            <li class="full"><a href="{{ url('/logout') }}"><i class="fa fa-btn fa-sign-out"></i>{{ $languageStrings['Logout'] or 'Logout' }}</a></li>
+    <div class="top-header">
+        <div class="container web-view">
+            <div class="logo custom-left col-sm-4 col-xs-12 ">
+                <a href="{{ url('/') }}" class="logo-link"><img src="{{asset('images/logo.png')}}"></a>
+                <select name="language" id="language-selector">
+                    @foreach(App\Language::get() as $language)
+                        <option value="{{ $language->code }}"{{$language->code == Session::get('locale') ? ' selected' : ''}}>{{ $language->name }}</option>
+                    @endforeach
+                </select>
+            </div>
+            <div class="header-navigation col-md-5 col-sm-5 col-xs-12">
+                <nav class="navbar navbar-default navbar-static-top">
+                    <div class="navbar-header">
+                        <!-- Collapsed Hamburger -->
+                        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#app-navbar-collapse">
+                            <span class="sr-only">Toggle Navigation</span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </button>
+                    </div>
+                    <div class="collapse navbar-collapse" id="app-navbar-collapse">
+                        <!-- Left Side Of Navbar -->
+                        <ul class="nav navbar-nav">
+                            <li><a href="{{ url('/') }}">{{ $languageStrings['Latest'] or 'Latest' }}</a></li>
+                            <li><a href="{{ url('quizzes/popular') }}">{{ $languageStrings['Popular'] or 'Popular' }}</a></li>
                         </ul>
-                    </li>
+                    </div>
+                </nav>
+            </div>
+            <div class="top-side-link col-md-2 col-sm-3 col-xs-6 ">
+                <!-- Right Side Of Navbar -->
+                <ul class="nav navbar-nav navbar-right">
+                    <!-- Authentication Links -->
+                    @if (Auth::guest())
+                        <li><a class="login" href="{{ url('redirect') }}">{{ $languageStrings['Login'] or 'Login' }}</a></li>
+                    @else
+                        <li class="dropdown">
+                            <a class="profile_pic" href="#" class="dropdown-toggle media" data-toggle="dropdown" role="button" aria-expanded="false">
+                                <div class="media-left">
+                                    @if(Auth::user()->avatar)
+                                        <img  class="media-object" height="40px" width="40px" src="{{Auth::user()->avatar}}">
+                                    @else
+                                        <img class="media-object" height="40px" width="40px" src="{{ asset(config('image.user_profile_pic').'/avatar.png') }}">
+                                    @endif
+                                </div>
+                            </a>
+                            <ul class="dropdown-menu" role="menu">
+                                <li class="left">
+                                    @if(Auth::user()->avatar)
+                                        <img  class="media-object" height="40px" width="40px" src="{{Auth::user()->avatar}}">
+                                    @else
+                                        <img class="media-object" height="40px" width="40px" src="{{ asset(config('image.user_profile_pic').'/avatar.png') }}">
+                                    @endif
+                                </li>
+                                <li class="right">
+                                    <span>{{Auth::user()->name}}</span>
+                                </li>
+                                <li class="full"><a href="{{ url('/logout') }}"><i class="fa fa-btn fa-sign-out"></i>{{ $languageStrings['Logout'] or 'Logout' }}</a></li>
+                            </ul>
+                        </li>
+                    @endif
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="like-section">
+        <div class="container-fluid">
+            <div class="col-md-9 col-sm-8 col-xs-12 text-center">
+                <p>We like you. Like us back!</p>
+            </div>
+            <div class="custom-like-button col-md-3 col-sm-4">
+                <span class="bold">Like Us <i class="fa fa-arrow-right"></i> </span>
+                @if(isset($fb_like_button))
+                    {!!$fb_like_button!!}
+                @else
+                    <div class="fb-like" data-href="https://www.facebook.com/robodoo.en" data-layout="button_count" data-action="like" data-size="small" data-show-faces="true" data-share="false"></div>
                 @endif
-            </ul>
+            </div>
         </div>
     </div>
 </header>
