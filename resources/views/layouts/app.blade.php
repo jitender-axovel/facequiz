@@ -159,7 +159,7 @@
         <div class="logo custom-left col-sm-3 col-xs-12 ">
             <a href="{{ url('/') }}"><img src="{{asset('images/logo.png')}}"></a>
         </div>
-        <div class="header-navigation col-md-4 col-sm-4 col-xs-12">
+        <div class="header-navigation col-md-6 col-sm-5 col-xs-12">
             <nav class="navbar navbar-default navbar-static-top">
                 <div class="navbar-header">
                     <!-- Collapsed Hamburger -->
@@ -178,8 +178,6 @@
                     </ul>
                 </div>
             </nav>
-        </div>
-        <div class="col-md-2 col-sm-2 col-xs-6">
             <select name="language" id="language-selector">
                 @foreach(App\Language::get() as $language)
                     <option value="{{ $language->code }}"{{$language->code == Session::get('locale') ? ' selected' : ''}}>{{ $language->name }}</option>
@@ -194,7 +192,7 @@
                 <div class="fb-like" data-href="https://www.facebook.com/robodoo.en" data-layout="button_count" data-action="like" data-size="small" data-show-faces="true" data-share="false"></div>
             @endif
         </div>
-        <div class="top-side-link col-md-1 col-sm-1 col-xs-6 ">
+        <div class="top-side-link col-md-1 col-sm-2 col-xs-6 ">
             <!-- Right Side Of Navbar -->
             <ul class="nav navbar-nav navbar-right">
                 <!-- Authentication Links -->

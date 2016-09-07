@@ -10,7 +10,7 @@
         <div class="row">
             @foreach($quizzes as $key=>$quiz)
                 @if($key == 0)
-                    <div class="row top-section">
+                    <div class="top-section">
                         <div class="col-md-8 left-section col-sm-7 col-xs-12">
                             <div class="thumbnail item">
                                 <div class="content-img">
@@ -22,7 +22,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="col-md-4 col-sm-5 col-xs-12">
+                        <div class="col-md-4 col-sm-5 col-xs-12 right-section">
                 @elseif($key > 0 && $key < 3)
                     <div class="thumbnail item">
                         <div class="content-img">
@@ -39,7 +39,7 @@
                     </div>
                 @endif
                 @if($key > 2)
-                    <div class="col-md-4 col-sm-6">
+                    <div class="col-md-4 col-sm-6 padd-5">
                         <div class="thumbnail">
                             <div class="content-img">
                                 <a href="{{ url('quiz/'.$quiz->slug.'/show') }}"><img src="{{ asset(config('image.quiz_template_url').$quiz->template->og_image) }}">
