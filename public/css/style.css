@@ -64,7 +64,7 @@ body .navbar {min-height: 0;}
 footer {background: #ffffff; padding: 25px 10px; width: 100%;}
 .footer-links {margin-bottom: 10px;}
 footer .copyright {margin-top: 10px;}
-.footer-links .list-inline > li {margin-right: 15px;}
+.footer-links .list-inline > li {margin-right: 30px;}
 .footer-links .list-inline a {color: #930A0F; font-size: 18px;}
 footer p {margin: 0; color: #333333;}
 /* footer design end */
@@ -85,7 +85,7 @@ footer p {margin: 0; color: #333333;}
 .padd-5 {padding: 5px;}
 .dropdown .left .media-object {border-radius: 100%; height: 100%; width: 100%;}
 .navbar-nav .dropdown .left {float: left; height: 65px; width: 65px; margin-bottom: 10px;}
-.navbar-nav .dropdown .right {float: left; padding: 20px 5px 0; max-width: 60%;}
+.navbar-nav .dropdown .right {float: left; padding: 20px 2px 0 15px; max-width: 60%;}
 .dropdown .full {clear: both; margin: 10px 0; overflow: hidden; padding: 5px; width: 100%; background: #930a0f ;}
 .top-side-link .dropdown .full > a {color: #ffffff;	text-align: center;}
 .top-side-link .navbar-nav .dropdown .dropdown-menu {min-width: 225px; padding: 15px; top:60px; position:absolute;
