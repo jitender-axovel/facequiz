@@ -121,7 +121,7 @@ class QuizzesController extends Controller
         $quizAttempt = QuizAttempt::where('quiz_id', $quiz->id)->where('user_id', Auth::id())->first();
 
         if($quizAttempt) {
-            QuizAttempt::where('quiz_id', $quiz->id)->where('user_id', Auth::id())->update(['result_image' => $imageName]);
+            $quizAttempt->update(['result_image' => $imageName]);
             $result = $quizAttempt;
         } else {
             $result = QuizAttempt::create([
