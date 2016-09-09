@@ -1,5 +1,5 @@
 @extends('layouts.app')
-@section('og_url', url('quiz/'.$quiz->slug.'/landing/'.Auth::id().'/'.md5(time())))
+@section('og_url', url('quiz/'.$quiz->slug.'/landing/'.Auth::id().'/'.$version))
 @section('og_title', $quiz->title)
 @section('og_description', $quiz->description)
 @section('og_author', Auth::user()->name)

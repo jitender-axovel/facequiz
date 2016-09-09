@@ -142,6 +142,6 @@ class QuizzesController extends Controller
         $page = $quiz->title.' - Robodoo - Play with Robo';
         $quizzes = Quiz::where('id', '!=', $quiz->id)->where('locale', session('locale'))->where('is_active', 1)->orderBy('updated_at', 'DESC')->get();
 
-        return view('quiz.summary', compact('page', 'quiz', 'quizzes'));
+        return view('quiz.summary', compact('page', 'quiz', 'quizzes', 'version'));
     }
 }
