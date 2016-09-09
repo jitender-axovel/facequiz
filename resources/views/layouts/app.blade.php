@@ -220,7 +220,7 @@
             </div>
         </div>
     </div>
-    <div class="like-section">
+    <div class="like-section web-view">
         <div class="container-fluid">
             <div class="col-md-9 col-sm-8 col-xs-12 text-center">
                 <p>We like you. Like us back!</p>

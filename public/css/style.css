@@ -7,7 +7,7 @@ h4{font-size:20px;}
 h2{font-size:40px; color:#ed3174;}
 h3.small-heading{font-size:25px; color:#ed3174; text-transform: uppercase;}
 h1{font-size:60px;}
-a{text-decoration:none; font-family: 'Open Sans', sans-serif;}
+a{text-decoration:none; font-family: 'Open Sans', sans-serif; outline:none;}
 img{max-width: 100% !important; max-height: 100% !important;}
 video { max-width: 100%;}
 a:hover{text-decoration:none; color:#ed3174; transition: all 0.5s ease-in-out 0s;}
@@ -15,7 +15,7 @@ p{color:#9b9b9b; line-height: 150%;}
 .list-inline > li {padding: 0;}
 .upper{text-transform:uppercase;}
 .start-today p  , .how-works p{color: #3b3b3b;}
-.container {padding: 0; width: 80%;}
+.container {max-width: 900px; padding: 0; width: 70%;}
 .panel-body > img { width: 100%; padding-bottom: 10px;}
 .caption { padding-bottom: 10px;}
 .panel-title.heading {font-size: 22px;    padding-bottom: 5px; padding-top: 5px;}
@@ -29,7 +29,6 @@ p{color:#9b9b9b; line-height: 150%;}
 header.site-header{z-index: 99; background: #fff ; position: relative;}
 .top-header {padding: 6px 0;}
 .logo-link {display: inline-block; float: left; margin-right: 20px;}
-header .container , footer .container{width: 90%;}
 header .logo img {width: 100px; }
 .header-navigation .navbar {background: transparent; border: 0 none; margin: 0;}
 .navbar-default .navbar-nav > li > a {color: #930a0f; font-size: 15px; padding: 5px 20px; text-transform: uppercase;}
@@ -44,7 +43,7 @@ body .navbar {min-height: 0;}
 .top-side-link {float: right;margin-top: 5px;text-align: center; list-style: outside none none;}
 .header-navigation .navbar-nav li {margin-right: 15px;}
 .top-side-link .nav.navbar-nav {width: 100%; margin:0;}
-.logo.custom-left {float: left; padding: 0 15px; width: auto;}
+.logo.custom-left {float: left; padding: 0 15px 0 0; width: auto;}
 .row.advertise-block {padding-bottom: 20px;padding-top: 10px;text-align: center;}
 .top-side-link .navbar-nav li {float: right;}
 #language-selector { -moz-appearance: none;  background: rgba(0, 0, 0, 0) url("../images/left-arrow.png") no-repeat scroll 55px center;
@@ -97,7 +96,7 @@ background:#ffffff; border: 1px solid #930a0f;}
 .dropdown-menu > li > a:focus, .dropdown-menu > li > a:hover {background-color: #930a0f; text-decoration: none;
 	transform: scale(1.2); color:#ffffff;}
 .top-section .left-section .content-img a > img {height: 442px;}
-.thumbnail .caption a {color: #000000; font-size: 15px; font-weight: bold;}
+.thumbnail .caption a {color: #000000; font-size: 15px; font-weight: bold; outline:none;}
 .thumbnail {margin-bottom: 10px; padding: 0;}
 .padd-5 .thumbnail {margin-bottom: 0;}
 .web-view .header-navigation .navbar {display: inline-block;}
@@ -107,6 +106,10 @@ background:#ffffff; border: 1px solid #930a0f;}
 .main-content .panel .panel-heading , .main-content .panel .panel-footer{border: 0 none; padding: 0;}
 .quiz-description {color: #787878; font-size: 17px;}
 .loading-image {text-align: center;}
+.start-with-fb {border-radius: 40px; font-size: 22px; min-width: 250px; padding: 6px 40px; outline:none; max-width: 100%;}
+.start-with-fb .fa {padding-right: 20px; transform: scale(1.6);}
+.share-facebook {font-size: 22px; min-width: 250px;  padding: 6px 40px; outline:none; max-width: 100%;}
+.share-facebook .fa { transform: scale(1.5); padding-right:20px;}
 /* home page */
 
 /* admin panel */
@@ -150,6 +153,10 @@ background:#ffffff; border: 1px solid #930a0f;}
 	.top-side-link .navbar-nav .dropdown .dropdown-menu { left: auto; right: -10px;	z-index: 99999999;}
 	.top-section .left-section .content-img a > img {height: 220px;}
 	.content-img a > img {height: 220px;}
+	.share-facebook , .start-with-fb {font-size: 18px; padding: 6px 20px;}
+	.start-with-fb .fa , .share-facebook .fa {padding-right: 10px; transform: scale(1.4);}
+	.navbar-default .navbar-nav > li > a {color: #ffffff;}
+	.header-navigation .navbar-nav li {margin-right: 0;}
 }
 @media all and (max-width:479px){
 	.top-section .left-section .content-img a > img {height: 180px;}

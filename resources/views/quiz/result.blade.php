@@ -34,8 +34,8 @@
                                     <div class="fb-like" data-href="https://www.facebook.com/robodoo.en" data-layout="button_count" data-action="like" data-size="small" data-show-faces="true" data-share="false"></div>
                                 @endif
                             </div>
-                            <div class="caption img-caption">
-                                <a id="shareBtn" class="btn btn-primary btn-block"><i class="fa fa-facebook-official"></i> Share</a>
+                            <div class="caption img-caption text-center">
+                                <a id="shareBtn" class="btn btn-primary share-facebook"><i class="fa fa-facebook-official"></i> Share on Facebook</a>
                             </div>
                             <div class="text-center row">
                                 <a class="btn btn-warning" href="{{ url('quiz/'.$quiz->slug.'/start/'.md5(time())) }}"><i class="fa fa-refresh"></i> Try Again</a>

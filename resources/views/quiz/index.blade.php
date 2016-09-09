@@ -28,7 +28,7 @@
                             <h3 class="panel-title heading text-center">{{ $quiz->title }}</h3>
                             <p class="quiz-description">{{$quiz->description}}</p>
                             <div class="caption img-caption">
-                                <a class="btn btn-primary start-with-fb" href="{{ url('quiz/'.$quiz->slug.'/start/'.md5(time())) }}"><i class="fa fa-facebook-official"></i> continue with facebook</a>
+                                <a class="btn btn-primary start-with-fb" href="{{ url('quiz/'.$quiz->slug.'/start/'.md5(time())) }}"><i class="fa fa-facebook-official"></i> Continue with Facebook</a>
                             </div>
                         </div>
                         <div class="panel-footer">
