@@ -118,6 +118,9 @@ class QuizzesController extends Controller
         $command = 'xvfb-run wkhtmltoimage ' . $filePath.'/'.$fileName . ' '. $imagePath.'/'.$imageName;
         shell_exec($command);
 
+        $command = 'ffmpeg -y -i '.$imagePath.'/'.$imageName.' -vf scale=620:-1 '.$imagePath.'/'.$imageName;//dd($command);
+        shell_exec($command);
+
         $quizAttempt = QuizAttempt::where('quiz_id', $quiz->id)->where('user_id', Auth::id())->first();
 
         if($quizAttempt) {
