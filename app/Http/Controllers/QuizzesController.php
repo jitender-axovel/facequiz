@@ -133,7 +133,7 @@ class QuizzesController extends Controller
         
         $quizzes = Quiz::where('locale', session('locale'))->where('slug', '!=', $slug)->where('is_active', 1)->get();
         
-        return view('quiz.result', compact('page', 'quiz', 'template', 'quizzes', 'result'));
+        return view('quiz.result', compact('page', 'quiz', 'template', 'quizzes', 'result', 'version'));
     }
 
     public function summary($slug)
@@ -142,6 +142,6 @@ class QuizzesController extends Controller
         $page = $quiz->title.' - Robodoo - Play with Robo';
         $quizzes = Quiz::where('id', '!=', $quiz->id)->where('locale', session('locale'))->where('is_active', 1)->orderBy('updated_at', 'DESC')->get();
 
-        return view('quiz.summary', compact('page', 'quiz', 'quizzes', 'version'));
+        return view('quiz.summary', compact('page', 'quiz', 'quizzes'));
     }
 }
