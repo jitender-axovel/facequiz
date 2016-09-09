@@ -53,7 +53,7 @@ class QuizzesController extends Controller
 
         $quizzes = Quiz::where('locale', session('locale'))->where('slug', '!=', $quizSlug)->where('is_active', 1)->get();
         
-        return view('quiz.landing', compact('page', 'quiz', 'quizzes', 'quizAttempt'));
+        return view('quiz.landing', compact('page', 'quiz', 'quizzes', 'quizAttempt', 'version'));
     }
     
     public function start($slug, $version)
@@ -118,10 +118,13 @@ class QuizzesController extends Controller
         $command = 'xvfb-run wkhtmltoimage ' . $filePath.'/'.$fileName . ' '. $imagePath.'/'.$imageName;
         shell_exec($command);
 
+        $command = 'ffmpeg -y -i '.$imagePath.'/'.$imageName.' -vf scale=620:-1 '.$imagePath.'/'.$imageName;//dd($command);
+        shell_exec($command);
+
         $quizAttempt = QuizAttempt::where('quiz_id', $quiz->id)->where('user_id', Auth::id())->first();
 
         if($quizAttempt) {
-            QuizAttempt::where('quiz_id', $quiz->id)->where('user_id', Auth::id())->update(['result_image' => $imageName]);
+            $quizAttempt->update(['result_image' => $imageName]);
             $result = $quizAttempt;
         } else {
             $result = QuizAttempt::create([
@@ -133,7 +136,7 @@ class QuizzesController extends Controller
         
         $quizzes = Quiz::where('locale', session('locale'))->where('slug', '!=', $slug)->where('is_active', 1)->get();
         
-        return view('quiz.result', compact('page', 'quiz', 'template', 'quizzes', 'result'));
+        return view('quiz.result', compact('page', 'quiz', 'template', 'quizzes', 'result', 'version'));
     }
 
     public function summary($slug)
