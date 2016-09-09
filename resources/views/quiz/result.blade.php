@@ -21,7 +21,7 @@
                         </div>
                         <div class="panel-body">
                             <div class="result-img col-md-10">
-                                <div class="loading-image">
+                                <div class="loading-image text-center">
                                     <img src="{{asset('images/loading.gif')}}">
                                     <span class="lead heading">&nbsp;Loading Results</span>
                                 </div>
