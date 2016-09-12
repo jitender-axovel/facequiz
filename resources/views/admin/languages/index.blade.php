@@ -50,13 +50,13 @@
 									@foreach(json_decode($language->strings,true) as $k => $string)
 										<div class="form-group">
 											<label>'{{ $k }}'</label>
-											<input name="{{ $k }}" class="form-control" value="{{$string}}">
+											<input name="strings[{{ $k }}]" class="form-control" value="{{$string}}">
 										</div>
 									@endforeach
 									@foreach(array_diff_key(trans('strings'), json_decode($language->strings,true)) as $k => $string)
 										<div class="form-group">
 											<label>'{{ $k }}'</label>
-											<input name="{{ $k }}" class="form-control" value="{{old($string)}}">
+											<input name="strings[{{ $k }}]" class="form-control" value="{{old($string)}}">
 										</div>
 									@endforeach
 								</div>

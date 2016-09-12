@@ -121,7 +121,7 @@ class AdminController extends Controller
         $languages = Language::get();
 
         $input = $request->input();
-        $language = array_intersect_key($input, Language::$updatable);
+        $language = array_intersect_key($input['strings'], Language::$updatable);
 
         $language['strings'] = json_encode(array_intersect_key($input, trans('strings')));
         $language = Language::create($language);
@@ -134,10 +134,10 @@ class AdminController extends Controller
         $page = 'Languages - Robodoo - Play with Robo';
         $languages = Language::get();
 
-        $input = $request->input();
+        $input = $request->input();//dd($input);
         $language = array_intersect_key($input, Language::$updatable);
 
-        $language['strings'] = json_encode(array_intersect_key($input, trans('strings')));
+        $language['strings'] = json_encode(array_intersect_key($input['strings'], trans('strings')));
         $language = Language::where('id', $id)->update($language);
         
         return redirect('admin/language')->with('success', 'Language has been saved.');
