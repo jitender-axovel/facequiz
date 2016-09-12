@@ -40,7 +40,7 @@
                                         @foreach(trans('strings') as $k => $string)
                                                 <div class="form-group">
                                                         <label>'{{ $k }}'</label>
-                                                        <input name="{{ $k }}" class="form-control" value="{{old($string)}}">
+                                                        <input name="strings[{{ $k }}]" class="form-control" value="{{old($string)}}">
                                                 </div>
                                         @endforeach
                                 </div>
