@@ -116,7 +116,7 @@ background:#ffffff; border: 1px solid #930a0f;}
 .admin-content .panel .jumbotron {background: transparent; padding: 20px 0; margin-bottom: 0;}
 .admin-content .form-group { margin: 0 0 15px;}
 .admin-content .panel .checkbox-inline {margin: 0; padding: 0;}
-.admin-content .form-horizontal .control-label {margin-bottom: 10px; text-align: left; padding: 0;}
+/*.admin-content .form-horizontal .control-label {margin-bottom: 10px; text-align: left; padding: 0;}*/
 .checkbox-inline span {padding: 0;}
 .modal {z-index: 2147483647;}
 .admin-content .form-group div { padding: 0;}
