@@ -17,12 +17,12 @@ class QuizzesController extends Controller
     public function index($quizSlug)
     {
         $quiz = Quiz::where('locale', session('locale'))->where('slug', $quizSlug)->where('is_active', 1)->first();
-        
-        $page = $quiz->title . ' - Robodoo - Play With Robo';
-        
+
         if(!$quiz) {
             return redirect('/')->with('error', 'Sorry, the quiz you are looking for is unemployed');
         }
+        
+        $page = $quiz->title . ' - Robodoo - Play With Robo';
         
         $quizzes = Quiz::where('locale', session('locale'))->where('slug', '!=', $quizSlug)->where('is_active', 1)->get();
         
