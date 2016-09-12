@@ -84,8 +84,8 @@
                     </div>
                 </div>
                 <div class="form-group">
-                    <label class="control-label col-md-12 col-sm-12">Input Html Code <a onclick="javascript:showInstruction();">Instructions <i class="fa fa-question-circle"></i></a></label>
-                    <div class="col-md-12 col-sm-12 col-xs-12">
+                    <label class="control-label col-md-2 col-sm-2">Input Html Code <a onclick="javascript:showInstruction();">Instructions <i class="fa fa-question-circle"></i></a></label>
+                    <div class="col-md-10 col-sm-10 col-xs-10">
                         <textarea required class="form-control" id="html-edit-box" name="html_data" rows="5"></textarea>
                     </div>
                 </div>
