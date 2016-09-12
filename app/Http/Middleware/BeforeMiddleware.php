@@ -42,7 +42,8 @@ class BeforeMiddleware
         // Set the local in Session if it's supported
         if ( array_key_exists($locale, config('app.locales'))) {
             $request->session()->put('locale', $locale);
-            // Reload the site without the ending /language part
+            
+            cookie()->forever('language', $locale);
         }
         if(!$request->session()->has('locale'))
         {
