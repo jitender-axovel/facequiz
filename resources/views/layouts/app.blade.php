@@ -40,19 +40,19 @@
         }
     </style>
     <script>
-        var languageStrings = {!!htmlspecialchars_decode(json_encode($languageStrings))!!};
-        var defaultLanguageStrings = {!!htmlspecialchars_decode(json_encode($defaultLanguageStrings))!!};
+        // var languageStrings = {{--{!!htmlspecialchars_decode(json_encode($languageStrings))!!}--}};
+        // var defaultLanguageStrings = {{--{!!htmlspecialchars_decode(json_encode($defaultLanguageStrings))!!}--}};
         
-        //Translation
-        function __(key){
-            if (languageStrings.hasOwnProperty(key)){
-                return languageStrings[key];
-            } else if (defaultLanguageStrings.hasOwnProperty(key)){
-                return defaultLanguageStrings[key];
-            } else {
-                return key;
-            }
-        }
+        // //Translation
+        // function __(key){
+        //     if (languageStrings.hasOwnProperty(key)){
+        //         return languageStrings[key];
+        //     } else if (defaultLanguageStrings.hasOwnProperty(key)){
+        //         return defaultLanguageStrings[key];
+        //     } else {
+        //         return key;
+        //     }
+        // }
     </script>
 
     <script type="text/javascript">
