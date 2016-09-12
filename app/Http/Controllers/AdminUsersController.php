@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 
+use Validator;
+
 use App\User;
 
 class AdminUsersController extends Controller
@@ -28,7 +30,18 @@ class AdminUsersController extends Controller
     {
     	$input = $request->input();
 
+        $validator = Validator::make($input, [
+            'name' => 'required|max:255',
+            'gender' => 'in:M,F',
+            'dob' => 'date',
+        ]);
+
+        if ($validator->fails()) {
+            return back()->withErrors($validator)->withInput();
+        }
+
     	$input = array_intersect_key($input, User::$updatable);
+
     	if(User::where('id', $id)->update($input)) {
     		$request->session()->flash('success', 'Record updated successfully');
     		return redirect('admin/users');

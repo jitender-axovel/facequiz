@@ -11,31 +11,31 @@
 			<p class="bold">Edit {{$user->name}}'s record</p>
 		</div>
 		<div class="panel-body">
-			<form action="{{ url('admin/users/edit/'.$user->id) }}" method="POST">
+			<form class="form-horizontal" action="{{ url('admin/users/edit/'.$user->id) }}" method="POST">
 				{{csrf_field()}}
 				<div class="form-group">
-					<label class="control-label col-md-12">First Name</label>
-					<div class="col-md-12">
-						<input type="text" class="form-control" name="name" value="{{ $user->name ? $user->name : old('name') }}"></input>
+					<label class="control-label col-md-2">Name</label>
+					<div class="col-md-4{{ ($errors->has('name')) ? ' has-error' : '' }}">
+						<input required type="text" class="form-control" name="name" value="{{ $user->name ? $user->name : old('name') }}"></input>
 						@if($errors->has('name'))
 							<span class="help-block">
 								<strong>{{ $errors->first('name') }}</strong>
 							</span>
 						@endif
 					</div>
-				</div>
-				<div class="form-group">
-					<label class="control-label col-md-12">Email</label>
-					<div class="col-md-12">
-						<input type="email" class="form-control" name="email" value="{{ $user->email ? $user->email : old('email') }}" />
+					<label class="control-label col-md-2">Email</label>
+					<div class="col-md-4{{ ($errors->has('email')) ? ' has-error' : '' }}">
+						<input required type="email" class="form-control" name="email" value="{{ $user->email ? $user->email : old('email') }}" disabled>
 						@if($errors->has('email'))
 							<span class="help-block">
 								<strong>{{ $errors->first('email') }}</strong>
 							</span>
 						@endif
 					</div>
-					<label class="control-label col-md-12">Gender</label>
-					<div class="col-sm-12">
+				</div>
+				<div class="form-group">
+					<label class="control-label col-md-2">Gender</label>
+					<div class="col-sm-4{{ ($errors->has('gender')) ? ' has-error' : '' }}">
 						<label class="radio-inline col-sm-5">
 							<input type="radio" name="gender" value="M" {{ $user->gender == 'M' ? 'checked' : ''}}>&nbsp;&nbsp;Male
 						</label>
@@ -48,10 +48,8 @@
 							</span>
 						@endif
 					</div>
-				</div>
-				<div class="form-group">
-					<label class="control-label col-md-12">Date of Birth</label>
-					<div class="col-md-12">
+					<label class="control-label col-md-2">Date of Birth</label>
+					<div class="col-md-4{{ ($errors->has('dob')) ? ' has-error' : '' }}">
 						<input id="birthday" type="text" class="inputbox datepicker form-col form-control" data-date-format="yyyy-mm-dd" data-provide="datepicker" name="dob" value="{{ $user->dob == '0000-00-00' ? '' : $user->dob }}">
 						@if($errors->has('dob'))
 							<span class="help-block">
@@ -59,45 +57,10 @@
 							</span>
 						@endif
 					</div>
-					<label class="control-label col-md-12">Address</label>
-					<div class="col-md-12">
-						<textarea name="address" class="form-control">{{ $user->address ? $user->address : '' }}</textarea>
-						@if($errors->has('address'))
-							<span class="help-block">
-								<strong>{{ $errors->first('address') }}</strong>
-							</span>
-						@endif
-					</div>
-				</div>
-				<div class="form-group">
-					<label class="control-label col-md-12">City</label>
-					<div class="col-md-12">
-						<input type="text" class="form-control" name="city" value="{{ $user->city ? $user->city : '' }}">
-						@if($errors->has('city'))
-							<span class="help-block">
-								<strong>{{ $errors->first('city') }}</strong>
-							</span>
-						@endif
-					</div>
-					<label class="control-label col-md-12">Country</label>
-					<div class="col-md-12">
-						<input type="text" class="form-control" name="country" value="{{ $user->country ? $user->country : '' }}">
-						@if($errors->has('country'))
-							<span class="help-block">
-								<strong>{{ $errors->first('country') }}</strong>
-							</span>
-						@endif
-					</div>
-				</div>
-				<div class="form-group">
-					<label class="control-label col-md-12">About Me</label>
-					<div class="col-md-12">
-						<textarea class="form-control" name="about_me">{{ $user->about_me ? $user->about_me : ''}}</textarea>
-					</div>
 				</div>
 				<div class="form-group">
 					<div class="col-sm-12">
-						<button type="submit" class="btn btn-default btn-lg btn-block" id="btn-login">Save User</button>
+						<button type="submit" class="btn btn-success btn-block" id="btn-login">Save User</button>
 					</div>
 				</div>
 			</form>

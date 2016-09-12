@@ -19,6 +19,10 @@ class User extends Authenticatable
         'fb_id', 'name', 'slug', 'email', 'user_role_id', 'password', 'gender', 'dob', 'avatar',
     ];
 
+    public static $updatable = [
+        'name' => "", 'gender' => "", 'dob' => ""
+    ];
+
     public static $downloadable = ['fb_id' => "", 'name' => '', 'slug' => '', 'email' => '', 'user_role_id' => '', 'password' => '', 'gender' => '', 'dob' =>'', 'avatar' => ''];
 
     /**
