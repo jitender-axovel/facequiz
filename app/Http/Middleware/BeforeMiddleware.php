@@ -6,6 +6,7 @@ use Closure;
 
 use App;
 use Auth;
+use Cookie;
 
 class BeforeMiddleware
 {
@@ -42,8 +43,7 @@ class BeforeMiddleware
         // Set the local in Session if it's supported
         if ( array_key_exists($locale, config('app.locales'))) {
             $request->session()->put('locale', $locale);
-            
-            cookie()->forever('language', $locale);
+            Cookie::queue(Cookie::forever('language', $locale));
         }
         if(!$request->session()->has('locale'))
         {
