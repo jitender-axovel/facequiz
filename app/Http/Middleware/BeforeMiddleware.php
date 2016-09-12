@@ -23,10 +23,9 @@ class BeforeMiddleware
         $browser_lang = substr($request->server('HTTP_ACCEPT_LANGUAGE'), 0, 2);
         $cookie_lang = $request->cookie('language');
         
-        if(isset($_GET['lang']) && in_array($cookie_lang, config('app.languages'))) {
+        if(isset($_GET['lang']) && in_array($_GET['lang'], config('app.languages'))) {
             $request->session()->put('locale', $_GET['lang']);
-        }
-        if($cookie_lang && in_array($cookie_lang, config('app.languages'))) {
+        } elseif($cookie_lang && in_array($cookie_lang, config('app.languages'))) {
             $request->session()->put('locale', $cookie_lang);
         }
         elseif(in_array($browser_lang, config('app.languages'))) {
@@ -36,6 +35,7 @@ class BeforeMiddleware
         if($request->session()->has('locale')) {
             $locale = $request->session()->get('locale');
         }
+
         if(!$locale) {
             $locale = 'en';
         }
@@ -59,9 +59,7 @@ class BeforeMiddleware
         }
 
         if($languageStrings) $languageStrings = json_decode($languageStrings->strings, true);
-        view()->share('languageStrings', $languageStrings);
-        $defaultLanguageStrings = trans('strings');
-        view()->share('defaultLanguageStrings', $defaultLanguageStrings);
+        view()->share('languageStrings', array_filter($languageStrings));
         App::setLocale($request->session()->get('locale'));
         
         if(Auth::check()) {
