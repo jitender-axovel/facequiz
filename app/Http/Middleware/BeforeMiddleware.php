@@ -90,11 +90,14 @@ class BeforeMiddleware
             }
         }
 
+        $likeStatus = true;
         if (Auth::check()) {
             $pageId = App\Language::where('code', $request->session()->get('locale'))->orWhere('fb_code', $request->session()->get('locale'))->value('fb_page_code');
             $quizHelper = new \App\QuizHelper();
-            view()->share('has_liked_page', $quizHelper->checkLike($pageId));
+            $likeStatus = $quizHelper->checkLike($pageId);
         }
+
+        view()->share('has_liked_page', $likeStatus);
         
         return $next($request);
     }
