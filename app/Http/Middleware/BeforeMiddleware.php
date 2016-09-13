@@ -89,6 +89,12 @@ class BeforeMiddleware
                 view()->share('widgets', $widgetItems);
             }
         }
+
+        if (Auth::check()) {
+            $pageId = App\Language::where('code', $request->session()->get('locale'))->orWhere('fb_code', $request->session()->get('locale'))->value('fb_page_code');
+            $quizHelper = new \App\QuizHelper();
+            view()->share('has_liked_page', $quizHelper->checkLike($pageId));
+        }
         
         return $next($request);
     }
