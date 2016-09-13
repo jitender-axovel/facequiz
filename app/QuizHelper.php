@@ -17,7 +17,7 @@ class QuizHelper extends Model
         $this->fb = new Facebook\Facebook([
             'app_id' => $facebookCredentials['client_id'],
             'app_secret' => $facebookCredentials['client_secret'],
-            'default_graph_version' => 'v2.2',
+            'default_graph_version' => 'v2.7',
         ]);
         
         $this->fb->setDefaultAccessToken(session()->get('fb_access_token'));
@@ -33,6 +33,28 @@ class QuizHelper extends Model
             echo 'Facebook SDK returned an error: ' . $e->getMessage();
             exit;
         }
+    }
+
+    public function checkLike($pageId)
+    {
+        try {
+            $response = $this->fb->get('/me/likes?target_id='.$pageId);
+        } catch (Facebook\Exceptions\FacebookResponseException $e) {
+            // When Graph returns an error
+            return false;
+        } catch (\Facebook\Exceptions\FacebookSDKException $e) {
+            // When validation fails or other local issues
+            return false;
+        }
+
+        $response = $response->getGraphEdge();
+        $response = $response->asArray();
+
+        if(count($response)) {
+            return true;
+        }
+
+        return false;
     }
     
     public function setTitle($template, $quiz)
