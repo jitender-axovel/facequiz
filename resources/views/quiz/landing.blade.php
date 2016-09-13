@@ -23,9 +23,9 @@
                                 <img src="{{ asset(config('image.quiz_template_url').$quiz->template->og_image) }}">
                             </div>
                             <div class="caption img-caption">
-                                <a class="btn btn-primary btn-block" href="{{ url('quiz/'.$quiz->slug.'/start/'.md5(time())) }}">Start</a>
+                                <a class="btn btn-primary btn-block" href="{{ url('quiz/'.$quiz->slug.'/start/'.md5(time())) }}">{{ $languageStrings['Start'] or 'Start' }}</a>
                             </div>
-                            <span>You will be required to login with Facebook.</span>
+                            <span>{{ $languageStrings['You will be required to login with Facebook.'] or 'You will be required to login with Facebook.' }}</span>
                         </div>
                         <div class="panel-footer">
                             {{$quiz->description}}
@@ -47,7 +47,7 @@
                             @endforeach
                         @else
                             <div class="heading">
-                                <span>There are no more quizzes.</span>
+                                <span>{{ $languageStrings['There are no more quizzes.'] or 'There are no more quizzes.' }}</span>
                             </div>
                         @endif
                     </div>

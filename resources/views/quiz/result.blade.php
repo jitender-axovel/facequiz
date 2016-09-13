@@ -23,7 +23,7 @@
                             <div class="result-img col-md-10">
                                 <div class="loading-image text-center">
                                     <img src="{{asset('images/loading.gif')}}">
-                                    <span class="lead heading">&nbsp;Loading Results</span>
+                                    <span class="lead heading">&nbsp;{{ $languageStrings['Loading Results'] or 'Loading Results' }}</span>
                                 </div>
                                 <img class="media-object result-image" src="{{asset(config('image.quiz_result_url').$result->result_image)}}">
                             </div>
@@ -35,10 +35,10 @@
                                 @endif
                             </div>
                             <div class="caption img-caption text-center">
-                                <a id="shareBtn" class="btn btn-primary share-facebook"><i class="fa fa-facebook-official"></i> Share on Facebook</a>
+                                <a id="shareBtn" class="btn btn-primary share-facebook"><i class="fa fa-facebook-official"></i> {{ $languageStrings['Share on Facebook'] or 'Share on Facebook' }}</a>
                             </div>
                             <div class="text-center row">
-                                <a class="btn btn-warning" href="{{ url('quiz/'.$quiz->slug.'/start/'.md5(time())) }}"><i class="fa fa-refresh"></i> Try Again</a>
+                                <a class="btn btn-warning" href="{{ url('quiz/'.$quiz->slug.'/start/'.md5(time())) }}"><i class="fa fa-refresh"></i> {{ $languageStrings['Try Again'] or 'Try Again' }}</a>
                             </div>
                         </div>
                     </div>
@@ -58,7 +58,7 @@
                             @endforeach
                         @else
                             <div class="heading">
-                                <span>There are no more quizzes.</span>
+                                <span>{{ $languageStrings['There are no more quizzes.'] or 'There are no more quizzes.' }}</span>
                             </div>
                         @endif
                     </div>

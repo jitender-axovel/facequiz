@@ -223,10 +223,10 @@
     <div class="like-section web-view">
         <div class="container-fluid">
             <div class="col-md-9 col-sm-8 col-xs-12 text-center">
-                <p>We like you. Like us back!</p>
+                <p>{{ $languageStrings['We like you. Like us back!'] or "We like you. Like us back!" }}</p>
             </div>
             <div class="custom-like-button col-md-3 col-sm-4">
-                <span class="bold">Like Us <i class="fa fa-arrow-right"></i> </span>
+                <span class="bold">{{ $languageStrings['Like Us'] or "Like Us" }} <i class="fa fa-arrow-right"></i> </span>
                 @if(isset($fb_like_button))
                     {!!$fb_like_button!!}
                 @else
@@ -244,15 +244,15 @@
             <div class="footer-links col-md-12 col-sm-12 col-xs-12">
                 <ul class="list-inline">
                     @foreach(App\Cms::get() as $cmsPage)
-                    <li><a href="{{url('cms/'.$cmsPage->slug)}}">{{$cmsPage->title}}</a></li>
+                    <li><a href="{{url('cms/'.$cmsPage->slug)}}">{{ $languageStrings[$cmsPage->title] or $cmsPage->title }}</a></li>
                     @endforeach
                 </ul>
             </div>
             <div class="col-md-12 col-sm-12 col-xs-12">
-                <p>Disclaimer: All content is provided for fun and entertainment purposes only</p>
+                <p>{{ $languageStrings['Disclaimer: All content is provided for fun and entertainment purposes only'] or 'Disclaimer: All content is provided for fun and entertainment purposes only' }}</p>
             </div>
             <div class="col-md-12 col-sm-12 col-xs-12 copyright">
-                <p>@Robodoo, {{ $languageStrings['All Rights Reserved'] or 'All Rights Reserved' }}</p>
+                <p>{{ $languageStrings['@Robodoo, All Rights Reserved'] or '@Robodoo, All Rights Reserved' }}</p>
             </div>
             
         </div>

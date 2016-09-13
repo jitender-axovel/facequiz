@@ -17,7 +17,7 @@
                         <div class="panel-body">
                             <div class="fb-like-button">
                                 <div class="loading-image row">
-                                    <span class="lead heading">Kindly Like us on Facebook <i class="fa fa-arrow-right"></i></span>
+                                    <span class="lead heading">{{ $languageStrings['Kindly Like us on Facebook'] or 'Kindly Like us on Facebook' }} <i class="fa fa-arrow-right"></i></span>
                                 </div>
                                 @if(isset($fb_like_button))
                                     {!!$fb_like_button!!}
@@ -25,8 +25,8 @@
                                     <div class="fb-like" data-href="https://www.facebook.com/robodoo.en" data-layout="button_count" data-action="like" data-size="small" data-show-faces="true" data-share="false"></div>
                                 @endif
                                 <div class="text-center row">
-                                    <a class="btn btn-success btn-lg" href="{{ url('quiz/'.$quiz->slug.'/start/'.md5(time())) }}"><i class="fa fa-refresh"></i> Try Again</a>
-                                    <a class="btn btn-warning btn-lg" href="{{ url('quiz/'.$quizzes->first()->slug.'/show') }}"><i class="fa fa-angle-double-right"></i>Try Next</a>
+                                    <a class="btn btn-success btn-lg" href="{{ url('quiz/'.$quiz->slug.'/start/'.md5(time())) }}"><i class="fa fa-refresh"></i> {{ $languageStrings['Try Again'] or 'Try Again' }}</a>
+                                    <a class="btn btn-warning btn-lg" href="{{ url('quiz/'.$quizzes->first()->slug.'/show') }}"><i class="fa fa-angle-double-right"></i>{{ $languageStrings['Try Next'] or 'Try Next' }}</a>
                                 </div>
                             </div>
                         </div>
@@ -47,7 +47,7 @@
                             @endforeach
                         @else
                             <div class="heading">
-                                <span>There are no more quizzes.</span>
+                                <span>{{ $languageStrings['There are no more quizzes.'] or 'There are no more quizzes.' }}</span>
                             </div>
                         @endif
                     </div>

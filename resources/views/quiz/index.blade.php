@@ -10,9 +10,6 @@
         <div class="row">
             <div class="col-md-8">
                 <div class="panel panel-default">
-                    <div class="panel-heading">
-
-                    </div>
                     <div class="panel-body text-center">
                         <div class="img-wrap col-md-10">
                             <img src="{{ asset(config('image.quiz_template_url').$quiz->template->og_image) }}">
@@ -25,15 +22,12 @@
                             @endif
                         </div>
                         <h3 class="panel-title heading text-center">{{ $quiz->title }}</h3>
-                        <p class="quiz-description">{{$quiz->description}}</p>
+                        <p class="quiz-description">{{ $quiz->description }}</p>
                         <div class="caption img-caption">
-                            <a class="btn btn-primary start-with-fb" href="{{ url('quiz/'.$quiz->slug.'/start/'.md5(time())) }}"><i class="fa fa-facebook-official"></i> Continue with Facebook</a>
+                            <a class="btn btn-primary start-with-fb" href="{{ url('quiz/'.$quiz->slug.'/start/'.md5(time())) }}"><i class="fa fa-facebook-official"></i> {{ $languageStrings['Continue with Facebook'] or 'Continue with Facebook' }}</a>
                         </div>
                     </div>
-                    <div class="panel-footer">
-
-                    </div>
-            </div>
+                </div>
                 <div class="row">
                     <div class="col-md-12">
                         @if($quizzes->count())
@@ -42,14 +36,14 @@
                                     <div class="thumbnail content-img">
                                         <a href="{{ url('quiz/'.$quizItem->slug.'/show') }}"><img src="{{ asset(config('image.quiz_template_url').$quizItem->template->og_image) }}"></a>
                                         <div class="caption">
-                                            <div class="heading"><a href="{{ url('quiz/'.$quizItem->slug.'/show') }}">{{$quizItem->title}}</a></div>
+                                            <div class="heading"><a href="{{ url('quiz/'.$quizItem->slug.'/show') }}">{{ $quizItem->title }}</a></div>
                                         </div>
                                     </div>
                                 </div>
                             @endforeach
                         @else
                             <div class="heading">
-                                <span>There are no more quizzes.</span>
+                                <span>{{ $languageStrings['There are no more quizzes.'] or 'There are no more quizzes.' }}</span>
                             </div>
                         @endif
                     </div>
