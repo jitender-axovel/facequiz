@@ -21,4 +21,6 @@ return [
     'Loading Results' => 'Loading Results',
     'Try Next' => 'Try Next',
     'Kindly Like us on Facebook' => 'Kindly Like us on Facebook',
+    'There are no more quizzes.' => 'There are no more quizzes.',
+    'You will be required to login with Facebook.' => 'You will be required to login with Facebook.',
 ];
