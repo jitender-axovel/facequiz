@@ -24,6 +24,10 @@
 								<input name="code" class="form-control" value="{{ $language->code ? $language->code : old('code') }}">
 							</div>
 							<div class="form-group">
+                                <label>Facebook Page ID</label>
+                                <input name="fb_page_code" class="form-control" value="{{ $language->fb_page_code ? $language->fb_page_code : old('fb_page_code') }}">
+                        	</div>
+							<div class="form-group">
 								<label>Facebook Like Button Code</label>
 								<input name="fb_like" class="form-control" value="{{ $language->fb_like ? $language->fb_like : old('fb_like') }}"></input>
 							</div>

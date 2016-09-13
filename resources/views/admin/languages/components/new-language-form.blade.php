@@ -14,6 +14,10 @@
                                 <input name="code" class="form-control" value="{{ old('code') }}">
                         </div>
                         <div class="form-group">
+                                <label>Facebook Page ID</label>
+                                <input name="fb_page_code" class="form-control" value="{{ old('fb_page_code') }}">
+                        </div>
+                        <div class="form-group">
                                 <label>Facebook Like Button Code</label>
                                 <textarea name="fb_like" class="form-control" >{{ old('fb_like') }}</textarea>
                         </div>
