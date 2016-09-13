@@ -27,13 +27,15 @@
                                 </div>
                                 <img class="media-object result-image" src="{{asset(config('image.quiz_result_url').$result->result_image)}}">
                             </div>
-                            <div class="fb-like-button">
-                                @if(isset($fb_like_button))
-                                    {!!$fb_like_button!!}
-                                @else
-                                    <div class="fb-like" data-href="https://www.facebook.com/robodoo.en" data-layout="button_count" data-action="like" data-size="small" data-show-faces="true" data-share="false"></div>
-                                @endif
-                            </div>
+                            @if(!$has_liked_page)
+                                <div class="fb-like-button">
+                                    @if(isset($fb_like_button))
+                                        {!!$fb_like_button!!}
+                                    @else
+                                        <div class="fb-like" data-href="https://www.facebook.com/robodoo.en" data-layout="button_count" data-action="like" data-size="small" data-show-faces="true" data-share="false"></div>
+                                    @endif
+                                </div>
+                            @endif
                             <div class="caption img-caption text-center">
                                 <a id="shareBtn" class="btn btn-primary share-facebook"><i class="fa fa-facebook-official"></i> {{ $languageStrings['Share on Facebook'] or 'Share on Facebook' }}</a>
                             </div>

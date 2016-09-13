@@ -14,13 +14,15 @@
                         <div class="img-wrap col-md-10">
                             <img src="{{ asset(config('image.quiz_template_url').$quiz->template->og_image) }}">
                         </div>
-                        <div class="fb-like-button">
-                            @if(isset($fb_like_button))
-                                {!!$fb_like_button!!}
-                            @else
-                                <div class="fb-like" data-href="https://www.facebook.com/robodoo.en" data-layout="button_count" data-action="like" data-size="small" data-show-faces="true" data-share="false"></div>
-                            @endif
-                        </div>
+                        @if(!$has_liked_page)
+                            <div class="fb-like-button">
+                                @if(isset($fb_like_button))
+                                    {!!$fb_like_button!!}
+                                @else
+                                    <div class="fb-like" data-href="https://www.facebook.com/robodoo.en" data-layout="button_count" data-action="like" data-size="small" data-show-faces="true" data-share="false"></div>
+                                @endif
+                            </div>
+                        @endif
                         <h3 class="panel-title heading text-center">{{ $quiz->title }}</h3>
                         <p class="quiz-description">{{ $quiz->description }}</p>
                         <div class="caption img-caption">

@@ -16,13 +16,15 @@
                         </div>
                         <div class="panel-body">
                             <div class="fb-like-button">
-                                <div class="loading-image row">
-                                    <span class="lead heading">{{ $languageStrings['Kindly Like us on Facebook'] or 'Kindly Like us on Facebook' }} <i class="fa fa-arrow-right"></i></span>
-                                </div>
-                                @if(isset($fb_like_button))
-                                    {!!$fb_like_button!!}
-                                @else
-                                    <div class="fb-like" data-href="https://www.facebook.com/robodoo.en" data-layout="button_count" data-action="like" data-size="small" data-show-faces="true" data-share="false"></div>
+                                @if(!$has_liked_page)
+                                    <div class="loading-image row">
+                                        <span class="lead heading">{{ $languageStrings['Kindly Like us on Facebook'] or 'Kindly Like us on Facebook' }} <i class="fa fa-arrow-right"></i></span>
+                                    </div>
+                                    @if(isset($fb_like_button))
+                                        {!!$fb_like_button!!}
+                                    @else
+                                        <div class="fb-like" data-href="https://www.facebook.com/robodoo.en" data-layout="button_count" data-action="like" data-size="small" data-show-faces="true" data-share="false"></div>
+                                    @endif
                                 @endif
                                 <div class="text-center row">
                                     <a class="btn btn-success btn-lg" href="{{ url('quiz/'.$quiz->slug.'/start/'.md5(time())) }}"><i class="fa fa-refresh"></i> {{ $languageStrings['Try Again'] or 'Try Again' }}</a>
