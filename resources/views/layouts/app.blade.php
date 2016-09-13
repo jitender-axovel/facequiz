@@ -249,10 +249,10 @@
                 </ul>
             </div>
             <div class="col-md-12 col-sm-12 col-xs-12">
-                <p>{{ $languageStrings['Disclaimer: All content is provided for fun and entertainment purposes only'] or 'Disclaimer: All content is provided for fun and entertainment purposes only' }}</p>
+                <p>{{ $languageStrings['Disclaimer: All contents on this website are provided for fun and entertainment purposes only.'] or 'Disclaimer: All contents on this website are provided for fun and entertainment purposes only.' }}</p>
             </div>
             <div class="col-md-12 col-sm-12 col-xs-12 copyright">
-                <p>{{ $languageStrings['@Robodoo, All Rights Reserved'] or '@Robodoo, All Rights Reserved' }}</p>
+                <p>{{ $languageStrings['©2016 Robodoo Entertainment, All Rights Reserved.'] or '©2016 Robodoo Entertainment, All Rights Reserved.' }}</p>
             </div>
             
         </div>
