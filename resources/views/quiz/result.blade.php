@@ -36,11 +36,19 @@
                                     @endif
                                 </div>
                             @endif
-                            <div class="caption img-caption text-center">
-                                <a id="shareBtn" class="btn btn-primary share-facebook"><i class="fa fa-facebook-official"></i> {{ $languageStrings['Share on Facebook'] or 'Share on Facebook' }}</a>
-                            </div>
-                            <div class="text-center row">
-                                <a class="btn btn-warning" href="{{ url('quiz/'.$quiz->slug.'/start/'.md5(time())) }}"><i class="fa fa-refresh"></i> {{ $languageStrings['Try Again'] or 'Try Again' }}</a>
+                            <div class="quiz-options">
+                                <div class="col-md-3">
+                                    <a id="shareBtn" class="share-facebook" title="{{ $languageStrings['Share on Facebook'] or 'Share on Facebook' }}"><i class="fa fa-facebook-official"></i> {{ $languageStrings['Share'] or 'Share' }}</a>
+                                </div>
+                                <div class="col-md-3">
+                                    <a id="sendBtn" class="share-facebook" title="{{ $languageStrings['Send Private Message'] or 'Send Private Message' }}"><i class="fa fa-facebook-official"></i> {{ $languageStrings['Send'] or 'Send' }}</a>
+                                </div>
+                                <div class="col-md-3">
+                                    <a id="copyBtn" class="share-facebook" title="{{ $languageStrings['Copy Link'] or 'Copy Link' }}"><i class="fa fa-link"></i> {{ $languageStrings['Copy Link'] or 'Copy Link' }}</a>
+                                </div>
+                                <div class="col-md-3">
+                                    <a class="btn btn-warning" href="{{ url('quiz/'.$quiz->slug.'/start/'.md5(time())) }}" title="{{ $languageStrings['Try Again'] or 'Try Again' }}"><i class="fa fa-refresh fa-3x"></i> {{ $languageStrings['Retry'] or 'Retry' }}</a>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -102,15 +110,29 @@
                 // }
             });
         }
+
+        document.getElementById('sendBtn').onclick = function() {
+            FB.ui({
+              method: 'send',
+              display: 'popup',
+              // href: '{{ url("quiz/".$quiz->slug."/landing/".Auth::id())."/".md5(time()) }}',
+              link: '{{ url("quiz/".$quiz->slug."/landing/".Auth::id())."/".md5(time()) }}',
+            });
+        }
+
+        document.getElementById('copyBtn').onclick = function() {
+            prompt('Copy this link', '{{ url("quiz/".$quiz->slug."/landing/".Auth::id())."/".md5(time()) }}');
+        }
+
         $(document).ready(function() {
             $('.result-image').hide();
-            $('#shareBtn').hide();
+            $('.quiz-options').hide();
             $('.loading-image').show();
 
             setTimeout(function(){
                 $('.loading-image').hide();
                 $('.result-image').show();
-                $('#shareBtn').show();
+                $('.quiz-options').show();
             },4000);
         });
     </script>

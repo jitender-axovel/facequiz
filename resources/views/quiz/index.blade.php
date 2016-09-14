@@ -31,21 +31,15 @@
                         <div class="caption img-caption">
                             <a class="btn btn-primary start-with-fb" href="{{ url('quiz/'.$quiz->slug.'/start/'.md5(time())) }}"><i class="fa fa-facebook-official"></i> {{ $languageStrings['Continue with Facebook'] or 'Continue with Facebook' }}</a>
                         </div>
-                        <div class="col-md-12">
+                        <div class="quiz-options">
                             <div class="col-md-4">
-                                <div class="caption img-caption text-center">
-                                    <a id="shareBtn" class="share-facebook"><i class="fa fa-facebook-official"></i> {{ $languageStrings['Share'] or 'Share' }}</a>
-                                </div>
+                                <a id="shareBtn" class="share-facebook" title="{{ $languageStrings['Share on Facebook'] or 'Share on Facebook' }}"><i class="fa fa-facebook-official"></i> {{ $languageStrings['Share'] or 'Share' }}</a>
                             </div>
                             <div class="col-md-4">
-                                <div class="caption img-caption text-center">
-                                    <a id="sendBtn" class="share-facebook"><i class="fa fa-facebook-official"></i> {{ $languageStrings['Send'] or 'Send' }}</a>
-                                </div>
+                                <a id="sendBtn" class="share-facebook" title="{{ $languageStrings['Send Private Message'] or 'Send Private Message' }}"><i class="fa fa-facebook-official"></i> {{ $languageStrings['Send'] or 'Send' }}</a>
                             </div>
                             <div class="col-md-4">
-                                <div class="caption img-caption text-center">
-                                    <a id="copyBtn" class="share-facebook"><i class="fa fa-link"></i> {{ $languageStrings['Copy link'] or 'Copy link' }}</a>
-                                </div>
+                                <a id="copyBtn" class="share-facebook" title="{{ $languageStrings['Copy Link'] or 'Copy Link' }}"><i class="fa fa-link"></i> {{ $languageStrings['Copy Link'] or 'Copy Link' }}</a>
                             </div>
                         </div>
                     </div>
