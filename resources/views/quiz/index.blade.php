@@ -77,6 +77,18 @@
                     @endif
                 </div>
                 @include('includes.left-sidebar')
+                <div class="row">
+                    @if($sidebarQuizzes->count())
+                        @foreach($sidebarQuizzes as $quizItem)
+                            <div class="thumbnail content-img">
+                                <a href="{{ url('quiz/'.$quizItem->slug.'/show') }}"><img src="{{ asset(config('image.quiz_template_url').$quizItem->template->og_image) }}"></a>
+                                <div class="caption">
+                                    <div class="heading"><a href="{{ url('quiz/'.$quizItem->slug.'/show') }}">{{ $quizItem->title }}</a></div>
+                                </div>
+                            </div>
+                        @endforeach
+                    @endif
+                </div>
             </div>
         </div>
         <div class="row">

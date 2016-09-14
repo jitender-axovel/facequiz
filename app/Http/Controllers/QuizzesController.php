@@ -24,9 +24,13 @@ class QuizzesController extends Controller
         
         $page = $quiz->title . ' - Robodoo - Play With Robo';
         
-        $quizzes = Quiz::where('locale', session('locale'))->where('slug', '!=', $quizSlug)->where('is_active', 1)->get();
+        $sidebarQuizzeIds = Quiz::where('locale', session('locale'))->where('slug', '!=', $quizSlug)->where('is_active', 1)->take(4)->lists('id');
+
+        $sidebarQuizzes = Quiz::whereIn('id', $sidebarQuizzeIds)->get();
+
+        $quizzes = Quiz::where('locale', session('locale'))->whereNotIn('id', $sidebarQuizzeIds)->where('slug', '!=', $quizSlug)->where('is_active', 1)->get();
         
-        return view('quiz.index', compact('page', 'quiz', 'quizzes'));
+        return view('quiz.index', compact('page', 'quiz', 'quizzes', 'sidebarQuizzes'));
     }
 
     public function getPopularQuizzes()
@@ -51,9 +55,13 @@ class QuizzesController extends Controller
 
         $quizAttempt = QuizAttempt::where('quiz_id', $quiz->id)->where('user_id', $userId)->first();
 
-        $quizzes = Quiz::where('locale', session('locale'))->where('slug', '!=', $quizSlug)->where('is_active', 1)->get();
+        $sidebarQuizzeIds = Quiz::where('locale', session('locale'))->where('slug', '!=', $quizSlug)->where('is_active', 1)->take(4)->lists('id');
+
+        $sidebarQuizzes = Quiz::whereIn('id', $sidebarQuizzeIds)->get();
+
+        $quizzes = Quiz::where('locale', session('locale'))->whereNotIn('id', $sidebarQuizzeIds)->where('slug', '!=', $quizSlug)->where('is_active', 1)->get();
         
-        return view('quiz.landing', compact('page', 'quiz', 'quizzes', 'quizAttempt', 'version'));
+        return view('quiz.landing', compact('page', 'quiz', 'quizzes', 'sidebarQuizzes', 'quizAttempt', 'version'));
     }
     
     public function start($slug, $version)
@@ -133,18 +141,27 @@ class QuizzesController extends Controller
                 'result_image' => $imageName
             ]);
         }
+
+        $sidebarQuizzeIds = Quiz::where('locale', session('locale'))->where('slug', '!=', $slug)->where('is_active', 1)->take(4)->lists('id');
+
+        $sidebarQuizzes = Quiz::whereIn('id', $sidebarQuizzeIds)->get();
         
-        $quizzes = Quiz::where('locale', session('locale'))->where('slug', '!=', $slug)->where('is_active', 1)->get();
+        $quizzes = Quiz::where('locale', session('locale'))->whereNotIn('id', $sidebarQuizzeIds)->where('slug', '!=', $slug)->where('is_active', 1)->get();
         
-        return view('quiz.result', compact('page', 'quiz', 'template', 'quizzes', 'result', 'version'));
+        return view('quiz.result', compact('page', 'quiz', 'template', 'quizzes', 'sidebarQuizzes', 'result', 'version'));
     }
 
     public function summary($slug)
     {
         $quiz = Quiz::where('slug', $slug)->first();
         $page = $quiz->title.' - Robodoo - Play with Robo';
-        $quizzes = Quiz::where('id', '!=', $quiz->id)->where('locale', session('locale'))->where('is_active', 1)->orderBy('updated_at', 'DESC')->get();
 
-        return view('quiz.summary', compact('page', 'quiz', 'quizzes'));
+        $sidebarQuizzeIds = Quiz::where('locale', session('locale'))->where('slug', '!=', $slug)->where('is_active', 1)->take(4)->lists('id');
+
+        $sidebarQuizzes = Quiz::whereIn('id', $sidebarQuizzeIds)->get();
+
+        $quizzes = Quiz::where('id', '!=', $quiz->id)->where('locale', session('locale'))->whereNotIn('id', $sidebarQuizzeIds)->where('is_active', 1)->orderBy('updated_at', 'DESC')->get();
+
+        return view('quiz.summary', compact('page', 'quiz', 'quizzes', 'sidebarQuizzes'));
     }
 }
