@@ -55,6 +55,16 @@ class AuthController extends Controller
         ]);
     }
 
+    public function showRegistrationForm()
+    {
+        return redirect('/');
+    }
+
+    public function showLoginForm()
+    {
+        return redirect('/');
+    }
+
     /**
      * Create a new user instance after a valid registration.
      *
