@@ -102,7 +102,7 @@
             FB.ui({
                 method: 'share',
                 display: 'popup',
-                href: '{{ url("quiz/".$quiz->slug."show") }}',
+                href: '{{ url("quiz/".$quiz->slug."/show") }}',
             }, function(response){});
         }
 
@@ -111,7 +111,7 @@
               method: 'send',
               display: 'popup',
               // href: '{{ url("quiz/".$quiz->slug."/landing/".Auth::id())."/".md5(time()) }}',
-              link: '{{ url("quiz/".$quiz->slug."show") }}',
+              link: '{{ url("quiz/".$quiz->slug."/show") }}',
             });
         }
 
