@@ -20,16 +20,18 @@ class BeforeMiddleware
     public function handle($request, Closure $next)
     {
         //perform action
+        $languageCodes = App\Language::lists('code')->toArray();
+
         $locale = NULL;
         $browser_lang = substr($request->server('HTTP_ACCEPT_LANGUAGE'), 0, 2);
         $cookie_lang = $request->cookie('language');
         
-        if(isset($_GET['lang']) && in_array($_GET['lang'], config('app.languages'))) {
+        if(isset($_GET['lang']) && in_array($_GET['lang'], $languageCodes)) {
             $request->session()->put('locale', $_GET['lang']);
-        } elseif($cookie_lang && in_array($cookie_lang, config('app.languages'))) {
+        } elseif($cookie_lang && in_array($cookie_lang, $languageCodes)) {
             $request->session()->put('locale', $cookie_lang);
         }
-        elseif(in_array($browser_lang, config('app.languages'))) {
+        elseif(in_array($browser_lang, $languageCodes)) {
             $request->session()->put('locale', $browser_lang);
         }
         
@@ -41,13 +43,13 @@ class BeforeMiddleware
             $locale = 'en';
         }
         // Set the local in Session if it's supported
-        if ( array_key_exists($locale, config('app.locales'))) {
+        if ( array_key_exists($locale, $languageCodes)) {
             $request->session()->put('locale', $locale);
             Cookie::queue(Cookie::forever('language', $locale));
         }
         if(!$request->session()->has('locale'))
         {
-            $request->session()->put('locale', $request->getPreferredLanguage( config('app.languages')));
+            $request->session()->put('locale', $request->getPreferredLanguage($languageCodes));
         }
         
         $languageStrings = App\Language::where('code', $request->session()->get('locale'))->orWhere('fb_code', $request->session()->get('locale'))->first();
@@ -61,7 +63,7 @@ class BeforeMiddleware
 
         if($languageStrings) $languageStrings = json_decode($languageStrings->strings, true);
         view()->share('languageStrings', array_filter($languageStrings));
-        App::setLocale($request->session()->get('locale'));
+        // App::setLocale($request->session()->get('locale'));
         
         if(Auth::check()) {
             if(Auth::user()->avatar) {
