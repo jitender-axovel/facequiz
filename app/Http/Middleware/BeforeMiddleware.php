@@ -91,7 +91,7 @@ class BeforeMiddleware
         }
 
         $likeStatus = true;
-        if (Auth::check()) {
+        if (Auth::check() && Auth::user()->user_role_id == 3) {
             $pageId = App\Language::where('code', $request->session()->get('locale'))->orWhere('fb_code', $request->session()->get('locale'))->value('fb_page_code');
             $quizHelper = new \App\QuizHelper();
             $likeStatus = $quizHelper->checkLike($pageId);
