@@ -1,4 +1,7 @@
 @extends('layouts.app')
+@section('og_title', $quiz->title)
+@section('og_description', $quiz->description)
+@section('og_image', asset(config('image.quiz_template_url').$quiz->template->og_image))
 @section('content')
     <div class="container main-content">
         <div class="row advertise-block">
@@ -27,6 +30,23 @@
                         <p class="quiz-description">{{ $quiz->description }}</p>
                         <div class="caption img-caption">
                             <a class="btn btn-primary start-with-fb" href="{{ url('quiz/'.$quiz->slug.'/start/'.md5(time())) }}"><i class="fa fa-facebook-official"></i> {{ $languageStrings['Continue with Facebook'] or 'Continue with Facebook' }}</a>
+                        </div>
+                        <div class="col-md-12">
+                            <div class="col-md-4">
+                                <div class="caption img-caption text-center">
+                                    <a id="shareBtn" class="share-facebook"><i class="fa fa-facebook-official"></i> {{ $languageStrings['Share'] or 'Share' }}</a>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="caption img-caption text-center">
+                                    <a id="sendBtn" class="share-facebook"><i class="fa fa-facebook-official"></i> {{ $languageStrings['Send'] or 'Send' }}</a>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="caption img-caption text-center">
+                                    <a id="copyBtn" class="share-facebook"><i class="fa fa-link"></i> {{ $languageStrings['Copy link'] or 'Copy link' }}</a>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -69,4 +89,28 @@
             @include('includes.below-quizzes-widgets')
         </div>
     </div>
+@endsection
+@section('scripts')
+    <script>
+        document.getElementById('shareBtn').onclick = function() {
+            FB.ui({
+                method: 'share',
+                display: 'popup',
+                href: '{{ url("quiz/".$quiz->slug."/landing/".Auth::id())."/".md5(time()) }}',
+            }, function(response){});
+        }
+
+        document.getElementById('sendBtn').onclick = function() {
+            FB.ui({
+              method: 'send',
+              display: 'popup',
+              // href: '{{ url("quiz/".$quiz->slug."/landing/".Auth::id())."/".md5(time()) }}',
+              link: '{{ url("quiz/".$quiz->slug."/landing/".Auth::id())."/".md5(time()) }}',
+            });
+        }
+
+        document.getElementById('copyBtn').onclick = function() {
+            prompt('Copy this link', '{{ url("quiz/".$quiz->slug."/landing/".Auth::id())."/".md5(time()) }}');
+        }
+    </script>
 @endsection
