@@ -33,35 +33,35 @@ Route::group(['middleware' => 'before'], function() {
         return view('admin.widgets.components.widget-form', compact('slug'));
     });
 
-    Route::group(['prefix' => 'admin'], function() {
-        Route::get('login', 'AdminController@getLogin');
-        Route::post('login', 'AdminController@postLogin');
-        Route::group(['middleware' => ['admin']], function() {
-            Route::get('dashboard', 'AdminController@getDashboard');
-            Route::get('users', 'AdminUsersController@index');
-            Route::get('users/edit/{id}', 'AdminUsersController@getEdit');
-            Route::post('users/edit/{id}', 'AdminUsersController@postEdit');
-            Route::get('users/view/{id}', 'AdminUsersController@view');
-            Route::delete('users/delete/{id}', 'AdminUsersController@delete');
-            Route::post('users/block/{id}', 'AdminUsersController@block');
-            Route::post('users/download-csv', 'AdminUsersController@exportToCsv');
-            Route::post('quiz/change-status/{id}', 'AdminQuizzesController@changeStatus');
-            Route::resource('quiz', 'AdminQuizzesController');
-//            Route::post('save-template-image', 'AdminQuizTemplatesController@saveTemplateImage');
-            Route::resource('layout', 'AdminQuizTemplatesController');
-            Route::resource('widget', 'AdminWidgetsController');
-            Route::resource('cms', 'AdminCmsController');
-            Route::get('language', 'AdminController@getLanguage');
-            Route::post('language', 'AdminController@postLanguage');
-            Route::post('language/{id}', 'AdminController@postUpdateLanguage');
-            Route::get('get-language-form', 'AdminController@getLanguageForm');
-        });
-    });
-
     Route::group(['prefix' => 'quiz'], function() {
         Route::get('{quizSlug}/show', 'QuizzesController@index');
         Route::get('{quizSlug}/landing/{userId}/{version}', 'QuizzesController@landing');
         Route::get('{quizSlug}/start/{version}', 'QuizzesController@start')->middleware(['auth']);
         Route::get('{quizSlug}/summary', 'QuizzesController@summary');
+    });
+});
+
+Route::group(['prefix' => 'admin'], function() {
+    Route::get('login', 'AdminController@getLogin');
+    Route::post('login', 'AdminController@postLogin');
+    Route::group(['middleware' => ['admin']], function() {
+        Route::get('dashboard', 'AdminController@getDashboard');
+        Route::get('users', 'AdminUsersController@index');
+        Route::get('users/edit/{id}', 'AdminUsersController@getEdit');
+        Route::post('users/edit/{id}', 'AdminUsersController@postEdit');
+        Route::get('users/view/{id}', 'AdminUsersController@view');
+        Route::delete('users/delete/{id}', 'AdminUsersController@delete');
+        Route::post('users/block/{id}', 'AdminUsersController@block');
+        Route::post('users/download-csv', 'AdminUsersController@exportToCsv');
+        Route::post('quiz/change-status/{id}', 'AdminQuizzesController@changeStatus');
+        Route::resource('quiz', 'AdminQuizzesController');
+//            Route::post('save-template-image', 'AdminQuizTemplatesController@saveTemplateImage');
+        Route::resource('layout', 'AdminQuizTemplatesController');
+        Route::resource('widget', 'AdminWidgetsController');
+        Route::resource('cms', 'AdminCmsController');
+        Route::get('language', 'AdminController@getLanguage');
+        Route::post('language', 'AdminController@postLanguage');
+        Route::post('language/{id}', 'AdminController@postUpdateLanguage');
+        Route::get('get-language-form', 'AdminController@getLanguageForm');
     });
 });
