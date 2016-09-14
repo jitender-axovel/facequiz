@@ -25,7 +25,7 @@ class BeforeMiddleware
         $locale = NULL;
         $browser_lang = substr($request->server('HTTP_ACCEPT_LANGUAGE'), 0, 2);
         $cookie_lang = $request->cookie('language');
-        
+
         if(isset($_GET['lang']) && in_array($_GET['lang'], $languageCodes)) {
             $request->session()->put('locale', $_GET['lang']);
         } elseif($cookie_lang && in_array($cookie_lang, $languageCodes)) {
@@ -43,7 +43,7 @@ class BeforeMiddleware
             $locale = 'en';
         }
         // Set the local in Session if it's supported
-        if ( array_key_exists($locale, $languageCodes)) {
+        if (in_array($locale, $languageCodes)) {
             $request->session()->put('locale', $locale);
             Cookie::queue(Cookie::forever('language', $locale));
         }
