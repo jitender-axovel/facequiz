@@ -187,7 +187,7 @@ class QuizHelper extends Model
     public function setFacts($template, $quiz)
     {
         $facts = QuizFact::where('quiz_id', $quiz->id)->get();
-        
+
         if(($facts && $facts->count()) && $quiz->total_facts) {
             $facts = $facts->toArray();
             $array_keys = array_rand($facts, $quiz->total_facts);
@@ -200,13 +200,13 @@ class QuizHelper extends Model
                 $k = $k + 1;//return $fact->description;
                 $template = str_replace('fact_'.$k, $facts[$key]['title'], $template);
                 $template = str_replace('fact_desc_'.$k, $facts[$key]['description'], $template);
-                $template = str_replace('fact_image_'.$k, config('image.quiz_facts_url').$facts[$key]['image'], $template);
+                $template = str_replace('fact_image_'.$k, asset(config('image.quiz_facts_url').$quiz->id.'/'.$facts[$key]['image']), $template);
             }
         } else {
-            $k = $array_keys + 1;//return $fact->description;
+            $k = 1;//return $fact->description;
             $template = str_replace('fact_'.$k, $facts[$array_keys]['title'], $template);
             $template = str_replace('fact_desc_'.$k, $facts[$array_keys]['description'], $template);
-            $template = str_replace('fact_image_'.$k, config('image.quiz_facts_url').$facts[$array_keys]['image'], $template);
+            $template = str_replace('fact_image_'.$k, asset(config('image.quiz_facts_url').$quiz->id.'/'.$facts[$array_keys]['image']), $template);
         }
         
         return $template;
