@@ -164,11 +164,11 @@ class AdminQuizzesController extends Controller
                 $quizFact->title = $input['fact']['title'][$k];
                 $quizFact->description = $input['fact']['description'][$k];
                 if($request->hasFile('image')) {
-                    $fileName = md5(time()).'.png';
+                    $fileName = md5($input['fact']['title'][$k]).'.png';
                     $file[$k]->move($destinationPath, $fileName);
                     $quizFact->image = $fileName;
+                    $quizFact->save();
                 }
-                $quizFact->save();
             }
         }
 
