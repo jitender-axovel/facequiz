@@ -200,13 +200,13 @@ class QuizHelper extends Model
                 $k = $k + 1;//return $fact->description;
                 $template = str_replace('fact_'.$k, $facts[$key]['title'], $template);
                 $template = str_replace('fact_desc_'.$k, $facts[$key]['description'], $template);
-                $template = str_replace('fact_image_'.$k, $facts[$key]['image'], $template);
+                $template = str_replace('fact_image_'.$k, config('image.quiz_facts_url').$facts[$key]['image'], $template);
             }
         } else {
             $k = $array_keys + 1;//return $fact->description;
             $template = str_replace('fact_'.$k, $facts[$array_keys]['title'], $template);
             $template = str_replace('fact_desc_'.$k, $facts[$array_keys]['description'], $template);
-            $template = str_replace('fact_image_'.$k, $facts[$array_keys]['image'], $template);
+            $template = str_replace('fact_image_'.$k, config('image.quiz_facts_url').$facts[$array_keys]['image'], $template);
         }
         
         return $template;
