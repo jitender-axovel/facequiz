@@ -27,4 +27,13 @@ return [
     'Kindly Like us on Facebook' => 'Kindly Like us on Facebook',
     'There are no more quizzes.' => 'There are no more quizzes.',
     'You will be required to login with Facebook.' => 'You will be required to login with Facebook.',
+    'Sorry, the quiz you are looking for is unemployed' => 'Sorry, the quiz you are looking for is unemployed',
+    'Sorry, the quiz you are looking for is unemployed or may be your language is different from quiz language.' => 'Sorry, the quiz you are looking for is unemployed or may be your language is different from quiz language.',
+    'Kindly try again as your facebook authentication code has expired.' => 'Kindly try again as your facebook authentication code has expired.',
+    'Sorry, the quiz you are looking for is unemployed' => 'Sorry, the quiz you are looking for is unemployed',
+    'Whoops, looks like you denied permissions for this app.' => 'Whoops, looks like you denied permissions for this app.',
+    'Dear user, your account has been deleted by admin earlier. Kindly create a new account if you want to use our services.' => 'Dear user, your account has been deleted by admin earlier. Kindly create a new account if you want to use our services.',
+    'Dear user, your account has been blocked by admin. Kindly write to support if you want to discuss any details.' => 'Dear user, your account has been blocked by admin. Kindly write to support if you want to discuss any details.',
+    'Dear User, please provide your email id to enjoy diffrent quizzes. Else we would be unable to create your account.' => 'Dear User, please provide your email id to enjoy diffrent quizzes. Else we would be unable to create your account.',
+    
 ];
