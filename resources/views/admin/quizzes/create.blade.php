@@ -61,6 +61,12 @@
                         <textarea class="form-control" name="description">{{ old('description') }}</textarea>
                     </div>
                 </div>
+                <div class="form-group">
+                    <label class="control-label col-sm-2">Answer Description (Optional)</label>
+                    <div class="col-sm-10">
+                        <textarea class="form-control" name="answer_description">{{ old('answer_description') }}</textarea>
+                    </div>
+                </div>
             </fieldset>
             <fieldset class="jumbotron">
                 <legend>Set Template Properties</legend>
