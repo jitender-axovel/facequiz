@@ -168,6 +168,8 @@ class AdminQuizzesController extends Controller
                     $file[$k]->move($destinationPath, $fileName);
                     $quizFact->image = $fileName;
                     $quizFact->save();
+                } else {
+                    $quizFact->save();
                 }
             }
         }
