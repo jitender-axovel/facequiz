@@ -383,6 +383,10 @@ class AdminQuizzesController extends Controller
     {
         $quiz = Quiz::find($id);
         $title = $quiz->title;
+        $quiz->template->name = $quiz->template->name.'(deleted)';
+        $quiz->template->save();
+        $quiz->title = $quiz->title.'(deleted)';
+        $quiz->save();
 
         if($quiz->delete()) {
             $result['status'] = true;
