@@ -11,7 +11,7 @@
             @include('notification')
         </div>
         <div class="row">
-            <div class="col-md-8">
+            <div class="col-md-9">
                 <div class="panel panel-default">
                     <div class="panel-body text-center">
                         <div class="img-wrap col-md-10">
@@ -68,7 +68,7 @@
                     @include('includes.after-quiz-widgets')
                 </div>
             </div>
-            <div class="col-md-4 fb-widget">
+            <div class="col-md-3 fb-widget">
                 <div class="row">
                     @if(isset($fb_widget))
                         {!!$fb_widget!!}

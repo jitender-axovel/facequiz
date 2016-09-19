@@ -8,7 +8,7 @@
             @include('notification')
         </div>
         <div class="row">
-            <div class="col-md-8">
+            <div class="col-md-9">
                 <div class="row">
                     <div class="panel panel-default">
                         <div class="panel-heading">
@@ -26,9 +26,11 @@
                                         <div class="fb-like" data-href="https://www.facebook.com/robodoo.en" data-layout="button_count" data-action="like" data-size="small" data-show-faces="true" data-share="false"></div>
                                     @endif
                                 @endif
-                                <div class="text-center row">
+                                <div class="text-center row caption">
                                     <a class="btn btn-success btn-lg" href="{{ url('quiz/'.$quiz->slug.'/start/'.md5(time())) }}"><i class="fa fa-refresh"></i> {{ $languageStrings['Try Again'] or 'Try Again' }}</a>
-                                    <a class="btn btn-warning btn-lg" href="{{ url('quiz/'.$quizzes->first()->slug.'/show') }}"><i class="fa fa-angle-double-right"></i>{{ $languageStrings['Try Next'] or 'Try Next' }}</a>
+                                    @if($quizzes->count())
+                                        <a class="btn btn-warning btn-lg" href="{{ url('quiz/'.$quizzes->first()->slug.'/show') }}"><i class="fa fa-angle-double-right"></i>{{ $languageStrings['Try Next'] or 'Try Next' }}</a>
+                                    @endif
                                 </div>
                             </div>
                         </div>
@@ -58,7 +60,7 @@
                     @include('includes.after-quiz-widgets')
                 </div>
             </div>
-            <div class="col-md-4">
+            <div class="col-md-3 fb-widget">
                 <div class="row">
                     @if(isset($fb_widget))
                         {!!$fb_widget!!}
