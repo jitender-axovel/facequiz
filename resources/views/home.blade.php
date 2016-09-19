@@ -1,6 +1,6 @@
 @extends('layouts.app')
 @section('content')
-    <div class="main-content container">
+    <div class="main-content container homepage-container">
         <div class="row">
             @include('notification')
         </div>
