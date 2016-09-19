@@ -21,6 +21,7 @@ class CreateQuizzesTable extends Migration
             $table->string('locale');
             $table->string('background_image');
             $table->text('description');
+            $table->text('answer_description');
             $table->integer('total_facts')->unsigned();
             $table->boolean('show_own_profile_picture')->default(false);
             $table->boolean('show_user_name')->default(false);
