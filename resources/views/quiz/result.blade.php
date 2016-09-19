@@ -24,7 +24,10 @@
                             <span class="lead heading">&nbsp;{{ $languageStrings['Loading Results'] or 'Loading Results' }}</span>
                         </div>
                         <div class="quiz-result-section">
-                            <div class="result-img col-md-12">
+                            <div class="caption">
+                                <a class="btn btn-primary start-with-fb shareBtn" title="{{ $languageStrings['Share on Facebook'] or 'Share on Facebook' }}"><i class="fa fa-facebook-official"></i> {{ $languageStrings['Share on Facebook'] or 'Share on Facebook' }}</a>
+                            </div>
+                            <div class="result-img col-md-12 caption">
                                 <img class="media-object result-image" src="{{asset(config('image.quiz_result_url').$result->result_image)}}">
                             </div>
                             @if(!$has_liked_page)
