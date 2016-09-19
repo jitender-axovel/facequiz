@@ -42,6 +42,10 @@ Route::get('get-widget-form/{slug}', function($slug) {
     return view('admin.widgets.components.widget-form', compact('slug'));
 });
 
+Route::get('get-quiz-fact', function() {
+    return view('admin.quizzes.quiz-fact');
+});
+
 Route::group(['prefix' => 'admin'], function() {
     Route::get('login', 'AdminController@getLogin');
     Route::post('login', 'AdminController@postLogin');
