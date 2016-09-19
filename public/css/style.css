@@ -3,7 +3,7 @@ ul{margin:0; padding:0; list-style:none;}
 h1,h2,h3,h4,h5,h6{color:#3b3b3b; text-transform: capitalize;}
 h4{font-size:20px;}
 .col-md-12 {margin: 0;  padding: 0;}
-.col-md-6 {padding: 0;}
+.col-md-6 ,.col-md-4{padding: 0;}
 h2{font-size:40px; color:#ed3174;}
 h3.small-heading{font-size:25px; color:#ed3174; text-transform: uppercase;}
 h1{font-size:60px;}
@@ -15,7 +15,15 @@ p{color:#9b9b9b; line-height: 150%;}
 .list-inline > li {padding: 0;}
 .upper{text-transform:uppercase;}
 .start-today p  , .how-works p{color: #3b3b3b;}
-.container {max-width: 900px; padding: 0; width: 70%;}
+.container {/*max-width: 900px;*/ padding: 0; width:85%;}
+.media-left, .media>.pull-left {
+    padding: 0px;
+}
+/*container-width for home-page*/
+.main-content.container.homepage-container,.top-header.homepage-header .container{max-width: 900px; padding: 0; width:70%;}
+/*....*/
+.main-content .row .col-md-8 {padding: 0 10px;}
+.main-content .panel .panel-body {padding: 10px;}
 .panel-body > img { width: 100%; padding-bottom: 10px;}
 .caption { padding-bottom: 10px;}
 .panel-title.heading {font-size: 22px;    padding-bottom: 5px; padding-top: 5px;}
@@ -24,6 +32,7 @@ p{color:#9b9b9b; line-height: 150%;}
 .img-wrap > img {height: 400px; width: 100%;}
 .fb-like-button { text-align: center; }
 .img-caption{ clear: both;padding-bottom: 10px;  padding-top: 10px;}
+
 /* header design */ 
 .mobile-view{ display:none;}
 header.site-header{z-index: 99; background: #fff ; position: relative;}
@@ -42,19 +51,23 @@ body .navbar {min-height: 0;}
 .header-navigation {margin-top: 10px; padding-left:50px;}
 .top-side-link {float: right;margin-top: 5px;text-align: center; list-style: outside none none;}
 .header-navigation .navbar-nav li {margin-right: 15px;}
-.top-side-link .nav.navbar-nav {width: 100%; margin:0;}
+.top-side-link .nav.navbar-nav {width: 100%;margin-left: 4px;}
+.media-left, .media>.pull-left { padding: 0;}
 .logo.custom-left {float: left; padding: 0 15px 0 0; width: auto;}
 .row.advertise-block {padding-bottom: 20px;padding-top: 10px;text-align: center;}
 .top-side-link .navbar-nav li {float: right;}
-#language-selector { -moz-appearance: none;  background: rgba(0, 0, 0, 0) url("../images/left-arrow.png") no-repeat scroll 55px center;
-    border: medium none; color: #000000; margin-top: 15px; padding: 0 20px 0 0;  position: relative;  -webkit-appearance: none;
-    appearance:none;}
+#language-selector { -moz-appearance: none;  background: #f5f5f5 url("../images/left-arrow.png") no-repeat scroll 55px center;
+    border: medium none; color: #000000; margin-top: 15px; padding: 3px 20px 5px 10px;  position: relative;  -webkit-appearance: none;
+    appearance:none;font-size: 12px;}
 .like-section {background: #930a0f; border-bottom: 1px solid #930a0f; border-top: 1px solid #930a0f;}
-.like-section p { color: #ffffff; font-size: 17px; margin: 0;}
+.like-section p { color: #ffffff; font-size: 17px; margin: 0;font-weight: 600;}
 .like-section .custom-like-button span { color: #930A0F; font-size: 17px; line-height: 25px;}
 .like-section .container-fluid {padding: 0;}
-.like-section .container-fluid > div {padding: 7px;}
-.like-section .container-fluid .custom-like-button {padding: 7px; border-radius: 50px 0 0 50px; background: #fff;}
+.like-section .container-fluid > div {padding:2px;}
+.col-md-3.fb-widget {padding: 0;}
+
+/*.fb-page.fb_iframe_widget {padding:0 0 10px 0;}*/
+.like-section .container-fluid .custom-like-button {padding:4px; border-radius: 50px 0 0 50px;height: 30px; background: #fff;}
 /* header design end */
 .thumbnail .caption {min-height: 70px; overflow: hidden;}
 /* pagination links */
@@ -65,7 +78,7 @@ footer {background: #ffffff; padding: 25px 10px; width: 100%;}
 .footer-links {margin-bottom: 10px;}
 footer .copyright {margin-top: 10px;}
 .footer-links .list-inline > li {margin-right: 30px;}
-.footer-links .list-inline a {color: #930A0F; font-size: 18px;}
+.footer-links .list-inline a {color: #930A0F; font-size: 17px;}
 footer p {margin: 0; color: #333333;}
 /* footer design end */
 
@@ -77,7 +90,9 @@ footer p {margin: 0; color: #333333;}
 .top-section {clear: both; overflow: hidden;}
 .top-side-link .media-body {width: auto;}
 .top-side-link .media-body > span {color: #ffffff; font-size: 14px;}
-.fb-page { box-sizing: border-box; padding: 0 5px;}
+.fb-page { box-sizing: border-box; padding: 0 ;width: 100%;}
+.fb-page > span {display: block;width: 100% !important;}
+.fb-page iframe{width: 100%!important;padding: 0  0 10px 0;}
 .fb-widget > .row {margin: 0;}
 .top-side-link .nav .open > a, .top-side-link .nav .open > a:focus, .top-side-link .nav .open > a:hover { background-color: rgba(0, 0, 0, 0);  border-color: rgba(0, 0, 0, 0);}
 .top-side-link .nav > li > a:focus, .top-side-link .nav > li > a:hover { background-color: #930A0F;}
@@ -106,10 +121,17 @@ background:#ffffff; border: 1px solid #930a0f;}
 .main-content .panel .panel-heading , .main-content .panel .panel-footer{border: 0 none; padding: 0;}
 .quiz-description {color: #787878; font-size: 17px;}
 .loading-image {text-align: center;}
-.start-with-fb {border-radius: 40px; font-size: 22px; min-width: 250px; padding: 6px 40px; outline:none; max-width: 100%;}
+.start-with-fb {border-radius: 40px; font-size:22px; min-width: 250px; padding: 6px 40px; outline:none; max-width: 100%;}
 .start-with-fb .fa {padding-right: 20px; transform: scale(1.6);}
-.share-facebook {font-size: 22px; min-width: 250px;  padding: 6px 40px; outline:none; max-width: 100%;}
-.share-facebook .fa { transform: scale(1.5); padding-right:20px;}
+.share-facebook {font-size:17px; min-width: 250px;  padding: 6px 67px; outline:none; max-width: 100%;border-left: 1px solid #dadada;}
+.share-facebook .fa { transform: scale(1.4); padding-right:10px;}
+.main-content .row .panel .caption.img-caption {border-bottom: 1px solid #dadada;}
+.quiz-options a#shareBtn,.quiz-options a#sendBtn,.quiz-options a#copyBtn {font-size: 15px;cursor: pointer;}
+.quiz-options a#shareBtn{border-left:none;}
+.quiz-options a#shareBtn:hover,.quiz-options a#sendBtn:hover,.quiz-options a#copyBtn:hover {background: #dadada;}
+.quiz-options {padding-top: 10px;}
+a#sendBtn {padding: 6px 84px;}
+a#shareBtn {padding: 6px 82px;}
 /* home page */
 
 /* admin panel */
