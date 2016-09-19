@@ -245,7 +245,7 @@ class AdminQuizzesController extends Controller
 
         $templateInput['name'] = $input['title'];
 
-        QuizTemplate::where('id', $quiz->template->id)->update($templateInput);
+        $quiz->template->update($templateInput);
 
         if(isset($input['has_title'])) {
             $quiz->template->has_title = 1;
