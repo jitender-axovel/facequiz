@@ -118,6 +118,7 @@ background:#ffffff; border: 1px solid #930a0f;}
 .web-view .header-navigation .navbar {float: left;}
 .web-view .header-navigation select {float: left; margin-left: 10px; margin-top: 5px;}
 .result-img{width:100%;}
+.media-object.result-image {width: 100%;}
 .main-content .panel .panel-heading , .main-content .panel .panel-footer{border: 0 none; padding: 0;}
 .quiz-description {color: #787878; font-size: 17px;}
 .loading-image {text-align: center;}
