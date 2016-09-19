@@ -6,10 +6,10 @@
         <h4>SUCCESS</h4>
         @if(is_array($message))
             @foreach ($message as $m)
-                {{ $m }}
+                {{ $languageStrings[$m] or $m }}
             @endforeach
         @else
-            {{ $message }}
+            {{ $languageStrings[$message] or $message }}
         @endif
     </div>
 </div>
@@ -22,11 +22,11 @@
         <button type="button" class="close" data-dismiss="alert">&times;</button>
         <h4>Error</h4>
         @if(is_array($message))
-        @foreach ($message as $m)
-        {{ $m }}
-        @endforeach
+            @foreach ($message as $m)
+                {{ $languageStrings[$m] or $m }}
+            @endforeach
         @else
-        {{ $message }}
+            {{ $languageStrings[$message] or $message }}
         @endif
     </div>
 </div>
@@ -38,11 +38,11 @@
         <button type="button" class="close" data-dismiss="alert">&times;</button>
         <h4>Warning</h4>
         @if(is_array($message))
-        @foreach ($message as $m)
-        {{ $m }}
-        @endforeach
+            @foreach ($message as $m)
+                {{ $languageStrings[$m] or $m }}
+            @endforeach
         @else
-        {{ $message }}
+            {{ $languageStrings[$message] or $message }}
         @endif
     </div>
 </div>
@@ -53,11 +53,11 @@
         <button type="button" class="close" data-dismiss="alert">&times;</button>
         <h4>Info</h4>
         @if(is_array($message))
-        @foreach ($message as $m)
-        {{ $m }}
-        @endforeach
+            @foreach ($message as $m)
+                {{ $languageStrings[$m] or $m }}
+            @endforeach
         @else
-        {{ $message }}
+            {{ $languageStrings[$message] or $message }}
         @endif
     </div>
 @endif
