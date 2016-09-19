@@ -48,7 +48,7 @@
                     <div class="col-md-12">
                         @if($quizzes->count())
                             @foreach($quizzes as $quizItem)
-                                <div class="col-md-6 col-sm-6 padd-5">
+                                <div class="col-md-4 col-sm-4 padd-5">
                                     <div class="thumbnail content-img">
                                         <a href="{{ url('quiz/'.$quizItem->slug.'/show') }}"><img src="{{ asset(config('image.quiz_template_url').$quizItem->template->og_image) }}"></a>
                                         <div class="caption">
