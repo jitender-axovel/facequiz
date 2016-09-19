@@ -61,3 +61,12 @@
         </div>
     </div>
 @endsection
+@section('scripts')
+    <script type="text/javascript">
+        $(document).ready(function() {
+            if($(document).has('.homepage-container')) {
+                $('.homepage-container').prev().children('.top-header').addClass('homepage-header');
+            }
+        });
+    </script>
+@endsection
