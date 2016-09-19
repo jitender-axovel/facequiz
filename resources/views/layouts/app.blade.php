@@ -223,10 +223,10 @@
     <div class="like-section web-view">
         <div class="container-fluid">
             @if(isset($has_liked_page) && !$has_liked_page)
-                <div class="col-md-9 col-sm-8 col-xs-12 text-center">
+                <div class="col-md-10 col-sm-9 col-xs-12 text-center">
                     <p>{{ $languageStrings['We like you. Like us back!'] or "We like you. Like us back!" }}</p>
                 </div>
-                <div class="custom-like-button col-md-3 col-sm-4 text-center">
+                <div class="custom-like-button col-md-2 col-sm-3 text-center">
                     <span class="bold">{{ $languageStrings['Like Us'] or "Like Us" }} <i class="fa fa-arrow-right"></i> </span>
                     @if(isset($fb_like_button))
                         {!!$fb_like_button!!}
