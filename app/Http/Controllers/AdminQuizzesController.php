@@ -163,7 +163,7 @@ class AdminQuizzesController extends Controller
                 $quizFact->quiz_id = $quiz->id;
                 $quizFact->title = $input['fact']['title'][$k];
                 $quizFact->description = $input['fact']['description'][$k];
-                if($request->hasFile('image')) {
+                if($request->hasFile('image') && $file[$k] != null) {
                     $fileName = md5($input['fact']['title'][$k]).'.png';
                     $file[$k]->move($destinationPath, $fileName);
                     $quizFact->image = $fileName;
@@ -213,6 +213,7 @@ class AdminQuizzesController extends Controller
      */
     public function update(Request $request, $id)
     {
+        // dd($request->file('image'));
         $quiz = Quiz::find($id);
 
         if(!$quiz) {
@@ -318,6 +319,29 @@ class AdminQuizzesController extends Controller
         
         if (!file_exists($destinationPath)) {
             mkdir($destinationPath, 0777, true);
+        }
+
+        if(isset($input['fact'])) {
+            foreach($input['fact']['title'] as $k => $fact) {
+                if(QuizFact::find($k)) {
+                    $quizFact = QuizFact::find($k);
+                    $quizFact->title = $input['fact']['title'][$k];
+                    $quizFact->description = $input['fact']['description'][$k];
+                } else {
+                    $quizFact = new QuizFact();
+                    $quizFact->quiz_id = $quiz->id;
+                    $quizFact->title = $input['fact']['title'][$k];
+                    $quizFact->description = $input['fact']['description'][$k];
+                }
+                if($request->hasFile('image') && $file[$k] != null) {
+                    $fileName = md5($input['fact']['title'][$k]).'.png';
+                    $file[$k]->move($destinationPath, $fileName);
+                    $quizFact->image = $fileName;
+                    $quizFact->save();
+                } else {
+                    $quizFact->save();
+                }
+            }
         }
 
         return redirect('admin/quiz')->with('success', 'Quiz is successfully upadted.');

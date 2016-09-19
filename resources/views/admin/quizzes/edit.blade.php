@@ -147,8 +147,29 @@
                         <div class="col-md-2">
                             <input type="number" name="total_facts" min="0" max="10" class="form-control" value="{{$quiz->total_facts or ''}}">
                         </div>
+                        <div class="col-md-3 col-sm-3 col-xs-12 col-md-offset-1">
+                            <button type="button" onclick="javascript:addFact();" class="btn btn-warning">Add New Fact</button>
+                        </div>
                     </div>
                     <span class="help-block">There are a total of {{$quiz->facts->count()}} facts.</span>
+                    @foreach($quiz->facts as $fact)
+                        <div class="fact-list-item panel-body panel">
+                            <div class="col-md-12">
+                                <div  class="col-md-6 col-sm-6 col-xs-12">
+                                    <input required name="fact[title][{{$fact->id}}]" class="form-control" value="{{ $fact->title }}">
+                                </div>
+                                <input type="file" name="image[{{$fact->id}}]" accept="image/*" class="col-md-3 col-sm-3 col-xs-6 fact-image" onchange="readFacts(this);">
+                                <img height="100px" width="100px" src="{{ asset(config('image.quiz_facts_url').$quiz->id.'/'.$fact->image) }}" alt="Image Preview" />
+                            </div>
+                            <div class="col-md-12">
+                                <div class="col-md-10 col-sm-10 col-xs-12">
+                                    <input name="fact[description][{{$fact->id}}]" class="form-control" placeholder="Description (Optional)" value="{{ $fact->description }}">
+                                </div>
+                                <button type="button" onclick="javascript:addFact();" class="add-form-element btn btn-warning"><i class="fa fa-plus"></i></button>
+                                <button type="button" class="remove-form-element btn btn-danger"><i class="fa fa-minus"></i></button>
+                            </div>
+                        </div>
+                    @endforeach
                 </div>
             </fieldset>
             <div class="form-group">
@@ -172,13 +193,45 @@
             }
         }
         
-        $('.add-form-element').click(function () {
-            $('.fact-list-item').first().clone(true,true).appendTo('#quiz-form');
+        function addFact()
+        {
+            $.ajax({
+                url: "{{ url('get-quiz-fact') }}",
+                type: "GET",
+                cache: false,
+                success: function(data) {
+                    $('#quiz-form').append(data);
+                    activateRemoveButton();
+                }
+            })
+        }
+
+        function activateRemoveButton()
+        {
+            $('.remove-form-element').click(function () {
+                $('.remove-form-element:focus').closest('.fact-list-item').remove();
+            });
+        }
+
+        $(document).ready(function() {
+            activateRemoveButton();
         });
 
-        $('.remove-form-element').click(function () {
-            $('#quiz-form .fact-list-item').last().remove();
-        });
+        function readFacts(input) {
+            if (input.files && input.files[0]) {
+                var reader = new FileReader();
+                reader.fileName = input.files[0].name;
+                reader.onload = function (e) {
+                    $('input[type=file]').each(function(){
+                        if (e.target.fileName === jQuery(this).val()) {
+                            jQuery(this).next('img').attr('src', e.target.result);
+                        }
+                    })
+                }
+
+                reader.readAsDataURL(input.files[0]);
+            }
+        }
 
         function readTemplate(input) {
             if (input.files && input.files[0]) {
