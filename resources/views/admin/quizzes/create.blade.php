@@ -148,24 +148,11 @@
                         <div class="col-md-3 col-sm-3 col-xs-12">
                             <input required type="number" name="total_facts" min="0" max="10" class="form-control" placeholder="Enter total no. of facts">
                         </div>
+                        <div class="col-md-3 col-sm-3 col-xs-12 col-md-offset-1">
+                            <button type="button" onclick="javascript:addFact();" class="btn btn-warning">Add New Fact</button>
+                        </div>
                     </div>
                     <legend>Create Quiz Fact Below</legend>
-                    <div class="fact-list-item panel-body panel">
-                        <div class="col-md-12">
-                            <div  class="col-md-6 col-sm-6 col-xs-12">
-                                <input required name="fact[title][]" class="form-control" placeholder="Title">
-                            </div>
-                            <input type="file" name="image[]" accept="image/*" class="col-md-3 col-sm-3 col-xs-6 fact-image" onchange="readFacts(this);">
-                            <img height="100px" width="100px" src="" alt="Image Preview" />
-                        </div>
-                        <div class="col-md-12">
-                            <div class="col-md-10 col-sm-10 col-xs-12">
-                                <input name="fact[description][]" class="form-control" placeholder="Description (Optional)">
-                            </div>
-                            <button type="button" class="add-form-element btn btn-warning"><i class="fa fa-plus"></i></button>
-                            <button type="button" class="remove-form-element btn btn-danger"><i class="fa fa-minus"></i></button>
-                        </div>
-                    </div>
                 </div>
             </fieldset>
             <div class="form-group">
@@ -219,17 +206,28 @@
                 reader.readAsDataURL(input.files[0]);
             }
         }
-        
-        $('.add-form-element').click(function () {
-            $('.fact-list-item').first().clone(true,true).appendTo('#quiz-form');
-        });
 
-        $('.remove-form-element').click(function () {
-            $('#quiz-form .fact-list-item').last().remove();
-        });
+        function addFact()
+        {
+            $.ajax({
+                url: "{{ url('get-quiz-fact') }}",
+                type: "GET",
+                cache: false,
+                success: function(data) {
+                    $('#quiz-form').append(data);
+                    activateRemoveButton();
+                }
+            })
+        }
+
+        function activateRemoveButton()
+        {
+            $('.remove-form-element').click(function () {
+                $('.remove-form-element:focus').closest('.fact-list-item').remove();
+            });
+        }
 
         function readFacts(input) {
-            // alert(input);
             if (input.files && input.files[0]) {
                 var reader = new FileReader();
                 reader.fileName = input.files[0].name;
