@@ -57,7 +57,7 @@ body .navbar {min-height: 0;}
 .row.advertise-block {padding-bottom: 20px;padding-top: 10px;text-align: center;}
 .top-side-link .navbar-nav li {float: right;}
 #language-selector { -moz-appearance: none;  background: #f5f5f5 url("../images/left-arrow.png") no-repeat scroll 55px center;
-    border: medium none; color: #000000; margin-top: 15px; padding: 3px 20px 5px 10px;  position: relative;  -webkit-appearance: none;
+    border: medium none; color: #000000; margin-top: 15px; padding: 3px 20px 5px 5px;  position: relative;  -webkit-appearance: none;
     appearance:none;font-size: 12px;}
 .like-section {background: #930a0f; border-bottom: 1px solid #930a0f; border-top: 1px solid #930a0f;}
 .like-section p { color: #ffffff; font-size: 17px; margin: 0;font-weight: 600;}
