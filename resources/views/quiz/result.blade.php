@@ -19,37 +19,42 @@
                         <div class="panel-title heading text-center">{{ $quiz->title }}</div>
                     </div>
                     <div class="panel-body text-center">
-                        <div class="result-img col-md-10">
-                            <div class="loading-image text-center">
-                                <img src="{{asset('images/loading.gif')}}">
-                                <span class="lead heading">&nbsp;{{ $languageStrings['Loading Results'] or 'Loading Results' }}</span>
-                            </div>
-                            <img class="media-object result-image" src="{{asset(config('image.quiz_result_url').$result->result_image)}}">
+                        <div class="loading-image text-center">
+                            <img src="{{asset('images/loading.gif')}}">
+                            <span class="lead heading">&nbsp;{{ $languageStrings['Loading Results'] or 'Loading Results' }}</span>
                         </div>
-                        @if(!$has_liked_page)
-                            <div class="fb-like-button">
-                                @if(isset($fb_like_button))
-                                    {!!$fb_like_button!!}
-                                @else
-                                    <div class="fb-like" data-href="https://www.facebook.com/robodoo.en" data-layout="button_count" data-action="like" data-size="small" data-show-faces="true" data-share="false"></div>
-                                @endif
+                        <div class="quiz-result-section">
+                            <div class="result-img col-md-12">
+                                <img class="media-object result-image" src="{{asset(config('image.quiz_result_url').$result->result_image)}}">
                             </div>
-                        @endif
-                        <div class="caption">
-                            <a class="btn btn-primary start-with-fb shareBtn" title="{{ $languageStrings['Share on Facebook'] or 'Share on Facebook' }}"><i class="fa fa-facebook-official"></i> {{ $languageStrings['Share on Facebook'] or 'Share on Facebook' }}</a>
-                        </div>
-                        <div class="caption img-caption">
-                            <a class="btn btn-default" href="{{ url('quiz/'.$quiz->slug.'/start/'.md5(time())) }}" title="{{ $languageStrings['Try Again'] or 'Try Again' }}"><i class="fa fa-refresh"></i> <span>{{ $languageStrings['Try Again'] or 'Try Again' }}</span></a>
-                        </div>
-                        <div class="quiz-options">
-                            <div class="col-md-4">
-                                <a class="share-facebook shareBtn" title="{{ $languageStrings['Share on Facebook'] or 'Share on Facebook' }}"><i class="fa fa-facebook-official"></i> {{ $languageStrings['Share'] or 'Share' }}</a>
+                            @if(!$has_liked_page)
+                                <div class="fb-like-button">
+                                    @if(isset($fb_like_button))
+                                        {!!$fb_like_button!!}
+                                    @else
+                                        <div class="fb-like" data-href="https://www.facebook.com/robodoo.en" data-layout="button_count" data-action="like" data-size="small" data-show-faces="true" data-share="false"></div>
+                                    @endif
+                                </div>
+                            @endif
+                            <div class="caption">
+                                <p class="quiz-description">{{ $quiz->answer_description }}</p>
                             </div>
-                            <div class="col-md-4">
-                                <a id="sendBtn" class="share-facebook" title="{{ $languageStrings['Send Private Message'] or 'Send Private Message' }}"><i class="fa fa-facebook-official"></i> {{ $languageStrings['Send'] or 'Send' }}</a>
+                            <div class="caption">
+                                <a class="btn btn-primary start-with-fb shareBtn" title="{{ $languageStrings['Share on Facebook'] or 'Share on Facebook' }}"><i class="fa fa-facebook-official"></i> {{ $languageStrings['Share on Facebook'] or 'Share on Facebook' }}</a>
                             </div>
-                            <div class="col-md-4">
-                                <a id="copyBtn" class="share-facebook" title="{{ $languageStrings['Copy Link'] or 'Copy Link' }}"><i class="fa fa-link"></i> {{ $languageStrings['Copy Link'] or 'Copy Link' }}</a>
+                            <div class="caption img-caption">
+                                <a class="btn btn-default" href="{{ url('quiz/'.$quiz->slug.'/start/'.md5(time())) }}" title="{{ $languageStrings['Try Again'] or 'Try Again' }}"><i class="fa fa-refresh"></i> <span>{{ $languageStrings['Try Again'] or 'Try Again' }}</span></a>
+                            </div>
+                            <div class="quiz-options">
+                                <div class="col-md-4">
+                                    <a class="share-facebook shareBtn" title="{{ $languageStrings['Share on Facebook'] or 'Share on Facebook' }}"><i class="fa fa-facebook-official"></i> {{ $languageStrings['Share'] or 'Share' }}</a>
+                                </div>
+                                <div class="col-md-4">
+                                    <a id="sendBtn" class="share-facebook" title="{{ $languageStrings['Send Private Message'] or 'Send Private Message' }}"><i class="fa fa-facebook-official"></i> {{ $languageStrings['Send'] or 'Send' }}</a>
+                                </div>
+                                <div class="col-md-4">
+                                    <a id="copyBtn" class="share-facebook" title="{{ $languageStrings['Copy Link'] or 'Copy Link' }}"><i class="fa fa-link"></i> {{ $languageStrings['Copy Link'] or 'Copy Link' }}</a>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -138,14 +143,12 @@
         }
 
         $(document).ready(function() {
-            $('.result-image').hide();
-            $('.quiz-options').hide();
+            $('.quiz-result-section').hide();
             $('.loading-image').show();
 
             setTimeout(function(){
                 $('.loading-image').hide();
-                $('.result-image').show();
-                $('.quiz-options').show();
+                $('.quiz-result-section').show();
             },4000);
         });
     </script>
