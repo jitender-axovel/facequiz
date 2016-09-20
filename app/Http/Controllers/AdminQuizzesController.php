@@ -224,7 +224,7 @@ class AdminQuizzesController extends Controller
         $file = $request->file('image');
 
         $validation = array(
-            'title' => 'required|max:255',
+            'title' => 'required|max:255|unique:quizzes',
             'locale' => 'required',
             'total_facts' => 'required|integer|min:0',
             'html_data' => 'required',
