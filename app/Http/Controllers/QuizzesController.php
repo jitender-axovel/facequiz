@@ -154,6 +154,11 @@ class QuizzesController extends Controller
     public function summary($slug)
     {
         $quiz = Quiz::where('slug', $slug)->first();
+
+        if(!$quiz) {
+            return redirect('/')->with('error', 'Sorry, the quiz you are looking for is unemployed');
+        }
+        
         $page = $quiz->title.' - Robodoo - Play with Robo';
 
         $sidebarQuizzeIds = Quiz::where('locale', session('locale'))->where('slug', '!=', $slug)->where('is_active', 1)->take(4)->lists('id');
