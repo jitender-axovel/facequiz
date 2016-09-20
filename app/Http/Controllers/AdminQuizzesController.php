@@ -60,6 +60,7 @@ class AdminQuizzesController extends Controller
 
         $validation = array(
             'title' => 'required|max:255|unique:quizzes',
+            'title' => 'required|max:255|unique:quiz_templates,name',
             'locale' => 'required',
             'total_facts' => 'required|integer|min:0',
             'html_data' => 'required',
@@ -213,7 +214,6 @@ class AdminQuizzesController extends Controller
      */
     public function update(Request $request, $id)
     {
-        // dd($request->file('image'));
         $quiz = Quiz::find($id);
 
         if(!$quiz) {
@@ -224,7 +224,8 @@ class AdminQuizzesController extends Controller
         $file = $request->file('image');
 
         $validation = array(
-            'title' => 'required|max:255|unique:quizzes',
+            'title' => 'required|max:255|unique:quizzes,title,'.$quiz->id,
+            'title' => 'required|max:255|unique:quiz_templates,name,'.$quiz->template->id,
             'locale' => 'required',
             'total_facts' => 'required|integer|min:0',
             'html_data' => 'required',
