@@ -53,7 +53,7 @@
                                     <a id="shareBtn" class="share-facebook shareBtn" title="{{ $languageStrings['Share on Facebook'] or 'Share on Facebook' }}"><i class="fa fa-facebook-official"></i> {{ $languageStrings['Share'] or 'Share' }}</a>
                                 </div>
                                 <div class="col-md-4 send-button">
-                                    <a id="sendBtn" class="share-facebook" title="{{ $languageStrings['Send Private Message'] or 'Send Private Message' }}"><img src="{{ asset('images/facebook-messanger.png') }}"> {{ $languageStrings['Send'] or 'Send' }}</a>
+                                    <a id="sendBtn" class="share-facebook" title="{{ $languageStrings['Send Private Message'] or 'Send Private Message' }}"><img src="{{ asset('images/facebook-messanger.png') }}" class="responsive"> {{ $languageStrings['Send'] or 'Send' }}</a>
                                 </div>
                                 <div class="col-md-4">
                                     <a id="copyBtn" class="share-facebook" title="{{ $languageStrings['Copy Link'] or 'Copy Link' }}"><i class="fa fa-link"></i> {{ $languageStrings['Copy Link'] or 'Copy Link' }}</a>
