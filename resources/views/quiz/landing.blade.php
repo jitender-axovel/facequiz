@@ -13,51 +13,47 @@
         </div>
         <div class="row">
             <div class="col-md-9">
-                <div class="row">
-                    <div class="panel panel-default">
-                        <div class="panel-heading">
-                            <h3 class="panel-title heading text-center">{{ $quiz->title }}</h3>
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h3 class="panel-title heading text-center">{{ $quiz->title }}</h3>
+                    </div>
+                    <div class="panel-body">
+                        <div class="img-wrap col-md-10">
+                            <img src="{{ asset(config('image.quiz_template_url').$quiz->template->og_image) }}">
                         </div>
-                        <div class="panel-body">
-                            <div class="img-wrap col-md-10">
-                                <img src="{{ asset(config('image.quiz_template_url').$quiz->template->og_image) }}">
-                            </div>
-                            <div class="caption img-caption">
-                                <a class="btn btn-primary btn-block" href="{{ url('quiz/'.$quiz->slug.'/start/'.md5(time())) }}">{{ $languageStrings['Start'] or 'Start' }}</a>
-                            </div>
-                            <span>{{ $languageStrings['You will be required to login with Facebook.'] or 'You will be required to login with Facebook.' }}</span>
+                        <div class="caption img-caption">
+                            <a class="btn btn-primary btn-block" href="{{ url('quiz/'.$quiz->slug.'/start/'.md5(time())) }}">{{ $languageStrings['Start'] or 'Start' }}</a>
                         </div>
-                        <div class="panel-footer">
-                            {{$quiz->description}}
-                        </div>
+                        <span>{{ $languageStrings['You will be required to login with Facebook.'] or 'You will be required to login with Facebook.' }}</span>
+                    </div>
+                    <div class="panel-footer">
+                        {{$quiz->description}}
                     </div>
                 </div>
-                <div class="row">
-                    <div class="col-md-12">
-                        @if($quizzes->count())
-                            @foreach($quizzes as $quizItem)
-                                <div class="col-md-4 col-sm-4 padd-5">
-                                    <div class="thumbnail content-img">
-                                        <a href="{{ url('quiz/'.$quizItem->slug.'/show') }}"><img src="{{ asset(config('image.quiz_template_url').$quizItem->template->og_image) }}"></a>
-                                        <div class="caption">
-                                            <div class="heading"><a href="{{ url('quiz/'.$quizItem->slug.'/show') }}">{{$quizItem->title}}</a></div>
-                                        </div>
+                <div class="col-md-12">
+                    @if($quizzes->count())
+                        @foreach($quizzes as $quizItem)
+                            <div class="col-md-4 col-sm-4 padd-5">
+                                <div class="thumbnail content-img">
+                                    <a href="{{ url('quiz/'.$quizItem->slug.'/show') }}"><img src="{{ asset(config('image.quiz_template_url').$quizItem->template->og_image) }}"></a>
+                                    <div class="caption">
+                                        <div class="heading"><a href="{{ url('quiz/'.$quizItem->slug.'/show') }}">{{$quizItem->title}}</a></div>
                                     </div>
                                 </div>
-                            @endforeach
-                        @else
-                            <div class="heading">
-                                <span>{{ $languageStrings['There are no more quizzes.'] or 'There are no more quizzes.' }}</span>
                             </div>
-                        @endif
-                    </div>
+                        @endforeach
+                    @else
+                        <div class="heading">
+                            <span>{{ $languageStrings['There are no more quizzes.'] or 'There are no more quizzes.' }}</span>
+                        </div>
+                    @endif
                 </div>
-                <div class="row">
+                <div class="col-md-12">
                     @include('includes.after-quiz-widgets')
                 </div>
             </div>
             <div class="col-md-3 fb-widget">
-                <div class="row">
+                <div class="col-md-12">
                     @if(isset($fb_widget))
                         {!!$fb_widget!!}
                     @else
@@ -65,7 +61,7 @@
                     @endif
                 </div>
                 @include('includes.left-sidebar')
-                <div class="row">
+                <div class="col-md-12">
                     @if($sidebarQuizzes->count())
                         @foreach($sidebarQuizzes as $quizItem)
                             <div class="thumbnail content-img">

@@ -50,10 +50,10 @@
                             </div>
                             <div class="quiz-options">
                                 <div class="col-md-4">
-                                    <a class="share-facebook shareBtn" title="{{ $languageStrings['Share on Facebook'] or 'Share on Facebook' }}"><i class="fa fa-facebook-official"></i> {{ $languageStrings['Share'] or 'Share' }}</a>
+                                    <a id="shareBtn" class="share-facebook shareBtn" title="{{ $languageStrings['Share on Facebook'] or 'Share on Facebook' }}"><i class="fa fa-facebook-official"></i> {{ $languageStrings['Share'] or 'Share' }}</a>
                                 </div>
-                                <div class="col-md-4">
-                                    <a id="sendBtn" class="share-facebook" title="{{ $languageStrings['Send Private Message'] or 'Send Private Message' }}"><i class="fa fa-facebook-official"></i> {{ $languageStrings['Send'] or 'Send' }}</a>
+                                <div class="col-md-4 send-button">
+                                    <a id="sendBtn" class="share-facebook" title="{{ $languageStrings['Send Private Message'] or 'Send Private Message' }}"><img src="{{ asset('images/facebook-messanger.png') }}"> {{ $languageStrings['Send'] or 'Send' }}</a>
                                 </div>
                                 <div class="col-md-4">
                                     <a id="copyBtn" class="share-facebook" title="{{ $languageStrings['Copy Link'] or 'Copy Link' }}"><i class="fa fa-link"></i> {{ $languageStrings['Copy Link'] or 'Copy Link' }}</a>
@@ -62,32 +62,30 @@
                         </div>
                     </div>
                 </div>
-                <div class="row">
-                    <div class="col-md-12">
-                        @if($quizzes->count())
-                            @foreach($quizzes as $quizItem)
-                                <div class="col-md-4 col-sm-4 padd-5">
-                                    <div class="thumbnail content-img">
-                                        <a href="{{ url('quiz/'.$quizItem->slug.'/show') }}"><img src="{{ asset(config('image.quiz_template_url').$quizItem->template->og_image) }}"></a>
-                                        <div class="caption">
-                                            <div class="heading"><a href="{{ url('quiz/'.$quizItem->slug.'/show') }}">{{$quizItem->title}}</a></div>
-                                        </div>
+                <div class="col-md-12">
+                    @if($quizzes->count())
+                        @foreach($quizzes as $quizItem)
+                            <div class="col-md-4 col-sm-4 padd-5">
+                                <div class="thumbnail content-img">
+                                    <a href="{{ url('quiz/'.$quizItem->slug.'/show') }}"><img src="{{ asset(config('image.quiz_template_url').$quizItem->template->og_image) }}"></a>
+                                    <div class="caption">
+                                        <div class="heading"><a href="{{ url('quiz/'.$quizItem->slug.'/show') }}">{{$quizItem->title}}</a></div>
                                     </div>
                                 </div>
-                            @endforeach
-                        @else
-                            <div class="heading">
-                                <span>{{ $languageStrings['There are no more quizzes.'] or 'There are no more quizzes.' }}</span>
                             </div>
-                        @endif
-                    </div>
+                        @endforeach
+                    @else
+                        <div class="heading">
+                            <span>{{ $languageStrings['There are no more quizzes.'] or 'There are no more quizzes.' }}</span>
+                        </div>
+                    @endif
                 </div>
-                <div class="row">
+                <div class="col-md-12">
                     @include('includes.after-quiz-widgets')
                 </div>
             </div>
             <div class="col-md-3 fb-widget">
-                <div class="row">
+                <div class="col-md-12">
                     @if(isset($fb_widget))
                         {!!$fb_widget!!}
                     @else
@@ -95,7 +93,7 @@
                     @endif
                 </div>
                 @include('includes.left-sidebar')
-                <div class="row">
+                <div class="col-md-12">
                     @if($sidebarQuizzes->count())
                         @foreach($sidebarQuizzes as $quizItem)
                             <div class="thumbnail content-img">
