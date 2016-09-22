@@ -65,7 +65,7 @@
                 <div class="col-md-12">
                     @if($quizzes->count())
                         @foreach($quizzes as $quizItem)
-                            <div class="col-md-4 col-sm-4 padd-5">
+                            <div class="col-md-4 col-sm-6 col-xs-12 padd-5">
                                 @include('sections.quiz-item')
                             </div>
                         @endforeach
