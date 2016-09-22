@@ -73,7 +73,9 @@
                 <div class="col-md-12">
                     @if($sidebarQuizzes->count())
                         @foreach($sidebarQuizzes as $quizItem)
-                            @include('sections.quiz-item')
+                            <div class="col-md-12 col-sm-6 col-xs-12">
+                                @include('sections.quiz-item')
+                            </div>
                         @endforeach
                     @endif
                 </div>
