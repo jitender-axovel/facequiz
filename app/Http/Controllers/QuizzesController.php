@@ -37,9 +37,7 @@ class QuizzesController extends Controller
     {
         $page = 'Robodoo - Play With Robo';
         $quizIds = QuizAttempt::distinct()->lists('quiz_id');
-        $quizzes = Quiz::where('locale', session('locale'))->where('is_active', 1)->whereIn('id', $quizIds)->where(function ($query) {
-                $query->select('quiz_id')->distinct()->from('quiz_attempts')->orderByRaw(DB::raw('total(quiz_id)'));
-            })->paginate(12);
+        $quizzes = Quiz::where('locale', session('locale'))->where('is_active', 1)->whereIn('id', $quizIds)->withCount('attempts')->orderBy('attempts_count', 'DESC')->paginate(12);
         return view('home', compact('quizzes', 'page'));
     }
 
