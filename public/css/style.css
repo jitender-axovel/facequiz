@@ -141,7 +141,7 @@ background:#ffffff; border: 1px solid #930a0f;}
 .quiz-options #sendBtn .responsive {width: 22px;height: 22px;}
 .quiz-options .col-md-4.send-button {border-left: 1px solid #dadada;border-right: 1px solid #dadada;}
 .main-content .row .panel .caption.img-caption {border-bottom: 1px solid #dadada;}
-.quiz-options a#shareBtn,.quiz-options a#sendBtn,.quiz-options a#copyBtn { font-size: 13px;vertical-align: middle;font-weight: 600;cursor: pointer;}
+.quiz-options a#shareBtn,.quiz-options a#sendBtn,.quiz-options a#copyBtn { font-size: 13px;vertical-align: middle;font-weight: 600;cursor: pointer;padding: 0;}
 .quiz-options a#shareBtn{border-left:none;}
 .quiz-options a.shareBtn{border-left:none;}
 .quiz-options {padding-top: 10px;}
