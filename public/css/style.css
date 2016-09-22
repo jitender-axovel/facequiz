@@ -173,8 +173,8 @@ a#shareBtn:focus .fa,a#sendBtn:focus .fa,a#copyBtn:focus .fa {
     border-radius: 0px;
 }
 .main-content .col-md-4 .content-img .quiz-image-wrapper {
-  height: 136px;
-  width: 252px;
+  height: 133px;
+  width: 100%;
 }
 .fb-widget .content-img .quiz-image-wrapper {
   width:100%;
