@@ -204,7 +204,7 @@ a#shareBtn:focus .fa,a#sendBtn:focus .fa,a#copyBtn:focus .fa {
     text-overflow: ellipsis;
     vertical-align: middle;
     white-space: nowrap;
-    width: 284px;
+    width: 100%;
     display: inline-block;
 }
 .main-content .top-section .left-section .thumbnail .caption .bold > a{
@@ -212,7 +212,7 @@ a#shareBtn:focus .fa,a#sendBtn:focus .fa,a#copyBtn:focus .fa {
     height: 69px;
     overflow: hidden;
     text-overflow: ellipsis;
-    width: 590px;
+    width: 100%;
 }
 .fb-like-button a.btn.btn-warning.btn-lg {
     background-color: transparent;
@@ -267,6 +267,7 @@ a#shareBtn:focus .fa,a#sendBtn:focus .fa,a#copyBtn:focus .fa {
 	.profile_pic .media-left {float: right;	padding: 0;	}
 	.top-side-link .navbar-nav .dropdown .dropdown-menu { left: auto; right: -10px;	z-index: 99999999;}
 	.top-section .left-section .content-img a > img {height: 220px;}
+    .top-section .col-md-8 .thumbnail .content-img {height: 220px;}
 	.content-img a > img {height: 220px;}
 	.share-facebook , .start-with-fb {font-size: 18px; padding: 6px 20px;}
 	.start-with-fb .fa , .share-facebook .fa {padding-right: 10px; transform: scale(1.4);}
@@ -275,5 +276,6 @@ a#shareBtn:focus .fa,a#sendBtn:focus .fa,a#copyBtn:focus .fa {
 }
 @media all and (max-width:479px){
 	.top-section .left-section .content-img a > img {height: 180px;}
+    .top-section .col-md-8 .thumbnail .content-img {height: 180px;}
 	.content-img a > img {height: 180px;}
 }
