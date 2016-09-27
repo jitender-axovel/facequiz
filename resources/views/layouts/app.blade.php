@@ -280,7 +280,6 @@
     <script type="text/javascript">
         $(document).ready(function() {
             var width = getWidth();
-            alert((width/1.255)/1.425);
             $("body .main-content.container .row > .col-md-9").width((width/1.255)/1.425);
             $("body .main-content.container .row > .col-md-3").width((width/1.255)/3.426);
             $("body .main-content.container").width((width/1.255));
