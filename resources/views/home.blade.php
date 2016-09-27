@@ -59,6 +59,19 @@
         <div class="row">
             @include('includes.below-quizzes-widgets')
         </div>
+        <!--section-for-popup-box(anmol)-->
+        <div class="popup-box-container">
+            <button class="cross btn" type="button">
+                <i class="fa fa-times" aria-hidden="true"></i>
+            </button>
+            <div class="pop-img">
+               <span class="title"> We like you.</span><br>
+               <span class="detail">Like us back</span>
+            </div>
+            <div class="btn-wrap">
+                <button class="btn pop-buttn">Like us</button>
+            </div>
+        </div>
     </div>
 @endsection
 @section('scripts')
