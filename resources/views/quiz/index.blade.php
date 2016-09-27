@@ -108,6 +108,9 @@
         <script> 
             $(document).scroll(function(){
                 $("div.popup-box-container").animate({height: '135px'},"slow");
+                $("div.popup-box-container button.cross").click(function() {
+                    $("div.popup-box-container").remove();
+                });
             });
         </script>
     @endif
