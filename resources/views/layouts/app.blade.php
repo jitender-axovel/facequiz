@@ -176,11 +176,17 @@
         <div class="container web-view">
             <div class="logo custom-left col-sm-4 col-xs-12 ">
                 <a href="{{ url('/') }}" class="logo-link"><img src="{{asset('images/logo.png')}}"></a>
-                <select name="language" id="language-selector">
-                    @foreach(App\Language::get() as $language)
-                        <option value="{{ $language->code }}"{{$language->code == Session::get('locale') ? ' selected' : ''}}>{{ $language->name }}</option>
-                    @endforeach
-                </select>
+                <a type="button" href="javascript:void(0);" id="language-selector">English</a>
+                <div id="popover-content" class="hide">
+                    <ul class="list-unstyled">
+                        @foreach(App\Language::get() as $language)
+                            <li>
+                                <a href="{{ strtok($_SERVER['REQUEST_URI'],'?').'?lang='.$language->code }}">{{ $language->name }}
+                                <span>&gt;</span></a>
+                            </li>
+                        @endforeach
+                    </ul>
+                </div>
             </div>
             <div class="header-navigation col-md-5 col-sm-5 col-xs-12">
                 <nav class="navbar navbar-default navbar-static-top">
@@ -287,9 +293,10 @@
     </script>
     @yield('scripts')
     <script type="text/javascript">
-        $('#language-selector').change(function() {
-            lang = $(this).val();
-            window.location.href = window.location.href.split('?')[0] + '?lang=' + lang;
+        $("#language-selector").popover({
+            html: true, 
+            content: $('#popover-content').html(),
+            placement: 'bottom'
         });
     </script>
 </body>
