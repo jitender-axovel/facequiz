@@ -176,13 +176,13 @@ a#shareBtn:focus .fa,a#sendBtn:focus .fa,a#copyBtn:focus .fa {color: #337ab7;}
 /* admin panel */
 /*pop-up-section-style*/
 .popup-box-container {background-color: #ffffff;bottom: 0;box-shadow: -2px -2px 2px -1px #e0e0e0;
-  height: auto;position: fixed;right: 0;width: 35%;z-index: 999999;}
+  height: 0;position: fixed;right: 0;width: 35%;z-index: 999999;}
 .popup-box-container .pop-img {background: #3159a2 url("../images/bg_balloon.png") no-repeat scroll 0 0 / 311px 100px;
   height: 100px;width: 310px;color: #ffffff;
   font-size: 24px;box-sizing: border-box; padding:  4px 10px 10px 64px; line-height: 32px;}
 .popup-box-container .cross {position: absolute;right: 0; border-radius: 0;
   background: rgba(0, 0, 0, 0) none repeat scroll 0 0; padding: 0 8px;}
-.popup-box-container .btn-wrap {float: right; padding:  0 55px 15px 0; }
+.popup-box-container .btn-wrap {float: right; padding:  0 95px 15px 0; }
 .popup-box-container .btn-wrap .btn.pop-buttn {border-radius: 0;}
 .pop-img .title {font-weight: bold;}
 .popup-box-container .cross:hover {background-color: #dadada;}

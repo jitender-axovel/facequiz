@@ -85,6 +85,32 @@
             @include('includes.below-quizzes-widgets')
         </div>
     </div>
+    <!--section-for-popup-box(anmol)-->
+    @if(!$has_liked_page)
+        <div class="popup-box-container">
+            <button class="cross btn" type="button">
+                <i class="fa fa-times" aria-hidden="true"></i>
+            </button>
+            <div class="pop-img">
+               <span class="title"> We like you.</span><br>
+               <span class="detail">Like us back</span>
+            </div>
+            <div class="btn-wrap">
+                <div class="fb-like-button">
+                    @if(isset($fb_like_button))
+                        {!!$fb_like_button!!}
+                    @else
+                        <div class="fb-like" data-href="https://www.facebook.com/robodoo.en" data-layout="button_count" data-action="like" data-size="small" data-show-faces="true" data-share="false"></div>
+                    @endif
+                </div>
+            </div>
+        </div>
+        <script> 
+            $(document).scroll(function(){
+                $("div.popup-box-container").animate({height: '135px'},"slow");
+            });
+        </script>
+    @endif
 @endsection
 @section('scripts')
     <script>
