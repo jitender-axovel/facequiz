@@ -56,8 +56,8 @@ body .navbar {min-height: 0;}
 .logo.custom-left {float: left; padding: 0 15px 0 0; width: auto;}
 .row.advertise-block {padding-bottom: 20px;padding-top: 10px;text-align: center;}
 .top-side-link .navbar-nav li {float: right;}
-#language-selector { -moz-appearance: none;  background: #f5f5f5 url("../images/left-arrow.png") no-repeat scroll 62px center;
-    border: medium none; color: #000000; margin-top: 10px; padding: 8px 22px 8px 14px; position: relative;  -webkit-appearance: none;
+#language-selector { -moz-appearance: none;  background: #f5f5f5 url("../images/left-arrow.png") no-repeat scroll 52px center;
+    border: medium none; color: #000000; margin-top: 10px; padding: 8px 25px 8px 10px; position: relative;  -webkit-appearance: none;
     appearance:none;font-size: 12px; display: inline-block;}
 .like-section {background: #ea2028;border-bottom: 1px solid #ea2028;border-top: 1px solid #ea2028;box-shadow: 0px 1px 4px #000;}
 .like-section p { color: #ffffff; font-size: 17px; margin: 0;font-weight: 600;text-transform: capitalize;}

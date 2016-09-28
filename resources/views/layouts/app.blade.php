@@ -176,7 +176,7 @@
         <div class="container web-view">
             <div class="logo custom-left col-sm-4 col-xs-12 ">
                 <a href="{{ url('/') }}" class="logo-link"><img src="{{asset('images/logo.png')}}"></a>
-                <a type="button" href="javascript:void(0);" id="language-selector">English</a>
+                <a type="button" href="javascript:void(0);" id="language-selector">{{ $languageName }}</a>
                 <div id="popover-content" class="hide">
                     <ul class="list-unstyled">
                         @foreach(App\Language::get() as $language)
