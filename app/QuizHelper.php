@@ -144,7 +144,7 @@ class QuizHelper extends Model
     {
         if($quiz->show_friend_pictures || $quiz->show_friend_name) {
             try {
-                $response = $this->fb->get('/me/invitable_friends?fields=name,picture.width(480)');
+                $response = $this->fb->get('/me/friends?fields=name,picture.width(480)');
             } catch (Facebook\Exceptions\FacebookResponseException $e) {
                 // When Graph returns an error
                 return redirect('/')->with('error', 'Sorry for the inconvenience, there are no results for this quiz');
