@@ -228,6 +228,7 @@ a#shareBtn:focus .fa,a#sendBtn:focus .fa,a#copyBtn:focus .fa {color: #337ab7;}
 	.img-wrap > img {height: auto;}
 	.container .col-md-3.fb-widget {width:initial;}
     .container.main-content .row .col-md-9 {width:auto;}
+    .fb-page {padding: 6px;}
 }
 
 @media all and (max-width:767px){
