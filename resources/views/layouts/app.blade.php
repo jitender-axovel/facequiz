@@ -115,33 +115,21 @@
             <!-- Right Side Of Navbar -->
             <ul class="nav navbar-nav navbar-right">
                 <!-- Authentication Links -->
+		    <li><a type="button" href="javascript:void(0);" id="language-selector-mobile">{{ $languageName }}</a>
+		        <div id="popover-content-mobile" class="hide">
+		            <ul class="list-unstyled">
+		                @foreach(App\Language::get() as $language)
+		                    <li>
+		                        <a href="{{ strtok($_SERVER['REQUEST_URI'],'?').'?lang='.$language->code }}">{{ $language->name }}
+		                        <span>&gt;</span></a>
+		                    </li>
+		                @endforeach
+		            </ul>
+		        </div>
+		    </li>
                 @if (Auth::guest())
-                    <li><a type="button" href="javascript:void(0);" id="language-selector">{{ $languageName }}</a>
-                        <div id="popover-content" class="hide">
-                            <ul class="list-unstyled">
-                                @foreach(App\Language::get() as $language)
-                                    <li>
-                                        <a href="{{ strtok($_SERVER['REQUEST_URI'],'?').'?lang='.$language->code }}">{{ $language->name }}
-                                        <span>&gt;</span></a>
-                                    </li>
-                                @endforeach
-                            </ul>
-                        </div>
-                    </li>
                     <li><a class="login" href="{{ url('redirect') }}">{{ $languageStrings['Login'] or 'Login' }}</a></li>
                 @else
-                    <li><a type="button" href="javascript:void(0);" id="language-selector">{{ $languageName }}</a>
-                        <div id="popover-content" class="hide">
-                            <ul class="list-unstyled">
-                                @foreach(App\Language::get() as $language)
-                                    <li>
-                                        <a href="{{ strtok($_SERVER['REQUEST_URI'],'?').'?lang='.$language->code }}">{{ $language->name }}
-                                        <span>&gt;</span></a>
-                                    </li>
-                                @endforeach
-                            </ul>
-                        </div>
-                    </li>
                     <li class="dropdown">
                         <a class="profile_pic" href="#" class="dropdown-toggle media" data-toggle="dropdown" role="button" aria-expanded="false">
                             <div class="media-left">
@@ -311,6 +299,11 @@
         $("#language-selector").popover({
             html: true, 
             content: $('#popover-content').html(),
+            placement: 'bottom'
+        });
+	$("#language-selector-mobile").popover({
+            html: true, 
+            content: $('#popover-content-mobile').html(),
             placement: 'bottom'
         });
     </script>

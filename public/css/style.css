@@ -266,7 +266,7 @@ a#shareBtn:focus .fa,a#sendBtn:focus .fa,a#copyBtn:focus .fa {color: #337ab7;}
     /*header-style*/
     .container-fluid div.custom-like-button {margin-top: 15px;margin-bottom: 15px;}
     .top-side-link .navbar-nav li {display: inline-block;float:left; }
-    #language-selector {
+    #language-selector-mobile {
 	  -moz-appearance: none;
 	  background: #f5f5f5 url("../images/left-arrow.png") no-repeat scroll 71px center;font-size: 12px;padding: 6px 30px 6px 10px;margin-top: 5px;}
 	header .logo img {padding-top: 5px; padding-bottom: 5px; width: 125px;}
