@@ -169,10 +169,10 @@
                 @endif
             </ul>
         </div>
-        <div class="logo custom-left col-sm-3 col-xs-12 ">
+        <div class="logo custom-left col-sm-6 col-xs-6 ">
             <a href="{{ url('/') }}"><img src="{{asset('images/logo.png')}}"></a>
         </div>
-        <div class="header-navigation col-md-6 col-sm-5 col-xs-12">
+        <div class="header-navigation col-md-6 col-sm-6 col-xs-6">
             <nav class="navbar navbar-default navbar-static-top">
                 <div class="navbar-header">
                     <!-- Collapsed Hamburger -->
@@ -183,14 +183,14 @@
                         <span class="icon-bar"></span>
                     </button>
                 </div>
-                <div class="collapse navbar-collapse" id="app-navbar-collapse">
-                    <!-- Left Side Of Navbar -->
-                    <ul class="nav navbar-nav">
-                        <li><a href="{{ url('/') }}">{{ $languageStrings['Latest'] or 'Latest' }}</a></li>
-                        <li><a href="{{ url('quizzes/popular') }}">{{ $languageStrings['Popular'] or 'Popular' }}</a></li>
-                    </ul>
-                </div>
             </nav>
+        </div>
+        <div class="collapse navbar-collapse mobile-toggle" id="app-navbar-collapse">
+            <!-- Left Side Of Navbar -->
+            <ul class="nav navbar-nav">
+                <li><a href="{{ url('/') }}">{{ $languageStrings['Latest'] or 'Latest' }}</a></li>
+                <li><a href="{{ url('quizzes/popular') }}">{{ $languageStrings['Popular'] or 'Popular' }}</a></li>
+            </ul>
         </div>
     </div>
 
