@@ -24,7 +24,7 @@ p{color:#9b9b9b; line-height: 150%;}
 .main-content .panel .panel-body {padding: 0px;}
 .main-content .panel.panel-default {border-radius: 0px;margin: 0 5px 10px;}
 .panel-body > img { width: 100%; padding-bottom: 10px;}
-.caption { padding-top: 10px;}
+.caption {padding-bottom: 10px; padding-top: 10px;}
 .panel-title.heading {font-size: 22px;    padding-bottom: 5px; padding-top: 5px;}
 .heading { font-weight:bold;}
 .img-wrap { text-align: center;  width:100%; height: auto; margin-bottom: 10px; padding: 0;}
@@ -136,7 +136,7 @@ background:#ffffff; border: 1px solid #930a0f;}
 .media-object.result-image {width: 100%;}
 .main-content .panel .panel-heading , .main-content .panel .panel-footer{border: 0 none; padding: 0;}
 .quiz-description {color: #787878; font-size: 17px;}
-.loading-image {text-align: center;}
+.loading-image {margin-top: 10px; margin-bottom: 10px; text-align: center;}
 .start-with-fb {border-radius: 40px; font-size:22px; min-width: 250px; padding: 6px 40px; outline:none; max-width: 100%;}
 .start-with-fb .fa {padding-right: 20px; transform: scale(1.6);}
 .share-facebook {font-size:17px;  padding: 4px 64px;width: 100%; outline:none;}
