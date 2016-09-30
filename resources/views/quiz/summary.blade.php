@@ -37,7 +37,7 @@
                 <div class="col-md-12">
                     @if($quizzes->count())
                         @foreach($quizzes as $quizItem)
-                            <div class="col-md-4 col-sm-6 col-xs-12 padd-5">
+                            <div class="col-md-4 col-sm-4 col-xs-6 padd-5">
                                 @include('sections.quiz-item')
                             </div>
                         @endforeach
@@ -60,10 +60,10 @@
                     @endif
                 </div>
                 @include('includes.left-sidebar')
-                <div class="col-md-12">
+                <div class="col-md-12 col-sm-12">
                     @if($sidebarQuizzes->count())
                         @foreach($sidebarQuizzes as $quizItem)
-                            <div class="col-md-12 col-sm-6 col-xs-12">
+                            <div class="col-md-12 col-sm-6 col-xs-6 padd-5">
                                 @include('sections.quiz-item')
                             </div>
                         @endforeach

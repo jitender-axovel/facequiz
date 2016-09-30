@@ -103,10 +103,6 @@
 <!-- for mobile-view-->
 <header class="site-header ">
     <div class="container-fluid mobile-view">
-        <div class="logo custom-left col-sm-3 col-xs-12 ">
-            <a href="{{ url('/') }}"><img src="{{asset('images/logo.png')}}"></a>
-        </div>
-        
         <div class="col-md-2 col-sm-2  col-md-6 col-xs-6 custom-like-button">
             <span class="bold">Like Us <i class="fa fa-arrow-right"></i> </span>
             @if(isset($fb_like_button))
@@ -120,8 +116,32 @@
             <ul class="nav navbar-nav navbar-right">
                 <!-- Authentication Links -->
                 @if (Auth::guest())
+                    <li><a type="button" href="javascript:void(0);" id="language-selector">{{ $languageName }}</a>
+                        <div id="popover-content" class="hide">
+                            <ul class="list-unstyled">
+                                @foreach(App\Language::get() as $language)
+                                    <li>
+                                        <a href="{{ strtok($_SERVER['REQUEST_URI'],'?').'?lang='.$language->code }}">{{ $language->name }}
+                                        <span>&gt;</span></a>
+                                    </li>
+                                @endforeach
+                            </ul>
+                        </div>
+                    </li>
                     <li><a class="login" href="{{ url('redirect') }}">{{ $languageStrings['Login'] or 'Login' }}</a></li>
                 @else
+                    <li><a type="button" href="javascript:void(0);" id="language-selector">{{ $languageName }}</a>
+                        <div id="popover-content" class="hide">
+                            <ul class="list-unstyled">
+                                @foreach(App\Language::get() as $language)
+                                    <li>
+                                        <a href="{{ strtok($_SERVER['REQUEST_URI'],'?').'?lang='.$language->code }}">{{ $language->name }}
+                                        <span>&gt;</span></a>
+                                    </li>
+                                @endforeach
+                            </ul>
+                        </div>
+                    </li>
                     <li class="dropdown">
                         <a class="profile_pic" href="#" class="dropdown-toggle media" data-toggle="dropdown" role="button" aria-expanded="false">
                             <div class="media-left">
@@ -148,6 +168,9 @@
                     </li>
                 @endif
             </ul>
+        </div>
+        <div class="logo custom-left col-sm-3 col-xs-12 ">
+            <a href="{{ url('/') }}"><img src="{{asset('images/logo.png')}}"></a>
         </div>
         <div class="header-navigation col-md-6 col-sm-5 col-xs-12">
             <nav class="navbar navbar-default navbar-static-top">

@@ -32,13 +32,13 @@
                             <a class="btn btn-primary start-with-fb" href="{{ url('quiz/'.$quiz->slug.'/start/'.md5(time())) }}"><i class="fa fa-facebook-official"></i> {{ $languageStrings['Continue with Facebook'] or 'Continue with Facebook' }}</a>
                         </div>
                         <div class="quiz-options">
-                            <div class="col-md-4">
+                            <div class="col-md-4 col-sm-4 col-xs-4">
                                 <a id="shareBtn" class="share-facebook" title="{{ $languageStrings['Share on Facebook'] or 'Share on Facebook' }}"><i class="fa fa-facebook-official"></i> {{ $languageStrings['Share'] or 'Share' }}</a>
                             </div>
-                            <div class="col-md-4 send-button">
+                            <div class="col-md-4 col-sm-4 col-xs-4 send-button">
                                 <a id="sendBtn" class="share-facebook" title="{{ $languageStrings['Send Private Message'] or 'Send Private Message' }}"><img src="{{ asset('images/facebook-messanger.png') }}" class="responsive"> {{ $languageStrings['Send'] or 'Send' }}</a>
                             </div>
-                            <div class="col-md-4">
+                            <div class="col-md-4 col-sm-4 col-xs-4">
                                 <a id="copyBtn" class="share-facebook" title="{{ $languageStrings['Copy Link'] or 'Copy Link' }}"><i class="fa fa-link"></i> {{ $languageStrings['Copy Link'] or 'Copy Link' }}</a>
                             </div>
                         </div>
@@ -47,7 +47,7 @@
                 <div class="col-md-12">
                     @if($quizzes->count())
                         @foreach($quizzes as $quizItem)
-                            <div class="col-md-4 col-sm-6 col-xs-12 padd-5">
+                            <div class="col-md-4 col-sm-4 col-xs-6 padd-5">
                                 @include('sections.quiz-item')
                             </div>
                         @endforeach
@@ -70,10 +70,10 @@
                     @endif
                 </div>
                 @include('includes.left-sidebar')
-                <div class="col-md-12">
+                <div class="col-md-12 col-sm-12">
                     @if($sidebarQuizzes->count())
                         @foreach($sidebarQuizzes as $quizItem)
-                            <div class="col-md-12 col-sm-6 col-xs-12">
+                            <div class="col-md-12 col-sm-4 col-xs-6 padd-5">
                                 @include('sections.quiz-item')
                             </div>
                         @endforeach
