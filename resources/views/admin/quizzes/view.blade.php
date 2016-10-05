@@ -4,13 +4,13 @@
     <div class="col-md-12">
         <div class="panel panel-default">
             <div class="panel-heading">
-                <div class="panel-title">
-                    <p>{{ $quiz->title }}</p>
-                    <p class="text-right">
+                <div class="panel-title container-fluid">
+                    <div class="col-md-11 text-left panel-heading">{{ $quiz->title }}</div>
+                    <div class="col-md-1 text-right panel-heading">
                         <a href="{{ url('admin/quiz/'.$quiz->id.'/edit') }}">
                             <i class="fa fa-pencil-square-o fa-2x"></i>
                         </a>
-                    </p>
+                    </div>
                 </div>
             </div>
             <div class="panel-body">
@@ -23,14 +23,14 @@
                 <div class="row">
                     <div class="col-md-6">
                         <div class="heading text-center bold"><u>Quiz Image</u></div>
-                        <div class="">
-                            <img src="{{ asset(config('image.quiz_template_url')).'/'.$quiz->template->og_image }}">
+                        <div class="text-center">
+                            <img src="{{ asset(config('image.quiz_template_url')).'/'.$quiz->template->og_image }}" alt="No Introduction Image">
                         </div>
                     </div>
                     <div class="col-md-6">
                         <div class="heading text-center bold"><u>Quiz Background Image</u></div>
-                        <div class="">
-                            <img src="{{ asset(config('image.quiz_background_url')).'/'.$quiz->id.'/'.$quiz->background_image }}">
+                        <div class="text-center">
+                            <img src="{{ asset(config('image.quiz_background_url')).'/'.$quiz->id.'/'.$quiz->background_image }}" alt="No Background Image">
                         </div>
                     </div>
                 </div>

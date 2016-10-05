@@ -43,4 +43,9 @@ class Quiz extends Model
     {
         return $this->hasMany('App\QuizAttempt');
     }
+
+    public function shares()
+    {
+        return $this->hasMany('App\QuizShare');
+    }
 }

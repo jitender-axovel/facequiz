@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 
 use App\Quiz;
+use App\QuizShare;
 use App\Category;
 use App\QuizAttempt;
 use Auth;
@@ -166,5 +167,25 @@ class QuizzesController extends Controller
         $quizzes = Quiz::where('id', '!=', $quiz->id)->where('locale', session('locale'))->whereNotIn('id', $sidebarQuizzeIds)->where('is_active', 1)->orderBy('updated_at', 'DESC')->get();
 
         return view('quiz.summary', compact('page', 'quiz', 'quizzes', 'sidebarQuizzes'));
+    }
+
+    public function share($quizSlug, $userId)
+    {
+        $quiz = Quiz::whereSlug($quizSlug)->first();
+
+        if (!$quiz) {
+            return;
+        }
+
+        $quizShare = new QuizShare();
+
+        $quizShare->user_id = $userId;
+        $quizShare->quiz_id = $quiz->id;
+
+        if ($quizShare->save()) {
+            return;
+        } else {
+            return;
+        }
     }
 }
