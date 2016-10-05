@@ -53,15 +53,14 @@
 				<td>{{ $user->gender }}</td>
 				<td>{{ date_format(date_create($user->created_at), 'F d, Y') }}</td>
 				<td>
-					<a class="btn btn-info" href="{{ url('admin/users/edit/'.$user->id) }}">Edit</a>
-					<a class="btn btn-primary" href="{{ url('admin/users/view/'.$user->id) }}">View Info</a>
+					<a class="btn btn-info" href="{{ url('admin/users/edit/'.$user->id) }}" title="Edit"><i class="fa fa-pencil"></i></a>
+					<a class="btn btn-primary" href="{{ url('admin/users/view/'.$user->id) }}" title="View Info"><i class="fa fa-eye"></i></a>
 					@if(!$user->isAdmin()) 
 						@if($user->is_blocked == 0)
-							<a class="btn btn-warning" onclick="blockUser('{{$user->id}}', '{{$user->name}}')">Block</a>
+							<a class="btn btn-warning" onclick="blockUser('{{$user->id}}', '{{$user->name}}')" title="Block"><i class="fa fa-ban"></i></a>
 						@else
-							<a class="btn btn-success" onclick="unBlockUser('{{$user->id}}', '{{$user->name}}')">UnBlock</a>
+							<a class="btn btn-success" onclick="unBlockUser('{{$user->id}}', '{{$user->name}}')" title="UnBlock"><i class="fa fa-unlock"></i></a>
 						@endif
-						<a class="btn btn-danger" onclick="deleteUser('{{$user->id}}', '{{$user->name}}')">Delete</a>
 					@endif
 				</td>
 			</tr>

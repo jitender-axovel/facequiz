@@ -57,24 +57,24 @@ class AdminUsersController extends Controller
         return view('admin.users.view', compact('page', 'user'));
     }
 
-    public function delete($id)
-    {
-    	$user = User::find($id);
-    	$name = $user->name;
-    	$user->delete();
+    // public function delete($id)
+    // {
+    // 	$user = User::find($id);
+    // 	$name = $user->name;
+    // 	$user->delete();
 
-    	if($user->trashed()) {
-    		$result['status'] = true;
-    		$result['message'] = trim($name)."'s record has been deleted.";
+    // 	if($user->trashed()) {
+    // 		$result['status'] = true;
+    // 		$result['message'] = trim($name)."'s record has been deleted.";
 
-    		return json_encode($result);
-    	} else {
-    		$result['status'] = false;
-    		$result['message'] = $name."'s record could not deleted.";
+    // 		return json_encode($result);
+    // 	} else {
+    // 		$result['status'] = false;
+    // 		$result['message'] = $name."'s record could not deleted.";
 
-    		return json_encode($result);
-    	}
-    }
+    // 		return json_encode($result);
+    // 	}
+    // }
 
     public function block($id)
     {
