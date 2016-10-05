@@ -8,6 +8,7 @@ use App\Http\Requests;
 use Auth;
 use Illuminate\Support\MessageBag;
 use Illuminate\Support\Facades\Input;
+use Khill\Lavacharts\Lavacharts;
 
 use App\Language;
 use App\User;
@@ -52,7 +53,22 @@ class AdminController extends Controller
 
         $lastNDaysActivity = self::lastNDaysRegistrations(30);
 
-        return view('admin.dashboard', compact('page', 'overallStats', 'todayStats', 'lastNDaysActivity'));
+        $lava = new LavaCharts();
+        $temperatures = $lava->DataTable();
+
+        $temperatures->addDateColumn('Date')
+                     ->addNumberColumn('User Registrations')
+                     ->addNumberColumn('Quiz Attempts');
+
+        foreach ($lastNDaysActivity as $activity) {
+            $temperatures->addRow([$activity['date'], $activity['users'], $activity['attempts']]);
+        }
+
+        $lava->LineChart('Temps', $temperatures, [
+            'title' => 'Graph Analysis'
+        ]);
+
+        return view('admin.dashboard', compact('page', 'overallStats', 'todayStats', 'lastNDaysActivity', 'lava'));
     }
 
     public static function lastNDaysRegistrations($n)

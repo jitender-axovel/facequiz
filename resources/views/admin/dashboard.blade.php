@@ -145,32 +145,8 @@
 					</div>
 				</div>
 			</div>
-			<div id="barchart_material" style="width: 900px; height: 500px"></div>
+			<div id="temps_div"></div>
+			<?= $lava->render('LineChart', 'Temps', 'temps_div') ?>
 		</div>
 	</div>
-@endsection
-@section('admin-scripts')
-	<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
-    <script type="text/javascript">
-    	google.charts.load('current', {'packages':['corechart']});
-		google.charts.setOnLoadCallback(drawChart);
-		function drawChart() {
-        	var data = google.visualization.arrayToDataTable([['Date', 'Quiz Attempts', 'New Registrations'],
-        	@foreach($lastNDaysActivity as $activity)
-        		['{{$activity["date"]}}', {{$activity['attempts']}}, {{ $activity['users'] }}],
-        	@endforeach
-    	]);
-
-        var options = {
-	            title: 'Quiz Attempts, New Registrations: last 30 days Analysis',
-	            subtitle: 'Quiz Attempts, New Registrations: last 30 days',
-	            curveType: 'function',
-	          	legend: { position: 'bottom' }
-        };
-
-        var chart = new google.visualization.LineChart(document.getElementById('barchart_material'));
-
-        chart.draw(data, options);
-      }
-    </script>
 @endsection
