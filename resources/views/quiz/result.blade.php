@@ -112,13 +112,22 @@
                 display: 'popup',
                 href: '{{ url("quiz/".$quiz->slug."/landing/".Auth::id())."/".md5(time()) }}',
             }, function(response){
-                // if (typeof response !== 'undefined') {
+                if (typeof response !== 'undefined') {
                     /** the user shared the content on their Facebook, go ahead and continue to download **/
-                    window.location="{{ url('quiz/'.$quiz->slug.'/summary') }}";
-                // } else {
-                //     * the cancelled the share process, do something, for example *
                     
-                // }
+                } else {
+                    /* the cancelled the share process, do something, for example */
+                    
+                }
+                $.ajax({
+                    url: "{{ url('quiz/'.$quiz->slug.'/share/'.Auth::id()) }}",
+                    type: "GET",
+                    data: 'boolean',
+                    cache: false,
+                    complete: function (jqXHR, status) {
+                        window.location="{{ url('quiz/'.$quiz->slug.'/summary') }}";
+                    }
+                });
             });
         });
 
@@ -126,7 +135,6 @@
             FB.ui({
               method: 'send',
               display: 'popup',
-              // href: '{{ url("quiz/".$quiz->slug."/landing/".Auth::id())."/".md5(time()) }}',
               link: '{{ url("quiz/".$quiz->slug."/landing/".Auth::id())."/".md5(time()) }}',
             });
         }
