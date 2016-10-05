@@ -73,22 +73,22 @@ class AdminController extends Controller
 
     public static function lastNDaysRegistrations($n)
     {
-        $activityHistory['users'] = User::select('created_at', DB::raw('count(*) as activityCount'))->where('created_at', '>', DB::raw('DATE_SUB(NOW(), Interval 30 DAY)'))->groupBy('created_at')->get()->toArray();
+        $activityHistory['users'] = User::select(DB::raw("DATE(created_at) as created_at"), DB::raw('count(*) as activityCount'))->where('created_at', '>', DB::raw('DATE_SUB(NOW(), Interval 30 DAY)'))->groupBy('created_at')->get()->toArray();
 
-        $activityHistory['attempts'] = QuizAttempt::select('created_at', DB::raw('count(*) as activityCount'))->where('created_at', '>', DB::raw('DATE_SUB(NOW(), Interval 30 DAY)'))->groupBy('created_at')->get()->toArray();
+        $activityHistory['attempts'] = QuizAttempt::select(DB::raw("DATE(created_at) as created_at"), DB::raw('count(*) as activityCount'))->where('created_at', '>', DB::raw('DATE_SUB(NOW(), Interval 30 DAY)'))->groupBy('created_at')->get()->toArray();
 
         $lastNDays = self::lastNDays(30);
 
         foreach($lastNDays as $key => $day) {
             $lastNDaysActivity[$key] = array('date' => $day, 'users' => 0, 'attempts' => 0);
             foreach($activityHistory['users'] as $activity){
-                if (date('Y-m-d', strtotime($activity['created_at'])) === $day) {
-                    $lastNDaysActivity[$key]['users'] = $activity['activityCount'];
+                if (date('Y-m-d', strtotime($activity['created_at'])) == $day && $activity['activityCount'] == 1) {
+                    $lastNDaysActivity[$key]['users'] = ++$lastNDaysActivity[$key]['users'];
                 }
             }
             foreach($activityHistory['attempts'] as $activity){
-                if (date('Y-m-d', strtotime($activity['created_at'])) === $day) {
-                    $lastNDaysActivity[$key]['attempts'] = $activity['activityCount'];
+                if (date('Y-m-d', strtotime($activity['created_at'])) == $day && $activity['activityCount'] == 1) {
+                    $lastNDaysActivity[$key]['attempts'] = ++$lastNDaysActivity[$key]['attempts'];
                 }
             }
         }
