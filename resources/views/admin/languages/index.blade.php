@@ -6,9 +6,12 @@
 		@foreach($languages as $language)
 			<div class="panel panel-default">
 				<div class="panel-heading">
-					<div class="panel-title">
-						<span>{{$language->name}}</span>
-						<a class="text-right" data-toggle="collapse" href="#{{$language->name}}"><i class="fa fa-pencil"></i></a>
+					<div class="panel-title container-fluid">
+						<div class="col-md-10 text-left">{{$language->name}}</div>
+						<div class="col-md-2 text-right">
+							<a class="btn btn-primary" data-toggle="collapse" href="#{{$language->name}}" title="Edit"><i class="fa fa-pencil-square-o"></i></a>
+							<a class="btn btn-danger" onclick="javascript:deleteLanguage({{$language->id}}, '{{ $language->name }}');" title="Delete"><i class="fa fa-trash"></i></a>
+						</div>
 					</div>
 				</div>
 				<div id="{{ $language->name }}" class="panel-collapse collapse">
@@ -77,9 +80,11 @@
 @endsection
 @section('admin-scripts')
     <script type="text/javascript">
-        $(document).ready(function() {
-            
-        });
+        $.ajaxSetup({
+		        headers: {
+		            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+		        }
+		});
         function showLanguageForm()
         {
             $.ajax({
@@ -90,5 +95,53 @@
                 }
             });
         }
+
+		function deleteLanguage(id, name)
+		{
+			swal({
+				title: "Are you sure?",
+				text: "You want to delete "+name,
+				type: "warning",
+				showCancelButton: true,
+				confirmButtonColor: "#DD6B55",
+				confirmButtonText: "Yes, delete it!",
+				cancelButtonText: "No, cancel pls!",
+				closeOnConfirm: false,
+				closeOnCancel: false,
+				allowEscapeKey: false,
+			},
+			function(isConfirm){
+				if(isConfirm) {
+					$.ajax({
+						url: "{{ url('admin/language') }}" + '/' + id + '/delete',
+						type: 'DELETE',
+						success: function(data) {
+							data = JSON.parse(data);
+							if(data['status']) {
+								swal({
+									title: data['message'],
+									text: "Press ok to continue",
+									type: "success",
+									showCancelButton: false,
+									confirmButtonColor: "#DD6B55",
+									confirmButtonText: "Ok",
+									closeOnConfirm: false,
+									allowEscapeKey: false,
+								},
+								function(isConfirm){
+									if(isConfirm) {
+										window.location.reload();
+									}
+								});
+							} else {
+								swal("Error", data['message'], "error");
+							}
+						}
+					});
+				} else {
+					swal("Cancelled", name+" quiz will not be deleted.", "error");
+				}
+			});
+		}
     </script>
 @endsection

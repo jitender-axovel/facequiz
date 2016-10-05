@@ -142,6 +142,24 @@ class AdminController extends Controller
         
         return redirect('admin/language')->with('success', 'Language has been saved.');
     }
+
+    public function deleteLanguage($id)
+    {
+        $language = Language::find($id);
+        $name = $language->name;
+
+        if($language->forceDelete()) {
+            $result['status'] = true;
+            $result['message'] = trim($name)." language has been deleted.";
+
+            return json_encode($result);
+        } else {
+            $result['status'] = false;
+            $result['message'] = $name." language could not deleted.";
+
+            return json_encode($result);
+        }
+    }
     
     public function getLanguageForm()
     {

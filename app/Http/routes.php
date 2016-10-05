@@ -34,6 +34,7 @@ Route::group(['middleware' => 'before'], function() {
         Route::get('{quizSlug}/show', 'QuizzesController@index');
         Route::get('{quizSlug}/landing/{userId}/{version}', 'QuizzesController@landing');
         Route::get('{quizSlug}/start/{version}', 'QuizzesController@start')->middleware(['auth']);
+        Route::get('{quizSlug}/share/{userId}', 'QuizzesController@share');
         Route::get('{quizSlug}/summary', 'QuizzesController@summary');
     });
 });
@@ -67,6 +68,7 @@ Route::group(['prefix' => 'admin'], function() {
         Route::get('language', 'AdminController@getLanguage');
         Route::post('language', 'AdminController@postLanguage');
         Route::post('language/{id}', 'AdminController@postUpdateLanguage');
+        Route::delete('language/{id}/delete', 'AdminController@deleteLanguage');
         Route::get('get-language-form', 'AdminController@getLanguageForm');
     });
 });
