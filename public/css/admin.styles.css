@@ -108,6 +108,12 @@
   -ms-transition: all 1s ease;
   transition: all 1s ease;
 }
+/* ajax loading image */
+div#ajax-loading-section {display: none;}
+.loading-overlay {width: 100%;height: 100%; position: fixed; top: 0; left: 0; background-color: rgba(0,0,0,.7); -webkit-transition: all .5s ease; z-index: 1000;}
+#ajax-loading-section .loading-image {left: 50%; position: fixed; top: 50%; z-index: 2000;}
+#ajax-loading-section .loading-image .loading-text { color: #ff6d00; font-size: 20px; vertical-align: middle;}
+
 @media (max-width: 767px) {
   .nav-side-menu {
     position: relative;
