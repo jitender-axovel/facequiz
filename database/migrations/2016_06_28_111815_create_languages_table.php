@@ -22,6 +22,7 @@ class CreateLanguagesTable extends Migration
             $table->longText('fb_widget');
             $table->string('direction');
             $table->longText('strings');
+            $table->integer('order')->unsigned();
             $table->boolean('isActive')->default(false);
             $table->timestamps();
             $table->softDeletes();
