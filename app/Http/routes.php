@@ -68,6 +68,7 @@ Route::group(['prefix' => 'admin'], function() {
         Route::get('language', 'AdminController@getLanguage');
         Route::post('language', 'AdminController@postLanguage');
         Route::post('language/{id}', 'AdminController@postUpdateLanguage');
+        Route::get('language/{id}/order/{status}', 'AdminController@changeLanguageOrder');
         Route::delete('language/{id}/delete', 'AdminController@deleteLanguage');
         Route::get('get-language-form', 'AdminController@getLanguageForm');
     });
