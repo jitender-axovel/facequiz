@@ -177,7 +177,7 @@ class QuizHelper extends Model
         if($quiz->show_friend_name) {
             foreach($array_keys as $k => $key) {
                 $k = $k + 1;
-                $template = str_replace('friend_name_'.$k, $response[$key]['name'], $template);
+                $template = str_replace('friend_name_'.$k, explode(' ', $response[$key]['name'])[0], $template);
             }
         }
         
