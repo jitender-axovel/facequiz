@@ -125,7 +125,7 @@ class AdminController extends Controller
     public function getLanguage(REQUEST $request)
     {
         $page = 'Languages - Admin';
-        $languages = Language::get();
+        $languages = Language::orderBy('order', 'ASC')->get();
         $strings = trans('strings');
         
         return view('admin.languages.index', compact('page', 'languages', 'strings'));
@@ -140,6 +140,7 @@ class AdminController extends Controller
         $language = array_intersect_key($input, Language::$updatable);
 
         $language['strings'] = json_encode(array_intersect_key($input['strings'], trans('strings')));
+        $language['order'] = (Language::get()->count() + 1);
         $language = Language::create($language);
         
         return redirect('admin/language')->with('success', 'Language has been saved.');
@@ -157,6 +158,35 @@ class AdminController extends Controller
         $language = Language::where('id', $id)->update($language);
         
         return redirect('admin/language')->with('success', 'Language has been saved.');
+    }
+
+    public function changeLanguageOrder($id, $status)
+    {
+        $language = Language::find($id);
+        if (($status == 'up' && $language->order == 1) || ($status == 'down' && $language->order == Language::get()->count())) {
+            //do nothing
+        } else {
+            switch ($status) {
+                case 'up':
+                    Language::where('order', $language->order-1)->increment('order', '1');
+                    $language->order = --$language->order;
+                    $language->save();
+                    break;
+                
+                case 'down':
+                    Language::where('order', $language->order+1)->decrement('order', '1');
+                    $language->order = ++$language->order;
+                    $language->save();
+                    break;
+
+                default:
+                    # code...
+                    break;
+            }
+        }
+
+        $languages = Language::orderBy('order', 'ASC')->get();
+        return view('admin.languages.language-list', compact('languages'));
     }
 
     public function deleteLanguage($id)
