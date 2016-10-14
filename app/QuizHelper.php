@@ -134,7 +134,7 @@ class QuizHelper extends Model
     public function setUserName($template, $quiz)
     {
         if($quiz->show_user_name) {
-            return str_replace('user_name', Auth::user()->name, $template);
+            return str_replace('user_name', explode(' ', Auth::user()->name)[0], $template);
         } else {
             return str_replace('user_name', '', $template);
         }
