@@ -118,7 +118,7 @@
 		    <li><a type="button" href="javascript:void(0);" id="language-selector-mobile">{{ $languageName }}</a>
 		        <div id="popover-content-mobile" class="hide">
 		            <ul class="list-unstyled">
-		                @foreach(App\Language::get() as $language)
+		                @foreach(App\Language::orderBy('order', 'ASC')->get() as $language)
 		                    <li>
 		                        <a href="{{ strtok($_SERVER['REQUEST_URI'],'?').'?lang='.$language->code }}">{{ $language->name }}
 		                        <span>&gt;</span></a>
@@ -190,7 +190,7 @@
                 <a type="button" href="javascript:void(0);" id="language-selector">{{ $languageName }}</a>
                 <div id="popover-content" class="hide">
                     <ul class="list-unstyled">
-                        @foreach(App\Language::get() as $language)
+                        @foreach(App\Language::orderBy('order', 'ASC')->get() as $language)
                             <li>
                                 <a href="{{ strtok($_SERVER['REQUEST_URI'],'?').'?lang='.$language->code }}">{{ $language->name }}
                                 <span>&gt;</span></a>
