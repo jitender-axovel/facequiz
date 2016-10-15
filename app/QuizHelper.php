@@ -167,7 +167,7 @@ class QuizHelper extends Model
             
         }
         
-        if(is_array($array_keys) && ($quiz->show_friend_pictures || $quiz->show_friend_name)) {
+        if(($quiz->show_friend_pictures || $quiz->show_friend_name) && is_array($array_keys)) {
             foreach($array_keys as $k => $key) {
                 $k = $k + 1;
                 if($quiz->show_friend_pictures) {
