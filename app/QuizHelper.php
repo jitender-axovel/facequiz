@@ -167,17 +167,25 @@ class QuizHelper extends Model
             
         }
         
-        if($quiz->show_friend_pictures) {
+        if(is_array($array_keys)) {
             foreach($array_keys as $k => $key) {
                 $k = $k + 1;
-                $template = str_replace('friend_profile_pic_'.$k, $response[$key]['picture']['url'], $template);
+                if($quiz->show_friend_pictures) {
+                    $template = str_replace('friend_profile_pic_'.$k, $response[$key]['picture']['url'], $template);
+                }
+
+                if($quiz->show_friend_name) {
+                    $template = str_replace('friend_name_'.$k, explode(' ', $response[$key]['name'])[0], $template);
+                }
             }
-        }
-        
-        if($quiz->show_friend_name) {
-            foreach($array_keys as $k => $key) {
-                $k = $k + 1;
-                $template = str_replace('friend_name_'.$k, explode(' ', $response[$key]['name'])[0], $template);
+        } else {
+            $k = 1;
+            if($quiz->show_friend_pictures) {
+                $template = str_replace('friend_profile_pic_'.$k, $response[$array_keys]['picture']['url'], $template);
+            }
+
+            if($quiz->show_friend_name) {
+                $template = str_replace('friend_name_'.$k, explode(' ', $response[$array_keys]['name'])[0], $template);
             }
         }
         
@@ -198,18 +206,19 @@ class QuizHelper extends Model
         if(is_array($array_keys)) {
             foreach($array_keys as $k => $key) {
                 $k = $k + 1;//return $fact->description;
+                $factDesc = explode(',', $facts[$key]['description']);
                 $template = str_replace('fact_'.$k, $facts[$key]['title'], $template);
-                $template = str_replace('fact_desc_'.$k, $facts[$key]['description'], $template);
+                $template = str_replace('fact_desc_'.$k, $factDesc[array_rand($factDesc, 1)], $template);
                 $template = str_replace('fact_image_'.$k, asset(config('image.quiz_facts_url').$quiz->id.'/'.$facts[$key]['image']), $template);
             }
         } else {
             $k = 1;//return $fact->description;
+            $factDesc = explode(',', $facts[$key]['description']);
             $template = str_replace('fact_'.$k, $facts[$array_keys]['title'], $template);
-            $template = str_replace('fact_desc_'.$k, $facts[$array_keys]['description'], $template);
+            $template = str_replace('fact_desc_'.$k, $factDesc[array_rand($factDesc, 1)], $template);
             $template = str_replace('fact_image_'.$k, asset(config('image.quiz_facts_url').$quiz->id.'/'.$facts[$array_keys]['image']), $template);
         }
         
         return $template;
     }
-    
 }
