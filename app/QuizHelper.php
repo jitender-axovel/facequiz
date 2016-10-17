@@ -213,7 +213,7 @@ class QuizHelper extends Model
             }
         } else {
             $k = 1;//return $fact->description;
-            $factDesc = explode(',', $facts[$key]['description']);
+            $factDesc = explode(',', $facts[$array_keys]['description']);
             $template = str_replace('fact_'.$k, $facts[$array_keys]['title'], $template);
             $template = str_replace('fact_desc_'.$k, $factDesc[array_rand($factDesc, 1)], $template);
             $template = str_replace('fact_image_'.$k, asset(config('image.quiz_facts_url').$quiz->id.'/'.$facts[$array_keys]['image']), $template);
