@@ -21,6 +21,7 @@ class SocialAccountService
         if ($account) {
             $account->fb_id = $providerUser->getId();
             $account->name = $providerUser->getName();
+            $account->slug => Helper::slug($providerUser->getName()),
             $account->avatar = $providerUser->getAvatar();
             $account->gender = ($providerUser->user['gender']=='male' ? 'M' : 'F');
             $account->save();
@@ -40,6 +41,7 @@ class SocialAccountService
                     'fb_id' => $providerUser->getId(),
                     'email' => $providerUser->getEmail(),
                     'name' => $providerUser->getName(),
+                    'slug' => Helper::slug($providerUser->getName()),
                     'avatar' => $providerUser->getAvatar(),
                     'gender' => ($providerUser->user['gender']=='male' ? 'M' : 'F'),
                     'user_role_id' => 3,
