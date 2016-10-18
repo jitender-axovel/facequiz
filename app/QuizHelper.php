@@ -115,6 +115,9 @@ class QuizHelper extends Model
             if(count($response)) {
                 if(count($response) < $quiz->template->total_images) {
                     $array_keys = array_rand($response, count($response));
+                    for ($i=0; $i < ($quiz->template->total_images - count($response)); $i++) { 
+                        $array_keys[] = array_rand($response, 1);
+                    }
                 } else {
                     $array_keys = array_rand($response, $quiz->template->total_images);
                 }
@@ -160,6 +163,9 @@ class QuizHelper extends Model
                 $response = $response->asArray();
                 if(count($response) < $quiz->template->total_images) {
                     $array_keys = array_rand($response, count($response));
+                    for ($i=0; $i < ($quiz->template->total_images - count($response)); $i++) { 
+                        $array_keys[] = array_rand($response, 1);
+                    }
                 } else {
                     $array_keys = array_rand($response, $quiz->template->total_images);
                 }
