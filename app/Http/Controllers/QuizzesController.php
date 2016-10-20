@@ -81,6 +81,9 @@ class QuizzesController extends Controller
         
         $quizHelper = new \App\QuizHelper();
 
+        //set facts
+        $template = $quizHelper->setFacts($template, $quiz);
+        
         //set photos
         $template = $quizHelper->setUserPhotos($template, $quiz);
         
@@ -95,12 +98,9 @@ class QuizzesController extends Controller
         
         //set user name
         $template = $quizHelper->setUserName($template, $quiz);
-        
+
         //set friends data
         $template = $quizHelper->setFriendData($template, $quiz);
-        
-        //set facts
-        $template = $quizHelper->setFacts($template, $quiz);
 
         $filePath = public_path('files/');
 

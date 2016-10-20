@@ -115,6 +115,9 @@ class QuizHelper extends Model
             if(count($response)) {
                 if(count($response) < $quiz->template->total_images) {
                     $array_keys = array_rand($response, count($response));
+                    for ($i=0; $i < ($quiz->template->total_images - count($response)); $i++) { 
+                        $array_keys[] = array_rand($response, 1);
+                    }
                 } else {
                     $array_keys = array_rand($response, $quiz->template->total_images);
                 }
@@ -160,6 +163,9 @@ class QuizHelper extends Model
                 $response = $response->asArray();
                 if(count($response) < $quiz->template->total_images) {
                     $array_keys = array_rand($response, count($response));
+                    for ($i=0; $i < ($quiz->template->total_images - count($response)); $i++) { 
+                        $array_keys[] = array_rand($response, 1);
+                    }
                 } else {
                     $array_keys = array_rand($response, $quiz->template->total_images);
                 }
@@ -206,14 +212,14 @@ class QuizHelper extends Model
         if(is_array($array_keys)) {
             foreach($array_keys as $k => $key) {
                 $k = $k + 1;//return $fact->description;
-                $factDesc = explode(',', $facts[$key]['description']);
+                $factDesc = explode(':=:', $facts[$key]['description']);
                 $template = str_replace('fact_'.$k, $facts[$key]['title'], $template);
                 $template = str_replace('fact_desc_'.$k, $factDesc[array_rand($factDesc, 1)], $template);
                 $template = str_replace('fact_image_'.$k, asset(config('image.quiz_facts_url').$quiz->id.'/'.$facts[$key]['image']), $template);
             }
         } else {
             $k = 1;//return $fact->description;
-            $factDesc = explode(',', $facts[$array_keys]['description']);
+            $factDesc = explode(':=:', $facts[$array_keys]['description']);
             $template = str_replace('fact_'.$k, $facts[$array_keys]['title'], $template);
             $template = str_replace('fact_desc_'.$k, $factDesc[array_rand($factDesc, 1)], $template);
             $template = str_replace('fact_image_'.$k, asset(config('image.quiz_facts_url').$quiz->id.'/'.$facts[$array_keys]['image']), $template);
