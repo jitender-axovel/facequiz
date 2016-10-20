@@ -19,7 +19,7 @@ class CmsTableSeeder extends Seeder
         DB::table('cms')->insert([
             ['title' => 'Privacy Policy', 'slug' => Helper::slug('Privacy Policy'), 'created_at' => $dt, 'updated_at' => $dt],
             ['title' => 'Terms & Conditions', 'slug' => Helper::slug('Terms & Conditions'), 'created_at' => $dt, 'updated_at' => $dt],
-            ['title' => 'About Us', 'slug' => Helper::slug('About Us'), 'created_at' => $dt, 'updated_at' => $dt]
+            ['title' => 'Contact Us', 'slug' => Helper::slug('Contact Us'), 'created_at' => $dt, 'updated_at' => $dt]
         ]);
     }
 }
