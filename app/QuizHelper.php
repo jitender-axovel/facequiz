@@ -142,32 +142,76 @@ class QuizHelper extends Model
             return str_replace('user_name', '', $template);
         }
     }
+
+    private function getGraphObject($path)
+    {
+        try {
+            $response = $this->fb->get($path);
+        } catch (Facebook\Exceptions\FacebookResponseException $e) {
+            // When Graph returns an error
+            return redirect('/')->with('error', 'Sorry for the inconvenience, there are no results for this quiz');
+        } catch (\Facebook\Exceptions\FacebookSDKException $e) {
+            // When validation fails or other local issues
+            return redirect('/')->with('error', 'Sorry for the inconvenience, there are no results for this quiz');
+        }
+
+        return $response;
+    }
     
     public function setFriendData($template, $quiz)
     {
         if($quiz->show_friend_pictures || $quiz->show_friend_name) {
-            try {
-                $response = $this->fb->get('/me/friends?fields=name,picture.width(480)');
-            } catch (Facebook\Exceptions\FacebookResponseException $e) {
-                // When Graph returns an error
-                return redirect('/')->with('error', 'Sorry for the inconvenience, there are no results for this quiz');
-            } catch (\Facebook\Exceptions\FacebookSDKException $e) {
-                // When validation fails or other local issues
-                return redirect('/')->with('error', 'Sorry for the inconvenience, there are no results for this quiz');
+            $friends = $this->getGraphObject('/me/friends?fields=id,name,picture.width(480)');
+
+            $friends = $friends->getGraphEdge()->asArray();
+
+            foreach ($friends as $friend) {
+                $friendData[$friend['id']] = $friend;
+                $friendData[$friend['id']]['score'] = 0;
             }
+
+            $response = $this->getGraphObject('/me/photos/uploaded?fields=source.width(480)');
+
+            foreach($response->getGraphEdge()->asArray() as $key => $photo) {
+                $likes = $this->getGraphObject('/'.$photo['id'].'/likes');
+
+                foreach($likes->getGraphEdge()->asArray() as $likeFrom) {
+
+                    if (array_key_exists ((int)$likeFrom['id'] , $friendData)) {
+                        $friendData[(int)$likeFrom['id']]['score'] = ++$friendData[(int)$likeFrom['id']]['score'];
+                    }
+                }
+
+                $comments = $this->getGraphObject('/'.$photo['id'].'/comments');
+
+                foreach($comments->getGraphEdge()->asArray() as $commentFrom) {
+
+                    if (array_key_exists($commentFrom['from']['id'], $friendData)) {
+                        $friendData[$commentFrom['from']['id']]['score'] = ++$friendData[$commentFrom['from']['id']]['score'];
+                    }
+                }
+            }
+
+            usort($friendData, function($a, $b) {
+                if ($a['score'] == $b['score']) {
+                    return 0;
+                }
+                return ($a['score'] < $b['score']) ? 1 : -1;
+            });
+
+            $response = $this->getGraphObject('/me/friends?fields=id,name,picture.width(480)');
             
             $response = $response->getGraphEdge();
             
             $array_keys = array();
-            if($response->count()) {
-                $response = $response->asArray();
-                if(count($response) < $quiz->template->total_images) {
-                    $array_keys = array_rand($response, count($response));
-                    for ($i=0; $i < ($quiz->template->total_images - count($response)); $i++) { 
-                        $array_keys[] = array_rand($response, 1);
+            if(count($friendData)) {
+                if(count($friendData) < $quiz->template->total_images) {
+                    $array_keys = array_rand($friendData, count($friendData));
+                    for ($i=0; $i < ($quiz->template->total_images - count($friendData)); $i++) { 
+                        $array_keys[] = array_rand($friendData, 1);
                     }
                 } else {
-                    $array_keys = array_rand($response, $quiz->template->total_images);
+                    $array_keys = array_rand($friendData, $quiz->template->total_images);
                 }
             }
             
@@ -177,21 +221,21 @@ class QuizHelper extends Model
             foreach($array_keys as $k => $key) {
                 $k = $k + 1;
                 if($quiz->show_friend_pictures) {
-                    $template = str_replace('friend_profile_pic_'.$k, $response[$key]['picture']['url'], $template);
+                    $template = str_replace('friend_profile_pic_'.$k, $friendData[$key]['picture']['url'], $template);
                 }
 
                 if($quiz->show_friend_name) {
-                    $template = str_replace('friend_name_'.$k, explode(' ', $response[$key]['name'])[0], $template);
+                    $template = str_replace('friend_name_'.$k, explode(' ', $friendData[$key]['name'])[0], $template);
                 }
             }
         } else {
             $k = 1;
             if($quiz->show_friend_pictures) {
-                $template = str_replace('friend_profile_pic_'.$k, $response[$array_keys]['picture']['url'], $template);
+                $template = str_replace('friend_profile_pic_'.$k, $friendData[$array_keys]['picture']['url'], $template);
             }
 
             if($quiz->show_friend_name) {
-                $template = str_replace('friend_name_'.$k, explode(' ', $response[$array_keys]['name'])[0], $template);
+                $template = str_replace('friend_name_'.$k, explode(' ', $friendData[$array_keys]['name'])[0], $template);
             }
         }
         
