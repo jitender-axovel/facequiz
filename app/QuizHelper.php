@@ -199,9 +199,7 @@ class QuizHelper extends Model
                 return ($a['score'] < $b['score']) ? 1 : -1;
             });
 
-            $response = $this->getGraphObject('/me/friends?fields=id,name,picture.width(480)');
-            
-            $response = $response->getGraphEdge();
+            $friendData = array_slice($friendData, 0, $quiz->template->total_images);
             
             $array_keys = array();
             if(count($friendData)) {
