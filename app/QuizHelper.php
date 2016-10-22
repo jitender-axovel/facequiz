@@ -199,7 +199,7 @@ class QuizHelper extends Model
                 return ($a['score'] < $b['score']) ? 1 : -1;
             });
 
-            $friendData = array_slice($friendData, 0, 10);
+            (count($friendData) >= 10) ? ($friendData = array_slice($friendData, 0, 10)) : '';
             
             $array_keys = array();
             if(count($friendData)) {
