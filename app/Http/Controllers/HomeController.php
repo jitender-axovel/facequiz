@@ -30,4 +30,21 @@ class HomeController extends Controller
         $quizzes = Quiz::where('locale', session('locale'))->where('is_active', 1)->orderBy('updated_at', 'DESC')->paginate(12);
         return view('home', compact('quizzes', 'page'));
     }
+
+    public function revokePermissions()
+    {
+        if(!(session()->has('fb_access_token'))) {
+            auth()->logout();
+            return redirect('/')->with('error', 'Kindly try again as your facebook authentication code has expired.');
+        }
+
+        $quizHelper = new \App\QuizHelper();
+
+        if($quizHelper->revokePermissions()['success'] == true) {
+            auth()->logout();
+            return redirect('/')->with('success', 'App permissions have been revoked successfully.');
+        } else {
+            return redirect('/')->with('error', 'App permissions could not be revoked.');
+        }
+    }
 }
