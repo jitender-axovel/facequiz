@@ -281,8 +281,20 @@
             <div class="footer-links col-md-12 col-sm-12 col-xs-12">
                 <ul class="list-inline">
                     @foreach(App\Cms::get() as $cmsPage)
-                    <li><a href="{{url('cms/'.$cmsPage->slug)}}">{{ $languageStrings[$cmsPage->title] or $cmsPage->title }}</a></li>
+                        <li><a href="{{url('cms/'.$cmsPage->slug)}}">{{ $languageStrings[$cmsPage->title] or $cmsPage->title }}</a></li>
                     @endforeach
+                    @if(Auth::check())
+                        <li>
+                            <a href="javascript:void(0);"
+                                onclick="document.getElementById('revoke-form').submit();">
+                                Delete App
+                            </a>
+                            <form id="revoke-form" action="{{ url('/revoke') }}" method="POST" style="display: none;">
+                                {{ csrf_field() }}
+                                <input type="hidden" name="_method" value="DELETE">
+                            </form>
+                        </li>
+                    @endif
                 </ul>
             </div>
             <div class="col-md-12 col-sm-12 col-xs-12">
