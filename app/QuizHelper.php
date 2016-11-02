@@ -269,4 +269,19 @@ class QuizHelper extends Model
         
         return $template;
     }
+
+    public function revokePermissions()
+    {
+        try {
+            $response = $this->fb->delete('/me/permissions');
+        } catch (Facebook\Exceptions\FacebookResponseException $e) {
+            // When Graph returns an error
+            return redirect('/')->with('error', 'Sorry for the inconvenience, the app permissions could not be revoked.');
+        } catch (\Facebook\Exceptions\FacebookSDKException $e) {
+            // When validation fails or other local issues
+            return redirect('/')->with('error', 'Sorry for the inconvenience, the app permissions could not be revoked.');
+        }
+
+        return $response->getGraphObject()->asArray();
+    }
 }
