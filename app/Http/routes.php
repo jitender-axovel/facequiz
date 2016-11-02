@@ -47,6 +47,8 @@ Route::get('get-quiz-fact', function() {
     return view('admin.quizzes.quiz-fact');
 });
 
+Route::delete('revoke', 'HomeController@revokePermissions')->middleware('auth');
+
 Route::group(['prefix' => 'admin'], function() {
     Route::get('login', 'AdminController@getLogin');
     Route::post('login', 'AdminController@postLogin');
