@@ -192,27 +192,41 @@ class QuizHelper extends Model
                 }
             }
 
-            usort($friendData, function($a, $b) {
-                if ($a['score'] == $b['score']) {
-                    return 0;
-                }
-                return ($a['score'] < $b['score']) ? 1 : -1;
-            });
-
-            (count($friendData) >= 10) ? ($friendData = array_slice($friendData, 0, 10)) : '';
-            
-            $array_keys = array();
-            if(count($friendData)) {
-                if(count($friendData) < $quiz->template->total_images) {
-                    $array_keys = array_rand($friendData, count($friendData));
-                    for ($i=0; $i < ($quiz->template->total_images - count($friendData)); $i++) { 
-                        $array_keys[] = array_rand($friendData, 1);
+            if (isset($friendData) && (is_array($friendData) && count($friendData))) {
+                usort($friendData, function($a, $b) {
+                    if ($a['score'] == $b['score']) {
+                        return 0;
                     }
-                } else {
-                    $array_keys = array_rand($friendData, $quiz->template->total_images);
+                    return ($a['score'] < $b['score']) ? 1 : -1;
+                });
+
+                (count($friendData) >= 10) ? ($friendData = array_slice($friendData, 0, 10)) : '';
+                
+                $array_keys = array();
+                if(count($friendData)) {
+                    if(count($friendData) < $quiz->template->total_images) {
+                        $array_keys = array_rand($friendData, count($friendData));
+                        for ($i=0; $i < ($quiz->template->total_images - count($friendData)); $i++) { 
+                            $array_keys[] = array_rand($friendData, 1);
+                        }
+                    } else {
+                        $array_keys = array_rand($friendData, $quiz->template->total_images);
+                    }
                 }
             }
             
+        }
+
+        if (!isset($array_keys)) {
+            $profilePic = $this->getGraphObject('/me?fields=picture.width(480)');
+
+            $profilePic = $profilePic->getGraphObject()->asArray();
+
+            for ($i=0; $i < $quiz->template->total_images; $i++) { 
+                $template = str_replace('friend_profile_pic_'.$i+1, $profilePic['picture']['url'], $template);
+            }
+
+            return $template;
         }
         
         if(($quiz->show_friend_pictures || $quiz->show_friend_name) && is_array($array_keys)) {
