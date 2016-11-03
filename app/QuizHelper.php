@@ -223,7 +223,11 @@ class QuizHelper extends Model
             $profilePic = $profilePic->getGraphObject()->asArray();
 
             for ($i=0; $i < $quiz->template->total_images; $i++) { 
-                $template = str_replace('friend_profile_pic_'.$i+1, $profilePic['picture']['url'], $template);
+                if($quiz->show_friend_pictures)
+                    $template = str_replace('friend_profile_pic_'.$i+1, $profilePic['picture']['url'], $template);
+
+                if($quiz->show_friend_name)
+                    $template = str_replace('friend_name_'.$k, explode(' ', Auth::user()->name)[0], $template);
             }
 
             return $template;
