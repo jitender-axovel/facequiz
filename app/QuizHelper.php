@@ -170,29 +170,30 @@ class QuizHelper extends Model
                 $friendData[$friend['id']]['score'] = 0;
             }
 
-            $response = $this->getGraphObject('/me/photos/uploaded?fields=source.width(480)');
-
-            foreach($response->getGraphEdge()->asArray() as $key => $photo) {
-                $likes = $this->getGraphObject('/'.$photo['id'].'/likes');
-
-                foreach($likes->getGraphEdge()->asArray() as $likeFrom) {
-
-                    if (array_key_exists ((int)$likeFrom['id'] , $friendData)) {
-                        $friendData[(int)$likeFrom['id']]['score'] = ++$friendData[(int)$likeFrom['id']]['score'];
-                    }
-                }
-
-                $comments = $this->getGraphObject('/'.$photo['id'].'/comments');
-
-                foreach($comments->getGraphEdge()->asArray() as $commentFrom) {
-
-                    if (array_key_exists($commentFrom['from']['id'], $friendData)) {
-                        $friendData[$commentFrom['from']['id']]['score'] = ++$friendData[$commentFrom['from']['id']]['score'];
-                    }
-                }
-            }
-
             if (isset($friendData) && (is_array($friendData) && count($friendData))) {
+
+                $response = $this->getGraphObject('/me/photos/uploaded?fields=source.width(480)');
+
+                foreach($response->getGraphEdge()->asArray() as $key => $photo) {
+                    $likes = $this->getGraphObject('/'.$photo['id'].'/likes');
+
+                    foreach($likes->getGraphEdge()->asArray() as $likeFrom) {
+
+                        if (array_key_exists ((int)$likeFrom['id'] , $friendData)) {
+                            $friendData[(int)$likeFrom['id']]['score'] = ++$friendData[(int)$likeFrom['id']]['score'];
+                        }
+                    }
+
+                    $comments = $this->getGraphObject('/'.$photo['id'].'/comments');
+
+                    foreach($comments->getGraphEdge()->asArray() as $commentFrom) {
+
+                        if (array_key_exists($commentFrom['from']['id'], $friendData)) {
+                            $friendData[$commentFrom['from']['id']]['score'] = ++$friendData[$commentFrom['from']['id']]['score'];
+                        }
+                    }
+                }
+
                 usort($friendData, function($a, $b) {
                     if ($a['score'] == $b['score']) {
                         return 0;
