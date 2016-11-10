@@ -19,10 +19,6 @@ Route::group(['middleware' => 'before'], function() {
     Route::get('/redirect', 'SocialAuthController@redirect');
     Route::get('/callback', 'SocialAuthController@callback');
 
-    Route::get('privacy-policy', function() {
-        return view('cms/privacy-policy');
-    });
-
     Route::get('cms/{slug}', 'CmsController@getPage');
 
     Route::get('quizzes/popular', 'QuizzesController@getPopularQuizzes');
