@@ -11,7 +11,7 @@
   |
  */
 
-Route::group(['middleware' => 'before'], function() {
+Route::group(['domain' => '{lang}.'.env('APP_URL', 'robodoo.com'), 'middleware' => 'before'], function ($lang) {
     Route::get('/', 'HomeController@index');
 
     Route::auth();
@@ -24,7 +24,6 @@ Route::group(['middleware' => 'before'], function() {
     Route::get('quizzes/popular', 'QuizzesController@getPopularQuizzes');
 
     Route::get('get-template-details', 'AdminQuizzesController@getTemplateDetails');
-//    Route::get('get-quiz-form', 'AdminQuizzesController@getQuizForm');
 
     Route::group(['prefix' => 'quiz'], function() {
         Route::get('{quizSlug}/show', 'QuizzesController@index');
@@ -33,6 +32,7 @@ Route::group(['middleware' => 'before'], function() {
         Route::get('{quizSlug}/share/{userId}', 'QuizzesController@share');
         Route::get('{quizSlug}/summary', 'QuizzesController@summary');
     });
+
 });
 
 Route::get('get-widget-form/{slug}', function($slug) {
