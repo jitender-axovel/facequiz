@@ -14,8 +14,8 @@
     RewriteRule ^(.*)$ http://%1%{REQUEST_URI} [R=301,QSA,NC,L]
 
     RewriteCond %{HTTP_HOST} !www\.
-    RewriteCond %{HTTP_HOST} ^(.*)\.localhost/facequiz/public
-    RewriteRule ^(.*)$ http://localhost/facequiz/public/$1 [L,NC,QSA]
+    RewriteCond %{HTTP_HOST} ^(.*)\.robodoo.com
+    RewriteRule ^(.*)$ index.php?lang=%1 [L,NC,QSA]
 
     # Handle Front Controller...
     RewriteCond %{REQUEST_FILENAME} !-d
