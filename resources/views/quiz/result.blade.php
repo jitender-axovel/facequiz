@@ -21,7 +21,6 @@
                     <div class="panel-body text-center">
                         @if(!$has_liked_page)
                             <div class="loading-image text-center">
-                                <img src="{{asset('images/loading.gif')}}">
                                 <span class="lead heading">
                                     {{ $languageStrings['Kindly Like us to continue'] or 'Kindly Like us to continue' }}
                                     <i class="fa fa-arrow-right"></i>
