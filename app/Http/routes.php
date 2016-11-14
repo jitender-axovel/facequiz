@@ -11,7 +11,7 @@
   |
  */
 
-Route::group(['domain' => '{lang}.'.env('APP_URL', 'robodoo.com'), 'middleware' => 'before'], function ($lang) {
+Route::group(['middleware' => 'before'], function ($lang) {
     Route::get('/', 'HomeController@index');
 
     Route::auth();
@@ -59,7 +59,6 @@ Route::group(['prefix' => 'admin'], function() {
         Route::post('users/download-csv', 'AdminUsersController@exportToCsv');
         Route::post('quiz/change-status/{id}', 'AdminQuizzesController@changeStatus');
         Route::resource('quiz', 'AdminQuizzesController');
-//            Route::post('save-template-image', 'AdminQuizTemplatesController@saveTemplateImage');
         Route::resource('layout', 'AdminQuizTemplatesController');
         Route::resource('widget', 'AdminWidgetsController');
         Route::resource('cms', 'AdminCmsController');
