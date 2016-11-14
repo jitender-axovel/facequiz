@@ -1,0 +1,12 @@
+/* font converted using font-converter.net. thank you! */
+@font-face {
+  font-family: 'ArialRoundedMT';
+  src: url('ufontscomarial-rounded-mt.eot'); /* IE9 Compat Modes */
+  src: url('ufontscomarial-rounded-mt.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+    url('ufontscomarial-rounded-mt.woff2') format('woff2'), /* Modern Browsers */
+    url('ufontscomarial-rounded-mt.woff') format('woff'), /* Modern Browsers */
+    url('ufontscomarial-rounded-mt.ttf') format('truetype'), /* Safari, Android, iOS */
+    url('ufontscomarial-rounded-mt.svg') format('svg'); /* Legacy iOS */  
+    font-weight: normal;
+  font-style: normal;
+}
