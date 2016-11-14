@@ -3,6 +3,7 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Carbon\Carbon;
 use Facebook;
 use Auth;
 
@@ -170,29 +171,67 @@ class QuizHelper extends Model
                 $friendData[$friend['id']]['score'] = 0;
             }
 
+            $now = Carbon::create();
+
             if (isset($friendData) && (is_array($friendData) && count($friendData))) {
+                $posts = $this->getGraphObject('/me/posts')->getGraphEdge();
 
-                $response = $this->getGraphObject('/me/photos/uploaded?fields=source.width(480)');
+                $response = $posts->asArray();
 
-                foreach($response->getGraphEdge()->asArray() as $key => $photo) {
-                    $likes = $this->getGraphObject('/'.$photo['id'].'/likes');
+                while(count($response) > 0) {
+                    foreach ($response as $key => $post) {
+                        $likes = $this->getGraphObject('/'.$post['id'].'/likes');
 
-                    foreach($likes->getGraphEdge()->asArray() as $likeFrom) {
-
-                        if (array_key_exists ((int)$likeFrom['id'] , $friendData)) {
-                            $friendData[(int)$likeFrom['id']]['score'] = ++$friendData[(int)$likeFrom['id']]['score'];
+                        foreach ($likes->getGraphEdge()->asArray() as $key => $like) {
+                            if(array_key_exists((int)$like['id'], $friendData)) {
+                                $post['created_time'] = new Carbon($post['created_time']->format('M d Y'));
+                                $diff = $now->diffInDays($post['created_time']);
+                                $friendData[(int)$like['id']]['score'] += $diff * 0.01;
+                            }
                         }
                     }
 
-                    $comments = $this->getGraphObject('/'.$photo['id'].'/comments');
-
-                    foreach($comments->getGraphEdge()->asArray() as $commentFrom) {
-
-                        if (array_key_exists($commentFrom['from']['id'], $friendData)) {
-                            $friendData[$commentFrom['from']['id']]['score'] = ++$friendData[$commentFrom['from']['id']]['score'];
-                        }
-                    }
+                    $posts = $this->fb->next($posts);
+                    $response = $posts;
                 }
+
+                $photos = $this->getGraphObject('/me/photos/uploaded')->getGraphEdge();
+                $response = $photos->asArray();
+
+                while(count($response)) {
+                    foreach($response as $key => $photo) {
+                        $likes = $this->getGraphObject('/'.$photo['id'].'/likes');
+
+                        $photo['created_time'] = new Carbon($photo['created_time']->format('M d Y'));
+                        $diff = $now->diffInDays($photo['created_time']);
+
+                        foreach($likes->getGraphEdge()->asArray() as $likeFrom) {
+
+                            if (array_key_exists ((int)$likeFrom['id'] , $friendData)) {
+                                $friendData[(int)$likeFrom['id']]['score'] += $diff * 0.01;
+                            }
+                        }
+
+                        $comments = $this->getGraphObject('/'.$photo['id'].'/comments');
+
+                        foreach($comments->getGraphEdge()->asArray() as $commentFrom) {
+
+                            if (array_key_exists($commentFrom['from']['id'], $friendData)) {
+                                $friendData[$commentFrom['from']['id']]['score'] += $diff * 0.02;
+                            }
+                        }
+                    }
+
+                    $photos = $this->fb->next($photos);
+                    $response = $photos;
+                }
+
+                foreach ($friendData as $key => $friend) {
+                    $mutualFriends = $this->getGraphObject($key.'?fields=context.fields(mutual_friends)');
+                    $friendData[$key]['score'] += json_decode($mutualFriends->getBody(), true)['context']['mutual_friends']['summary']['total_count'];
+                }
+
+                dd($friendData);
 
                 usort($friendData, function($a, $b) {
                     if ($a['score'] == $b['score']) {
