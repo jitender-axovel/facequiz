@@ -197,7 +197,7 @@ class QuizHelper extends Model
                         foreach($comments->getGraphEdge()->asArray() as $comment) {
 
                             if (array_key_exists($comment['from']['id'], $friendData)) {
-                                $friendData[$commentFrom['from']['id']]['score'] += $diff * 0.02;
+                                $friendData[$comment['from']['id']]['score'] += $diff * 0.02;
                             }
                         }
                     }
