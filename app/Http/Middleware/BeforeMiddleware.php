@@ -29,6 +29,7 @@ class BeforeMiddleware
         if(isset($_GET['lang']) && in_array($_GET['lang'], $languageCodes)) {
 
             $request->session()->put('locale', $_GET['lang']);
+            Cookie::queue(Cookie::forever('language', $_GET['lang']));
             return redirect('/');
         } else if($cookie_lang && in_array($cookie_lang, $languageCodes)) {
 
