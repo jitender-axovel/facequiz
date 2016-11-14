@@ -27,11 +27,14 @@ class BeforeMiddleware
         $cookie_lang = $request->cookie('language');
 
         if(isset($_GET['lang']) && in_array($_GET['lang'], $languageCodes)) {
+
             $request->session()->put('locale', $_GET['lang']);
-        } elseif($cookie_lang && in_array($cookie_lang, $languageCodes)) {
+            return redirect('/');
+        } else if($cookie_lang && in_array($cookie_lang, $languageCodes)) {
+
             $request->session()->put('locale', $cookie_lang);
-        }
-        elseif(in_array($browser_lang, $languageCodes)) {
+        } else if(in_array($browser_lang, $languageCodes)) {
+
             $request->session()->put('locale', $browser_lang);
         }
         
