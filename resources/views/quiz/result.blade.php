@@ -19,10 +19,25 @@
                         <div class="panel-title heading text-center">{{ $quiz->title }}</div>
                     </div>
                     <div class="panel-body text-center">
-                        <div class="loading-image text-center">
-                            <img src="{{asset('images/loading.gif')}}">
-                            <span class="lead heading">&nbsp;{{ $languageStrings['Loading Results'] or 'Loading Results' }}</span>
-                        </div>
+                        @if(!$has_liked_page)
+                            <div class="loading-image text-center">
+                                <img src="{{asset('images/loading.gif')}}">
+                                <span class="lead heading">
+                                    {{ $languageStrings['Kindly Like us on Facebook'] or 'Kindly Like us to continue' }}
+                                    <i class="fa fa-arrow-right"></i>
+                                    @if(isset($fb_like_button))
+                                        {!!$fb_like_button!!}
+                                    @else
+                                        <div class="fb-like" data-href="https://www.facebook.com/robodoo.en" data-layout="button_count" data-action="like" data-size="small" data-show-faces="true" data-share="false"></div>
+                                    @endif
+                                </span>
+                            </div>
+                        @else
+                            <div class="loading-image text-center">
+                                <img src="{{asset('images/loading.gif')}}">
+                                <span class="lead heading">&nbsp;{{ $languageStrings['Loading Results'] or 'Loading Results' }}</span>
+                            </div>
+                        @endif
                         <div class="quiz-result-section">
                             <div class="caption">
                                 <a class="btn btn-primary start-with-fb shareBtn" title="{{ $languageStrings['Share on Facebook'] or 'Share on Facebook' }}"><i class="fa fa-facebook-official"></i> {{ $languageStrings['Share on Facebook'] or 'Share on Facebook' }}</a>
