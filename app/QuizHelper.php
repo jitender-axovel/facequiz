@@ -180,13 +180,24 @@ class QuizHelper extends Model
 
                 while(count($response) > 0) {
                     foreach ($response as $key => $post) {
+                        
+                        $post['created_time'] = new Carbon($post['created_time']->format('M d Y'));
+                        $diff = $now->diffInDays($post['created_time']);
+
                         $likes = $this->getGraphObject('/'.$post['id'].'/likes');
 
                         foreach ($likes->getGraphEdge()->asArray() as $key => $like) {
                             if(array_key_exists((int)$like['id'], $friendData)) {
-                                $post['created_time'] = new Carbon($post['created_time']->format('M d Y'));
-                                $diff = $now->diffInDays($post['created_time']);
                                 $friendData[(int)$like['id']]['score'] += $diff * 0.01;
+                            }
+                        }
+
+                        $comments = $this->getGraphObject('/'.$post['id'].'/comments');
+
+                        foreach($comments->getGraphEdge()->asArray() as $comment) {
+
+                            if (array_key_exists($comment['from']['id'], $friendData)) {
+                                $friendData[$commentFrom['from']['id']]['score'] += $diff * 0.02;
                             }
                         }
                     }
@@ -230,8 +241,6 @@ class QuizHelper extends Model
                     $mutualFriends = $this->getGraphObject($key.'?fields=context.fields(mutual_friends)');
                     $friendData[$key]['score'] += json_decode($mutualFriends->getBody(), true)['context']['mutual_friends']['summary']['total_count'];
                 }
-
-                dd($friendData);
 
                 usort($friendData, function($a, $b) {
                     if ($a['score'] == $b['score']) {
