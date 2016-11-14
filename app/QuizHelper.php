@@ -254,8 +254,13 @@ class QuizHelper extends Model
                 $array_keys = array();
                 if(count($friendData)) {
                     if(count($friendData) < $quiz->template->total_images) {
-                        $array_keys = array_rand($friendData, count($friendData));
-                        for ($i=0; $i < ($quiz->template->total_images - count($friendData)); $i++) { 
+                        
+                        if(count($friendData) == 1)
+                            $array_keys[] = array_rand($friendData, count($friendData));
+                        else
+                            $array_keys = array_rand($friendData, count($friendData));
+
+                        for ($i=count($friendData); $i < ($quiz->template->total_images); $i++) {
                             $array_keys[] = array_rand($friendData, 1);
                         }
                     } else {
