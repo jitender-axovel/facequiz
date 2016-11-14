@@ -23,7 +23,7 @@
                             <div class="loading-image text-center">
                                 <img src="{{asset('images/loading.gif')}}">
                                 <span class="lead heading">
-                                    {{ $languageStrings['Kindly Like us on Facebook'] or 'Kindly Like us to continue' }}
+                                    {{ $languageStrings['Kindly Like us to continue'] or 'Kindly Like us to continue' }}
                                     <i class="fa fa-arrow-right"></i>
                                     @if(isset($fb_like_button))
                                         {!!$fb_like_button!!}
