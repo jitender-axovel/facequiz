@@ -176,8 +176,8 @@
         <div class="collapse navbar-collapse mobile-toggle" id="app-navbar-collapse">
             <!-- Left Side Of Navbar -->
             <ul class="nav navbar-nav">
-                <li><a href="{{ url('/') }}">{{ $languageStrings['Latest'] or 'Latest' }}</a></li>
-                <li><a href="{{ url('quizzes/popular') }}">{{ $languageStrings['Popular'] or 'Popular' }}</a></li>
+                <li><a href="{{ url('quizzes/latest') }}">{{ $languageStrings['Latest'] or 'Latest' }}</a></li>
+                <li><a href="{{ url('/') }}">{{ $languageStrings['Popular'] or 'Popular' }}</a></li>
             </ul>
         </div>
     </div>
@@ -213,8 +213,8 @@
                     <div class="collapse navbar-collapse" id="app-navbar-collapse">
                         <!-- Left Side Of Navbar -->
                         <ul class="nav navbar-nav">
-                            <li><a href="{{ url('/') }}">{{ $languageStrings['Latest'] or 'Latest' }}</a></li>
-                            <li><a href="{{ url('quizzes/popular') }}">{{ $languageStrings['Popular'] or 'Popular' }}</a></li>
+                            <li><a href="{{ url('quizzes/latest') }}">{{ $languageStrings['Latest'] or 'Latest' }}</a></li>
+                            <li><a href="{{ url('/') }}">{{ $languageStrings['Popular'] or 'Popular' }}</a></li>
                         </ul>
                     </div>
                 </nav>
