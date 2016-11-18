@@ -41,6 +41,9 @@ class HomeController extends Controller
         $quizHelper = new \App\QuizHelper();
 
         if($quizHelper->revokePermissions()['success'] == true) {
+            if(session('redirect_url')) {
+                session()->forget('redirect_url');
+            }
             auth()->logout();
             return redirect('/')->with('success', 'App permissions have been revoked successfully.');
         } else {
