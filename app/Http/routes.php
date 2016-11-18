@@ -21,7 +21,7 @@ Route::group(['middleware' => 'before'], function ($lang) {
 
     Route::get('cms/{slug}', 'CmsController@getPage');
 
-    Route::get('quizzes/popular', 'QuizzesController@getPopularQuizzes');
+    Route::get('quizzes/latest', 'QuizzesController@getLatestQuizzes');
 
     Route::get('get-template-details', 'AdminQuizzesController@getTemplateDetails');
 
