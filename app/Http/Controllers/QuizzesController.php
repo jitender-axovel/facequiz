@@ -34,11 +34,10 @@ class QuizzesController extends Controller
         return view('quiz.index', compact('page', 'quiz', 'quizzes', 'sidebarQuizzes'));
     }
 
-    public function getPopularQuizzes()
+    public function getLatestQuizzes()
     {
         $page = 'Robodoo - Play With Robo';
-        $quizIds = QuizAttempt::distinct()->lists('quiz_id');
-        $quizzes = Quiz::where('locale', session('locale'))->where('is_active', 1)->whereIn('id', $quizIds)->withCount('attempts')->orderBy('attempts_count', 'DESC')->paginate(12);
+        $quizzes = Quiz::where('locale', session('locale'))->where('is_active', 1)->withCount('attempts')->orderBy('updated_at', 'DESC')->paginate(12);
         return view('home', compact('quizzes', 'page'));
     }
 
