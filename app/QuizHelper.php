@@ -188,7 +188,8 @@ class QuizHelper extends Model
                     while(count($response) > 0) {
                         foreach ($response as $key => $post) {
 
-                            ($count > 50) ? continue; : '';
+                            if ($count > 50)
+                                continue;
                             
                             $post['created_time'] = new Carbon($post['created_time']->format('M d Y'));
                             $diff = $now->diffInDays($post['created_time']);
