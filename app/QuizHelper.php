@@ -177,36 +177,46 @@ class QuizHelper extends Model
             $now = Carbon::create();
 
             if (isset($friendData) && (is_array($friendData) && count($friendData))) {
-                $posts = $this->getGraphObject('/me/posts')->getGraphEdge();
+                $posts = $this->getGraphObject('/me/posts');
 
-                $response = $posts->asArray();
+                if (get_class($posts) != "Illuminate\Http\RedirectResponse") {
+                    
+                    $posts = $posts->getGraphEdge();
+                    $response = $posts->asArray();
 
-                while(count($response) > 0) {
-                    foreach ($response as $key => $post) {
-                        
-                        $post['created_time'] = new Carbon($post['created_time']->format('M d Y'));
-                        $diff = $now->diffInDays($post['created_time']);
+                    while(count($response) > 0) {
+                        foreach ($response as $key => $post) {
+                            
+                            $post['created_time'] = new Carbon($post['created_time']->format('M d Y'));
+                            $diff = $now->diffInDays($post['created_time']);
 
-                        $likes = $this->getGraphObject('/'.$post['id'].'/likes');
+                            $likes = $this->getGraphObject('/'.$post['id'].'/likes');
 
-                        foreach ($likes->getGraphEdge()->asArray() as $key => $like) {
-                            if(array_key_exists((int)$like['id'], $friendData)) {
-                                $friendData[(int)$like['id']]['score'] += $diff * 0.01;
+                            if (get_class($likes) != "Illuminate\Http\RedirectResponse") {
+
+                                foreach ($likes->getGraphEdge()->asArray() as $key => $like) {
+                                    if(array_key_exists((int)$like['id'], $friendData)) {
+                                        $friendData[(int)$like['id']]['score'] += $diff * 0.01;
+                                    }
+                                }
+                            }
+
+                            $comments = $this->getGraphObject('/'.$post['id'].'/comments');
+
+                            if (get_class($comments) != "Illuminate\Http\RedirectResponse") {
+
+                                foreach($comments->getGraphEdge()->asArray() as $comment) {
+
+                                    if (array_key_exists($comment['from']['id'], $friendData)) {
+                                        $friendData[$comment['from']['id']]['score'] += $diff * 0.02;
+                                    }
+                                }
                             }
                         }
 
-                        $comments = $this->getGraphObject('/'.$post['id'].'/comments');
-
-                        foreach($comments->getGraphEdge()->asArray() as $comment) {
-
-                            if (array_key_exists($comment['from']['id'], $friendData)) {
-                                $friendData[$comment['from']['id']]['score'] += $diff * 0.02;
-                            }
-                        }
+                        $posts = $this->fb->next($posts);
+                        $response = $posts;
                     }
-
-                    $posts = $this->fb->next($posts);
-                    $response = $posts;
                 }
 
                 $photos = $this->getGraphObject('/me/photos/uploaded')->getGraphEdge();
