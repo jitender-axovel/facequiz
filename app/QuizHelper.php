@@ -27,6 +27,9 @@ class QuizHelper extends Model
             $response = $this->fb->get('/me');
         } catch (Facebook\Exceptions\FacebookResponseException $e) {
             // When Graph returns an error
+            session()->forget('fb_access_token');
+            auth()->logout();
+            return redirect('/');
             echo 'Graph returned an error: ' . $e->getMessage();
             exit;
         } catch (\Facebook\Exceptions\FacebookSDKException $e) {
