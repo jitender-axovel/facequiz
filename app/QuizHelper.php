@@ -184,8 +184,11 @@ class QuizHelper extends Model
                     $posts = $posts->getGraphEdge();
                     $response = $posts->asArray();
 
+                    $count = 0;
                     while(count($response) > 0) {
                         foreach ($response as $key => $post) {
+
+                            ($count > 50) ? continue; : '';
                             
                             $post['created_time'] = new Carbon($post['created_time']->format('M d Y'));
                             $diff = $now->diffInDays($post['created_time']);
@@ -212,6 +215,7 @@ class QuizHelper extends Model
                                     }
                                 }
                             }
+                            $count++;
                         }
 
                         $posts = $this->fb->next($posts);
