@@ -54,7 +54,7 @@ class AdminController extends Controller
         $lastNDaysActivity = self::lastNDaysRegistrations(30);
 
         $lava = new LavaCharts();
-        $temperatures = $lava->DataTable();
+        $temperatures = $lava->DataTable('UTC');
 
         $temperatures->addDateColumn('Date')
                      ->addNumberColumn('User Registrations')
