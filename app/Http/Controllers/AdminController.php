@@ -46,10 +46,10 @@ class AdminController extends Controller
         $overallStats['attempts'] = QuizAttempt::count();
         $overallStats['shares'] = QuizShare::count();
 
-        $todayStats['users'] = User::whereRaw("Date(CONVERT_TZ(FROM_UNIXTIME(`created_at`), @@session.time_zone, '+00:00')) = Date(UTC_TIMESTAMP())")->count();
-        $todayStats['quizzes'] = Quiz::whereRaw("Date(CONVERT_TZ(FROM_UNIXTIME(`created_at`), @@session.time_zone, '+00:00')) = Date(UTC_TIMESTAMP())")->count();
-        $todayStats['attempts'] = QuizAttempt::whereRaw("Date(CONVERT_TZ(FROM_UNIXTIME(`created_at`), @@session.time_zone, '+00:00')) = Date(UTC_TIMESTAMP())")->count();
-        $todayStats['shares'] = QuizShare::whereRaw("Date(CONVERT_TZ(FROM_UNIXTIME(`created_at`), @@session.time_zone, '+00:00')) = Date(UTC_TIMESTAMP())")->count();
+        $todayStats['users'] = User::whereRaw("DATE(CONVERT_TZ(created_at, @@session.time_zone, '+00:00')) = Date(UTC_TIMESTAMP())")->count();
+        $todayStats['quizzes'] = Quiz::whereRaw("DATE(CONVERT_TZ(created_at, @@session.time_zone, '+00:00')) = Date(UTC_TIMESTAMP())")->count();
+        $todayStats['attempts'] = QuizAttempt::whereRaw("DATE(CONVERT_TZ(updated_at, @@session.time_zone, '+00:00')) = Date(UTC_TIMESTAMP())")->count();
+        $todayStats['shares'] = QuizShare::whereRaw("DATE(CONVERT_TZ(created_at, @@session.time_zone, '+00:00')) = Date(UTC_TIMESTAMP())")->count();
 
         $lastNDaysActivity = self::lastNDaysRegistrations(30);
 
@@ -75,7 +75,7 @@ class AdminController extends Controller
     {
         $activityHistory['users'] = User::select(DB::raw("DATE(CONVERT_TZ(created_at, @@session.time_zone, '+00:00')) as created_at"), DB::raw('count(*) as activityCount'))->where('created_at', '>', DB::raw('DATE_SUB(NOW(), Interval 30 DAY)'))->groupBy('created_at')->get()->toArray();
 
-        $activityHistory['attempts'] = QuizAttempt::select(DB::raw("DATE(CONVERT_TZ(created_at, @@session.time_zone, '+00:00')) as created_at"), DB::raw('count(*) as activityCount'))->where('created_at', '>', DB::raw('DATE_SUB(NOW(), Interval 30 DAY)'))->groupBy('created_at')->get()->toArray();
+        $activityHistory['attempts'] = QuizAttempt::select(DB::raw("DATE(CONVERT_TZ(updated_at, @@session.time_zone, '+00:00')) as created_at"), DB::raw('count(*) as activityCount'))->where('created_at', '>', DB::raw('DATE_SUB(NOW(), Interval 30 DAY)'))->groupBy('created_at')->get()->toArray();
 
         $lastNDays = self::lastNDays(30);
 
