@@ -24,13 +24,20 @@ class BeforeMiddleware
 
         $locale = NULL;
         $browser_lang = substr($request->server('HTTP_ACCEPT_LANGUAGE'), 0, 2);
+        $url_lang = explode('.', $request->server('HTTP_HOST'))[0];
         $cookie_lang = $request->cookie('language');
 
         if(isset($_GET['lang']) && in_array($_GET['lang'], $languageCodes)) {
 
             $request->session()->put('locale', $_GET['lang']);
-            Cookie::queue(Cookie::forever('language', $_GET['lang']));
-            return redirect('/');
+            if (count(explode('.', $request->server('HTTP_HOST'))) == 3) {
+                return redirect()->away('http://'.$_GET['lang'].'.'.explode('.', $request->server('HTTP_HOST'))[1].'.'.explode('.', $request->server('HTTP_HOST'))[2]);
+            } else {
+                return redirect()->away('http://'.$_GET['lang'].'.'.$request->server('HTTP_HOST'));
+            }
+        } else if($url_lang && in_array($url_lang, $languageCodes)) {
+
+            $request->session()->put('locale', $url_lang);
         } else if($cookie_lang && in_array($cookie_lang, $languageCodes)) {
 
             $request->session()->put('locale', $cookie_lang);
@@ -45,6 +52,14 @@ class BeforeMiddleware
 
         if(!$locale) {
             $locale = 'en';
+        }
+
+        if ($locale != $url_lang) {
+            if (count(explode('.', $request->server('HTTP_HOST'))) == 3) {
+                return redirect()->away('http://'.$locale.'.'.explode('.', $request->server('HTTP_HOST'))[1].'.'.explode('.', $request->server('HTTP_HOST'))[2]);
+            } else {
+                return redirect()->away('http://'.$locale.'.'.$request->server('HTTP_HOST'));
+            }
         }
         // Set the local in Session if it's supported
         if (in_array($locale, $languageCodes)) {

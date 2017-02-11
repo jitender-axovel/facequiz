@@ -20,6 +20,9 @@ class SocialAuthController extends Controller
 
     public function callback(Request $request, SocialAccountService $service)
     {
+        $state = $request->get('state');
+        $request->session()->put('state',$state);
+        
         // if user denies pemissions
         if($request->input('error') == 'access_denied' && $request->input('error_code') == 200) {
             return redirect('/')->with('error', 'Whoops, looks like you denied permissions for this app.');
