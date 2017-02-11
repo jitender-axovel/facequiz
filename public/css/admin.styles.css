@@ -148,11 +148,14 @@ div#ajax-loading-section {display: none;}
 body {
   margin: 0px;
   padding: 0px;
+  font-family: 'Open Sans', sans-serif !important;
 }
 
+.panel-title{font-weight: 600;}
 header.admin-header {
-    position: fixed;
-    background: #010101 none repeat scroll 0 0;
+   
+    /*background: #010101 none repeat scroll 0 0;*/
+    background: #fff none repeat scroll 0 0;
     top: 0;
     width: 100%; 
     z-index: 9999;
@@ -161,6 +164,7 @@ header.admin-header {
 
 .admin-header .right-side {
     text-align: right;
+    margin-top: 5px;
 }
 
 #wrapper {
@@ -176,7 +180,7 @@ header.admin-header {
 }
 
 #sidebar-wrapper {
-  top: 60px;
+  top: 67px;
   z-index: 1000;
   position: fixed;
   left: 250px;
@@ -184,7 +188,8 @@ header.admin-header {
   height: 100%;
   margin-left: -250px;
   overflow-y: auto;
-  background: #000;
+/*  background: #000;*/
+background: #090909;
   -webkit-transition: all 0.5s ease;
   -moz-transition: all 0.5s ease;
   -o-transition: all 0.5s ease;
@@ -196,7 +201,7 @@ header.admin-header {
 }
 
 .admin-content {
-    margin-top: 55px;
+    margin-top: 87px;
 }
 
 .site-logo {
@@ -217,8 +222,8 @@ header.admin-header {
 /* Sidebar Styles */
 
 .sidebar-nav {
-  position: absolute;
-  top: 0;
+  position: relative;
+  top: 40px;
   width: 250px;
   margin: 0;
   padding: 0;
@@ -226,25 +231,44 @@ header.admin-header {
 }
 
 .sidebar-nav li {
-  text-indent: 20px;
-  line-height: 40px;
+  text-indent: 15px;
+  line-height: 44px;
+
 }
 
 .sidebar-nav li a {
   display: block;
   text-decoration: none;
-  color: #999999;
+ color: #e3e3e3;
+  font-size: 14px;
+letter-spacing: 0.5px;
 }
+a:hover{transition: all 0.3s ease-in-out 0s;}
+.sidebar-nav > li > a i{margin-right: 10px;}
 
-.sidebar-nav li a:hover {
+.sidebar-nav > li > a:hover {
   text-decoration: none;
   color: #fff;
-  background: rgba(255,255,255,0.2);
+background: rgb(234, 28, 36);
+outline: none;
+}
+.sidebar-nav  li  ul  {margin-left: 55px;}
+
+.sidebar-nav > li > a ul li a:hover ,
+.sidebar-nav > li > a ul li a:active,
+.sidebar-nav > li > a ul li a:focus{
+  text-decoration: none;
+  color: rgb(234, 28, 36);
+  outline: none;
+ 
 }
 
-.sidebar-nav li a:active,
-.sidebar-nav li a:focus {
-  text-decoration: none;
+.sidebar-nav > li >  a:active,
+.sidebar-nav > li > a:focus {
+  outline: none;
+   text-decoration: none;
+  color: #fff;
+background: rgb(234, 28, 36);
 }
 
 .sidebar-nav > .sidebar-brand {
@@ -263,7 +287,7 @@ header.admin-header {
 }
 .language-form {margin-top: 20px;}
 .form-group.custom > label {float: left; padding: 0 15px;}
-.form-group.custom .form-control {width: 70%;}
+.form-group.custom .form-control {width: 179px;}
 @media(min-width:768px) {
   #wrapper {
     padding-left: 250px;
@@ -291,3 +315,121 @@ header.admin-header {
     margin-right: 0;
   }
 }
+
+/* ================ code added by poonam  ================= */
+.admin-header .container{width: 98.5%;}
+ .admin-header .container .left-menu { margin-left: 0px; }
+ .admin-header .container .site-logo { display: inline-block; }
+.admin-header .container .site-logo img{ width: 100px; }
+ .admin-header .container .login{margin-right: 5px;}
+ .huge {  font-size: 25px; font-weight: bold;}
+
+#users_list_wrapper, #quizzes_list_wrapper{background-color: #fff;
+border: 1px solid transparent; padding: 15px;
+border-radius: 4px;
+-webkit-box-shadow: 0 1px 1px rgba(0,0,0,.05);
+box-shadow: 0 1px 1px rgba(0,0,0,.05);}
+.edit-p-sec  .form-group .control-label{text-align: left;}
+.edit-p-sec .form-control{width: 67%;}
+.edit-p-sec button.btn{margin-right: 114px;}
+.u-view-sec{ width: auto; float: left;}
+.u-view-sec dt{ text-align: left;font-size: 16px; }
+.s-line blockquote{padding: 0;margin: 0;font-size: 15px;border-left: 0px; }
+blockquote{padding: 0;margin: 0;font-size: 15px;border-left: 0px;}
+.s-line {border-bottom: 1px solid #efefef; padding: 10px;}
+.form-horizontal .control-label{text-align: left !important;}
+.dataTables_wrapper .dataTables_filter input { margin-left: 0.5em; border: 1px solid #ededed !important; border-radius: 4px !important;}
+.v-img-sec{margin-top: 25px;display: inline-block;}
+.v-img-sec u{font-size: 18px;text-align: left;float: left;margin-bottom: 15px;}
+.v-img-sec .heading {display: inline-block; width: 100%;}
+.v-img-sec .col-md-6{padding: 0 15px }
+legend {margin-bottom: 15px;margin-top: 20px;}
+.widget-sec h3{margin-top: 10px;margin-bottom: 20px;}
+
+/* ================ code added by dilshad  ================= */ 
+/* .sidebar-nav li > .collapse.in > li > a { padding-left: 43px; box-sizing: border-box;}  */
+.sidebar-nav li > .collapse.in > li > a:hover { color: rgb(234, 28, 36); outline: none;} 
+.admin-content h2.user-heading {    border-radius: 5px;
+    background-color: #c9302c;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    padding: 14px 15px;
+    margin-top: 0px;
+    line-height: 1;
+    color: #fff;
+    font-size: 26px;}
+form.form .form-group input.form-control { height: auto;  margin: 0 0 0 0; box-shadow: none;  border-radius: 0;
+    padding: 0; border: 0;}
+form.form .custom  {    margin: -6px 0 15px;}
+form.form .custom input.form-control {height: 34px;
+    padding: 6px 12px;
+    font-size: 14px;
+    line-height: 1.42857143;
+    color: #555;
+    background-color: #fff;
+    background-image: none;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.075);
+    box-shadow: inset 0 1px 1px rgba(0,0,0,.075);
+    -webkit-transition: border-color ease-in-out .15s,-webkit-box-shadow ease-in-out .15s;
+    -o-transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
+    transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;}
+  form.form .custom label {    line-height: 34px;
+    margin-bottom: 0; 
+    padding-left: 0px;}
+form.form .custom button.btn-success {margin-left:80px;}
+.panel-body h2.panel-heading {    font-family: 'Open Sans', sans-serif !important;
+    font-size: 16px;     padding-left: 0px;
+    margin-top: 15px;
+    margin-bottom: 20px;
+    font-weight: 600;}
+.panel.panel-success {margin-bottom:0px;}
+.dataTables_wrapper  .dataTables_filter label input {    border-radius: 0px;
+    border: none;
+    padding: 5px 7px;
+    line-height: 22px;}
+.sidebar-nav li > .collapse.in > li > a:before {content:'\f0da';     display: inline-block;
+    font: normal normal normal 14px/1 FontAwesome;
+    font-size: inherit;
+    text-rendering: auto; color:#fff;     padding-right: 8px;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;}
+
+table.dataTable tbody tr td a.btn:last-child {margin-right:0px;}
+form.form .form-group label {padding-right:10px;}
+table.dataTable tbody tr td:nth-child(odd) {    background-color: #f1f1f1;}
+.dataTables_wrapper table.dataTable {margin-bottom:25px; margin-top: 55px;}
+fieldset.jumbotron .form-group .cmn-checkbox input {    max-width: none;
+    height: auto;
+    box-shadow: none; 
+    width: auto;
+    border-radius: 0;}
+fieldset.jumbotron .form-group label {    margin-bottom: 0;
+    line-height: 18px; padding-top:0px;}
+fieldset.jumbotron.add-jumboter .form-group label { padding-top:0px;} 
+fieldset.jumbotron .form-group .cmn-checkbox { line-height: 34px; margin-bottom: 0;} 
+fieldset.jumbotron .form-group .cmn-checkbox input {    margin-top: 0!important;
+    line-height: 34px;
+    float: left;
+    height: 34px;}
+form.form-horizontal .form-group button.btn {float:right; width:auto;}
+.dataTables_wrapper .dataTables_length label select {    padding: 5px 8px;}
+.admin-content .panel .jumbotron .form-group {margin-bottom:15px;} 
+.dataTables_wrapper .dataTables_paginate span a.current {    background: #5cb85c!important;
+     border-color: #4cae4c!important;
+    color: #fff!important;}
+
+.custom-dashboad .panel-primary {margin-bottom:0px;} 
+.panel-default #temps_div > div > div {width:100%; float:left;}
+.cust-user-lst {margin-bottom:40px!important;} 
+.cust-user-lst .panel-body h2.panel-heading{margin-top: 0;color: #424242;}
+.cust-user-lst .panel-body  .form-group{padding: 0;}
+#quizzes_list_wrapper .paging_simple_numbers a.paginate_button.current {    color: #fff!important;
+    background: #449d44;
+    border-color: #398439;}
+.cust-user-lst table#users_list tbody tr td:last-child {min-width:130px;}
+/*.cust-user-lst .panel-body  .form{display: inline-block;}*/
+table#quizzes_list tbody tr td:last-child { min-width: 165px;}
+fieldset.jumbotron.add-jumboter .form-group input, fieldset.jumbotron.add-jumboter .form-group textarea, fieldset.jumbotron.add-jumboter .form-group select {font-size:13px;}
+.panel-body .panel-default .panel-heading .collapse-toggle { cursor:pointer;} 
