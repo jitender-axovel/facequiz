@@ -10,14 +10,14 @@
   | and give it the controller to call when that URI is requested.
   |
  */
+Route::get('/callback', 'SocialAuthController@callback');
+Route::group(['middleware' => 'before'], function () {
 
-Route::group(['middleware' => 'before'], function ($lang) {
     Route::get('/', 'HomeController@index');
 
     Route::auth();
 
     Route::get('/redirect', 'SocialAuthController@redirect');
-    Route::get('/callback', 'SocialAuthController@callback');
 
     Route::get('cms/{slug}', 'CmsController@getPage');
 
