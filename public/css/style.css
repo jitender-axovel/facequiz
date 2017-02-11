@@ -211,6 +211,10 @@ a#shareBtn:focus .fa,a#sendBtn:focus .fa,a#copyBtn:focus .fa {color: #337ab7;}
 	.container {padding: 0; width:998px;}
 	.container.main-content .row .col-md-9{width:715.822px;}
 	.container .col-md-3.fb-widget{width: 270.72px;}
+	.top-section .left-section .thumbnail .caption .bold > a{
+		height: 47px;
+	}
+	.top-section .left-section .thumbnail .caption .bold > a{ height: 27px; }
 
 }
 @media all and (max-width:1024px) {
@@ -220,6 +224,9 @@ a#shareBtn:focus .fa,a#sendBtn:focus .fa,a#copyBtn:focus .fa {color: #337ab7;}
 	.container {padding: 0; width:840px;}
 	.container .col-md-3.fb-widget {width: 220px;}
     .container.main-content .row .col-md-9 {width: 640.822px;}
+    .main-content .top-section .right-section .thumbnail .caption .bold > a{height: auto;padding-bottom: 14px;}
+    .main-content .col-md-4 .thumbnail .caption .bold > a{height: 47px;}
+
 }
 @media all and (max-width:991px) {
 	.main-content.container.homepage-container,.top-header.homepage-header .container{width: 750px;}
@@ -230,7 +237,7 @@ a#shareBtn:focus .fa,a#sendBtn:focus .fa,a#copyBtn:focus .fa {color: #337ab7;}
     .container.main-content .row .col-md-9 {width:auto;}
     .fb-page {padding: 6px;}
     .img-wrap {height: 421px;}
-.main-content .top-section .right-section .thumbnail .caption .bold > a{ height: 69px }
+
 }
 
 @media all and (max-width:767px){
@@ -282,6 +289,7 @@ a#shareBtn:focus .fa,a#sendBtn:focus .fa,a#copyBtn:focus .fa {color: #337ab7;}
 	.top-side-link .navbar-nav .login {margin-top: 5px;}
 	.footer-links .list-inline > li {margin-right: 20px;}
 	.img-wrap {height: auto;}
+	.homepage-container .row .col-md-4 .thumbnail .content-img{ height: auto; }
 
 }
 @media all and (max-width:729px){
@@ -305,10 +313,19 @@ a#shareBtn:focus .fa,a#sendBtn:focus .fa,a#copyBtn:focus .fa {color: #337ab7;}
 	.main-content .row .col-md-8 {padding: 0px;}
 	.main-content .col-md-4 .content-img .quiz-image-wrapper { height: auto;}
 	.fb-widget .content-img .quiz-image-wrapper {height:auto;}
+	.homepage-container .row .col-md-4 .thumbnail .content-img, 
+	.main-content .col-md-4 .thumbnail .caption .bold > a,
+	.main-content .top-section .right-section .thumbnail .caption .bold > a,
+	.top-section .left-section .thumbnail .caption .bold > a,
+	.main-content .col-md-4 .thumbnail .caption .bold > a
+	{ height: auto; }
+	.right-section .thumbnail.item{margin: 0px 0px 14px 0;}
+
 
 }
 @media all and (max-width:335px){
 	.mobile-view .custom-like-button .bold {display: none;}
 	.container-fluid div.custom-like-button {width: 40%;}
 	.footer-links .list-inline > li {display: block; margin: 0;}
+	
 }
