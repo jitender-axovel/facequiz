@@ -177,6 +177,21 @@ class QuizHelper extends Model
             $now = Carbon::create();
 
             if (isset($friendData) && (is_array($friendData) && count($friendData))) {
+
+                foreach ($friendData as $key => $friend) {
+                    $mutualFriends = $this->getGraphObject($key.'?fields=context.fields(mutual_friends)');
+                    $friendData[$key]['score'] += json_decode($mutualFriends->getBody(), true)['context']['mutual_friends']['summary']['total_count'];
+                }
+
+                usort($friendData, function($a, $b) {
+                    if ($a['score'] == $b['score']) {
+                        return 0;
+                    }
+                    return ($a['score'] < $b['score']) ? 1 : -1;
+                });
+
+                (count($friendData) >= 50) ? ($friendData = array_slice($friendData, 0, 50)) : '';
+
                 $posts = $this->getGraphObject('/me/posts');
 
                 if (get_class($posts) != "Illuminate\Http\RedirectResponse") {
@@ -224,6 +239,15 @@ class QuizHelper extends Model
                     }
                 }
 
+                usort($friendData, function($a, $b) {
+                    if ($a['score'] == $b['score']) {
+                        return 0;
+                    }
+                    return ($a['score'] < $b['score']) ? 1 : -1;
+                });
+
+                (count($friendData) >= 30) ? ($friendData = array_slice($friendData, 0, 30)) : '';
+
                 $photos = $this->getGraphObject('/me/photos/uploaded')->getGraphEdge();
                 $response = $photos->asArray();
 
@@ -253,11 +277,6 @@ class QuizHelper extends Model
 
                     $photos = $this->fb->next($photos);
                     $response = $photos;
-                }
-
-                foreach ($friendData as $key => $friend) {
-                    $mutualFriends = $this->getGraphObject($key.'?fields=context.fields(mutual_friends)');
-                    $friendData[$key]['score'] += json_decode($mutualFriends->getBody(), true)['context']['mutual_friends']['summary']['total_count'];
                 }
 
                 usort($friendData, function($a, $b) {
