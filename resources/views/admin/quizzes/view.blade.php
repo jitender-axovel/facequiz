@@ -20,15 +20,15 @@
                     <div class="col-md-3 heading">Has Quiz Title Section</div>
                     <div class="col-md-9"><blockquote>{{ $quiz->template->has_title ? 'Yes' : 'No' }}</blockquote></div>
                 </div>
-                <div class="row">
+                <div class="v-img-sec">
                     <div class="col-md-6">
-                        <div class="heading text-center bold"><u>Quiz Image</u></div>
+                        <div class="heading  bold"><u>Quiz Image</u></div>
                         <div class="text-center">
                             <img src="{{ asset(config('image.quiz_template_url')).'/'.$quiz->template->og_image }}" alt="No Introduction Image">
                         </div>
                     </div>
                     <div class="col-md-6">
-                        <div class="heading text-center bold"><u>Quiz Background Image</u></div>
+                        <div class="heading  bold"><u>Quiz Background Image</u></div>
                         <div class="text-center">
                             <img src="{{ asset(config('image.quiz_background_url')).'/'.$quiz->id.'/'.$quiz->background_image }}" alt="No Background Image">
                         </div>

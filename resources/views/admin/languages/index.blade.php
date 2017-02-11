@@ -8,7 +8,7 @@
         		<span class="loading-text"> Loading....</span>
         	</div>
         </div>
-		<h2>Language</h2>
+		<h2 class="user-heading">Language</h2>
 		@include('notification')
 		<div id="language-list">
 			@include('admin.languages.language-list', array('languages' => $languages))

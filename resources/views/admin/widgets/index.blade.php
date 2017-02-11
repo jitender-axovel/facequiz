@@ -1,9 +1,9 @@
 @extends('admin.layouts.app')
 @section('content')
-	<h2>Widgets List</h2>
+	<h2 class="user-heading">Widgets List</h2>
 	<hr>
 	@include('notification')
-	<div class="row col-md-12">
+	<div class="row col-md-12 widget-sec">
 		<div class="panel panel-primary">
 			<div class="panel-heading">
 				<div class="panel-title">Manage Widgets</div>

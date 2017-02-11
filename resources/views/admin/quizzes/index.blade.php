@@ -1,6 +1,6 @@
 @extends('admin.layouts.app')
 @section('content')
-	<h2>Quizzes List</h2>
+	<h2 class="user-heading">Quizzes List</h2>
 	<hr>
 	@include('notification')
 	<table id="quizzes_list" class="display">

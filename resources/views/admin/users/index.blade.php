@@ -1,34 +1,36 @@
 @extends('admin.layouts.app')
 @section('content')
-	<h2>Users List</h2>
+<div class="row">
+	<h2 class="user-heading">Users List</h2>
 	<hr>
 	@include('notification')
 	<div class="row col-md-12">
-		<div class="panel panel-success">
+		<div class="panel panel-success cust-user-lst">
 			<div class="panel-heading">
 				<div class="panel-title">Download Records</div>
 			</div>
 			<div class="panel-body">
-				Choose data to show in csv
+				<h2 class="panel-heading">Choose data to show in csv</h2>
 				<form class="form" action="{{ url('admin/users/download-csv') }}" method="POST">
 					{{csrf_field()}}
-					<div class="form-group form-inline col-md-4">
+					<div class="form-group form-inline col-md-2">
 						<label class="control-label">Name</label>
-							<input type="checkbox" class="form-control" name="name" value="name"></input>
+							<input type="checkbox" class="form-control" name="name" value="name">
 					</div>
-					<div class="form-group form-inline col-md-4">
+					<div class="form-group form-inline col-md-2">
 						<label>E-mail</label>
-						<input type="checkbox" class="form-control" name="email" value="email"></input>
+						<input type="checkbox" class="form-control" name="email" value="email">
 					</div>
-					<div class="form-group form-inline col-md-4">
+					<div class="form-group form-inline col-md-2">
 						<label>Gender</label>
-						<input type="checkbox" class="form-control" name="gender" value="gender"></input>
+						<input type="checkbox" class="form-control" name="gender" value="gender">
 					</div>
-					<div class="form-group form-inline col-md-12 custom">
+					<div class="form-group form-inline col-md-6 custom">
 						<label class="">Limit</label>
 						<input type="number" class="form-control " name="limit" value="{{old('limit')}}">
+						<button class="btn btn-success" type="submit">Download</button>
 					</div>
-					<button class="btn btn-success" type="submit">Download</button>
+					
 				</form>
 			</div>
 		</div>
@@ -67,6 +69,7 @@
 			@endforeach
 		</tbody>
 	</table>
+	</div>
 	<script type="text/javascript">
 		$(document).ready( function () {
 		    $('#users_list').DataTable();

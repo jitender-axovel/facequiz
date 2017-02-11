@@ -1,8 +1,8 @@
-<header class="admin-header">
+<header class="admin-header navbar-fixed-top">
     <div class="container">
         <div class="col-md-6 left-side">
             <ul class="left-menu list-inline">
-                <li><a href="#" class="site-logo">Facequiz Admin</li>
+                <li><a href="#" class="site-logo"><img src="{{ asset('images/logo.png') }}"></a></li>
             </ul>
         </div>
         <div class="col-md-6 right-side">

@@ -3,7 +3,7 @@
 	<link rel="stylesheet" type="text/css" href="{{ asset('css/bootstrap-datepicker.min.css') }}">
 @endsection
 @section('content')
-	<h2>Edit User Details</h2>
+	<h2 class="user-heading">Edit User Details</h2>
 	<hr>
 	@include('notification')
 	<div class="panel panel-default">
@@ -11,9 +11,9 @@
 			<p class="bold">Edit {{$user->name}}'s record</p>
 		</div>
 		<div class="panel-body">
-			<form class="form-horizontal" action="{{ url('admin/users/edit/'.$user->id) }}" method="POST">
+			<form class="edit-p-sec form-horizontal " action="{{ url('admin/users/edit/'.$user->id) }}" method="POST">
 				{{csrf_field()}}
-				<div class="form-group">
+				<div class="form-group ">
 					<label class="control-label col-md-2">Name</label>
 					<div class="col-md-4{{ ($errors->has('name')) ? ' has-error' : '' }}">
 						<input required type="text" class="form-control" name="name" value="{{ $user->name ? $user->name : old('name') }}"></input>
@@ -40,7 +40,7 @@
 							<input type="radio" name="gender" value="M" {{ $user->gender == 'M' ? 'checked' : ''}}>&nbsp;&nbsp;Male
 						</label>
 						<label class="radio-inline col-sm-5">
-							<input type="radio" name="gender" value="F" {{ $user->gender == 'F' ? 'checked' : ''}}>&nbsp;&nbsp;FeMale
+							<input type="radio" name="gender" value="F" {{ $user->gender == 'F' ? 'checked' : ''}}>&nbsp;&nbsp;Female
 						</label>
 						@if($errors->has('gender'))
 							<span class="help-block">
